@@ -1,0 +1,55 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <TargetFramework>net8.0-windows</TargetFramework>
+    <ImplicitUsings>enable</ImplicitUsings>
+    <Nullable>enable</Nullable>
+    <UseWPF>true</UseWPF>
+    <EnableDefaultPageItems>false</EnableDefaultPageItems>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <PackageReference Include="MaterialDesignThemes" Version="5.0.0" />
+    <PackageReference Include="MaterialDesignThemes.Wpf" Version="1.0.1" />
+    <PackageReference Include="MaterialDesignColors" Version="3.0.0" />
+    <PackageReference Include="Microsoft.Extensions.DependencyInjection.Abstractions" Version="8.0.0" />
+    <PackageReference Include="Microsoft.Extensions.Logging.Abstractions" Version="8.0.0" />
+    <PackageReference Include="ReactiveUI" Version="19.5.41" />
+    <PackageReference Include="SliccDB" Version="0.1.1.4" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\ChoreoHelper.Behaviors\ChoreoHelper.Behaviors.csproj" />
+    <ProjectReference Include="..\ChoreoHelper.Database\ChoreoHelper.Database.csproj" />
+    <ProjectReference Include="..\ChoreoHelper.Messages\ChoreoHelper.Messages.csproj" />
+    <ProjectReference Include="..\ChoreoHelper.ReactiveUI\ChoreoHelper.ReactiveUI.csproj" />
+    <ProjectReference Include="..\ChoreoHelper.ViewModels\ChoreoHelper.ViewModels.csproj" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Page Include="Choreography.xaml" />
+    <Page Include="LevelSelection.xaml" />
+    <Page Include="MainWindow.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <XamlRuntime>Wpf</XamlRuntime>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="RequiredFigureSelection.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <XamlRuntime>Wpf</XamlRuntime>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="OptionalFigureSelection.xaml">
+      <Generator>MSBuild:Compile</Generator>
+        <XamlRuntime>Wpf</XamlRuntime>
+        <SubType>Designer</SubType>
+    </Page>
+  </ItemGroup>
+
+  <ItemGroup>
+    <Compile Update="OptionalFigureSelection.cs">
+      <DependentUpon>OptionalFigureSelection.xaml</DependentUpon>
+    </Compile>
+  </ItemGroup>
+
+</Project>

@@ -1,0 +1,6 @@
+# ignore .idea bin and obj folders
+.idea/
+.vs/
+[Bb]in/
+[Oo]bj/
+*.user

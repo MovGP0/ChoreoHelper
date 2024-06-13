@@ -1,0 +1,32 @@
+﻿<UserControl x:Class="ChoreoHelper.Controls.RequiredFigureSelection"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+             xmlns:viewModels="clr-namespace:ChoreoHelper.ViewModels;assembly=ChoreoHelper.ViewModels"
+             TextElement.FontWeight="Regular"
+             TextElement.FontSize="12"
+             TextOptions.TextFormattingMode="Ideal"
+             TextOptions.TextRenderingMode="Auto"
+             mc:Ignorable="d"
+             d:DataContext="{d:DesignInstance viewModels:RequiredFigureSelectionViewModel, IsDesignTimeCreatable=True}"
+             d:DesignWidth="200">
+    <UserControl.Resources>
+        <ResourceDictionary>
+            <d:ResourceDictionary.MergedDictionaries>
+                <ResourceDictionary Source="pack://application:,,,/MaterialDesignThemes.Wpf;component/Themes/MaterialDesignTheme.Light.xaml" />
+                <ResourceDictionary Source="pack://application:,,,/MaterialDesignThemes.Wpf;component/Themes/materialdesign3.defaults.xaml" />
+                <ResourceDictionary Source="pack://application:,,,/MaterialDesignColors;component/Themes/Recommended/primary/materialdesigncolor.blue.xaml" />
+                <ResourceDictionary Source="pack://application:,,,/MaterialDesignColors;component/Themes/Recommended/secondary/materialdesigncolor.deeppurple.xaml" />
+            </d:ResourceDictionary.MergedDictionaries>
+        </ResourceDictionary>
+    </UserControl.Resources>
+    <Grid>
+        <CheckBox Margin="4" Padding="4"
+                  IsChecked="{Binding IsSelected, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"
+                  Content="{Binding Name, Mode=OneWay, UpdateSourceTrigger=PropertyChanged}"
+                  ToolTip="{Binding Name, Mode=OneWay, UpdateSourceTrigger=PropertyChanged}"
+                  VerticalAlignment="Center"
+                  HorizontalAlignment="Left"/>
+    </Grid>
+</UserControl>
