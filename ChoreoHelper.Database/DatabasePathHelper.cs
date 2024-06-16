@@ -5,15 +5,15 @@ namespace ChoreoHelper.Database;
 
 public static class DatabasePathHelper
 {
-    private static string path = string.Empty;
+    private static string _path = string.Empty;
 
     public static string GetPathToDatabase()
     {
-        if (path != string.Empty) return path;
+        if (_path != string.Empty) return _path;
 
         var baseFolder = Path.GetDirectoryName(Assembly.GetExecutingAssembly().Location);
         Debug.Assert(baseFolder != null);
-        path = Path.Combine(baseFolder, "dance transitions.sliccdb");
-        return path;
+        _path = Path.Combine(baseFolder, "dance transitions.sliccdb");
+        return _path;
     }
 }

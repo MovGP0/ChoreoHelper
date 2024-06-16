@@ -22,14 +22,14 @@
 void Main()
 {
 	var baseFolder = Path.GetDirectoryName(Util.CurrentQueryPath);
-	var excelPath = Path.Combine(baseFolder, @"dance transitions.xlsx");
+	var excelPath = Path.Combine(baseFolder, "..", @"dance transitions.xlsx");
 	if (!File.Exists(excelPath))
 	{
 		LogError($"File '{excelPath}' was not found.");
 		return;
 	}
 
-	var databasePath = Path.Combine(baseFolder, @"dance transitions.sliccdb");
+	var databasePath = Path.Combine(baseFolder, "..", @"dance transitions.sliccdb");
 	if(!File.Exists(databasePath))
 	{
 		LogError($"File '{databasePath}' was not found.");

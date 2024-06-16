@@ -21,7 +21,7 @@ public static class DatabaseConnectionExtensions
         return matrix;
     }
 
-    public static int GetDistance(
+    private static int GetDistance(
         this DatabaseConnection connection,
         DanceStepNodeInfo sourceFigure,
         DanceStepNodeInfo targetFigure)
@@ -61,9 +61,14 @@ public static class DatabaseConnectionExtensions
 
     public static IEnumerable<DanceStepNodeInfo> GetFigures(
         this DatabaseConnection connection,
-        string dance,
+        string? dance,
         DanceLevel level = DanceLevel.All)
     {
+        if (dance is null)
+        {
+            return Array.Empty<DanceStepNodeInfo>();
+        }
+
         return connection
             .Nodes()
             .WhereDanceName(dance)

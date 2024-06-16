@@ -10,7 +10,7 @@
         <PackageReference Include="JetBrains.Annotations" Version="2023.3.0" />
     </ItemGroup>
     <ItemGroup>
-        <Content Include="..\..\Technikbücher\dance transitions.sliccdb">
+        <Content Include="..\dance transitions.sliccdb">
             <Link>dance transitions.sliccdb</Link>
             <CopyToOutputDirectory>Always</CopyToOutputDirectory>
         </Content>

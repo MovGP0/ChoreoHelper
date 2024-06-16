@@ -5,6 +5,7 @@
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
              xmlns:viewModels="clr-namespace:ChoreoHelper.ViewModels;assembly=ChoreoHelper.ViewModels"
              xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
+             xmlns:database="clr-namespace:ChoreoHelper.Database;assembly=ChoreoHelper.Database"
              mc:Ignorable="d"
              TextElement.FontWeight="Regular"
              TextElement.FontSize="12"
@@ -22,9 +23,6 @@
             </d:ResourceDictionary.MergedDictionaries>
         </ResourceDictionary>
     </UserControl.Resources>
-    <UserControl.DataContext>
-        <viewModels:ChoreographyViewModel />
-    </UserControl.DataContext>
     <Grid>
         <Grid.ColumnDefinitions>
             <ColumnDefinition Width="40" />
@@ -32,13 +30,14 @@
         </Grid.ColumnDefinitions>
         <Label Grid.Column="0"
                Margin="4" Padding="4"
+               Width="32"
                HorizontalAlignment="Right" VerticalAlignment="Center"
                Content="{Binding Rating, Mode=OneWay, UpdateSourceTrigger=PropertyChanged}" />
-        <!-- horizontal and scollable list view -->
+        <!-- horizontal and scrollable list view -->
         <ListView Grid.Column="1"
                   Margin="4" Padding="4" 
                   MinWidth="100" Width="Auto" Height="Auto"
-                  HorizontalAlignment="Left"
+                  HorizontalAlignment="Stretch"
                   ItemsSource="{Binding Figures, Mode=OneWay, UpdateSourceTrigger=PropertyChanged}">
             <ListView.ItemsPanel>
                 <ItemsPanelTemplate>
@@ -46,10 +45,11 @@
                 </ItemsPanelTemplate>
             </ListView.ItemsPanel>
             <ListView.ItemTemplate>
-                <DataTemplate>
-                    <materialDesign:Chip
-                        Content="{Binding Name, Mode=OneWay, UpdateSourceTrigger=PropertyChanged}"
-                        Style="{StaticResource MaterialDesignOutlineChip}" />
+                <DataTemplate DataType="{x:Type database:DanceStepNodeInfo}">
+                    <!--materialDesign:Chip
+                        Content="{Binding Name, Mode=OneTime}"
+                        Style="{StaticResource MaterialDesignOutlineChip}" /-->
+                    <Label Content="{Binding Name}"></Label>
                 </DataTemplate>
             </ListView.ItemTemplate>
         </ListView>

@@ -1,4 +1,6 @@
-﻿using System.Reactive.Disposables;
+﻿using System.ComponentModel;
+using System.Reactive.Disposables;
+using System.Windows;
 using ChoreoHelper.Database;
 using DynamicData.Binding;
 using ReactiveUI;

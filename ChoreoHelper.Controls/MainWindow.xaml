@@ -13,7 +13,7 @@
         TextOptions.TextRenderingMode="Auto"
         mc:Ignorable="d"
         d:DataContext="{d:DesignInstance viewModels:MainWindowViewModel, IsDesignTimeCreatable=True}"
-        Title="Choreo Helper" Height="800" Width="1600" MinHeight="800" MinWidth="800">
+        Title="Choreo Helper" Height="800" Width="1200" MinHeight="800" MinWidth="800">
     <Window.Resources>
         <ResourceDictionary>
             <ResourceDictionary.MergedDictionaries>
@@ -49,6 +49,12 @@
                                 <scm:SortDescription PropertyName="Name" Direction="Ascending"/>
                             </CollectionViewSource.SortDescriptions>
                     </CollectionViewSource>
+                    <CollectionViewSource x:Key="SortedChoreographies"
+                                          Source="{Binding Choreographies, Mode=OneWay, UpdateSourceTrigger=PropertyChanged}">
+                        <CollectionViewSource.SortDescriptions>
+                            <scm:SortDescription PropertyName="Rating" Direction="Ascending"/>
+                        </CollectionViewSource.SortDescriptions>
+                    </CollectionViewSource>
                 </ResourceDictionary>
             </ResourceDictionary.MergedDictionaries>
         </ResourceDictionary>
@@ -71,8 +77,8 @@
                           Grid.IsSharedSizeScope="True"
                           ItemsSource="{Binding Source={StaticResource SortedLevels}}">
                     <ListView.ItemTemplate>
-                        <DataTemplate>
-                            <controls:LevelSelection />
+                        <DataTemplate DataType="{x:Type viewModels:LevelSelectionViewModel}">
+                            <controls:LevelSelection DataContext="{Binding}" />
                         </DataTemplate>
                     </ListView.ItemTemplate>
                 </ListView>
@@ -87,8 +93,8 @@
                     Grid.IsSharedSizeScope="True"
                     ItemsSource="{Binding Source={StaticResource SortedRequiredFigures}}">
                     <ListView.ItemTemplate>
-                        <DataTemplate>
-                            <controls:RequiredFigureSelection />
+                        <DataTemplate DataType="{x:Type viewModels:RequiredFigureSelectionViewModel}">
+                            <controls:RequiredFigureSelection DataContext="{Binding}" />
                         </DataTemplate>
                     </ListView.ItemTemplate>
                 </ListView>
@@ -100,8 +106,8 @@
                           ScrollViewer.CanContentScroll="False"
                           ItemsSource="{Binding Source={StaticResource SortedOptionalFigures}}">
                     <ListView.ItemTemplate>
-                        <DataTemplate>
-                            <controls:RequiredFigureSelection />
+                        <DataTemplate DataType="{x:Type viewModels:RequiredFigureSelectionViewModel}">
+                            <controls:RequiredFigureSelection DataContext="{Binding}" />
                         </DataTemplate>
                     </ListView.ItemTemplate>
                 </ListView>
@@ -113,10 +119,11 @@
                 Style="{StaticResource MaterialDesignRaisedDarkButton}"
             />
         </StackPanel>
-        <ListView DockPanel.Dock="Top">
+
+        <ListView ItemsSource="{Binding Source={StaticResource SortedChoreographies}}">
             <ListView.ItemTemplate>
-                <DataTemplate>
-                    <controls:Choreography />
+                <DataTemplate DataType="{x:Type viewModels:ChoreographyViewModel}">
+                    <controls:Choreography DataContext="{Binding}" />
                 </DataTemplate>
             </ListView.ItemTemplate>
         </ListView>

@@ -1,6 +1,5 @@
 ﻿using System.Collections.Immutable;
 using System.Diagnostics;
-using System.Reactive;
 using ChoreoHelper.Behaviors.Algorithms;
 using ChoreoHelper.Database;
 using ChoreoHelper.Messages;
@@ -43,7 +42,6 @@ public sealed class FindChoreographyBehavior(
         command
             .ObserveOn(RxApp.MainThreadScheduler)
             .SubscribeOn(RxApp.TaskpoolScheduler)
-            .Throttle(TimeSpan.FromMilliseconds(500))
             .Select(_ => viewModel)
             .SelectMany(async (MainWindowViewModel vm, CancellationToken ct) =>
             {
@@ -81,28 +79,25 @@ public sealed class FindChoreographyBehavior(
                 var routes = await BreadthFirstSearchRouteFinder.FindAllRoutesAsync(
                     matrix,
                     nodes,
-                    figures.Length * 3,
+                    figures.Length * 2,
                     cts.Token);
 
                 // convert routes:List<List<int>> to figures:List<List<DanceStepNodeInfo>>
                 return routes
-                    .Select(route => route
-                        .Select(index => figures[index])
+                    .Select<Route, DanceStepNodeInfo[]>(route => route
+                        .VisitedNodes.Select(index => figures[index])
                         .ToArray())
                     .ToArray();
             })
-            .Subscribe(choreographyItems =>
+            .Subscribe<DanceStepNodeInfo[][]>(choreographyItems =>
             {
                 choreographies.Clear();
-                choreographies.AddRange(choreographyItems.Select(item =>
-                {
-                    ChoreographyViewModel choreographyViewModel = new()
-                    {
-                        Rating = 1f / item.Length * 10f
-                    };
-                    choreographyViewModel.Figures.AddRange(item);
-                    return choreographyViewModel;
-                }));
+
+                var viewModels = choreographyItems
+                    .Select(ToChoreographyViewModel)
+                    .ToImmutableArray();
+
+                choreographies.AddRange(viewModels);
             })
             .DisposeWith(disposables);
 
@@ -110,5 +105,16 @@ public sealed class FindChoreographyBehavior(
         return;
 
         Unit DoNothing() => Unit.Default;
+    }
+
+    [Pure]
+    private static ChoreographyViewModel ToChoreographyViewModel(DanceStepNodeInfo[] item)
+    {
+        ChoreographyViewModel choreographyViewModel = new()
+        {
+            Rating = 1f / item.Length * 10f
+        };
+        choreographyViewModel.Figures.AddRange(item);
+        return choreographyViewModel;
     }
 }

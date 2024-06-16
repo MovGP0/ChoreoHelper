@@ -33,7 +33,7 @@ public sealed class RequiredFigureSelectionViewModel : ReactiveObject, IDisposab
 
     public RequiredFigureSelectionViewModel()
     {
-        if (!this.IsInDesignMode())
+        if (this.IsInDesignMode())
         {
             Name = "Dance Figure Name";
             IsSelected = true;

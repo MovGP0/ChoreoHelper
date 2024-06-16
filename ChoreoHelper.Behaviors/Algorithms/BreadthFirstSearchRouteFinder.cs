@@ -1,4 +1,5 @@
 using System.Collections.Immutable;
+using System.Diagnostics;
 
 namespace ChoreoHelper.Behaviors.Algorithms;
 
@@ -10,7 +11,7 @@ public static class BreadthFirstSearchRouteFinder
         int maxDistance,
         CancellationToken cancellationToken = default)
     {
-        var frontier = new List<Route>();
+        var frontier = new HashSet<Route>();
         foreach (var startNode in requiredNodes)
         {
             frontier.Add(new Route(startNode));
@@ -20,23 +21,46 @@ public static class BreadthFirstSearchRouteFinder
                && frontier.Count > 0
                && !frontier.Any(f => f.HasVisitedAllRequiredNodes(requiredNodes)))
         {
-            List<Route> newFrontier = new();
+            HashSet<Route> newFrontier = new();
+            var minDistance = frontier.Select(r => r.Distance).Min();
 
-            foreach (var node in distanceMatrix)
-            foreach (var route in frontier)
+            foreach (var route in frontier.OrderBy(e => e.Distance))
             {
-                var distance = distanceMatrix[route.LastVisitedNode, node];
-                if (distance < 0)
+                if (route.Distance > minDistance)
                 {
-                    // not connected
+                    // schedule for later
+                    newFrontier.Add(route);
                     continue;
                 }
 
-                var penalty = route.VisitedNodes.Count(n => n == node);
-                var newRoute = route.Append(node, distance + penalty);
-                if (newRoute.Distance <= maxDistance)
+                Debug.Assert(route.Distance == minDistance);
+
+                for (var node = 0; node < distanceMatrix.GetLength(0); node++)
                 {
-                    newFrontier.Add(newRoute);
+                    var distance = distanceMatrix[route.LastVisitedNode, node];
+                    if (distance < 0)
+                    {
+                        // not connected
+                        continue;
+                    }
+
+                    var penalty = route.VisitedNodes.Count(n => n == node);
+                    var newRoute = route.Append(node, route.Distance + distance + penalty);
+
+                    var numberOfRepetitions =
+                        newRoute.VisitedNodes.Count()
+                        - newRoute.VisitedNodes.Distinct().Count();
+
+                    if (numberOfRepetitions >= 2)
+                    {
+                        // skip when there are too many repetitions
+                        continue;
+                    }
+
+                    if (newRoute.Distance <= maxDistance)
+                    {
+                        newFrontier.Add(newRoute);
+                    }
                 }
             }
 

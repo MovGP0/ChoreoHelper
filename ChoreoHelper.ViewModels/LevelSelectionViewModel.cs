@@ -34,7 +34,7 @@ public sealed class LevelSelectionViewModel: ReactiveObject, IDisposable
 
     public LevelSelectionViewModel()
     {
-        if (!this.IsInDesignMode())
+        if (this.IsInDesignMode())
         {
             Level = DanceLevel.Bronze;
             Name = DanceLevel.Bronze.ToString();

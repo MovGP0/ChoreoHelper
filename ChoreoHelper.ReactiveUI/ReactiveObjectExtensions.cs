@@ -24,8 +24,10 @@ public static class ReactiveObjectExtensions
     [UsedImplicitly]
     public static bool IsInDesignMode(this ReactiveObject obj)
     {
-        return (bool)DesignerProperties.IsInDesignModeProperty
+        var value = (bool)DesignerProperties.IsInDesignModeProperty
             .GetMetadata(typeof(DependencyObject))
             .DefaultValue;
+
+        return value != false;
     }
 }
