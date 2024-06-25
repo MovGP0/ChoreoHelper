@@ -1,0 +1,689 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<dance>
+  <dancefigure dance="Jive" name="Basic in Place" level="bronze" />
+  <dancefigure dance="Jive" name="Basic in Fallaway" level="bronze" />
+  <dancefigure dance="Jive" name="Change of Place from Right to Left" level="bronze" />
+  <dancefigure dance="Jive" name="Change of Place from Left to Right" level="bronze" />
+  <dancefigure dance="Jive" name="American Spin" level="bronze" />
+  <dancefigure dance="Jive" name="Change of Place Behind the Back" level="bronze" />
+  <dancefigure dance="Jive" name="Link" level="bronze" />
+  <dancefigure dance="Jive" name="Whip" level="bronze" />
+  <dancefigure dance="Jive" name="Promenade Walks — Slow" level="bronze" />
+  <dancefigure dance="Jive" name="Promenade Walks — Quick" level="bronze" />
+  <dancefigure dance="Jive" name="Fallaway Throwaway" level="silver" />
+  <dancefigure dance="Jive" name="Change of Place from Right to Left with Double Spin" level="silver" />
+  <dancefigure dance="Jive" name="Overturned Change of Place from Left to Right" level="silver" />
+  <dancefigure dance="Jive" name="Double Cross Whip" level="silver" />
+  <dancefigure dance="Jive" name="Throwaway Whip" level="silver" />
+  <dancefigure dance="Jive" name="Reverse Whip" level="silver" />
+  <dancefigure dance="Jive" name="Curly Whip" level="silver" />
+  <dancefigure dance="Jive" name="Overturned Fallaway Throwaway" level="silver" />
+  <dancefigure dance="Jive" name="Stop and Go" level="silver" />
+  <dancefigure dance="Jive" name="Hip Bump" level="silver" />
+  <dancefigure dance="Jive" name="Windmill" level="silver" />
+  <dancefigure dance="Jive" name="Mooch" level="silver" />
+  <dancefigure dance="Jive" name="Spanish Arms" level="gold" />
+  <dancefigure dance="Jive" name="Chicken Walks" level="gold" />
+  <dancefigure dance="Jive" name="Rolling off the Arm" level="gold" />
+  <dancefigure dance="Jive" name="Simple Spin" level="gold" />
+  <dancefigure dance="Jive" name="Rock to Simple Spin" level="gold" />
+  <dancefigure dance="Jive" name="Flicks into Break" level="gold" />
+  <dancefigure dance="Jive" name="Toe Heel Swivels" level="gold" />
+  <dancefigure dance="Jive" name="Sugar Push" level="gold" />
+  <dancefigure dance="Jive" name="Miami Special" level="gold" />
+  <dancefigure dance="Jive" name="Shoulder Spin" level="gold" />
+  <dancefigure dance="Jive" name="Chugging" level="gold" />
+  <dancefigure dance="Jive" name="Catapult" level="gold" />
+  <dancefiguretransition source="Basic in Place" target="Basic in Place" distance="1" />
+  <dancefiguretransition source="Basic in Place" target="Basic in Fallaway" distance="1" />
+  <dancefiguretransition source="Basic in Place" target="Change of Place from Right to Left" distance="1" />
+  <dancefiguretransition source="Basic in Place" target="Change of Place from Left to Right" distance="2" />
+  <dancefiguretransition source="Basic in Place" target="American Spin" distance="2" />
+  <dancefiguretransition source="Basic in Place" target="Change of Place Behind the Back" distance="2" />
+  <dancefiguretransition source="Basic in Place" target="Link" distance="2" />
+  <dancefiguretransition source="Basic in Place" target="Whip" distance="2" />
+  <dancefiguretransition source="Basic in Place" target="Promenade Walks — Slow" distance="1" />
+  <dancefiguretransition source="Basic in Place" target="Promenade Walks — Quick" distance="1" />
+  <dancefiguretransition source="Basic in Place" target="Fallaway Throwaway" distance="1" />
+  <dancefiguretransition source="Basic in Place" target="Change of Place from Right to Left with Double Spin" distance="1" />
+  <dancefiguretransition source="Basic in Place" target="Overturned Change of Place from Left to Right" distance="2" />
+  <dancefiguretransition source="Basic in Place" target="Double Cross Whip" distance="2" />
+  <dancefiguretransition source="Basic in Place" target="Throwaway Whip" distance="2" />
+  <dancefiguretransition source="Basic in Place" target="Reverse Whip" distance="1" />
+  <dancefiguretransition source="Basic in Place" target="Curly Whip" distance="2" />
+  <dancefiguretransition source="Basic in Place" target="Overturned Fallaway Throwaway" distance="1" />
+  <dancefiguretransition source="Basic in Place" target="Hip Bump" distance="2" />
+  <dancefiguretransition source="Basic in Place" target="Windmill" distance="2" />
+  <dancefiguretransition source="Basic in Place" target="Mooch" distance="1" />
+  <dancefiguretransition source="Basic in Place" target="Rock to Simple Spin" distance="2" />
+  <dancefiguretransition source="Basic in Place" target="Flicks into Break" distance="2" />
+  <dancefiguretransition source="Basic in Place" target="Toe Heel Swivels" distance="2" />
+  <dancefiguretransition source="Basic in Fallaway" target="Basic in Place" distance="1" />
+  <dancefiguretransition source="Basic in Fallaway" target="Basic in Fallaway" distance="1" />
+  <dancefiguretransition source="Basic in Fallaway" target="Change of Place from Right to Left" distance="1" />
+  <dancefiguretransition source="Basic in Fallaway" target="Change of Place from Left to Right" distance="2" />
+  <dancefiguretransition source="Basic in Fallaway" target="American Spin" distance="2" />
+  <dancefiguretransition source="Basic in Fallaway" target="Change of Place Behind the Back" distance="2" />
+  <dancefiguretransition source="Basic in Fallaway" target="Link" distance="2" />
+  <dancefiguretransition source="Basic in Fallaway" target="Whip" distance="2" />
+  <dancefiguretransition source="Basic in Fallaway" target="Promenade Walks — Slow" distance="1" />
+  <dancefiguretransition source="Basic in Fallaway" target="Promenade Walks — Quick" distance="1" />
+  <dancefiguretransition source="Basic in Fallaway" target="Fallaway Throwaway" distance="1" />
+  <dancefiguretransition source="Basic in Fallaway" target="Change of Place from Right to Left with Double Spin" distance="1" />
+  <dancefiguretransition source="Basic in Fallaway" target="Overturned Change of Place from Left to Right" distance="2" />
+  <dancefiguretransition source="Basic in Fallaway" target="Double Cross Whip" distance="2" />
+  <dancefiguretransition source="Basic in Fallaway" target="Throwaway Whip" distance="2" />
+  <dancefiguretransition source="Basic in Fallaway" target="Reverse Whip" distance="1" />
+  <dancefiguretransition source="Basic in Fallaway" target="Curly Whip" distance="2" />
+  <dancefiguretransition source="Basic in Fallaway" target="Overturned Fallaway Throwaway" distance="1" />
+  <dancefiguretransition source="Basic in Fallaway" target="Hip Bump" distance="2" />
+  <dancefiguretransition source="Basic in Fallaway" target="Windmill" distance="2" />
+  <dancefiguretransition source="Basic in Fallaway" target="Mooch" distance="1" />
+  <dancefiguretransition source="Basic in Fallaway" target="Rock to Simple Spin" distance="2" />
+  <dancefiguretransition source="Basic in Fallaway" target="Flicks into Break" distance="2" />
+  <dancefiguretransition source="Basic in Fallaway" target="Toe Heel Swivels" distance="2" />
+  <dancefiguretransition source="Change of Place from Right to Left" target="Change of Place from Left to Right" distance="1" />
+  <dancefiguretransition source="Change of Place from Right to Left" target="American Spin" distance="2" />
+  <dancefiguretransition source="Change of Place from Right to Left" target="Change of Place Behind the Back" distance="1" />
+  <dancefiguretransition source="Change of Place from Right to Left" target="Link" distance="1" />
+  <dancefiguretransition source="Change of Place from Right to Left" target="Fallaway Throwaway" distance="2" />
+  <dancefiguretransition source="Change of Place from Right to Left" target="Overturned Change of Place from Left to Right" distance="1" />
+  <dancefiguretransition source="Change of Place from Right to Left" target="Curly Whip" distance="1" />
+  <dancefiguretransition source="Change of Place from Right to Left" target="Overturned Fallaway Throwaway" distance="2" />
+  <dancefiguretransition source="Change of Place from Right to Left" target="Stop and Go" distance="1" />
+  <dancefiguretransition source="Change of Place from Right to Left" target="Hip Bump" distance="1" />
+  <dancefiguretransition source="Change of Place from Right to Left" target="Windmill" distance="2" />
+  <dancefiguretransition source="Change of Place from Right to Left" target="Spanish Arms" distance="2" />
+  <dancefiguretransition source="Change of Place from Right to Left" target="Chicken Walks" distance="2" />
+  <dancefiguretransition source="Change of Place from Right to Left" target="Rolling off the Arm" distance="2" />
+  <dancefiguretransition source="Change of Place from Right to Left" target="Rock to Simple Spin" distance="1" />
+  <dancefiguretransition source="Change of Place from Right to Left" target="Flicks into Break" distance="2" />
+  <dancefiguretransition source="Change of Place from Right to Left" target="Toe Heel Swivels" distance="2" />
+  <dancefiguretransition source="Change of Place from Right to Left" target="Sugar Push" distance="2" />
+  <dancefiguretransition source="Change of Place from Right to Left" target="Miami Special" distance="2" />
+  <dancefiguretransition source="Change of Place from Right to Left" target="Shoulder Spin" distance="2" />
+  <dancefiguretransition source="Change of Place from Right to Left" target="Chugging" distance="2" />
+  <dancefiguretransition source="Change of Place from Right to Left" target="Catapult" distance="2" />
+  <dancefiguretransition source="Change of Place from Left to Right" target="Change of Place from Left to Right" distance="1" />
+  <dancefiguretransition source="Change of Place from Left to Right" target="American Spin" distance="2" />
+  <dancefiguretransition source="Change of Place from Left to Right" target="Change of Place Behind the Back" distance="1" />
+  <dancefiguretransition source="Change of Place from Left to Right" target="Link" distance="1" />
+  <dancefiguretransition source="Change of Place from Left to Right" target="Fallaway Throwaway" distance="2" />
+  <dancefiguretransition source="Change of Place from Left to Right" target="Overturned Change of Place from Left to Right" distance="1" />
+  <dancefiguretransition source="Change of Place from Left to Right" target="Curly Whip" distance="1" />
+  <dancefiguretransition source="Change of Place from Left to Right" target="Overturned Fallaway Throwaway" distance="2" />
+  <dancefiguretransition source="Change of Place from Left to Right" target="Stop and Go" distance="1" />
+  <dancefiguretransition source="Change of Place from Left to Right" target="Hip Bump" distance="1" />
+  <dancefiguretransition source="Change of Place from Left to Right" target="Windmill" distance="2" />
+  <dancefiguretransition source="Change of Place from Left to Right" target="Spanish Arms" distance="2" />
+  <dancefiguretransition source="Change of Place from Left to Right" target="Chicken Walks" distance="2" />
+  <dancefiguretransition source="Change of Place from Left to Right" target="Rolling off the Arm" distance="2" />
+  <dancefiguretransition source="Change of Place from Left to Right" target="Rock to Simple Spin" distance="1" />
+  <dancefiguretransition source="Change of Place from Left to Right" target="Flicks into Break" distance="2" />
+  <dancefiguretransition source="Change of Place from Left to Right" target="Toe Heel Swivels" distance="2" />
+  <dancefiguretransition source="Change of Place from Left to Right" target="Sugar Push" distance="2" />
+  <dancefiguretransition source="Change of Place from Left to Right" target="Miami Special" distance="2" />
+  <dancefiguretransition source="Change of Place from Left to Right" target="Shoulder Spin" distance="2" />
+  <dancefiguretransition source="Change of Place from Left to Right" target="Chugging" distance="2" />
+  <dancefiguretransition source="Change of Place from Left to Right" target="Catapult" distance="2" />
+  <dancefiguretransition source="American Spin" target="Change of Place from Left to Right" distance="1" />
+  <dancefiguretransition source="American Spin" target="American Spin" distance="2" />
+  <dancefiguretransition source="American Spin" target="Change of Place Behind the Back" distance="1" />
+  <dancefiguretransition source="American Spin" target="Link" distance="1" />
+  <dancefiguretransition source="American Spin" target="Fallaway Throwaway" distance="2" />
+  <dancefiguretransition source="American Spin" target="Overturned Change of Place from Left to Right" distance="1" />
+  <dancefiguretransition source="American Spin" target="Curly Whip" distance="1" />
+  <dancefiguretransition source="American Spin" target="Overturned Fallaway Throwaway" distance="2" />
+  <dancefiguretransition source="American Spin" target="Stop and Go" distance="1" />
+  <dancefiguretransition source="American Spin" target="Hip Bump" distance="1" />
+  <dancefiguretransition source="American Spin" target="Windmill" distance="2" />
+  <dancefiguretransition source="American Spin" target="Spanish Arms" distance="2" />
+  <dancefiguretransition source="American Spin" target="Chicken Walks" distance="2" />
+  <dancefiguretransition source="American Spin" target="Rolling off the Arm" distance="2" />
+  <dancefiguretransition source="American Spin" target="Rock to Simple Spin" distance="1" />
+  <dancefiguretransition source="American Spin" target="Flicks into Break" distance="2" />
+  <dancefiguretransition source="American Spin" target="Toe Heel Swivels" distance="2" />
+  <dancefiguretransition source="American Spin" target="Sugar Push" distance="2" />
+  <dancefiguretransition source="American Spin" target="Miami Special" distance="2" />
+  <dancefiguretransition source="American Spin" target="Shoulder Spin" distance="2" />
+  <dancefiguretransition source="American Spin" target="Chugging" distance="2" />
+  <dancefiguretransition source="American Spin" target="Catapult" distance="2" />
+  <dancefiguretransition source="Change of Place Behind the Back" target="Change of Place from Left to Right" distance="1" />
+  <dancefiguretransition source="Change of Place Behind the Back" target="American Spin" distance="2" />
+  <dancefiguretransition source="Change of Place Behind the Back" target="Change of Place Behind the Back" distance="1" />
+  <dancefiguretransition source="Change of Place Behind the Back" target="Link" distance="1" />
+  <dancefiguretransition source="Change of Place Behind the Back" target="Fallaway Throwaway" distance="2" />
+  <dancefiguretransition source="Change of Place Behind the Back" target="Overturned Change of Place from Left to Right" distance="1" />
+  <dancefiguretransition source="Change of Place Behind the Back" target="Curly Whip" distance="1" />
+  <dancefiguretransition source="Change of Place Behind the Back" target="Overturned Fallaway Throwaway" distance="2" />
+  <dancefiguretransition source="Change of Place Behind the Back" target="Stop and Go" distance="1" />
+  <dancefiguretransition source="Change of Place Behind the Back" target="Hip Bump" distance="1" />
+  <dancefiguretransition source="Change of Place Behind the Back" target="Windmill" distance="2" />
+  <dancefiguretransition source="Change of Place Behind the Back" target="Spanish Arms" distance="2" />
+  <dancefiguretransition source="Change of Place Behind the Back" target="Chicken Walks" distance="2" />
+  <dancefiguretransition source="Change of Place Behind the Back" target="Rolling off the Arm" distance="2" />
+  <dancefiguretransition source="Change of Place Behind the Back" target="Rock to Simple Spin" distance="1" />
+  <dancefiguretransition source="Change of Place Behind the Back" target="Flicks into Break" distance="2" />
+  <dancefiguretransition source="Change of Place Behind the Back" target="Toe Heel Swivels" distance="2" />
+  <dancefiguretransition source="Change of Place Behind the Back" target="Sugar Push" distance="2" />
+  <dancefiguretransition source="Change of Place Behind the Back" target="Miami Special" distance="2" />
+  <dancefiguretransition source="Change of Place Behind the Back" target="Shoulder Spin" distance="2" />
+  <dancefiguretransition source="Change of Place Behind the Back" target="Chugging" distance="2" />
+  <dancefiguretransition source="Change of Place Behind the Back" target="Catapult" distance="2" />
+  <dancefiguretransition source="Link" target="Basic in Place" distance="1" />
+  <dancefiguretransition source="Link" target="Basic in Fallaway" distance="1" />
+  <dancefiguretransition source="Link" target="Change of Place from Right to Left" distance="1" />
+  <dancefiguretransition source="Link" target="Whip" distance="2" />
+  <dancefiguretransition source="Link" target="Promenade Walks — Slow" distance="1" />
+  <dancefiguretransition source="Link" target="Promenade Walks — Quick" distance="1" />
+  <dancefiguretransition source="Link" target="Fallaway Throwaway" distance="1" />
+  <dancefiguretransition source="Link" target="Change of Place from Right to Left with Double Spin" distance="1" />
+  <dancefiguretransition source="Link" target="Double Cross Whip" distance="2" />
+  <dancefiguretransition source="Link" target="Throwaway Whip" distance="2" />
+  <dancefiguretransition source="Link" target="Reverse Whip" distance="1" />
+  <dancefiguretransition source="Link" target="Curly Whip" distance="2" />
+  <dancefiguretransition source="Link" target="Overturned Fallaway Throwaway" distance="1" />
+  <dancefiguretransition source="Link" target="Mooch" distance="1" />
+  <dancefiguretransition source="Link" target="Flicks into Break" distance="2" />
+  <dancefiguretransition source="Link" target="Toe Heel Swivels" distance="2" />
+  <dancefiguretransition source="Whip" target="Basic in Place" distance="1" />
+  <dancefiguretransition source="Whip" target="Basic in Fallaway" distance="1" />
+  <dancefiguretransition source="Whip" target="Change of Place from Right to Left" distance="1" />
+  <dancefiguretransition source="Whip" target="Promenade Walks — Slow" distance="1" />
+  <dancefiguretransition source="Whip" target="Promenade Walks — Quick" distance="1" />
+  <dancefiguretransition source="Whip" target="Fallaway Throwaway" distance="1" />
+  <dancefiguretransition source="Whip" target="Change of Place from Right to Left with Double Spin" distance="1" />
+  <dancefiguretransition source="Whip" target="Reverse Whip" distance="1" />
+  <dancefiguretransition source="Whip" target="Overturned Fallaway Throwaway" distance="1" />
+  <dancefiguretransition source="Whip" target="Mooch" distance="1" />
+  <dancefiguretransition source="Whip" target="Flicks into Break" distance="2" />
+  <dancefiguretransition source="Whip" target="Toe Heel Swivels" distance="2" />
+  <dancefiguretransition source="Promenade Walks — Slow" target="Basic in Place" distance="2" />
+  <dancefiguretransition source="Promenade Walks — Slow" target="Basic in Fallaway" distance="2" />
+  <dancefiguretransition source="Promenade Walks — Slow" target="Change of Place from Right to Left" distance="2" />
+  <dancefiguretransition source="Promenade Walks — Slow" target="Promenade Walks — Slow" distance="2" />
+  <dancefiguretransition source="Promenade Walks — Slow" target="Promenade Walks — Quick" distance="2" />
+  <dancefiguretransition source="Promenade Walks — Slow" target="Fallaway Throwaway" distance="2" />
+  <dancefiguretransition source="Promenade Walks — Slow" target="Change of Place from Right to Left with Double Spin" distance="2" />
+  <dancefiguretransition source="Promenade Walks — Slow" target="Overturned Fallaway Throwaway" distance="2" />
+  <dancefiguretransition source="Promenade Walks — Slow" target="Mooch" distance="2" />
+  <dancefiguretransition source="Promenade Walks — Slow" target="Flicks into Break" distance="2" />
+  <dancefiguretransition source="Promenade Walks — Slow" target="Toe Heel Swivels" distance="2" />
+  <dancefiguretransition source="Promenade Walks — Quick" target="Basic in Place" distance="2" />
+  <dancefiguretransition source="Promenade Walks — Quick" target="Basic in Fallaway" distance="2" />
+  <dancefiguretransition source="Promenade Walks — Quick" target="Change of Place from Right to Left" distance="2" />
+  <dancefiguretransition source="Promenade Walks — Quick" target="Promenade Walks — Slow" distance="2" />
+  <dancefiguretransition source="Promenade Walks — Quick" target="Promenade Walks — Quick" distance="2" />
+  <dancefiguretransition source="Promenade Walks — Quick" target="Fallaway Throwaway" distance="2" />
+  <dancefiguretransition source="Promenade Walks — Quick" target="Change of Place from Right to Left with Double Spin" distance="2" />
+  <dancefiguretransition source="Promenade Walks — Quick" target="Overturned Fallaway Throwaway" distance="2" />
+  <dancefiguretransition source="Promenade Walks — Quick" target="Mooch" distance="2" />
+  <dancefiguretransition source="Promenade Walks — Quick" target="Flicks into Break" distance="2" />
+  <dancefiguretransition source="Promenade Walks — Quick" target="Toe Heel Swivels" distance="2" />
+  <dancefiguretransition source="Fallaway Throwaway" target="Change of Place from Left to Right" distance="1" />
+  <dancefiguretransition source="Fallaway Throwaway" target="American Spin" distance="2" />
+  <dancefiguretransition source="Fallaway Throwaway" target="Change of Place Behind the Back" distance="1" />
+  <dancefiguretransition source="Fallaway Throwaway" target="Link" distance="1" />
+  <dancefiguretransition source="Fallaway Throwaway" target="Fallaway Throwaway" distance="2" />
+  <dancefiguretransition source="Fallaway Throwaway" target="Overturned Change of Place from Left to Right" distance="1" />
+  <dancefiguretransition source="Fallaway Throwaway" target="Curly Whip" distance="1" />
+  <dancefiguretransition source="Fallaway Throwaway" target="Overturned Fallaway Throwaway" distance="2" />
+  <dancefiguretransition source="Fallaway Throwaway" target="Stop and Go" distance="1" />
+  <dancefiguretransition source="Fallaway Throwaway" target="Hip Bump" distance="1" />
+  <dancefiguretransition source="Fallaway Throwaway" target="Windmill" distance="2" />
+  <dancefiguretransition source="Fallaway Throwaway" target="Spanish Arms" distance="2" />
+  <dancefiguretransition source="Fallaway Throwaway" target="Chicken Walks" distance="2" />
+  <dancefiguretransition source="Fallaway Throwaway" target="Rolling off the Arm" distance="2" />
+  <dancefiguretransition source="Fallaway Throwaway" target="Rock to Simple Spin" distance="1" />
+  <dancefiguretransition source="Fallaway Throwaway" target="Flicks into Break" distance="2" />
+  <dancefiguretransition source="Fallaway Throwaway" target="Toe Heel Swivels" distance="2" />
+  <dancefiguretransition source="Fallaway Throwaway" target="Sugar Push" distance="2" />
+  <dancefiguretransition source="Fallaway Throwaway" target="Miami Special" distance="2" />
+  <dancefiguretransition source="Fallaway Throwaway" target="Shoulder Spin" distance="2" />
+  <dancefiguretransition source="Fallaway Throwaway" target="Chugging" distance="2" />
+  <dancefiguretransition source="Fallaway Throwaway" target="Catapult" distance="2" />
+  <dancefiguretransition source="Change of Place from Right to Left with Double Spin" target="Change of Place from Left to Right" distance="1" />
+  <dancefiguretransition source="Change of Place from Right to Left with Double Spin" target="American Spin" distance="2" />
+  <dancefiguretransition source="Change of Place from Right to Left with Double Spin" target="Change of Place Behind the Back" distance="1" />
+  <dancefiguretransition source="Change of Place from Right to Left with Double Spin" target="Link" distance="1" />
+  <dancefiguretransition source="Change of Place from Right to Left with Double Spin" target="Fallaway Throwaway" distance="2" />
+  <dancefiguretransition source="Change of Place from Right to Left with Double Spin" target="Overturned Change of Place from Left to Right" distance="1" />
+  <dancefiguretransition source="Change of Place from Right to Left with Double Spin" target="Curly Whip" distance="1" />
+  <dancefiguretransition source="Change of Place from Right to Left with Double Spin" target="Overturned Fallaway Throwaway" distance="2" />
+  <dancefiguretransition source="Change of Place from Right to Left with Double Spin" target="Stop and Go" distance="1" />
+  <dancefiguretransition source="Change of Place from Right to Left with Double Spin" target="Hip Bump" distance="1" />
+  <dancefiguretransition source="Change of Place from Right to Left with Double Spin" target="Windmill" distance="2" />
+  <dancefiguretransition source="Change of Place from Right to Left with Double Spin" target="Spanish Arms" distance="2" />
+  <dancefiguretransition source="Change of Place from Right to Left with Double Spin" target="Chicken Walks" distance="2" />
+  <dancefiguretransition source="Change of Place from Right to Left with Double Spin" target="Rolling off the Arm" distance="2" />
+  <dancefiguretransition source="Change of Place from Right to Left with Double Spin" target="Rock to Simple Spin" distance="1" />
+  <dancefiguretransition source="Change of Place from Right to Left with Double Spin" target="Flicks into Break" distance="2" />
+  <dancefiguretransition source="Change of Place from Right to Left with Double Spin" target="Toe Heel Swivels" distance="2" />
+  <dancefiguretransition source="Change of Place from Right to Left with Double Spin" target="Sugar Push" distance="2" />
+  <dancefiguretransition source="Change of Place from Right to Left with Double Spin" target="Miami Special" distance="2" />
+  <dancefiguretransition source="Change of Place from Right to Left with Double Spin" target="Shoulder Spin" distance="2" />
+  <dancefiguretransition source="Change of Place from Right to Left with Double Spin" target="Chugging" distance="2" />
+  <dancefiguretransition source="Change of Place from Right to Left with Double Spin" target="Catapult" distance="2" />
+  <dancefiguretransition source="Overturned Change of Place from Left to Right" target="Change of Place from Left to Right" distance="1" />
+  <dancefiguretransition source="Overturned Change of Place from Left to Right" target="American Spin" distance="2" />
+  <dancefiguretransition source="Overturned Change of Place from Left to Right" target="Change of Place Behind the Back" distance="1" />
+  <dancefiguretransition source="Overturned Change of Place from Left to Right" target="Link" distance="1" />
+  <dancefiguretransition source="Overturned Change of Place from Left to Right" target="Fallaway Throwaway" distance="2" />
+  <dancefiguretransition source="Overturned Change of Place from Left to Right" target="Overturned Change of Place from Left to Right" distance="1" />
+  <dancefiguretransition source="Overturned Change of Place from Left to Right" target="Curly Whip" distance="1" />
+  <dancefiguretransition source="Overturned Change of Place from Left to Right" target="Overturned Fallaway Throwaway" distance="2" />
+  <dancefiguretransition source="Overturned Change of Place from Left to Right" target="Stop and Go" distance="1" />
+  <dancefiguretransition source="Overturned Change of Place from Left to Right" target="Hip Bump" distance="1" />
+  <dancefiguretransition source="Overturned Change of Place from Left to Right" target="Windmill" distance="2" />
+  <dancefiguretransition source="Overturned Change of Place from Left to Right" target="Spanish Arms" distance="2" />
+  <dancefiguretransition source="Overturned Change of Place from Left to Right" target="Chicken Walks" distance="1" />
+  <dancefiguretransition source="Overturned Change of Place from Left to Right" target="Rolling off the Arm" distance="2" />
+  <dancefiguretransition source="Overturned Change of Place from Left to Right" target="Simple Spin" distance="1" />
+  <dancefiguretransition source="Overturned Change of Place from Left to Right" target="Rock to Simple Spin" distance="1" />
+  <dancefiguretransition source="Overturned Change of Place from Left to Right" target="Flicks into Break" distance="2" />
+  <dancefiguretransition source="Overturned Change of Place from Left to Right" target="Toe Heel Swivels" distance="2" />
+  <dancefiguretransition source="Overturned Change of Place from Left to Right" target="Sugar Push" distance="2" />
+  <dancefiguretransition source="Overturned Change of Place from Left to Right" target="Miami Special" distance="2" />
+  <dancefiguretransition source="Overturned Change of Place from Left to Right" target="Shoulder Spin" distance="2" />
+  <dancefiguretransition source="Overturned Change of Place from Left to Right" target="Chugging" distance="2" />
+  <dancefiguretransition source="Overturned Change of Place from Left to Right" target="Catapult" distance="2" />
+  <dancefiguretransition source="Double Cross Whip" target="Basic in Place" distance="1" />
+  <dancefiguretransition source="Double Cross Whip" target="Basic in Fallaway" distance="1" />
+  <dancefiguretransition source="Double Cross Whip" target="Change of Place from Right to Left" distance="1" />
+  <dancefiguretransition source="Double Cross Whip" target="Promenade Walks — Slow" distance="1" />
+  <dancefiguretransition source="Double Cross Whip" target="Promenade Walks — Quick" distance="1" />
+  <dancefiguretransition source="Double Cross Whip" target="Fallaway Throwaway" distance="1" />
+  <dancefiguretransition source="Double Cross Whip" target="Change of Place from Right to Left with Double Spin" distance="1" />
+  <dancefiguretransition source="Double Cross Whip" target="Reverse Whip" distance="1" />
+  <dancefiguretransition source="Double Cross Whip" target="Overturned Fallaway Throwaway" distance="1" />
+  <dancefiguretransition source="Double Cross Whip" target="Mooch" distance="1" />
+  <dancefiguretransition source="Double Cross Whip" target="Flicks into Break" distance="2" />
+  <dancefiguretransition source="Double Cross Whip" target="Toe Heel Swivels" distance="2" />
+  <dancefiguretransition source="Throwaway Whip" target="Change of Place from Left to Right" distance="1" />
+  <dancefiguretransition source="Throwaway Whip" target="American Spin" distance="2" />
+  <dancefiguretransition source="Throwaway Whip" target="Change of Place Behind the Back" distance="1" />
+  <dancefiguretransition source="Throwaway Whip" target="Link" distance="1" />
+  <dancefiguretransition source="Throwaway Whip" target="Fallaway Throwaway" distance="2" />
+  <dancefiguretransition source="Throwaway Whip" target="Overturned Change of Place from Left to Right" distance="1" />
+  <dancefiguretransition source="Throwaway Whip" target="Curly Whip" distance="1" />
+  <dancefiguretransition source="Throwaway Whip" target="Stop and Go" distance="1" />
+  <dancefiguretransition source="Throwaway Whip" target="Hip Bump" distance="1" />
+  <dancefiguretransition source="Throwaway Whip" target="Windmill" distance="2" />
+  <dancefiguretransition source="Throwaway Whip" target="Spanish Arms" distance="2" />
+  <dancefiguretransition source="Throwaway Whip" target="Chicken Walks" distance="2" />
+  <dancefiguretransition source="Throwaway Whip" target="Rolling off the Arm" distance="2" />
+  <dancefiguretransition source="Throwaway Whip" target="Rock to Simple Spin" distance="1" />
+  <dancefiguretransition source="Throwaway Whip" target="Flicks into Break" distance="2" />
+  <dancefiguretransition source="Throwaway Whip" target="Toe Heel Swivels" distance="2" />
+  <dancefiguretransition source="Throwaway Whip" target="Sugar Push" distance="2" />
+  <dancefiguretransition source="Throwaway Whip" target="Miami Special" distance="2" />
+  <dancefiguretransition source="Throwaway Whip" target="Shoulder Spin" distance="2" />
+  <dancefiguretransition source="Throwaway Whip" target="Chugging" distance="2" />
+  <dancefiguretransition source="Throwaway Whip" target="Catapult" distance="2" />
+  <dancefiguretransition source="Reverse Whip" target="Basic in Place" distance="1" />
+  <dancefiguretransition source="Reverse Whip" target="Basic in Fallaway" distance="1" />
+  <dancefiguretransition source="Reverse Whip" target="Change of Place from Right to Left" distance="1" />
+  <dancefiguretransition source="Reverse Whip" target="Promenade Walks — Slow" distance="1" />
+  <dancefiguretransition source="Reverse Whip" target="Promenade Walks — Quick" distance="1" />
+  <dancefiguretransition source="Reverse Whip" target="Fallaway Throwaway" distance="1" />
+  <dancefiguretransition source="Reverse Whip" target="Change of Place from Right to Left with Double Spin" distance="1" />
+  <dancefiguretransition source="Reverse Whip" target="Reverse Whip" distance="1" />
+  <dancefiguretransition source="Reverse Whip" target="Overturned Fallaway Throwaway" distance="1" />
+  <dancefiguretransition source="Reverse Whip" target="Mooch" distance="1" />
+  <dancefiguretransition source="Reverse Whip" target="Flicks into Break" distance="2" />
+  <dancefiguretransition source="Reverse Whip" target="Toe Heel Swivels" distance="2" />
+  <dancefiguretransition source="Curly Whip" target="Basic in Place" distance="2" />
+  <dancefiguretransition source="Curly Whip" target="Basic in Fallaway" distance="2" />
+  <dancefiguretransition source="Curly Whip" target="Change of Place from Right to Left" distance="2" />
+  <dancefiguretransition source="Curly Whip" target="Whip" distance="1" />
+  <dancefiguretransition source="Curly Whip" target="Promenade Walks — Slow" distance="2" />
+  <dancefiguretransition source="Curly Whip" target="Promenade Walks — Quick" distance="2" />
+  <dancefiguretransition source="Curly Whip" target="Fallaway Throwaway" distance="2" />
+  <dancefiguretransition source="Curly Whip" target="Change of Place from Right to Left with Double Spin" distance="2" />
+  <dancefiguretransition source="Curly Whip" target="Double Cross Whip" distance="1" />
+  <dancefiguretransition source="Curly Whip" target="Throwaway Whip" distance="1" />
+  <dancefiguretransition source="Curly Whip" target="Reverse Whip" distance="2" />
+  <dancefiguretransition source="Curly Whip" target="Curly Whip" distance="2" />
+  <dancefiguretransition source="Curly Whip" target="Overturned Fallaway Throwaway" distance="2" />
+  <dancefiguretransition source="Curly Whip" target="Mooch" distance="2" />
+  <dancefiguretransition source="Curly Whip" target="Flicks into Break" distance="2" />
+  <dancefiguretransition source="Curly Whip" target="Toe Heel Swivels" distance="2" />
+  <dancefiguretransition source="Overturned Fallaway Throwaway" target="Change of Place from Left to Right" distance="1" />
+  <dancefiguretransition source="Overturned Fallaway Throwaway" target="American Spin" distance="2" />
+  <dancefiguretransition source="Overturned Fallaway Throwaway" target="Change of Place Behind the Back" distance="1" />
+  <dancefiguretransition source="Overturned Fallaway Throwaway" target="Link" distance="1" />
+  <dancefiguretransition source="Overturned Fallaway Throwaway" target="Fallaway Throwaway" distance="2" />
+  <dancefiguretransition source="Overturned Fallaway Throwaway" target="Overturned Change of Place from Left to Right" distance="1" />
+  <dancefiguretransition source="Overturned Fallaway Throwaway" target="Curly Whip" distance="1" />
+  <dancefiguretransition source="Overturned Fallaway Throwaway" target="Overturned Fallaway Throwaway" distance="2" />
+  <dancefiguretransition source="Overturned Fallaway Throwaway" target="Stop and Go" distance="1" />
+  <dancefiguretransition source="Overturned Fallaway Throwaway" target="Hip Bump" distance="1" />
+  <dancefiguretransition source="Overturned Fallaway Throwaway" target="Windmill" distance="2" />
+  <dancefiguretransition source="Overturned Fallaway Throwaway" target="Spanish Arms" distance="2" />
+  <dancefiguretransition source="Overturned Fallaway Throwaway" target="Chicken Walks" distance="1" />
+  <dancefiguretransition source="Overturned Fallaway Throwaway" target="Rolling off the Arm" distance="2" />
+  <dancefiguretransition source="Overturned Fallaway Throwaway" target="Simple Spin" distance="1" />
+  <dancefiguretransition source="Overturned Fallaway Throwaway" target="Rock to Simple Spin" distance="1" />
+  <dancefiguretransition source="Overturned Fallaway Throwaway" target="Flicks into Break" distance="2" />
+  <dancefiguretransition source="Overturned Fallaway Throwaway" target="Toe Heel Swivels" distance="2" />
+  <dancefiguretransition source="Overturned Fallaway Throwaway" target="Sugar Push" distance="2" />
+  <dancefiguretransition source="Overturned Fallaway Throwaway" target="Miami Special" distance="2" />
+  <dancefiguretransition source="Overturned Fallaway Throwaway" target="Shoulder Spin" distance="2" />
+  <dancefiguretransition source="Overturned Fallaway Throwaway" target="Chugging" distance="2" />
+  <dancefiguretransition source="Overturned Fallaway Throwaway" target="Catapult" distance="2" />
+  <dancefiguretransition source="Stop and Go" target="Change of Place from Left to Right" distance="1" />
+  <dancefiguretransition source="Stop and Go" target="American Spin" distance="2" />
+  <dancefiguretransition source="Stop and Go" target="Change of Place Behind the Back" distance="1" />
+  <dancefiguretransition source="Stop and Go" target="Link" distance="1" />
+  <dancefiguretransition source="Stop and Go" target="Fallaway Throwaway" distance="2" />
+  <dancefiguretransition source="Stop and Go" target="Overturned Change of Place from Left to Right" distance="1" />
+  <dancefiguretransition source="Stop and Go" target="Curly Whip" distance="1" />
+  <dancefiguretransition source="Stop and Go" target="Overturned Fallaway Throwaway" distance="2" />
+  <dancefiguretransition source="Stop and Go" target="Stop and Go" distance="1" />
+  <dancefiguretransition source="Stop and Go" target="Hip Bump" distance="1" />
+  <dancefiguretransition source="Stop and Go" target="Windmill" distance="2" />
+  <dancefiguretransition source="Stop and Go" target="Spanish Arms" distance="2" />
+  <dancefiguretransition source="Stop and Go" target="Chicken Walks" distance="2" />
+  <dancefiguretransition source="Stop and Go" target="Rolling off the Arm" distance="2" />
+  <dancefiguretransition source="Stop and Go" target="Rock to Simple Spin" distance="1" />
+  <dancefiguretransition source="Stop and Go" target="Flicks into Break" distance="2" />
+  <dancefiguretransition source="Stop and Go" target="Toe Heel Swivels" distance="2" />
+  <dancefiguretransition source="Stop and Go" target="Sugar Push" distance="1" />
+  <dancefiguretransition source="Stop and Go" target="Miami Special" distance="2" />
+  <dancefiguretransition source="Stop and Go" target="Shoulder Spin" distance="2" />
+  <dancefiguretransition source="Stop and Go" target="Chugging" distance="2" />
+  <dancefiguretransition source="Stop and Go" target="Catapult" distance="2" />
+  <dancefiguretransition source="Hip Bump" target="Change of Place from Left to Right" distance="1" />
+  <dancefiguretransition source="Hip Bump" target="American Spin" distance="2" />
+  <dancefiguretransition source="Hip Bump" target="Change of Place Behind the Back" distance="1" />
+  <dancefiguretransition source="Hip Bump" target="Link" distance="1" />
+  <dancefiguretransition source="Hip Bump" target="Fallaway Throwaway" distance="2" />
+  <dancefiguretransition source="Hip Bump" target="Overturned Change of Place from Left to Right" distance="1" />
+  <dancefiguretransition source="Hip Bump" target="Curly Whip" distance="1" />
+  <dancefiguretransition source="Hip Bump" target="Overturned Fallaway Throwaway" distance="2" />
+  <dancefiguretransition source="Hip Bump" target="Stop and Go" distance="1" />
+  <dancefiguretransition source="Hip Bump" target="Hip Bump" distance="1" />
+  <dancefiguretransition source="Hip Bump" target="Windmill" distance="2" />
+  <dancefiguretransition source="Hip Bump" target="Spanish Arms" distance="2" />
+  <dancefiguretransition source="Hip Bump" target="Chicken Walks" distance="2" />
+  <dancefiguretransition source="Hip Bump" target="Rolling off the Arm" distance="2" />
+  <dancefiguretransition source="Hip Bump" target="Rock to Simple Spin" distance="1" />
+  <dancefiguretransition source="Hip Bump" target="Flicks into Break" distance="2" />
+  <dancefiguretransition source="Hip Bump" target="Toe Heel Swivels" distance="2" />
+  <dancefiguretransition source="Hip Bump" target="Sugar Push" distance="1" />
+  <dancefiguretransition source="Hip Bump" target="Miami Special" distance="2" />
+  <dancefiguretransition source="Hip Bump" target="Shoulder Spin" distance="2" />
+  <dancefiguretransition source="Hip Bump" target="Chugging" distance="2" />
+  <dancefiguretransition source="Hip Bump" target="Catapult" distance="2" />
+  <dancefiguretransition source="Windmill" target="Change of Place from Left to Right" distance="2" />
+  <dancefiguretransition source="Windmill" target="American Spin" distance="2" />
+  <dancefiguretransition source="Windmill" target="Change of Place Behind the Back" distance="2" />
+  <dancefiguretransition source="Windmill" target="Link" distance="2" />
+  <dancefiguretransition source="Windmill" target="Fallaway Throwaway" distance="2" />
+  <dancefiguretransition source="Windmill" target="Overturned Change of Place from Left to Right" distance="2" />
+  <dancefiguretransition source="Windmill" target="Curly Whip" distance="2" />
+  <dancefiguretransition source="Windmill" target="Overturned Fallaway Throwaway" distance="2" />
+  <dancefiguretransition source="Windmill" target="Stop and Go" distance="2" />
+  <dancefiguretransition source="Windmill" target="Hip Bump" distance="2" />
+  <dancefiguretransition source="Windmill" target="Windmill" distance="1" />
+  <dancefiguretransition source="Windmill" target="Spanish Arms" distance="2" />
+  <dancefiguretransition source="Windmill" target="Chicken Walks" distance="2" />
+  <dancefiguretransition source="Windmill" target="Rolling off the Arm" distance="2" />
+  <dancefiguretransition source="Windmill" target="Rock to Simple Spin" distance="2" />
+  <dancefiguretransition source="Windmill" target="Flicks into Break" distance="1" />
+  <dancefiguretransition source="Windmill" target="Toe Heel Swivels" distance="1" />
+  <dancefiguretransition source="Windmill" target="Sugar Push" distance="2" />
+  <dancefiguretransition source="Windmill" target="Miami Special" distance="2" />
+  <dancefiguretransition source="Windmill" target="Shoulder Spin" distance="2" />
+  <dancefiguretransition source="Windmill" target="Chugging" distance="2" />
+  <dancefiguretransition source="Windmill" target="Catapult" distance="2" />
+  <dancefiguretransition source="Mooch" target="Basic in Place" distance="1" />
+  <dancefiguretransition source="Mooch" target="Basic in Fallaway" distance="1" />
+  <dancefiguretransition source="Mooch" target="Change of Place from Right to Left" distance="1" />
+  <dancefiguretransition source="Mooch" target="Promenade Walks — Slow" distance="1" />
+  <dancefiguretransition source="Mooch" target="Promenade Walks — Quick" distance="1" />
+  <dancefiguretransition source="Mooch" target="Fallaway Throwaway" distance="1" />
+  <dancefiguretransition source="Mooch" target="Change of Place from Right to Left with Double Spin" distance="1" />
+  <dancefiguretransition source="Mooch" target="Reverse Whip" distance="1" />
+  <dancefiguretransition source="Mooch" target="Curly Whip" distance="2" />
+  <dancefiguretransition source="Mooch" target="Overturned Fallaway Throwaway" distance="1" />
+  <dancefiguretransition source="Mooch" target="Mooch" distance="1" />
+  <dancefiguretransition source="Mooch" target="Flicks into Break" distance="2" />
+  <dancefiguretransition source="Mooch" target="Toe Heel Swivels" distance="2" />
+  <dancefiguretransition source="Spanish Arms" target="Change of Place from Left to Right" distance="1" />
+  <dancefiguretransition source="Spanish Arms" target="American Spin" distance="2" />
+  <dancefiguretransition source="Spanish Arms" target="Change of Place Behind the Back" distance="1" />
+  <dancefiguretransition source="Spanish Arms" target="Link" distance="1" />
+  <dancefiguretransition source="Spanish Arms" target="Fallaway Throwaway" distance="2" />
+  <dancefiguretransition source="Spanish Arms" target="Overturned Change of Place from Left to Right" distance="1" />
+  <dancefiguretransition source="Spanish Arms" target="Curly Whip" distance="1" />
+  <dancefiguretransition source="Spanish Arms" target="Overturned Fallaway Throwaway" distance="2" />
+  <dancefiguretransition source="Spanish Arms" target="Stop and Go" distance="1" />
+  <dancefiguretransition source="Spanish Arms" target="Hip Bump" distance="1" />
+  <dancefiguretransition source="Spanish Arms" target="Windmill" distance="2" />
+  <dancefiguretransition source="Spanish Arms" target="Spanish Arms" distance="2" />
+  <dancefiguretransition source="Spanish Arms" target="Chicken Walks" distance="2" />
+  <dancefiguretransition source="Spanish Arms" target="Rolling off the Arm" distance="2" />
+  <dancefiguretransition source="Spanish Arms" target="Rock to Simple Spin" distance="1" />
+  <dancefiguretransition source="Spanish Arms" target="Flicks into Break" distance="2" />
+  <dancefiguretransition source="Spanish Arms" target="Toe Heel Swivels" distance="2" />
+  <dancefiguretransition source="Spanish Arms" target="Sugar Push" distance="2" />
+  <dancefiguretransition source="Spanish Arms" target="Miami Special" distance="2" />
+  <dancefiguretransition source="Spanish Arms" target="Shoulder Spin" distance="2" />
+  <dancefiguretransition source="Spanish Arms" target="Chugging" distance="2" />
+  <dancefiguretransition source="Spanish Arms" target="Catapult" distance="2" />
+  <dancefiguretransition source="Chicken Walks" target="Change of Place from Left to Right" distance="1" />
+  <dancefiguretransition source="Chicken Walks" target="American Spin" distance="2" />
+  <dancefiguretransition source="Chicken Walks" target="Change of Place Behind the Back" distance="1" />
+  <dancefiguretransition source="Chicken Walks" target="Link" distance="1" />
+  <dancefiguretransition source="Chicken Walks" target="Fallaway Throwaway" distance="2" />
+  <dancefiguretransition source="Chicken Walks" target="Overturned Change of Place from Left to Right" distance="2" />
+  <dancefiguretransition source="Chicken Walks" target="Curly Whip" distance="2" />
+  <dancefiguretransition source="Chicken Walks" target="Overturned Fallaway Throwaway" distance="2" />
+  <dancefiguretransition source="Chicken Walks" target="Stop and Go" distance="2" />
+  <dancefiguretransition source="Chicken Walks" target="Hip Bump" distance="2" />
+  <dancefiguretransition source="Chicken Walks" target="Windmill" distance="2" />
+  <dancefiguretransition source="Chicken Walks" target="Spanish Arms" distance="2" />
+  <dancefiguretransition source="Chicken Walks" target="Chicken Walks" distance="1" />
+  <dancefiguretransition source="Chicken Walks" target="Simple Spin" distance="2" />
+  <dancefiguretransition source="Chicken Walks" target="Rock to Simple Spin" distance="1" />
+  <dancefiguretransition source="Chicken Walks" target="Sugar Push" distance="2" />
+  <dancefiguretransition source="Rolling off the Arm" target="Change of Place from Left to Right" distance="2" />
+  <dancefiguretransition source="Rolling off the Arm" target="American Spin" distance="1" />
+  <dancefiguretransition source="Rolling off the Arm" target="Change of Place Behind the Back" distance="2" />
+  <dancefiguretransition source="Rolling off the Arm" target="Link" distance="2" />
+  <dancefiguretransition source="Rolling off the Arm" target="Fallaway Throwaway" distance="2" />
+  <dancefiguretransition source="Rolling off the Arm" target="Overturned Change of Place from Left to Right" distance="2" />
+  <dancefiguretransition source="Rolling off the Arm" target="Curly Whip" distance="2" />
+  <dancefiguretransition source="Rolling off the Arm" target="Overturned Fallaway Throwaway" distance="2" />
+  <dancefiguretransition source="Rolling off the Arm" target="Stop and Go" distance="2" />
+  <dancefiguretransition source="Rolling off the Arm" target="Hip Bump" distance="2" />
+  <dancefiguretransition source="Rolling off the Arm" target="Spanish Arms" distance="2" />
+  <dancefiguretransition source="Rolling off the Arm" target="Chicken Walks" distance="2" />
+  <dancefiguretransition source="Rolling off the Arm" target="Rolling off the Arm" distance="1" />
+  <dancefiguretransition source="Rolling off the Arm" target="Rock to Simple Spin" distance="2" />
+  <dancefiguretransition source="Rolling off the Arm" target="Flicks into Break" distance="2" />
+  <dancefiguretransition source="Rolling off the Arm" target="Toe Heel Swivels" distance="2" />
+  <dancefiguretransition source="Rolling off the Arm" target="Sugar Push" distance="2" />
+  <dancefiguretransition source="Rolling off the Arm" target="Miami Special" distance="1" />
+  <dancefiguretransition source="Rolling off the Arm" target="Shoulder Spin" distance="1" />
+  <dancefiguretransition source="Rolling off the Arm" target="Chugging" distance="1" />
+  <dancefiguretransition source="Rolling off the Arm" target="Catapult" distance="1" />
+  <dancefiguretransition source="Simple Spin" target="Change of Place from Left to Right" distance="1" />
+  <dancefiguretransition source="Simple Spin" target="American Spin" distance="2" />
+  <dancefiguretransition source="Simple Spin" target="Change of Place Behind the Back" distance="2" />
+  <dancefiguretransition source="Simple Spin" target="Link" distance="2" />
+  <dancefiguretransition source="Simple Spin" target="Fallaway Throwaway" distance="2" />
+  <dancefiguretransition source="Simple Spin" target="Overturned Change of Place from Left to Right" distance="1" />
+  <dancefiguretransition source="Simple Spin" target="Curly Whip" distance="1" />
+  <dancefiguretransition source="Simple Spin" target="Overturned Fallaway Throwaway" distance="2" />
+  <dancefiguretransition source="Simple Spin" target="Stop and Go" distance="1" />
+  <dancefiguretransition source="Simple Spin" target="Hip Bump" distance="1" />
+  <dancefiguretransition source="Simple Spin" target="Windmill" distance="2" />
+  <dancefiguretransition source="Simple Spin" target="Spanish Arms" distance="2" />
+  <dancefiguretransition source="Simple Spin" target="Chicken Walks" distance="2" />
+  <dancefiguretransition source="Simple Spin" target="Rolling off the Arm" distance="2" />
+  <dancefiguretransition source="Simple Spin" target="Rock to Simple Spin" distance="1" />
+  <dancefiguretransition source="Simple Spin" target="Flicks into Break" distance="2" />
+  <dancefiguretransition source="Simple Spin" target="Toe Heel Swivels" distance="2" />
+  <dancefiguretransition source="Simple Spin" target="Sugar Push" distance="2" />
+  <dancefiguretransition source="Simple Spin" target="Miami Special" distance="2" />
+  <dancefiguretransition source="Simple Spin" target="Shoulder Spin" distance="2" />
+  <dancefiguretransition source="Simple Spin" target="Chugging" distance="2" />
+  <dancefiguretransition source="Simple Spin" target="Catapult" distance="2" />
+  <dancefiguretransition source="Rock to Simple Spin" target="Change of Place from Left to Right" distance="1" />
+  <dancefiguretransition source="Rock to Simple Spin" target="American Spin" distance="2" />
+  <dancefiguretransition source="Rock to Simple Spin" target="Change of Place Behind the Back" distance="2" />
+  <dancefiguretransition source="Rock to Simple Spin" target="Link" distance="2" />
+  <dancefiguretransition source="Rock to Simple Spin" target="Fallaway Throwaway" distance="2" />
+  <dancefiguretransition source="Rock to Simple Spin" target="Overturned Change of Place from Left to Right" distance="1" />
+  <dancefiguretransition source="Rock to Simple Spin" target="Curly Whip" distance="1" />
+  <dancefiguretransition source="Rock to Simple Spin" target="Overturned Fallaway Throwaway" distance="2" />
+  <dancefiguretransition source="Rock to Simple Spin" target="Stop and Go" distance="1" />
+  <dancefiguretransition source="Rock to Simple Spin" target="Hip Bump" distance="1" />
+  <dancefiguretransition source="Rock to Simple Spin" target="Windmill" distance="2" />
+  <dancefiguretransition source="Rock to Simple Spin" target="Spanish Arms" distance="2" />
+  <dancefiguretransition source="Rock to Simple Spin" target="Chicken Walks" distance="2" />
+  <dancefiguretransition source="Rock to Simple Spin" target="Rolling off the Arm" distance="2" />
+  <dancefiguretransition source="Rock to Simple Spin" target="Rock to Simple Spin" distance="1" />
+  <dancefiguretransition source="Rock to Simple Spin" target="Flicks into Break" distance="2" />
+  <dancefiguretransition source="Rock to Simple Spin" target="Toe Heel Swivels" distance="2" />
+  <dancefiguretransition source="Rock to Simple Spin" target="Sugar Push" distance="2" />
+  <dancefiguretransition source="Rock to Simple Spin" target="Miami Special" distance="2" />
+  <dancefiguretransition source="Rock to Simple Spin" target="Shoulder Spin" distance="2" />
+  <dancefiguretransition source="Rock to Simple Spin" target="Chugging" distance="2" />
+  <dancefiguretransition source="Rock to Simple Spin" target="Catapult" distance="2" />
+  <dancefiguretransition source="Flicks into Break" target="Basic in Place" distance="2" />
+  <dancefiguretransition source="Flicks into Break" target="Basic in Fallaway" distance="2" />
+  <dancefiguretransition source="Flicks into Break" target="Change of Place from Right to Left" distance="2" />
+  <dancefiguretransition source="Flicks into Break" target="Promenade Walks — Slow" distance="2" />
+  <dancefiguretransition source="Flicks into Break" target="Promenade Walks — Quick" distance="2" />
+  <dancefiguretransition source="Flicks into Break" target="Fallaway Throwaway" distance="2" />
+  <dancefiguretransition source="Flicks into Break" target="Change of Place from Right to Left with Double Spin" distance="2" />
+  <dancefiguretransition source="Flicks into Break" target="Overturned Fallaway Throwaway" distance="2" />
+  <dancefiguretransition source="Flicks into Break" target="Mooch" distance="2" />
+  <dancefiguretransition source="Flicks into Break" target="Flicks into Break" distance="2" />
+  <dancefiguretransition source="Flicks into Break" target="Toe Heel Swivels" distance="2" />
+  <dancefiguretransition source="Toe Heel Swivels" target="Basic in Place" distance="2" />
+  <dancefiguretransition source="Toe Heel Swivels" target="Basic in Fallaway" distance="2" />
+  <dancefiguretransition source="Toe Heel Swivels" target="Change of Place from Right to Left" distance="2" />
+  <dancefiguretransition source="Toe Heel Swivels" target="Promenade Walks — Slow" distance="2" />
+  <dancefiguretransition source="Toe Heel Swivels" target="Promenade Walks — Quick" distance="2" />
+  <dancefiguretransition source="Toe Heel Swivels" target="Fallaway Throwaway" distance="2" />
+  <dancefiguretransition source="Toe Heel Swivels" target="Change of Place from Right to Left with Double Spin" distance="2" />
+  <dancefiguretransition source="Toe Heel Swivels" target="Overturned Fallaway Throwaway" distance="2" />
+  <dancefiguretransition source="Toe Heel Swivels" target="Mooch" distance="2" />
+  <dancefiguretransition source="Toe Heel Swivels" target="Flicks into Break" distance="2" />
+  <dancefiguretransition source="Toe Heel Swivels" target="Toe Heel Swivels" distance="2" />
+  <dancefiguretransition source="Sugar Push" target="Change of Place from Left to Right" distance="1" />
+  <dancefiguretransition source="Sugar Push" target="American Spin" distance="2" />
+  <dancefiguretransition source="Sugar Push" target="Change of Place Behind the Back" distance="1" />
+  <dancefiguretransition source="Sugar Push" target="Link" distance="1" />
+  <dancefiguretransition source="Sugar Push" target="Fallaway Throwaway" distance="2" />
+  <dancefiguretransition source="Sugar Push" target="Overturned Change of Place from Left to Right" distance="1" />
+  <dancefiguretransition source="Sugar Push" target="Curly Whip" distance="1" />
+  <dancefiguretransition source="Sugar Push" target="Overturned Fallaway Throwaway" distance="2" />
+  <dancefiguretransition source="Sugar Push" target="Stop and Go" distance="1" />
+  <dancefiguretransition source="Sugar Push" target="Hip Bump" distance="1" />
+  <dancefiguretransition source="Sugar Push" target="Windmill" distance="2" />
+  <dancefiguretransition source="Sugar Push" target="Spanish Arms" distance="2" />
+  <dancefiguretransition source="Sugar Push" target="Chicken Walks" distance="1" />
+  <dancefiguretransition source="Sugar Push" target="Rolling off the Arm" distance="2" />
+  <dancefiguretransition source="Sugar Push" target="Simple Spin" distance="1" />
+  <dancefiguretransition source="Sugar Push" target="Rock to Simple Spin" distance="1" />
+  <dancefiguretransition source="Sugar Push" target="Flicks into Break" distance="2" />
+  <dancefiguretransition source="Sugar Push" target="Toe Heel Swivels" distance="2" />
+  <dancefiguretransition source="Sugar Push" target="Sugar Push" distance="1" />
+  <dancefiguretransition source="Sugar Push" target="Miami Special" distance="2" />
+  <dancefiguretransition source="Sugar Push" target="Shoulder Spin" distance="2" />
+  <dancefiguretransition source="Sugar Push" target="Chugging" distance="2" />
+  <dancefiguretransition source="Sugar Push" target="Catapult" distance="2" />
+  <dancefiguretransition source="Miami Special" target="Change of Place from Left to Right" distance="1" />
+  <dancefiguretransition source="Miami Special" target="American Spin" distance="2" />
+  <dancefiguretransition source="Miami Special" target="Change of Place Behind the Back" distance="1" />
+  <dancefiguretransition source="Miami Special" target="Link" distance="1" />
+  <dancefiguretransition source="Miami Special" target="Fallaway Throwaway" distance="2" />
+  <dancefiguretransition source="Miami Special" target="Overturned Change of Place from Left to Right" distance="1" />
+  <dancefiguretransition source="Miami Special" target="Curly Whip" distance="1" />
+  <dancefiguretransition source="Miami Special" target="Overturned Fallaway Throwaway" distance="2" />
+  <dancefiguretransition source="Miami Special" target="Stop and Go" distance="1" />
+  <dancefiguretransition source="Miami Special" target="Hip Bump" distance="1" />
+  <dancefiguretransition source="Miami Special" target="Windmill" distance="2" />
+  <dancefiguretransition source="Miami Special" target="Spanish Arms" distance="2" />
+  <dancefiguretransition source="Miami Special" target="Chicken Walks" distance="2" />
+  <dancefiguretransition source="Miami Special" target="Rolling off the Arm" distance="2" />
+  <dancefiguretransition source="Miami Special" target="Rock to Simple Spin" distance="1" />
+  <dancefiguretransition source="Miami Special" target="Flicks into Break" distance="2" />
+  <dancefiguretransition source="Miami Special" target="Toe Heel Swivels" distance="2" />
+  <dancefiguretransition source="Miami Special" target="Sugar Push" distance="2" />
+  <dancefiguretransition source="Miami Special" target="Miami Special" distance="2" />
+  <dancefiguretransition source="Miami Special" target="Shoulder Spin" distance="2" />
+  <dancefiguretransition source="Miami Special" target="Chugging" distance="2" />
+  <dancefiguretransition source="Miami Special" target="Catapult" distance="2" />
+  <dancefiguretransition source="Shoulder Spin" target="Change of Place from Left to Right" distance="1" />
+  <dancefiguretransition source="Shoulder Spin" target="American Spin" distance="2" />
+  <dancefiguretransition source="Shoulder Spin" target="Change of Place Behind the Back" distance="1" />
+  <dancefiguretransition source="Shoulder Spin" target="Link" distance="1" />
+  <dancefiguretransition source="Shoulder Spin" target="Fallaway Throwaway" distance="2" />
+  <dancefiguretransition source="Shoulder Spin" target="Overturned Change of Place from Left to Right" distance="1" />
+  <dancefiguretransition source="Shoulder Spin" target="Curly Whip" distance="1" />
+  <dancefiguretransition source="Shoulder Spin" target="Overturned Fallaway Throwaway" distance="2" />
+  <dancefiguretransition source="Shoulder Spin" target="Stop and Go" distance="1" />
+  <dancefiguretransition source="Shoulder Spin" target="Hip Bump" distance="1" />
+  <dancefiguretransition source="Shoulder Spin" target="Windmill" distance="2" />
+  <dancefiguretransition source="Shoulder Spin" target="Spanish Arms" distance="2" />
+  <dancefiguretransition source="Shoulder Spin" target="Chicken Walks" distance="2" />
+  <dancefiguretransition source="Shoulder Spin" target="Rolling off the Arm" distance="2" />
+  <dancefiguretransition source="Shoulder Spin" target="Rock to Simple Spin" distance="1" />
+  <dancefiguretransition source="Shoulder Spin" target="Flicks into Break" distance="2" />
+  <dancefiguretransition source="Shoulder Spin" target="Toe Heel Swivels" distance="2" />
+  <dancefiguretransition source="Shoulder Spin" target="Sugar Push" distance="2" />
+  <dancefiguretransition source="Shoulder Spin" target="Miami Special" distance="2" />
+  <dancefiguretransition source="Shoulder Spin" target="Shoulder Spin" distance="2" />
+  <dancefiguretransition source="Shoulder Spin" target="Chugging" distance="2" />
+  <dancefiguretransition source="Shoulder Spin" target="Catapult" distance="2" />
+  <dancefiguretransition source="Chugging" target="Change of Place from Left to Right" distance="1" />
+  <dancefiguretransition source="Chugging" target="American Spin" distance="2" />
+  <dancefiguretransition source="Chugging" target="Change of Place Behind the Back" distance="1" />
+  <dancefiguretransition source="Chugging" target="Link" distance="1" />
+  <dancefiguretransition source="Chugging" target="Fallaway Throwaway" distance="2" />
+  <dancefiguretransition source="Chugging" target="Overturned Change of Place from Left to Right" distance="1" />
+  <dancefiguretransition source="Chugging" target="Curly Whip" distance="1" />
+  <dancefiguretransition source="Chugging" target="Overturned Fallaway Throwaway" distance="2" />
+  <dancefiguretransition source="Chugging" target="Stop and Go" distance="1" />
+  <dancefiguretransition source="Chugging" target="Hip Bump" distance="1" />
+  <dancefiguretransition source="Chugging" target="Windmill" distance="2" />
+  <dancefiguretransition source="Chugging" target="Spanish Arms" distance="2" />
+  <dancefiguretransition source="Chugging" target="Chicken Walks" distance="2" />
+  <dancefiguretransition source="Chugging" target="Rolling off the Arm" distance="2" />
+  <dancefiguretransition source="Chugging" target="Rock to Simple Spin" distance="1" />
+  <dancefiguretransition source="Chugging" target="Flicks into Break" distance="2" />
+  <dancefiguretransition source="Chugging" target="Toe Heel Swivels" distance="2" />
+  <dancefiguretransition source="Chugging" target="Sugar Push" distance="2" />
+  <dancefiguretransition source="Chugging" target="Miami Special" distance="2" />
+  <dancefiguretransition source="Chugging" target="Shoulder Spin" distance="2" />
+  <dancefiguretransition source="Chugging" target="Chugging" distance="2" />
+  <dancefiguretransition source="Chugging" target="Catapult" distance="2" />
+  <dancefiguretransition source="Catapult" target="Change of Place from Left to Right" distance="1" />
+  <dancefiguretransition source="Catapult" target="American Spin" distance="2" />
+  <dancefiguretransition source="Catapult" target="Change of Place Behind the Back" distance="1" />
+  <dancefiguretransition source="Catapult" target="Link" distance="1" />
+  <dancefiguretransition source="Catapult" target="Fallaway Throwaway" distance="2" />
+  <dancefiguretransition source="Catapult" target="Overturned Change of Place from Left to Right" distance="1" />
+  <dancefiguretransition source="Catapult" target="Curly Whip" distance="1" />
+  <dancefiguretransition source="Catapult" target="Overturned Fallaway Throwaway" distance="2" />
+  <dancefiguretransition source="Catapult" target="Stop and Go" distance="1" />
+  <dancefiguretransition source="Catapult" target="Hip Bump" distance="1" />
+  <dancefiguretransition source="Catapult" target="Windmill" distance="2" />
+  <dancefiguretransition source="Catapult" target="Spanish Arms" distance="2" />
+  <dancefiguretransition source="Catapult" target="Chicken Walks" distance="2" />
+  <dancefiguretransition source="Catapult" target="Rolling off the Arm" distance="2" />
+  <dancefiguretransition source="Catapult" target="Rock to Simple Spin" distance="1" />
+  <dancefiguretransition source="Catapult" target="Flicks into Break" distance="2" />
+  <dancefiguretransition source="Catapult" target="Toe Heel Swivels" distance="2" />
+  <dancefiguretransition source="Catapult" target="Sugar Push" distance="2" />
+  <dancefiguretransition source="Catapult" target="Miami Special" distance="2" />
+  <dancefiguretransition source="Catapult" target="Shoulder Spin" distance="2" />
+  <dancefiguretransition source="Catapult" target="Chugging" distance="2" />
+  <dancefiguretransition source="Catapult" target="Catapult" distance="2" />
+</dance>

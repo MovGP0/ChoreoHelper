@@ -1,19 +1,27 @@
 <Query Kind="Program">
   <NuGetReference>EPPlus</NuGetReference>
   <NuGetReference>FluentValidation</NuGetReference>
-  <NuGetReference>Microsoft.Data.SqlClient</NuGetReference>
+  <NuGetReference Version="5.2.1">Microsoft.Data.SqlClient</NuGetReference>
+  <NuGetReference>Microsoft.Identity.Client</NuGetReference>
+  <NuGetReference>OneOf</NuGetReference>
+  <NuGetReference>QuikGraph</NuGetReference>
   <NuGetReference>Roslynator.Analyzers</NuGetReference>
   <NuGetReference>SliccDB</NuGetReference>
   <Namespace>FluentValidation</Namespace>
   <Namespace>FluentValidation.Results</Namespace>
   <Namespace>OfficeOpenXml</Namespace>
-  <Namespace>SliccDB</Namespace>
-  <Namespace>SliccDB.Serialization</Namespace>
-  <Namespace>SliccDB.Fluent</Namespace>
-  <Namespace>OfficeOpenXml.Style</Namespace>
   <Namespace>OfficeOpenXml.Drawing</Namespace>
+  <Namespace>OfficeOpenXml.Style</Namespace>
+  <Namespace>OneOf</Namespace>
+  <Namespace>OneOf.Types</Namespace>
+  <Namespace>QuikGraph</Namespace>
+  <Namespace>SliccDB</Namespace>
   <Namespace>SliccDB.Core</Namespace>
+  <Namespace>SliccDB.Fluent</Namespace>
+  <Namespace>SliccDB.Serialization</Namespace>
+  <Namespace>System.Diagnostics.Contracts</Namespace>
   <Namespace>System.Globalization</Namespace>
+  <Namespace>System.Runtime.CompilerServices</Namespace>
 </Query>
 
 #load "LogHelper.linq"
@@ -50,13 +58,44 @@ void Main()
 			LogVerbose($"Worksheet '{worksheet.Name}' validated successfully.");
 		}
 		
+		var graph = new UndirectedGraph<DanceFigure, DanceFigureTransition>();
+
 		var connection = new DatabaseConnection(databasePath);
-		EnsureThatAllDanceStepsExist(worksheet, connection);
-		EnsureThatAllTransitionsExist(worksheet, connection);
+		EnsureThatAllDanceStepsExist(worksheet, connection, graph);
+		EnsureThatAllTransitionsExist(worksheet, connection, graph);
+		SaveGraph(graph);
 	}
 }
 
-void EnsureThatAllTransitionsExist(ExcelWorksheet worksheet, DatabaseConnection connection)
+public sealed partial class DanceFigure
+{
+	public DanceFigure(string dance, string name, string level)
+	{
+		Dance = dance;
+		Name = name;
+		Level = level;
+	}
+	
+	public string Dance { get; }
+	public string Name { get; }
+	public string Level { get; }
+}
+
+public sealed partial class DanceFigureTransition : IEdge<DanceFigure>
+{
+	public DanceFigureTransition(DanceFigure source, DanceFigure target, float distance)
+	{
+		Source = source;
+		Target = target;
+		Distance = distance;
+	}
+
+	public DanceFigure Source { get; }
+	public DanceFigure Target { get; }
+	public float Distance { get; }
+}
+
+void EnsureThatAllTransitionsExist(ExcelWorksheet worksheet, DatabaseConnection connection, UndirectedGraph<DanceFigure, DanceFigureTransition> graph)
 {
 	var rows = worksheet.Dimension.End.Row;
 	var columns = worksheet.Dimension.End.Column;
@@ -87,9 +126,14 @@ void EnsureThatAllTransitionsExist(ExcelWorksheet worksheet, DatabaseConnection 
 			Debug.Assert(toNode != null);
 
 			connection.SetDistance(fromNode, toNode, distance.Value);
+			//************************************************************************************
+			var f = graph.Vertices.Single(v => v.Name == fromDanceStep);
+			var t = graph.Vertices.Single(v => v.Name == toDanceStep);
+			var edge = new DanceFigureTransition(f, t, (float)distance);
+			graph.AddEdge(edge);
 		}
 	}
-	
+
 	connection.SaveDatabase();
 }
 
@@ -153,7 +197,7 @@ public static class DatabaseConnectionExtensions
 	}
 }
 
-private void EnsureThatAllDanceStepsExist(ExcelWorksheet worksheet, DatabaseConnection connection)
+private void EnsureThatAllDanceStepsExist(ExcelWorksheet worksheet, DatabaseConnection connection, UndirectedGraph<DanceFigure, DanceFigureTransition> graph)
 {
 	var columns = worksheet.Dimension.End.Column;
 	for (int col = 2; col <= columns; col++)
@@ -182,8 +226,34 @@ private void EnsureThatAllDanceStepsExist(ExcelWorksheet worksheet, DatabaseConn
 		{
 			selectedNode.Properties["level"] = level;
 		}
+		
+		var vertex = new DanceFigure(danceName, danceStepName!, level);
+		graph.AddVertex(vertex);
 	}
+
 	connection.SaveDatabase();
+}
+
+private void SaveGraph(UndirectedGraph<DanceFigure, DanceFigureTransition> graph)
+{
+	var baseFolder = Path.GetDirectoryName(Util.CurrentQueryPath);
+	var xmlPath = Path.Combine(baseFolder, "..", @"dance transitions.xml");
+	var rootElement = new XElement("dance");
+
+	foreach(var v in graph.Vertices)
+	{
+		var x = v.ToXml(XNamespace.None);
+		rootElement.Add(x);
+	}
+
+	foreach(var e in graph.Edges)
+	{
+		var x = e.ToXml(XNamespace.None);
+		rootElement.Add(x);
+	}
+
+	var document = new XDocument(rootElement);
+	document.Save(xmlPath);
 }
 
 private string GetColorForExcelColor(ExcelColor color)
@@ -259,4 +329,96 @@ public static string ExcelColumnName(int columnNumber)
 		throw new ArgumentOutOfRangeException(nameof(columnNumber), columnNumber, message);
 	}
 	return ExcelCellBase.GetAddressCol(columnNumber + 1);
+}
+
+
+public sealed partial class DanceFigureTransition
+{
+	[Pure]
+	public XElement ToXml(XNamespace ns) => new(ns + nameof(DanceFigureTransition).ToLowerInvariant(), GetAttributes(ns));
+
+	[Pure]
+	private IEnumerable<XAttribute> GetAttributes(XNamespace ns)
+	{
+		yield return new XAttribute(Xn(ns, nameof(Source)), Source.Name);
+		yield return new XAttribute(Xn(ns, nameof(Target)), Target.Name);
+		yield return new XAttribute(Xn(ns, nameof(Distance)), Distance.ToString(CultureInfo.InvariantCulture));
+	}
+
+	[Pure]
+	public static OneOf<DanceFigureTransition, Error> FromXml(XElement element, IReadOnlyList<DanceFigure> figures)
+	{
+		if (element.Name.LocalName != nameof(DanceFigureTransition).ToLowerInvariant())
+		{
+			return new Error();
+		}
+
+		var ns = element.Name.Namespace;
+
+		var sourceName = element.Attribute(Xn(ns, nameof(Source)))?.Value ?? string.Empty;
+		var source = figures.Where(f => f.Name == sourceName).Take(1).ToArray();
+		if (source.Length != 1)
+		{
+			return new Error();
+		}
+
+		var targetName = element.Attribute(Xn(ns, nameof(Target)))?.Value ?? string.Empty;
+		var target = figures.Where(f => f.Name == targetName).Take(1).ToArray();
+		if (target.Length != 1)
+		{
+			return new Error();
+		}
+
+		var distanceValue = element.Attribute(Xn(ns, nameof(Distance)))?.Value ?? string.Empty;
+		if (float.TryParse(distanceValue, CultureInfo.InvariantCulture, out float distance))
+		{
+			return new DanceFigureTransition(source[0], target[0], distance);
+		}
+
+		return new Error();
+	}
+
+	[Pure]
+	[MethodImpl(MethodImplOptions.AggressiveInlining)]
+	private static XName Xn(XNamespace ns, string name) => ns + name.ToLowerInvariant();
+}
+
+
+public sealed partial class DanceFigure
+{
+	[Pure]
+	public XElement ToXml(XNamespace ns) => new(ns + nameof(DanceFigure).ToLowerInvariant(), GetAttributes(ns));
+
+	[Pure]
+	private IEnumerable<XAttribute> GetAttributes(XNamespace ns)
+	{
+		yield return new XAttribute(Xn(ns, nameof(Dance)), Dance);
+		yield return new XAttribute(Xn(ns, nameof(Name)), Name);
+		yield return new XAttribute(Xn(ns, nameof(Level)), Level);
+	}
+
+	[Pure]
+	public static OneOf<DanceFigure, Error> FromXml(XElement element)
+	{
+		if (element.Name.LocalName != nameof(DanceFigure).ToLowerInvariant())
+		{
+			return new Error();
+		}
+
+		var ns = element.Name.Namespace;
+		var dance = element.Attribute(Xn(ns, nameof(Dance)))?.Value ?? string.Empty;
+		var name = element.Attribute(Xn(ns, nameof(Name)))?.Value ?? string.Empty;
+		var level = element.Attribute(Xn(ns, nameof(Level)))?.Value ?? string.Empty;
+
+		if (string.IsNullOrWhiteSpace(dance) || string.IsNullOrWhiteSpace(level))
+		{
+			return new Error();
+		}
+
+		return new DanceFigure(dance, name, level);
+	}
+
+	[Pure]
+	[MethodImpl(MethodImplOptions.AggressiveInlining)]
+	private static XName Xn(XNamespace ns, string name) => ns + name.ToLowerInvariant();
 }
