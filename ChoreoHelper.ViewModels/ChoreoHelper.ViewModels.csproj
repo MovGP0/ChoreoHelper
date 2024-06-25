@@ -11,6 +11,7 @@
         <PackageReference Include="Microsoft.Extensions.Hosting" Version="8.0.0" />
         <PackageReference Include="Microsoft.Extensions.Logging" Version="8.0.0" />
         <PackageReference Include="ReactiveUI" Version="19.5.41" />
+        <PackageReference Include="ReactiveUI.Fody" Version="19.5.41" />
         <PackageReference Include="SliccDB" Version="0.1.1.4" />
         <PackageReference Include="Splat.Microsoft.Extensions.DependencyInjection" Version="14.8.12" />
         <PackageReference Include="Splat.Microsoft.Extensions.Logging" Version="14.8.12" />

@@ -24,6 +24,14 @@
         </ResourceDictionary>
     </UserControl.Resources>
     <Grid>
+        <Grid.ContextMenu>
+            <ContextMenu>
+                <MenuItem 
+                    Icon="{materialDesign:PackIcon ContentCopy}"
+                    Header="Copy"
+                    Command="{Binding Copy, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" />
+            </ContextMenu>
+        </Grid.ContextMenu>
         <Grid.ColumnDefinitions>
             <ColumnDefinition Width="40" />
             <ColumnDefinition Width="*" />

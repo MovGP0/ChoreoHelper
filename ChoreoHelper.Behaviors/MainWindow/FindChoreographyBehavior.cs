@@ -89,7 +89,7 @@ public sealed class FindChoreographyBehavior(
                         .ToArray())
                     .ToArray();
             })
-            .Subscribe<DanceStepNodeInfo[][]>(choreographyItems =>
+            .Subscribe(choreographyItems =>
             {
                 choreographies.Clear();
 

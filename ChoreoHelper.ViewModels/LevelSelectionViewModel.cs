@@ -1,36 +1,19 @@
-﻿using System.Reactive.Disposables;
-using ChoreoHelper.Database;
-using ReactiveUI;
-using Splat;
-
-namespace ChoreoHelper.ViewModels;
+﻿namespace ChoreoHelper.ViewModels;
 
 public sealed class LevelSelectionViewModel: ReactiveObject, IDisposable
 {
     private CompositeDisposable Disposables { get; } = new();
 
-    private DanceLevel _level;
-    public DanceLevel Level
-    {
-        set => this.RaiseAndSetIfChanged(ref _level, value);
-        get => _level;
-    }
+    [Reactive]
+    public DanceLevel Level { get; set; }
 
     public int LevelSort => (int)Level;
 
-    private string _name = string.Empty;
-    public string Name
-    {
-        get => _name;
-        set => this.RaiseAndSetIfChanged(ref _name, value);
-    }
+    [Reactive]
+    public string Name { get; set; }
 
-    private bool _isSelected = true;
-    public bool IsSelected
-    {
-        get => _isSelected;
-        set => this.RaiseAndSetIfChanged(ref _isSelected, value);
-    }
+    [Reactive]
+    public bool IsSelected { get; set; } = true;
 
     public LevelSelectionViewModel()
     {

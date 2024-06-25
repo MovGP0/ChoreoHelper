@@ -1,10 +1,6 @@
 ﻿using System.Diagnostics;
 using System.Globalization;
-using System.Reactive.Disposables;
-using ChoreoHelper.Database;
 using DynamicData.Binding;
-using ReactiveUI;
-using Splat;
 
 namespace ChoreoHelper.ViewModels;
 
@@ -13,15 +9,14 @@ public sealed class ChoreographyViewModel : ReactiveObject, IDisposable
 {
     private CompositeDisposable Disposables { get; } = new();
 
-    private float _rating;
-    public float Rating
-    {
-        get => _rating;
-        set => this.RaiseAndSetIfChanged(ref _rating, value);
-    }
+    [Reactive]
+    public float Rating { get; set; }
 
     public IObservableCollection<DanceStepNodeInfo> Figures { get; }
         = new ObservableCollectionExtended<DanceStepNodeInfo>();
+
+    [Reactive]
+    public IReactiveCommand Copy { get; set; } = DisabledCommand.Instance;
 
     public ChoreographyViewModel()
     {
@@ -54,7 +49,7 @@ public sealed class ChoreographyViewModel : ReactiveObject, IDisposable
         }
 
         Disposables.Dispose();
-        
+
         if (disposing)
         {
             GC.SuppressFinalize(this);

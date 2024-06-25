@@ -13,7 +13,7 @@
         TextOptions.TextRenderingMode="Auto"
         mc:Ignorable="d"
         d:DataContext="{d:DesignInstance viewModels:MainWindowViewModel, IsDesignTimeCreatable=True}"
-        Title="Choreo Helper" Height="800" Width="1200" MinHeight="800" MinWidth="800">
+        Title="Choreo Helper" Height="800" Width="1400" MinHeight="800" MinWidth="1400">
     <Window.Resources>
         <ResourceDictionary>
             <ResourceDictionary.MergedDictionaries>
@@ -62,70 +62,163 @@
     <Window.DataContext>
         <viewModels:MainWindowViewModel />
     </Window.DataContext>
-    <DockPanel>
-        <StackPanel Orientation="Vertical" DockPanel.Dock="Left">
-            <GroupBox Margin="4" Padding="4" 
-                Header="Dance">
-                <ComboBox Padding="4" Width="400"
-                          ItemsSource="{Binding Source={StaticResource SortedDances}}"
-                          SelectedItem="{Binding SelectedDance, Mode=OneWayToSource, UpdateSourceTrigger=PropertyChanged}" />
-            </GroupBox>
-            <GroupBox Margin="4" Padding="4" Header="Level">
-                <ListView Padding="4" Width="400" Height="Auto" MinHeight="40"
-                          ScrollViewer.VerticalScrollBarVisibility="Auto"
-                          ScrollViewer.CanContentScroll="False"
-                          Grid.IsSharedSizeScope="True"
-                          ItemsSource="{Binding Source={StaticResource SortedLevels}}">
+    <Grid>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="*" />
+        </Grid.ColumnDefinitions>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="*" />
+        </Grid.RowDefinitions>
+
+        <materialDesign:DrawerHost
+            Grid.Row="0"
+            Grid.Column="0"
+            Width="{Binding RelativeSource={RelativeSource FindAncestor, AncestorType={x:Type Grid}}, Path=ActualWidth}"
+            Height="{Binding RelativeSource={RelativeSource FindAncestor, AncestorType={x:Type Grid}}, Path=ActualHeight}"
+            HorizontalAlignment="Center"
+            VerticalAlignment="Center"
+            BorderBrush="{DynamicResource MaterialDesignDivider}"
+            BorderThickness="2"
+            BottomDrawerBackground="{DynamicResource SecondaryHueLightBrush}"
+            BottomDrawerCornerRadius="20 20 0 0"
+            IsLeftDrawerOpen="{Binding IsDrawerOpen, Mode=OneWay, UpdateSourceTrigger=PropertyChanged}">
+            <materialDesign:DrawerHost.LeftDrawerContent>
+                <StackPanel Orientation="Vertical">
+                    <Grid>
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="Auto" />
+                            <ColumnDefinition Width="Auto" />
+                            <ColumnDefinition Width="*" />
+                            <ColumnDefinition Width="180" />
+                            <ColumnDefinition Width="Auto" />
+                        </Grid.ColumnDefinitions>
+                        <Button Grid.Column="0" Grid.Row="0"
+                                Style="{StaticResource MaterialDesignToolButton}">
+                            <materialDesign:PackIcon Kind="Search" Opacity=".56" />
+                        </Button>
+                        <TextBox Grid.Column="1" Grid.Row="0"
+                                 Margin="8"
+                                 MinWidth="400"
+                                 materialDesign:HintAssist.Hint="Search figures"
+                                 VerticalAlignment="Center"
+                                 materialDesign:TextFieldAssist.DecorationVisibility="Hidden"
+                                 BorderThickness="0"
+                                 Text="{Binding SearchText, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}">
+                        </TextBox>
+                        <Button
+                            Grid.Column="3" Grid.Row="0"
+                            Padding="4" Margin="4"
+                            Content="Go"
+                            Command="{Binding FindChoreography}"
+                            Style="{StaticResource MaterialDesignRaisedDarkButton}" />
+                        <ToggleButton
+                            Grid.Column="4" Grid.Row="0" 
+                            Margin="16"
+                            HorizontalAlignment="Right"
+                            IsChecked="{Binding Path=IsDrawerOpen, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"
+                            Style="{StaticResource MaterialDesignHamburgerToggleButton}" />
+                    </Grid>
+                    <Grid>
+                        <Grid.RowDefinitions>
+                            <RowDefinition />
+                        </Grid.RowDefinitions>
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="Auto" />
+                            <ColumnDefinition Width="Auto" />
+                            <ColumnDefinition Width="Auto" />
+                        </Grid.ColumnDefinitions>
+                        <StackPanel Orientation="Vertical" Grid.Column="0" Grid.Row="0">
+                            <GroupBox Margin="4" Padding="4" 
+                                      Header="Dance">
+                                <ComboBox Padding="4" Width="400"
+                                          ItemsSource="{Binding Source={StaticResource SortedDances}}"
+                                          SelectedItem="{Binding SelectedDance, Mode=OneWayToSource, UpdateSourceTrigger=PropertyChanged}" />
+                            </GroupBox>
+                            <GroupBox Margin="4" Padding="4" Header="Level">
+                                <ListView Padding="4" Width="400" Height="Auto" MinHeight="40"
+                                          ScrollViewer.VerticalScrollBarVisibility="Auto"
+                                          ScrollViewer.CanContentScroll="False"
+                                          Grid.IsSharedSizeScope="True"
+                                          ItemsSource="{Binding Source={StaticResource SortedLevels}}">
+                                    <ListView.ItemTemplate>
+                                        <DataTemplate DataType="{x:Type viewModels:LevelSelectionViewModel}">
+                                            <controls:LevelSelection DataContext="{Binding}" />
+                                        </DataTemplate>
+                                    </ListView.ItemTemplate>
+                                </ListView>
+                            </GroupBox>
+                        </StackPanel>
+
+                        <GroupBox Grid.Column="1" Grid.Row="0"
+                            Margin="4" Padding="4"
+                                  Header="Required Figures">
+                            <ListView
+                                Padding="12"
+                                Width="400"
+                                Height="800"
+                                Margin="12"
+                                ScrollViewer.VerticalScrollBarVisibility="Auto"
+                                ScrollViewer.CanContentScroll="False"
+                                Grid.IsSharedSizeScope="True"
+                                ItemsSource="{Binding Source={StaticResource SortedRequiredFigures}}">
+                                <ListView.ItemTemplate>
+                                    <DataTemplate DataType="{x:Type viewModels:RequiredFigureSelectionViewModel}">
+                                        <controls:RequiredFigureSelection DataContext="{Binding}" />
+                                    </DataTemplate>
+                                </ListView.ItemTemplate>
+                            </ListView>
+                        </GroupBox>
+
+                        <GroupBox Grid.Column="2" Grid.Row="0" 
+                            Padding="4" Margin="4" Header="Optional Figures">
+                            <ListView Padding="4"
+                                      Width="400"
+                                      Height="800"
+                                      ScrollViewer.VerticalScrollBarVisibility="Auto"
+                                      ScrollViewer.CanContentScroll="False"
+                                      ItemsSource="{Binding Source={StaticResource SortedOptionalFigures}}">
+                                <ListView.ItemTemplate>
+                                    <DataTemplate DataType="{x:Type viewModels:RequiredFigureSelectionViewModel}">
+                                        <controls:RequiredFigureSelection DataContext="{Binding}" />
+                                    </DataTemplate>
+                                </ListView.ItemTemplate>
+                            </ListView>
+                        </GroupBox>
+                    </Grid>
+                </StackPanel>
+            </materialDesign:DrawerHost.LeftDrawerContent>
+
+            <DockPanel LastChildFill="True" VerticalAlignment="Stretch" HorizontalAlignment="Stretch">
+                <materialDesign:ColorZone Margin="0,0,0,0"
+                                          Padding="8,4,8,4"
+                                          Panel.ZIndex="1"
+                                          materialDesign:ElevationAssist.Elevation="Dp2"
+                                          CornerRadius="2"
+                                          Mode="Standard" DockPanel.Dock="Top">
+                    <Grid>
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="Auto" />
+                            <ColumnDefinition Width="Auto" />
+                        </Grid.ColumnDefinitions>
+                        <Grid.RowDefinitions>
+                            <RowDefinition Height="Auto" />
+                        </Grid.RowDefinitions>
+                        <ToggleButton
+                            Margin="16"
+                            HorizontalAlignment="Left"
+                            IsChecked="{Binding Path=IsDrawerOpen, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"
+                            Style="{StaticResource MaterialDesignHamburgerToggleButton}" />
+                    </Grid>
+                </materialDesign:ColorZone>
+
+                <ListView ItemsSource="{Binding Source={StaticResource SortedChoreographies}}">
                     <ListView.ItemTemplate>
-                        <DataTemplate DataType="{x:Type viewModels:LevelSelectionViewModel}">
-                            <controls:LevelSelection DataContext="{Binding}" />
+                        <DataTemplate DataType="{x:Type viewModels:ChoreographyViewModel}">
+                            <controls:Choreography DataContext="{Binding}" />
                         </DataTemplate>
                     </ListView.ItemTemplate>
                 </ListView>
-            </GroupBox>
-            <GroupBox Margin="4" Padding="4"
-                      Header="Required Figures">
-                <ListView
-                    Padding="12" Width="400" Height="200"
-                    Margin="12"
-                    ScrollViewer.VerticalScrollBarVisibility="Auto"
-                    ScrollViewer.CanContentScroll="False"
-                    Grid.IsSharedSizeScope="True"
-                    ItemsSource="{Binding Source={StaticResource SortedRequiredFigures}}">
-                    <ListView.ItemTemplate>
-                        <DataTemplate DataType="{x:Type viewModels:RequiredFigureSelectionViewModel}">
-                            <controls:RequiredFigureSelection DataContext="{Binding}" />
-                        </DataTemplate>
-                    </ListView.ItemTemplate>
-                </ListView>
-            </GroupBox>
-
-            <GroupBox Padding="4" Margin="4" Header="Optional Figures">
-                <ListView Padding="4" Width="400" Height="200"
-                          ScrollViewer.VerticalScrollBarVisibility="Auto"
-                          ScrollViewer.CanContentScroll="False"
-                          ItemsSource="{Binding Source={StaticResource SortedOptionalFigures}}">
-                    <ListView.ItemTemplate>
-                        <DataTemplate DataType="{x:Type viewModels:RequiredFigureSelectionViewModel}">
-                            <controls:RequiredFigureSelection DataContext="{Binding}" />
-                        </DataTemplate>
-                    </ListView.ItemTemplate>
-                </ListView>
-            </GroupBox>
-
-            <Button Padding="4" Margin="4"
-                Content="Go"
-                Command="{Binding FindChoreography}"
-                Style="{StaticResource MaterialDesignRaisedDarkButton}"
-            />
-        </StackPanel>
-
-        <ListView ItemsSource="{Binding Source={StaticResource SortedChoreographies}}">
-            <ListView.ItemTemplate>
-                <DataTemplate DataType="{x:Type viewModels:ChoreographyViewModel}">
-                    <controls:Choreography DataContext="{Binding}" />
-                </DataTemplate>
-            </ListView.ItemTemplate>
-        </ListView>
-    </DockPanel>
+            </DockPanel>
+        </materialDesign:DrawerHost>
+    </Grid>
 </Window>

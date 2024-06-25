@@ -1,10 +1,4 @@
-﻿using System.ComponentModel;
-using System.Reactive.Disposables;
-using System.Windows;
-using ChoreoHelper.Database;
-using DynamicData.Binding;
-using ReactiveUI;
-using Splat;
+﻿using DynamicData.Binding;
 
 namespace ChoreoHelper.ViewModels;
 
@@ -12,12 +6,14 @@ public sealed class MainWindowViewModel: ReactiveObject, IActivatableViewModel, 
 {
     private CompositeDisposable Disposables { get; } = new();
 
-    private string? _selectedDance;
-    public string? SelectedDance
-    {
-        get => _selectedDance;
-        set => this.RaiseAndSetIfChanged(ref _selectedDance, value);
-    }
+    [Reactive]
+    public bool IsDrawerOpen { get; set; }
+
+    [Reactive]
+    public string? SelectedDance { get; set; }
+
+    [Reactive]
+    public string SearchText { get; set; }
 
     public IObservableCollection<string> Dances { get; }
         = new ObservableCollectionExtended<string>();
@@ -38,13 +34,8 @@ public sealed class MainWindowViewModel: ReactiveObject, IActivatableViewModel, 
             .Aggregate(DanceLevel.Undefined, (acc, l) => acc | l.Level);
     }
 
-    private IReactiveCommand _findChoreography = DisabledCommand.Instance;
-
-    public IReactiveCommand FindChoreography
-    {
-        get => _findChoreography;
-        set => this.RaiseAndSetIfChanged(ref _findChoreography, value);
-    }
+    [Reactive]
+    public IReactiveCommand FindChoreography { get; set; }
 
     public IObservableCollection<ChoreographyViewModel> Choreographies { get; }
         = new ObservableCollectionExtended<ChoreographyViewModel>();
