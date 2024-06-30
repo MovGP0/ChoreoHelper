@@ -1,15 +1,15 @@
 ﻿using System.Collections.Immutable;
 using System.Diagnostics;
 using ChoreoHelper.Behaviors.Algorithms;
-using ChoreoHelper.Database;
+using ChoreoHelper.Entities;
+using ChoreoHelper.Gateway;
 using ChoreoHelper.Messages;
 using Microsoft.Extensions.Logging;
-using SliccDB.Serialization;
 
 namespace ChoreoHelper.Behaviors.MainWindow;
 
 public sealed class FindChoreographyBehavior(
-    DatabaseConnection connection,
+    IDanceFiguresRepository connection,
     ILogger<FindChoreographyBehavior> logger)
     : IBehavior<MainWindowViewModel>
 {
@@ -58,7 +58,9 @@ public sealed class FindChoreographyBehavior(
                 var figures = requiredFigures.Concat(optionalFigures)
                     .ToArray();
 
-                var matrix = connection.GetDistanceMatrix(figures);
+                var danceName = vm.SelectedDance ?? string.Empty;
+
+                var matrix = connection.GetDistanceMatrix(danceName, figures);
                 var islands = DepthFirstSearchUnreachableIslandsFinder.FindUnreachableIslands(matrix);
                 if (islands.Count > 1)
                 {

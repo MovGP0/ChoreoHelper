@@ -5,8 +5,6 @@ VisualStudioVersion = 17.0.31903.59
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ChoreoHelper", "ChoreoHelper\ChoreoHelper.csproj", "{A7B9E8E4-D14A-405D-9BC2-1179E8AB1969}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ChoreoHelper.Database", "ChoreoHelper.Database\ChoreoHelper.Database.csproj", "{97496590-0329-4A67-856A-1E7BDAD92057}"
-EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ChoreoHelper.ReactiveUI", "ChoreoHelper.ReactiveUI\ChoreoHelper.ReactiveUI.csproj", "{13A08B18-254D-4890-8349-B1AE3D214BDB}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ChoreoHelper.Messages", "ChoreoHelper.Messages\ChoreoHelper.Messages.csproj", "{5B77E5DB-B2C7-4B43-A8FD-B1E6FB01F8B8}"
@@ -30,6 +28,10 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "SolutionItems", "SolutionIt
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ChoreoHelper.Graph", "ChoreoHelper.Graph\ChoreoHelper.Graph.csproj", "{E8C863EF-3440-470E-B850-1A2FECD636E3}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ChoreoHelper.Entities", "ChoreoHelper.Entities\ChoreoHelper.Entities.csproj", "{FF97CC21-4DDD-4024-BD2B-47B936554F82}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ChoreoHelper.Gateway", "ChoreoHelper.Gateway\ChoreoHelper.Gateway.csproj", "{354161A5-050C-4227-870B-DCB991599190}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -43,10 +45,6 @@ Global
 		{A7B9E8E4-D14A-405D-9BC2-1179E8AB1969}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{A7B9E8E4-D14A-405D-9BC2-1179E8AB1969}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{A7B9E8E4-D14A-405D-9BC2-1179E8AB1969}.Release|Any CPU.Build.0 = Release|Any CPU
-		{97496590-0329-4A67-856A-1E7BDAD92057}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{97496590-0329-4A67-856A-1E7BDAD92057}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{97496590-0329-4A67-856A-1E7BDAD92057}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{97496590-0329-4A67-856A-1E7BDAD92057}.Release|Any CPU.Build.0 = Release|Any CPU
 		{13A08B18-254D-4890-8349-B1AE3D214BDB}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
 		{13A08B18-254D-4890-8349-B1AE3D214BDB}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{13A08B18-254D-4890-8349-B1AE3D214BDB}.Release|Any CPU.ActiveCfg = Release|Any CPU
@@ -75,5 +73,13 @@ Global
 		{E8C863EF-3440-470E-B850-1A2FECD636E3}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{E8C863EF-3440-470E-B850-1A2FECD636E3}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{E8C863EF-3440-470E-B850-1A2FECD636E3}.Release|Any CPU.Build.0 = Release|Any CPU
+		{FF97CC21-4DDD-4024-BD2B-47B936554F82}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{FF97CC21-4DDD-4024-BD2B-47B936554F82}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{FF97CC21-4DDD-4024-BD2B-47B936554F82}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{FF97CC21-4DDD-4024-BD2B-47B936554F82}.Release|Any CPU.Build.0 = Release|Any CPU
+		{354161A5-050C-4227-870B-DCB991599190}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{354161A5-050C-4227-870B-DCB991599190}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{354161A5-050C-4227-870B-DCB991599190}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{354161A5-050C-4227-870B-DCB991599190}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 EndGlobal

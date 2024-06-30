@@ -1,9 +1,20 @@
-﻿using ChoreoHelper.Graph.Entities;
+﻿using ChoreoHelper.Entities;
+using ChoreoHelper.Graph.Entities;
 
 namespace ChoreoHelper.Graph;
 
 public static class GraphExtensions
 {
+    [Pure]
+    public static IEnumerable<DanceLevel> GetDanceLevels(
+        this UndirectedGraph<DanceFigure, DanceFigureTransition> graph)
+    {
+        return graph.Vertices
+            .Select(v => v.Level)
+            .Select(DanceLevelConverter.ToDanceLevel)
+            .Distinct();
+    }
+
     [Pure]
     public static IEnumerable<DanceFigure> GetFigures(
         this UndirectedGraph<DanceFigure, DanceFigureTransition> graph,

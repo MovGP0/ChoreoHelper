@@ -12,13 +12,12 @@
         <PackageReference Include="Microsoft.Extensions.Logging" Version="8.0.0" />
         <PackageReference Include="ReactiveUI" Version="19.5.41" />
         <PackageReference Include="ReactiveUI.Fody" Version="19.5.41" />
-        <PackageReference Include="SliccDB" Version="0.1.1.4" />
         <PackageReference Include="Splat.Microsoft.Extensions.DependencyInjection" Version="14.8.12" />
         <PackageReference Include="Splat.Microsoft.Extensions.Logging" Version="14.8.12" />
     </ItemGroup>
 
     <ItemGroup>
-        <ProjectReference Include="..\ChoreoHelper.Database\ChoreoHelper.Database.csproj" />
+        <ProjectReference Include="..\ChoreoHelper.Graph\ChoreoHelper.Graph.csproj" />
         <ProjectReference Include="..\ChoreoHelper.Messages\ChoreoHelper.Messages.csproj" />
         <ProjectReference Include="..\ChoreoHelper.ReactiveUI\ChoreoHelper.ReactiveUI.csproj" />
     </ItemGroup>

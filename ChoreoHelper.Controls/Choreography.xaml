@@ -5,7 +5,7 @@
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
              xmlns:viewModels="clr-namespace:ChoreoHelper.ViewModels;assembly=ChoreoHelper.ViewModels"
              xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
-             xmlns:database="clr-namespace:ChoreoHelper.Database;assembly=ChoreoHelper.Database"
+             xmlns:entities="clr-namespace:ChoreoHelper.Entities;assembly=ChoreoHelper.Entities"
              mc:Ignorable="d"
              TextElement.FontWeight="Regular"
              TextElement.FontSize="12"
@@ -53,7 +53,7 @@
                 </ItemsPanelTemplate>
             </ListView.ItemsPanel>
             <ListView.ItemTemplate>
-                <DataTemplate DataType="{x:Type database:DanceStepNodeInfo}">
+                <DataTemplate DataType="{x:Type entities:DanceStepNodeInfo}">
                     <!--materialDesign:Chip
                         Content="{Binding Name, Mode=OneTime}"
                         Style="{StaticResource MaterialDesignOutlineChip}" /-->

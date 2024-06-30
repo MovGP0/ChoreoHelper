@@ -1,6 +1,6 @@
 ﻿using ChoreoHelper.Behaviors;
 using ChoreoHelper.Controls;
-using ChoreoHelper.Database;
+using ChoreoHelper.Graph;
 using ChoreoHelper.ViewModels;
 using Microsoft.Extensions.DependencyInjection;
 

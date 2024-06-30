@@ -1,4 +1,4 @@
-namespace ChoreoHelper.Database;
+namespace ChoreoHelper.Entities;
 
 public readonly struct DanceStepNodeInfo
 {

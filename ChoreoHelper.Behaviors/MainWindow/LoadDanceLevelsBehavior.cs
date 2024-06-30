@@ -1,11 +1,10 @@
 ﻿using System.Collections.Immutable;
-using SliccDB.Serialization;
-using ChoreoHelper.Database;
-using Splat;
+using ChoreoHelper.Entities;
+using ChoreoHelper.Gateway;
 
 namespace ChoreoHelper.Behaviors.MainWindow;
 
-public sealed class LoadDanceLevelsBehavior(DatabaseConnection connection) : IBehavior<MainWindowViewModel>
+public sealed class LoadDanceLevelsBehavior(IDanceFiguresRepository connection) : IBehavior<MainWindowViewModel>
 {
     public void Activate(MainWindowViewModel viewModel, CompositeDisposable disposables)
     {

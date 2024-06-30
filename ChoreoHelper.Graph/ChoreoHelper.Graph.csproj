@@ -5,8 +5,16 @@
         <Nullable>enable</Nullable>
     </PropertyGroup>
     <ItemGroup>
+        <PackageReference Include="JetBrains.Annotations" Version="2023.3.0" />
+        <PackageReference Include="Microsoft.Extensions.DependencyInjection.Abstractions" Version="8.0.0" />
         <PackageReference Include="OneOf" Version="3.0.271" />
         <PackageReference Include="QuikGraph" Version="2.5.0" />
+    </ItemGroup>
+    <ItemGroup>
+        <Content Include="..\dance transitions.xml">
+            <Link>dance transitions.xml</Link>
+            <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+        </Content>
     </ItemGroup>
     <ItemGroup>
       <Compile Update="Entities\DanceFigure.Equatable.cs">
@@ -21,5 +29,9 @@
       <Compile Update="Entities\DanceFigureTransition.Xml.cs">
         <DependentUpon>DanceFigureTransition.cs</DependentUpon>
       </Compile>
+    </ItemGroup>
+    <ItemGroup>
+      <ProjectReference Include="..\ChoreoHelper.Entities\ChoreoHelper.Entities.csproj" />
+      <ProjectReference Include="..\ChoreoHelper.Gateway\ChoreoHelper.Gateway.csproj" />
     </ItemGroup>
 </Project>

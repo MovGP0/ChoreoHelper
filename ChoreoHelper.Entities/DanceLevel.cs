@@ -1,4 +1,4 @@
-﻿namespace ChoreoHelper.Graph.Entities;
+﻿namespace ChoreoHelper.Entities;
 
 [Flags]
 public enum DanceLevel

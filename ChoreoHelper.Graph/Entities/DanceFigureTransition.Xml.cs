@@ -23,15 +23,25 @@ public sealed partial class DanceFigureTransition
 
         var ns = element.Name.Namespace;
 
+        var danceName = element.Attribute(Xn(ns, "Dance"))?.Value ?? string.Empty;
+
         var sourceName = element.Attribute(Xn(ns, nameof(Source)))?.Value ?? string.Empty;
-        var source = figures.Where(f => f.Name == sourceName).Take(1).ToArray();
+        var source = figures
+            .Where(f => f.Name == sourceName && f.Dance == danceName)
+            .Take(1)
+            .ToArray();
+
         if (source.Length != 1)
         {
             return new Error();
         }
 
         var targetName = element.Attribute(Xn(ns, nameof(Target)))?.Value ?? string.Empty;
-        var target = figures.Where(f => f.Name == targetName).Take(1).ToArray();
+        var target = figures
+            .Where(f => f.Name == targetName && f.Dance == danceName)
+            .Take(1)
+            .ToArray();
+
         if (target.Length != 1)
         {
             return new Error();

@@ -1,10 +1,10 @@
-﻿using ChoreoHelper.Database;
+﻿using ChoreoHelper.Entities;
+using ChoreoHelper.Gateway;
 using ChoreoHelper.Messages;
-using SliccDB.Serialization;
 
 namespace ChoreoHelper.Behaviors.MainWindow;
 
-public sealed class LoadOptionalFiguresBehavior(DatabaseConnection connection) : IBehavior<MainWindowViewModel>
+public sealed class LoadOptionalFiguresBehavior(IDanceFiguresRepository connection) : IBehavior<MainWindowViewModel>
 {
     public void Activate(MainWindowViewModel viewModel, CompositeDisposable disposables)
     {

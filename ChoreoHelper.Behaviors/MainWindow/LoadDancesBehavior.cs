@@ -1,9 +1,8 @@
-﻿using ChoreoHelper.Database;
-using SliccDB.Serialization;
+﻿using ChoreoHelper.Gateway;
 
 namespace ChoreoHelper.Behaviors.MainWindow;
 
-public sealed class LoadDancesBehavior(DatabaseConnection connection) : IBehavior<MainWindowViewModel>
+public sealed class LoadDancesBehavior(IDanceFiguresRepository connection) : IBehavior<MainWindowViewModel>
 {
     public void Activate(MainWindowViewModel viewModel, CompositeDisposable disposables)
     {

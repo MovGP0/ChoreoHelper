@@ -1,4 +1,4 @@
-﻿using ChoreoHelper.Database;
+﻿using ChoreoHelper.Entities;
 
 namespace ChoreoHelper.Messages;
 

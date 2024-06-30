@@ -45,6 +45,8 @@ void Main()
 	}
 
 	using ExcelPackage package = new(new FileInfo(excelPath));
+	var graph = new UndirectedGraph<DanceFigure, DanceFigureTransition>();
+
 	foreach (ExcelWorksheet worksheet in package.Workbook.Worksheets.Where(ws => !ws.Name.StartsWith("_")))
 	{
 		var validationResult = ValidateWorksheet(worksheet);
@@ -58,13 +60,12 @@ void Main()
 			LogVerbose($"Worksheet '{worksheet.Name}' validated successfully.");
 		}
 		
-		var graph = new UndirectedGraph<DanceFigure, DanceFigureTransition>();
-
 		var connection = new DatabaseConnection(databasePath);
 		EnsureThatAllDanceStepsExist(worksheet, connection, graph);
 		EnsureThatAllTransitionsExist(worksheet, connection, graph);
-		SaveGraph(graph);
 	}
+
+	SaveGraph(graph);
 }
 
 public sealed partial class DanceFigure
@@ -127,8 +128,8 @@ void EnsureThatAllTransitionsExist(ExcelWorksheet worksheet, DatabaseConnection 
 
 			connection.SetDistance(fromNode, toNode, distance.Value);
 			//************************************************************************************
-			var f = graph.Vertices.Single(v => v.Name == fromDanceStep);
-			var t = graph.Vertices.Single(v => v.Name == toDanceStep);
+			var f = graph.Vertices.Single(v => v.Name == fromDanceStep && v.Dance == danceName);
+			var t = graph.Vertices.Single(v => v.Name == toDanceStep && v.Dance == danceName);
 			var edge = new DanceFigureTransition(f, t, (float)distance);
 			graph.AddEdge(edge);
 		}
@@ -331,7 +332,6 @@ public static string ExcelColumnName(int columnNumber)
 	return ExcelCellBase.GetAddressCol(columnNumber + 1);
 }
 
-
 public sealed partial class DanceFigureTransition
 {
 	[Pure]
@@ -340,6 +340,7 @@ public sealed partial class DanceFigureTransition
 	[Pure]
 	private IEnumerable<XAttribute> GetAttributes(XNamespace ns)
 	{
+		yield return new XAttribute(Xn(ns, "Dance"), Source.Dance);
 		yield return new XAttribute(Xn(ns, nameof(Source)), Source.Name);
 		yield return new XAttribute(Xn(ns, nameof(Target)), Target.Name);
 		yield return new XAttribute(Xn(ns, nameof(Distance)), Distance.ToString(CultureInfo.InvariantCulture));

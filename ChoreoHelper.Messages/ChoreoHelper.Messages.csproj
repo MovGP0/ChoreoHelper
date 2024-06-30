@@ -7,7 +7,7 @@
     </PropertyGroup>
 
     <ItemGroup>
-      <ProjectReference Include="..\ChoreoHelper.Database\ChoreoHelper.Database.csproj" />
+      <ProjectReference Include="..\ChoreoHelper.Graph\ChoreoHelper.Graph.csproj" />
     </ItemGroup>
 
 </Project>
