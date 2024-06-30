@@ -23,7 +23,7 @@
                 <ResourceDictionary Source="pack://application:,,,/MaterialDesignColors;component/Themes/Recommended/secondary/materialdesigncolor.deeppurple.xaml" />
                 <ResourceDictionary>
                     <CollectionViewSource x:Key="SortedRequiredFigures"
-                                          Source="{Binding RequiredFigures, Mode=OneWay, UpdateSourceTrigger=PropertyChanged}">
+                                          Source="{Binding RequiredFiguresFiltered, Mode=OneWay, UpdateSourceTrigger=PropertyChanged}">
                         <CollectionViewSource.SortDescriptions>
                             <scm:SortDescription PropertyName="LevelSort" Direction="Ascending"/>
                             <scm:SortDescription PropertyName="Name" Direction="Ascending"/>
@@ -43,7 +43,7 @@
                         </CollectionViewSource.SortDescriptions>
                     </CollectionViewSource>
                     <CollectionViewSource x:Key="SortedOptionalFigures"
-                                          Source="{Binding OptionalFigures, Mode=OneWay, UpdateSourceTrigger=PropertyChanged}">
+                                          Source="{Binding OptionalFiguresFiltered, Mode=OneWay, UpdateSourceTrigger=PropertyChanged}">
                             <CollectionViewSource.SortDescriptions>
                                 <scm:SortDescription PropertyName="LevelSort" Direction="Ascending"/>
                                 <scm:SortDescription PropertyName="Name" Direction="Ascending"/>

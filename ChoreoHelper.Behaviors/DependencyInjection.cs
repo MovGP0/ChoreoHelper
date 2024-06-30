@@ -13,6 +13,8 @@ public static class DependencyInjection
         services.AddTransient<IBehavior<MainWindowViewModel>, LoadDancesBehavior>();
         services.AddTransient<IBehavior<MainWindowViewModel>, LoadRequiredFiguresBehavior>();
         services.AddTransient<IBehavior<MainWindowViewModel>, LoadOptionalFiguresBehavior>();
+        services.AddTransient<IBehavior<MainWindowViewModel>, FilterOptionalFiguresBehavior>();
+        services.AddTransient<IBehavior<MainWindowViewModel>, FilterRequiredFiguresBehavior>();
         services.AddTransient<IBehavior<MainWindowViewModel>, FindChoreographyBehavior>();
         services.AddTransient<IBehavior<MainWindowViewModel>, LoadDanceLevelsBehavior>();
         services.AddTransient<IBehavior<MainWindowViewModel>, CloseDrawerOnChoreographiesFound>();
