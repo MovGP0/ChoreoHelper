@@ -12,6 +12,7 @@
     <NeutralLanguage>en</NeutralLanguage>
     <StartupObject>ChoreoHelper.Program</StartupObject>
     <ApplicationIcon>Images\icon.ico</ApplicationIcon>
+    <PublishReadyToRun>true</PublishReadyToRun>
   </PropertyGroup>
 
   <ItemGroup>

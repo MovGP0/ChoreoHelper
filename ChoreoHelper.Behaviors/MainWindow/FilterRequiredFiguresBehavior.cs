@@ -39,7 +39,7 @@ public sealed class FilterRequiredFiguresBehavior: IBehavior<MainWindowViewModel
                  var searchText = vm.SearchText;
                  var figures = viewModel
                      .RequiredFigures
-                     .Where(rf => string.IsNullOrEmpty(searchText) || rf.Name.Contains(searchText))
+                     .Where(rf => string.IsNullOrEmpty(searchText) || rf.Name.Contains(searchText, StringComparison.CurrentCultureIgnoreCase))
                      .ToList();
 
                  requiredFiguresFiltered.Update(figures);

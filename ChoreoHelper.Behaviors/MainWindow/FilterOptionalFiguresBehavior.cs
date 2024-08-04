@@ -39,7 +39,7 @@ public sealed class FilterOptionalFiguresBehavior: IBehavior<MainWindowViewModel
                 var searchText = vm.SearchText;
                 var figures = viewModel
                     .OptionalFigures
-                    .Where(rf => string.IsNullOrEmpty(searchText) || rf.Name.Contains(searchText))
+                    .Where(rf => string.IsNullOrEmpty(searchText) || rf.Name.Contains(searchText, StringComparison.CurrentCultureIgnoreCase))
                     .ToList();
 
                 optionalFiguresFiltered.Update(figures);
