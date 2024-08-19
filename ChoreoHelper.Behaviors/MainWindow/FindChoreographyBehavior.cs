@@ -60,7 +60,7 @@ public sealed class FindChoreographyBehavior(
 
                 var danceName = vm.SelectedDance ?? string.Empty;
 
-                var matrix = connection.GetDistanceMatrix(danceName, figures);
+                var (matrix, sortedFigures) = connection.GetDistanceMatrix(danceName, figures);
                 var islands = DepthFirstSearchUnreachableIslandsFinder.FindUnreachableIslands(matrix);
                 if (islands.Count > 1)
                 {
@@ -70,7 +70,8 @@ public sealed class FindChoreographyBehavior(
                 var requiredFigureIndex = new int[requiredFigures.Length];
                 for (var i = 0; i < requiredFigureIndex.Length; i++)
                 {
-                    requiredFigureIndex[i] = i;
+                    var requiredFigure = requiredFigures[i];
+                    requiredFigureIndex[i] = Array.IndexOf(sortedFigures, requiredFigure);
                 }
 
                 var nodes = requiredFigureIndex.ToImmutableArray();
@@ -96,7 +97,7 @@ public sealed class FindChoreographyBehavior(
                 // convert routes:List<List<int>> to figures:List<List<DanceStepNodeInfo>>
                 return routes
                     .Select<Route, DanceStepNodeInfo[]>(route => route
-                        .VisitedNodes.Select(index => figures[index])
+                        .VisitedNodes.Reverse().Select(index => sortedFigures[index])
                         .ToArray())
                     .ToArray();
             })

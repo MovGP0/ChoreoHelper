@@ -50,12 +50,13 @@ public static class BreadthFirstSearchRouteFinder
 
                     var penalty = route.VisitedNodes.Count(n => n == node);
                     var newRoute = route.Append(node, route.Distance + distance + penalty);
+                    Debug.Assert(newRoute.LastVisitedNode == node);
 
                     var numberOfRepetitions =
                         newRoute.VisitedNodes.Count()
                         - newRoute.VisitedNodes.Distinct().Count();
 
-                    if (numberOfRepetitions >= 2)
+                    if (numberOfRepetitions >= 4)
                     {
                         // skip when there are too many repetitions
                         continue;
@@ -72,6 +73,7 @@ public static class BreadthFirstSearchRouteFinder
         }
 
         await Task.CompletedTask;
+
         return frontier
             .Where(route => route.HasVisitedAllRequiredNodes(requiredNodes))
             .ToList();

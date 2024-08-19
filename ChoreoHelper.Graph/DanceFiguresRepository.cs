@@ -9,14 +9,14 @@ public sealed class DanceFiguresRepository : IDanceFiguresRepository
 {
     private OneOf<UndirectedGraph<DanceFigure, DanceFigureTransition>, None> Graph { get; set; } = new None();
 
-    public int[,] GetDistanceMatrix(string dance, DanceStepNodeInfo[] figures)
+    public (int[,] array, DanceStepNodeInfo[] figures) GetDistanceMatrix(string dance, DanceStepNodeInfo[] figures)
     {
         var task = EnsureGraphIsLoadedAsync();
         task.Wait();
 
         if (figures.Length == 0 || !Graph.TryPickT0(out var g, out _))
         {
-            return new int[0, 0];
+            return new(new int[0, 0], figures);
         }
 
         var hashSet = new HashSet<string>();
@@ -27,9 +27,16 @@ public sealed class DanceFiguresRepository : IDanceFiguresRepository
 
         var danceFigures = g.GetFigures(dance, DanceLevel.All)
             .Where(f => hashSet.Contains(GetHash(f)))
-            .ToArray();           
+            .ToArray();
 
-        return g.GetDistanceMatrix(danceFigures);
+        var matrix = g.GetDistanceMatrix(danceFigures);
+        var sortedFigures = (
+            from df in danceFigures
+            join f in figures on GetHash(df) equals f.Hash
+            select f)
+            .ToArray();
+
+        return new(matrix, sortedFigures);
     }
 
     public IEnumerable<string> GetDances()

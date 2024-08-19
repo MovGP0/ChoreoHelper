@@ -1,4 +1,5 @@
-﻿using ChoreoHelper.Entities;
+﻿using System.Text;
+using ChoreoHelper.Entities;
 using ChoreoHelper.Graph.Entities;
 
 namespace ChoreoHelper.Graph;
@@ -69,8 +70,8 @@ public static class GraphExtensions
         for (var row = 0; row < figures.Length; row++)
         for (var col = 0; col < figures.Length; col++)
         {
-            var fromFigure = figures[col];
-            var toFigure = figures[row];
+            var fromFigure = figures[row];
+            var toFigure = figures[col];
             var distance = graph.Edges
                 .Where(v => v.Source == fromFigure && v.Target == toFigure)
                 .Select(v => v.Distance)
@@ -88,5 +89,29 @@ public static class GraphExtensions
         }
 
         return matrix;
+    }
+
+    private static string PrintMatrix(int[,] matrix)
+    {
+        var sb = new StringBuilder();
+        for (var row = 0; row < matrix.GetLength(0); row++)
+        {
+            for (var col = 0; col < matrix.GetLength(1); col++)
+            {
+                char symbol = matrix[row, col] switch
+                {
+                    -1 => ' ',
+                    1 => '\u2591',
+                    2 => '\u2593',
+                    _ => '\u259E',
+                };
+
+                sb.Append(symbol);
+            }
+
+            sb.AppendLine();
+        }
+
+        return sb.ToString();
     }
 }
