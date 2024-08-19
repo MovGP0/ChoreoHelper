@@ -1,5 +1,8 @@
-﻿namespace ChoreoHelper.ViewModels;
+﻿using System.Diagnostics;
 
+namespace ChoreoHelper.ViewModels;
+
+[DebuggerDisplay("{DebuggerDisplay}")]
 public sealed class OptionalFigureSelectionViewModel : ReactiveObject, IDisposable
 {
     private CompositeDisposable Disposables { get; } = new();
@@ -36,4 +39,6 @@ public sealed class OptionalFigureSelectionViewModel : ReactiveObject, IDisposab
     }
 
     public void Dispose() => Disposables.Dispose();
+
+    private string DebuggerDisplay => $"[{Level}] {Name} {IsSelected}";
 }

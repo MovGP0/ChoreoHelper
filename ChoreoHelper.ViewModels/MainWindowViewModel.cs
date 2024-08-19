@@ -20,7 +20,7 @@ public sealed class MainWindowViewModel: ReactiveObject, IActivatableViewModel, 
 
     public IObservableCollection<RequiredFigureSelectionViewModel> RequiredFigures { get; }
         = new ObservableCollectionExtended<RequiredFigureSelectionViewModel>();
-    
+
     public IObservableCollection<RequiredFigureSelectionViewModel> RequiredFiguresFiltered { get; }
         = new ObservableCollectionExtended<RequiredFigureSelectionViewModel>();
 

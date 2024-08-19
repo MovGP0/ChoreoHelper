@@ -1,4 +1,4 @@
-﻿using System.Collections.Immutable;
+using System.Collections.Immutable;
 using System.Diagnostics;
 using ChoreoHelper.Behaviors.Algorithms;
 using ChoreoHelper.Entities;
@@ -78,11 +78,20 @@ public sealed class FindChoreographyBehavior(
                 var timeout = Debugger.IsAttached ? TimeSpan.FromHours(1) : TimeSpan.FromSeconds(figures.Length);
                 using var timeoutCts = new CancellationTokenSource(timeout);
                 using var cts = CancellationTokenSource.CreateLinkedTokenSource(ct, timeoutCts.Token);
-                var routes = await BreadthFirstSearchRouteFinder.FindAllRoutesAsync(
-                    matrix,
-                    nodes,
-                    figures.Length * 2,
-                    cts.Token);
+
+                List<Route> routes = new();
+                try
+                {
+                    routes = await BreadthFirstSearchRouteFinder.FindAllRoutesAsync(
+                        matrix,
+                        nodes,
+                        figures.Length * 2,
+                        cts.Token);
+                }
+                catch (Exception ex)
+                {
+                    logger.LogError(ex, "Failure while determining choreography route");
+                }
 
                 // convert routes:List<List<int>> to figures:List<List<DanceStepNodeInfo>>
                 return routes

@@ -25,7 +25,7 @@ public sealed class Route : IEquatable<Route>
     }
 
     [Pure]
-    public Route Append(int node, int distance) => new(Distance + distance, VisitedNodes.Concat([node]));
+    public Route Append(int node, int distance) => new(distance, VisitedNodes.Concat([node]));
 
     [Pure]
     public bool HasVisitedAllRequiredNodes(

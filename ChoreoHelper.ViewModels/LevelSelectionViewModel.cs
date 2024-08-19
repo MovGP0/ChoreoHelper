@@ -1,5 +1,8 @@
-﻿namespace ChoreoHelper.ViewModels;
+﻿using System.Diagnostics;
 
+namespace ChoreoHelper.ViewModels;
+
+[DebuggerDisplay("{DebuggerDisplay}")]
 public sealed class LevelSelectionViewModel: ReactiveObject, IDisposable
 {
     private CompositeDisposable Disposables { get; } = new();
@@ -30,4 +33,6 @@ public sealed class LevelSelectionViewModel: ReactiveObject, IDisposable
     }
 
     public void Dispose() => Disposables.Dispose();
+
+    private string DebuggerDisplay => $"{Name} ({Level})";
 }

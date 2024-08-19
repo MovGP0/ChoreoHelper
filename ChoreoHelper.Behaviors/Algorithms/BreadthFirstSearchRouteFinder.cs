@@ -28,8 +28,12 @@ public static class BreadthFirstSearchRouteFinder
             {
                 if (route.Distance > minDistance)
                 {
-                    // schedule for later
-                    newFrontier.Add(route);
+                    if (frontier.Count < 10_000)
+                    {
+                        // schedule for later
+                        newFrontier.Add(route);
+                    }
+
                     continue;
                 }
 

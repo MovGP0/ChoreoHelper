@@ -1,5 +1,8 @@
-﻿namespace ChoreoHelper.ViewModels;
+﻿using System.Diagnostics;
 
+namespace ChoreoHelper.ViewModels;
+
+[DebuggerDisplay("{DebuggerDisplay}")]
 public sealed class RequiredFigureSelectionViewModel : ReactiveObject, IDisposable
 {
     private CompositeDisposable Disposables { get; } = new();
@@ -18,7 +21,7 @@ public sealed class RequiredFigureSelectionViewModel : ReactiveObject, IDisposab
     public int LevelSort => (int)Level;
 
     [Reactive]
-    public string Name { get; set; }
+    public string Name { get; set; } = string.Empty;
 
     public RequiredFigureSelectionViewModel()
     {
@@ -35,4 +38,6 @@ public sealed class RequiredFigureSelectionViewModel : ReactiveObject, IDisposab
     }
 
     public void Dispose() => Disposables.Dispose();
+
+    private string DebuggerDisplay => $"[{Level}] {Name} {IsSelected}";
 }
