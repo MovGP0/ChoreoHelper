@@ -1,9 +1,11 @@
 using System.Collections.Immutable;
 using System.Diagnostics;
 using ChoreoHelper.Behaviors.Algorithms;
+using ChoreoHelper.Behaviors.Extensions;
 using ChoreoHelper.Entities;
 using ChoreoHelper.Gateway;
 using ChoreoHelper.Messages;
+using DynamicData.Kernel;
 using Microsoft.Extensions.Logging;
 
 namespace ChoreoHelper.Behaviors.MainWindow;
@@ -27,8 +29,22 @@ public sealed class FindChoreographyBehavior(
             .DisposeWith(disposables);
 
         // at least two required figures are selected
-        var obs0 = viewModel.WhenAnyValue(vm => vm.RequiredFigures).Select(_ => Unit.Default);
-        var obs1 = MessageBus.Current.Listen<RequiredFigureUpdated>().Select(_ => Unit.Default);
+        var obs0 = viewModel.RequiredFigures
+            .OnCollectionChanged()
+            .Select(_ => Unit.Default);
+
+        var obs1 = MessageBus.Current.Listen<RequiredFigureUpdated>()
+            .Do(message =>
+            {
+                var figure = viewModel.RequiredFigures
+                    .FirstOrOptional(rf => rf.Hash == message.Hash);
+
+                if (figure.HasValue)
+                {
+                    figure.Value.IsSelected = message.IsSelected;
+                }
+            })
+            .Select(_ => Unit.Default);
 
         IObservable<bool> canExecute =
             obs0.Merge(obs1)
