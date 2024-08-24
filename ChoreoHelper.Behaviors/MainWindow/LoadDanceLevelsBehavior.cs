@@ -1,4 +1,5 @@
 ﻿using System.Collections.Immutable;
+using ChoreoHelper.Behaviors.Extensions;
 using ChoreoHelper.Entities;
 using ChoreoHelper.Gateway;
 
@@ -8,7 +9,8 @@ public sealed class LoadDanceLevelsBehavior(IDanceFiguresRepository connection) 
 {
     public void Activate(MainWindowViewModel viewModel, CompositeDisposable disposables)
     {
-        var sourceList = new SourceList<LevelSelectionViewModel>();
+        var sourceList = new SourceList<LevelSelectionViewModel>()
+            .DisposeWith(disposables);
 
         sourceList.Connect()
             .Bind(viewModel.Levels)
@@ -25,11 +27,9 @@ public sealed class LoadDanceLevelsBehavior(IDanceFiguresRepository connection) 
             .Select(ToViewModels)
             .Subscribe(items =>
             {
-                sourceList.Clear();
-                sourceList.AddRange(items);
+                sourceList.Update(items);
             })
             .DisposeWith(disposables);
-
     }
 
     private static List<LevelSelectionViewModel> ToViewModels(IImmutableSet<DanceLevel> items)

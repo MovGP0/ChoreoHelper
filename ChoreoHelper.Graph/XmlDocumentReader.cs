@@ -27,10 +27,20 @@ public sealed class XmlDocumentReader
             return new Error();
         }
 
+        var dances = new List<Dance>();
+        foreach (var element in rootElement.Elements().Where(e => e.Name.LocalName == nameof(Dance).ToLowerInvariant()))
+        {
+            var danceOrError = Dance.FromXml(element);
+            if (danceOrError.IsT0)
+            {
+                dances.Add(danceOrError.AsT0);
+            }
+        }
+
         var graph = new UndirectedGraph<DanceFigure, DanceFigureTransition>();
         foreach (var element in rootElement.Elements().Where(e => e.Name.LocalName == nameof(DanceFigure).ToLowerInvariant()))
         {
-            var figureOrError = DanceFigure.FromXml(element);
+            var figureOrError = DanceFigure.FromXml(element, dances);
             if (figureOrError.IsT0)
             {
                 graph.AddVertex(figureOrError.AsT0);

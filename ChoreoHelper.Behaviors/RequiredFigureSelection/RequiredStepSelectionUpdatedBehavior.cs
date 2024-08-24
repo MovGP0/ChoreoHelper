@@ -1,6 +1,6 @@
 ﻿using ChoreoHelper.Messages;
 
-namespace ChoreoHelper.Behaviors.StepSelection;
+namespace ChoreoHelper.Behaviors.RequiredFigureSelection;
 
 public sealed class RequiredStepSelectionUpdatedBehavior : IBehavior<RequiredFigureSelectionViewModel>
 {
@@ -9,9 +9,10 @@ public sealed class RequiredStepSelectionUpdatedBehavior : IBehavior<RequiredFig
         viewModel
             .WhenAnyValue(vm => vm.IsSelected)
             .Select(_ => viewModel)
-            .Subscribe(_ =>
+            .Subscribe(vm =>
             {
-                MessageBus.Current.SendMessage(new RequiredFigureUpdated(viewModel.Hash));
+                var message = new RequiredFigureUpdated(vm.Hash, vm.IsSelected);
+                MessageBus.Current.SendMessage(message);
             })
             .DisposeWith(disposables);
     }

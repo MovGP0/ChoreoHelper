@@ -1,6 +1,6 @@
-﻿using ChoreoHelper.Entities;
+﻿using System.Collections.Specialized;
+using ChoreoHelper.Behaviors.Extensions;
 using ChoreoHelper.Gateway;
-using ChoreoHelper.Messages;
 
 namespace ChoreoHelper.Behaviors.MainWindow;
 
@@ -8,7 +8,8 @@ public sealed class LoadRequiredFiguresBehavior(IDanceFiguresRepository connecti
 {
     public void Activate(MainWindowViewModel viewModel, CompositeDisposable disposables)
     {
-        var requiredFigures = new SourceCache<RequiredFigureSelectionViewModel, string>(vm => vm.Hash);
+        var requiredFigures = new SourceCache<RequiredFigureSelectionViewModel, string>(vm => vm.Hash)
+            .DisposeWith(disposables);
 
         requiredFigures
             .Connect()
@@ -21,8 +22,8 @@ public sealed class LoadRequiredFiguresBehavior(IDanceFiguresRepository connecti
         Observe(viewModel)
             .Select(_ => viewModel)
             .ObserveOn(RxApp.MainThreadScheduler)
-            .SubscribeOn(RxApp.TaskpoolScheduler)
-            .Select(vm => GetFiguresForDance(vm.SelectedDance, vm.GetLevels()))
+            .SubscribeOn(RxApp.MainThreadScheduler)
+            .Select(vm => vm.Figures)
             .Subscribe(loadedFigures =>
             {
                 foreach (var loadedFigure in loadedFigures)
@@ -41,19 +42,13 @@ public sealed class LoadRequiredFiguresBehavior(IDanceFiguresRepository connecti
 
     private static IObservable<Unit> Observe(MainWindowViewModel viewModel)
     {
-        var obs0 = viewModel
-            .WhenAnyValue(vm => vm.SelectedDance)
+        return viewModel.Figures
+            .OnCollectionChanged()
             .Select(_ => Unit.Default);
-
-        var obs1 = MessageBus.Current
-            .Listen<LevelChanged>()
-            .Select(_ => Unit.Default);
-
-        return obs0.Merge(obs1);
     }
 
     [Pure]
-    private static RequiredFigureSelectionViewModel ToViewModel(DanceStepNodeInfo loadedFigure)
+    private static RequiredFigureSelectionViewModel ToViewModel(FigureViewModel loadedFigure)
     {
         var vm = Locator.Current.GetRequiredService<RequiredFigureSelectionViewModel>();
         vm.Hash = loadedFigure.Hash;
@@ -61,13 +56,5 @@ public sealed class LoadRequiredFiguresBehavior(IDanceFiguresRepository connecti
         vm.IsSelected = false;
         vm.Level = loadedFigure.Level;
         return vm;
-    }
-
-    [Pure]
-    private DanceStepNodeInfo[] GetFiguresForDance(string? selectedDance, DanceLevel level)
-    {
-        return selectedDance is null
-            ? []
-            : connection.GetFigures(selectedDance, level).ToArray();
     }
 }

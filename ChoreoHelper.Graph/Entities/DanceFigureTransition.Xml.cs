@@ -27,7 +27,7 @@ public sealed partial class DanceFigureTransition
 
         var sourceName = element.Attribute(Xn(ns, nameof(Source)))?.Value ?? string.Empty;
         var source = figures
-            .Where(f => f.Name == sourceName && f.Dance == danceName)
+            .Where(f => f.Name == sourceName && f.Dance.Name == danceName)
             .Take(1)
             .ToArray();
 
@@ -38,7 +38,7 @@ public sealed partial class DanceFigureTransition
 
         var targetName = element.Attribute(Xn(ns, nameof(Target)))?.Value ?? string.Empty;
         var target = figures
-            .Where(f => f.Name == targetName && f.Dance == danceName)
+            .Where(f => f.Name == targetName && f.Dance.Name == danceName)
             .Take(1)
             .ToArray();
 

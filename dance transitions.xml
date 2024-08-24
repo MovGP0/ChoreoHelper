@@ -1,5 +1,15 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <dance>
+  <dance name="English Waltz" category="Standard" />
+  <dance name="Tango" category="Standard" />
+  <dance name="Viennese Waltz" category="Standard" />
+  <dance name="Slow Fox" category="Standard" />
+  <dance name="Quickstep" category="Standard" />
+  <dance name="Samba" category="Latin" />
+  <dance name="Cha Cha" category="Latin" />
+  <dance name="Rumba" category="Latin" />
+  <dance name="Paso Doble" category="Latin" />
+  <dance name="Jive" category="Latin" />
   <dancefigure dance="English Waltz" name="Closed Change on Right Foot" level="bronze" />
   <dancefigure dance="English Waltz" name="Closed Change on Left Foot" level="bronze" />
   <dancefigure dance="English Waltz" name="Natural Turn" level="bronze" />

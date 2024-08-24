@@ -6,7 +6,8 @@ public sealed class CloseDrawerOnChoreographiesFound : IBehavior<MainWindowViewM
 {
     public void Activate(MainWindowViewModel viewModel, CompositeDisposable disposables)
     {
-        viewModel.Choreographies.WhenAnyPropertyChanged()
+        viewModel.Choreographies
+            .WhenAnyPropertyChanged()
             .SubscribeOn(RxApp.MainThreadScheduler)
             .SubscribeOn(RxApp.MainThreadScheduler)
             .Select(_ => viewModel)

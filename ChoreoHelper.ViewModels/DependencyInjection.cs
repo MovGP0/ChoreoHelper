@@ -11,6 +11,8 @@ public static class DependencyInjection
         services.AddTransient<ChoreographyViewModel>();
         services.AddTransient<OptionalFigureSelectionViewModel>();
         services.AddTransient<RequiredFigureSelectionViewModel>();
+        services.AddTransient<FigureViewModel>();
+        services.AddTransient<DanceViewModel>();
         return services;
     }
 }

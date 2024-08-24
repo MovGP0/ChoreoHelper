@@ -1,4 +1,7 @@
-﻿using ChoreoHelper.Gateway;
+﻿using System.Collections.Immutable;
+using ChoreoHelper.Behaviors.Extensions;
+using ChoreoHelper.Entities;
+using ChoreoHelper.Gateway;
 
 namespace ChoreoHelper.Behaviors.MainWindow;
 
@@ -6,7 +9,8 @@ public sealed class LoadDancesBehavior(IDanceFiguresRepository connection) : IBe
 {
     public void Activate(MainWindowViewModel viewModel, CompositeDisposable disposables)
     {
-        var dancesList = new SourceList<string>();
+        var dancesList = new SourceList<DanceViewModel>()
+            .DisposeWith(disposables);
 
         dancesList.Connect()
             .Bind(viewModel.Dances)
@@ -22,17 +26,30 @@ public sealed class LoadDancesBehavior(IDanceFiguresRepository connection) : IBe
             .SubscribeOn(RxApp.TaskpoolScheduler)
             .Subscribe(items =>
             {
-                dancesList.Clear();
-                dancesList.AddRange(items);
+                var vms = items
+                    .Select((i, idx) => ToViewModel(i))
+                    .ToImmutableArray();
+
+                dancesList.Update(vms);
             })
             .DisposeWith(disposables);
     }
 
-    private string[] GetDancesInAlphabeticalOrder()
+    private DanceViewModel ToViewModel(DanceInfo danceInfo)
+    {
+        var vm = Locator.Current.GetRequiredService<DanceViewModel>();
+        vm.Hash = danceInfo.Hash;
+        vm.Category = danceInfo.Category;
+        vm.Name = danceInfo.Name;
+        return vm;
+    }
+
+    private DanceInfo[] GetDancesInAlphabeticalOrder()
     {
         return connection
             .GetDances()
-            .Order()
+            .OrderBy(d => d.Category)
+            .ThenBy(d => d.Name)
             .ToArray();
     }
 }

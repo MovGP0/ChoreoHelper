@@ -29,6 +29,12 @@
       <Compile Update="Entities\DanceFigureTransition.Xml.cs">
         <DependentUpon>DanceFigureTransition.cs</DependentUpon>
       </Compile>
+      <Compile Update="Entities\Dance.Xml.cs">
+        <DependentUpon>Dance.cs</DependentUpon>
+      </Compile>
+      <Compile Update="Entities\Dance.Equatable.cs">
+        <DependentUpon>Dance.cs</DependentUpon>
+      </Compile>
     </ItemGroup>
     <ItemGroup>
       <ProjectReference Include="..\ChoreoHelper.Entities\ChoreoHelper.Entities.csproj" />

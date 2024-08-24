@@ -32,7 +32,8 @@
                     <CollectionViewSource x:Key="SortedDances"
                                           Source="{Binding Dances, Mode=OneWay, UpdateSourceTrigger=PropertyChanged}">
                         <CollectionViewSource.SortDescriptions>
-                            <scm:SortDescription Direction="Ascending"/>
+                            <scm:SortDescription PropertyName="Category" Direction="Ascending"/>
+                            <scm:SortDescription PropertyName="Name" Direction="Ascending"/>
                         </CollectionViewSource.SortDescriptions>
                     </CollectionViewSource>
                     <CollectionViewSource x:Key="SortedLevels"
@@ -55,6 +56,12 @@
                             <scm:SortDescription PropertyName="Rating" Direction="Ascending"/>
                         </CollectionViewSource.SortDescriptions>
                     </CollectionViewSource>
+                    <CollectionViewSource x:Key="SortedSelectedFigures"
+                                          Source="{Binding SelectedRequiredFigures, Mode=OneWay, UpdateSourceTrigger=PropertyChanged}">
+                        <CollectionViewSource.SortDescriptions>
+                            <scm:SortDescription PropertyName="Name" Direction="Ascending"/>
+                        </CollectionViewSource.SortDescriptions>
+                    </CollectionViewSource>
                 </ResourceDictionary>
             </ResourceDictionary.MergedDictionaries>
         </ResourceDictionary>
@@ -69,7 +76,6 @@
         <Grid.RowDefinitions>
             <RowDefinition Height="*" />
         </Grid.RowDefinitions>
-
         <materialDesign:DrawerHost
             Grid.Row="0"
             Grid.Column="0"
@@ -99,7 +105,7 @@
                         <TextBox Grid.Column="1" Grid.Row="0"
                                  Margin="8"
                                  MinWidth="400"
-                                 materialDesign:HintAssist.Hint="Search figures"
+                                 materialDesign:HintAssist.Hint="{x:Static controls:MainWindowResources.SearchFigures}"
                                  VerticalAlignment="Center"
                                  materialDesign:TextFieldAssist.DecorationVisibility="Hidden"
                                  BorderThickness="0"
@@ -119,9 +125,6 @@
                             Style="{StaticResource MaterialDesignHamburgerToggleButton}" />
                     </Grid>
                     <Grid>
-                        <Grid.RowDefinitions>
-                            <RowDefinition />
-                        </Grid.RowDefinitions>
                         <Grid.ColumnDefinitions>
                             <ColumnDefinition Width="Auto" />
                             <ColumnDefinition Width="Auto" />
@@ -129,12 +132,27 @@
                         </Grid.ColumnDefinitions>
                         <StackPanel Orientation="Vertical" Grid.Column="0" Grid.Row="0">
                             <GroupBox Margin="4" Padding="4" 
-                                      Header="Dance">
+                                      Header="{x:Static controls:MainWindowResources.Dance}">
                                 <ComboBox Padding="4" Width="400"
                                           ItemsSource="{Binding Source={StaticResource SortedDances}}"
-                                          SelectedItem="{Binding SelectedDance, Mode=OneWayToSource, UpdateSourceTrigger=PropertyChanged}" />
+                                          SelectedItem="{Binding SelectedDance, Mode=OneWayToSource, UpdateSourceTrigger=PropertyChanged}">
+                                    <ComboBox.GroupStyle>
+                                        <GroupStyle>
+                                            <GroupStyle.HeaderTemplate>
+                                                <DataTemplate DataType="{x:Type viewModels:DanceViewModel}">
+                                                    <TextBlock FontWeight="Bold" Text="{Binding Category}" />
+                                                </DataTemplate>
+                                            </GroupStyle.HeaderTemplate>
+                                        </GroupStyle>
+                                    </ComboBox.GroupStyle>
+                                    <ComboBox.ItemTemplate>
+                                        <DataTemplate DataType="{x:Type viewModels:DanceViewModel}">
+                                            <TextBlock Text="{Binding Path=Name, Mode=OneWay, UpdateSourceTrigger=PropertyChanged}" />
+                                        </DataTemplate>
+                                    </ComboBox.ItemTemplate>
+                                </ComboBox>
                             </GroupBox>
-                            <GroupBox Margin="4" Padding="4" Header="Level">
+                            <GroupBox Margin="4" Padding="4" Header="{x:Static controls:MainWindowResources.Level}">
                                 <ListView Padding="4" Width="400" Height="Auto" MinHeight="40"
                                           ScrollViewer.VerticalScrollBarVisibility="Auto"
                                           ScrollViewer.CanContentScroll="False"
@@ -147,11 +165,36 @@
                                     </ListView.ItemTemplate>
                                 </ListView>
                             </GroupBox>
+                            <GroupBox Margin="4" Padding="4" Header="{x:Static controls:MainWindowResources.StartFigure}">
+                                <Grid>
+                                    <Grid.ColumnDefinitions>
+                                        <ColumnDefinition Width="Auto" />
+                                        <ColumnDefinition Width="*" />
+                                    </Grid.ColumnDefinitions>
+                                    <CheckBox Grid.Column="0"
+                                              Padding="4"
+                                              Margin="4"
+                                              VerticalAlignment="Center"
+                                              IsChecked="{Binding Path=IsStartWithSpecificFigure, Mode=OneWayToSource, UpdateSourceTrigger=PropertyChanged}" />
+                                    <ComboBox Grid.Column="1"
+                                              Margin="4"
+                                              Padding="4"
+                                              IsEnabled="{Binding Path=IsStartWithSpecificFigure, Mode=OneWay, UpdateSourceTrigger=PropertyChanged}"
+                                              ItemsSource="{Binding Source={StaticResource SortedSelectedFigures}}"
+                                              SelectedItem="{Binding SelectedSpecificStartFigure, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}">
+                                        <ComboBox.ItemTemplate>
+                                            <DataTemplate DataType="{x:Type viewModels:RequiredFigureSelectionViewModel}">
+                                                <TextBlock Text="{Binding Path=Name, Mode=OneWay, UpdateSourceTrigger=PropertyChanged}" />
+                                            </DataTemplate>
+                                        </ComboBox.ItemTemplate>
+                                    </ComboBox>
+                                </Grid>
+                            </GroupBox>
                         </StackPanel>
-
                         <GroupBox Grid.Column="1" Grid.Row="0"
-                            Margin="4" Padding="4"
-                                  Header="Required Figures">
+                            Margin="4"
+                            Padding="4"
+                            Header="{x:Static controls:MainWindowResources.RequiredFigures}">
                             <ListView
                                 Padding="12"
                                 Width="400"
@@ -168,15 +211,16 @@
                                 </ListView.ItemTemplate>
                             </ListView>
                         </GroupBox>
-
                         <GroupBox Grid.Column="2" Grid.Row="0" 
-                            Padding="4" Margin="4" Header="Optional Figures">
+                            Padding="4"
+                            Margin="4"
+                            Header="{x:Static controls:MainWindowResources.OptionalFigures}">
                             <ListView Padding="4"
                                       Width="400"
                                       Height="800"
                                       ScrollViewer.VerticalScrollBarVisibility="Auto"
                                       ScrollViewer.CanContentScroll="False"
-                                      ItemsSource="{Binding Source={StaticResource SortedOptionalFigures}}">
+                                      ItemsSource="{Binding  Source={StaticResource SortedOptionalFigures}}">
                                 <ListView.ItemTemplate>
                                     <DataTemplate DataType="{x:Type viewModels:RequiredFigureSelectionViewModel}">
                                         <controls:RequiredFigureSelection DataContext="{Binding}" />
@@ -187,7 +231,6 @@
                     </Grid>
                 </StackPanel>
             </materialDesign:DrawerHost.LeftDrawerContent>
-
             <DockPanel LastChildFill="True" VerticalAlignment="Stretch" HorizontalAlignment="Stretch">
                 <materialDesign:ColorZone Margin="0,0,0,0"
                                           Padding="8,4,8,4"
@@ -210,7 +253,6 @@
                             Style="{StaticResource MaterialDesignHamburgerToggleButton}" />
                     </Grid>
                 </materialDesign:ColorZone>
-
                 <ListView ItemsSource="{Binding Source={StaticResource SortedChoreographies}}">
                     <ListView.ItemTemplate>
                         <DataTemplate DataType="{x:Type viewModels:ChoreographyViewModel}">

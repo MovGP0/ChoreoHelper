@@ -15,7 +15,8 @@ public sealed class FindChoreographyBehavior(
 {
     public void Activate(MainWindowViewModel viewModel, CompositeDisposable disposables)
     {
-        var choreographies = new SourceList<ChoreographyViewModel>();
+        var choreographies = new SourceList<ChoreographyViewModel>()
+            .DisposeWith(disposables);
 
         choreographies
             .Connect()
@@ -58,7 +59,12 @@ public sealed class FindChoreographyBehavior(
                 var figures = requiredFigures.Concat(optionalFigures)
                     .ToArray();
 
-                var danceName = vm.SelectedDance ?? string.Empty;
+                var danceName = vm.SelectedDance?.Name ?? string.Empty;
+                if (danceName == string.Empty)
+                {
+                    logger.LogWarning("No dance selected");
+                    return Array.Empty<DanceStepNodeInfo[]>();
+                }
 
                 var (matrix, sortedFigures) = connection.GetDistanceMatrix(danceName, figures);
                 var islands = DepthFirstSearchUnreachableIslandsFinder.FindUnreachableIslands(matrix);

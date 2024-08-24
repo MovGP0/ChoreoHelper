@@ -10,19 +10,33 @@ public sealed class MainWindowViewModel: ReactiveObject, IActivatableViewModel, 
     public bool IsDrawerOpen { get; set; }
 
     [Reactive]
-    public string? SelectedDance { get; set; }
+    public DanceViewModel? SelectedDance { get; set; }
 
     [Reactive]
     public string SearchText { get; set; }
 
-    public IObservableCollection<string> Dances { get; }
-        = new ObservableCollectionExtended<string>();
+    [Reactive]
+    public bool IsStartWithSpecificFigure { get; set; }
+
+    public IObservableCollection<DanceViewModel> Dances { get; }
+        = new ObservableCollectionExtended<DanceViewModel>();
+
+    /// <summary>
+    /// All figures of the selected dance.
+    /// </summary>
+    public IObservableCollection<FigureViewModel> Figures { get; }
+        = new ObservableCollectionExtended<FigureViewModel>();
 
     public IObservableCollection<RequiredFigureSelectionViewModel> RequiredFigures { get; }
         = new ObservableCollectionExtended<RequiredFigureSelectionViewModel>();
 
     public IObservableCollection<RequiredFigureSelectionViewModel> RequiredFiguresFiltered { get; }
         = new ObservableCollectionExtended<RequiredFigureSelectionViewModel>();
+
+    public IObservableCollection<RequiredFigureSelectionViewModel> SelectedRequiredFigures { get; }
+        = new ObservableCollectionExtended<RequiredFigureSelectionViewModel>();
+
+    public RequiredFigureSelectionViewModel? SelectedSpecificStartFigure { get; set; }
 
     public IObservableCollection<OptionalFigureSelectionViewModel> OptionalFigures { get; }
         = new ObservableCollectionExtended<OptionalFigureSelectionViewModel>();
@@ -50,11 +64,11 @@ public sealed class MainWindowViewModel: ReactiveObject, IActivatableViewModel, 
     {
         if (this.IsInDesignMode())
         {
-            Dances.Add("Waltz");
-            Dances.Add("Tango");
-            Dances.Add("Foxtrot");
-            Dances.Add("Quickstep");
-            Dances.Add("Viennese Waltz");
+            Dances.Add(new () { Name = "Waltz", Category = "Standard" });
+            Dances.Add(new () { Name = "Tango", Category = "Standard" });
+            Dances.Add(new () { Name = "Foxtrot", Category = "Standard" });
+            Dances.Add(new () { Name = "Quickstep", Category = "Standard" });
+            Dances.Add(new () { Name = "Viennese Waltz", Category = "Standard" });
 
             for (var i = 0; i < 5; i++)
             {

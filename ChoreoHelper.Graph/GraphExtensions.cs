@@ -33,10 +33,25 @@ public static class GraphExtensions
     }
 
     [Pure]
+    public static IEnumerable<DanceInfo> GetDances(this UndirectedGraph<DanceFigure, DanceFigureTransition> graph)
+    {
+        return graph
+            .Vertices
+            .Select(e => e.Dance)
+            .Select(ToDanceInfo)
+            .Distinct();
+    }
+
+    private static DanceInfo ToDanceInfo(Dance dance)
+    {
+        return new DanceInfo(dance.Category, dance.Name, dance.Name);
+    }
+
+    [Pure]
     private static IEnumerable<DanceFigure> WhereDanceName(this IEnumerable<DanceFigure> nodes, string danceName)
     {
         return nodes
-            .Where(e => string.Equals(e.Dance, danceName, StringComparison.InvariantCultureIgnoreCase));
+            .Where(e => string.Equals(e.Dance.Name, danceName, StringComparison.InvariantCultureIgnoreCase));
     }
 
     [Pure]
@@ -52,14 +67,6 @@ public static class GraphExtensions
                 yield return e1;
             }
         }
-    }
-
-    [Pure]
-    public static IEnumerable<string> GetDances(this UndirectedGraph<DanceFigure, DanceFigureTransition> graph)
-    {
-        return graph.Vertices
-            .Select(n => n.Dance)
-            .Distinct();
     }
 
     [Pure]

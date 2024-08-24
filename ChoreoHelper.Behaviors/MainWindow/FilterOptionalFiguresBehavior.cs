@@ -1,4 +1,6 @@
+using System.Collections.Immutable;
 using ChoreoHelper.Behaviors.Extensions;
+using ChoreoHelper.Messages;
 using DynamicData.Binding;
 
 namespace ChoreoHelper.Behaviors.MainWindow;
@@ -7,7 +9,8 @@ public sealed class FilterOptionalFiguresBehavior: IBehavior<MainWindowViewModel
 {
     public void Activate(MainWindowViewModel viewModel, CompositeDisposable disposables)
     {
-        var optionalFiguresFiltered = new SourceCache<OptionalFigureSelectionViewModel, string>(vm => vm.Hash);
+        var optionalFiguresFiltered = new SourceCache<OptionalFigureSelectionViewModel, string>(vm => vm.Hash)
+            .DisposeWith(disposables);
 
         optionalFiguresFiltered
             .Connect()
@@ -17,6 +20,31 @@ public sealed class FilterOptionalFiguresBehavior: IBehavior<MainWindowViewModel
             .Subscribe()
             .DisposeWith(disposables);
 
+        Observe(viewModel)
+            .ObserveOn(RxApp.MainThreadScheduler)
+            .SubscribeOn(RxApp.MainThreadScheduler)
+            .Select(_ => viewModel)
+            .Subscribe(vm =>
+            {
+                var selectedRequiredFigureHashes = vm.RequiredFiguresFiltered
+                    .Where(rf => rf.IsSelected)
+                    .Select(rf => rf.Hash)
+                    .ToImmutableHashSet();
+
+                var searchText = vm.SearchText;
+                var figures = viewModel
+                    .OptionalFigures
+                    .Where(rf => string.IsNullOrEmpty(searchText) || rf.Name.Contains(searchText, StringComparison.CurrentCultureIgnoreCase))
+                    .Where(of => !selectedRequiredFigureHashes.Contains(of.Hash))
+                    .ToImmutableArray();
+
+                optionalFiguresFiltered.Update(figures);
+            })
+            .DisposeWith(disposables);
+    }
+
+    private static IObservable<Unit> Observe(MainWindowViewModel viewModel)
+    {
         var lastCount = 0;
         var listChanged = viewModel.OptionalFigures
             .WhenPropertyChanged(x => x.Count)
@@ -30,20 +58,11 @@ public sealed class FilterOptionalFiguresBehavior: IBehavior<MainWindowViewModel
                 vm => vm.SelectedDance)
             .Select(_ => Unit.Default);
 
-        searchTextChanged.Merge(listChanged)
-            .ObserveOn(RxApp.MainThreadScheduler)
-            .SubscribeOn(RxApp.MainThreadScheduler)
-            .Select(_ => viewModel)
-            .Subscribe(vm =>
-            {
-                var searchText = vm.SearchText;
-                var figures = viewModel
-                    .OptionalFigures
-                    .Where(rf => string.IsNullOrEmpty(searchText) || rf.Name.Contains(searchText, StringComparison.CurrentCultureIgnoreCase))
-                    .ToList();
+        var requiredFigureChanged = MessageBus.Current.Listen<RequiredFigureUpdated>()
+            .Select(_ => Unit.Default);
 
-                optionalFiguresFiltered.Update(figures);
-            })
-            .DisposeWith(disposables);
+        return searchTextChanged
+            .Merge(listChanged)
+            .Merge(requiredFigureChanged);
     }
 }

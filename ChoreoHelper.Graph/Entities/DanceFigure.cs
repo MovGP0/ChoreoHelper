@@ -1,10 +1,10 @@
 ﻿namespace ChoreoHelper.Graph.Entities;
 
 [DebuggerDisplay("{DebuggerDisplay,nq}")]
-public sealed partial class DanceFigure(string dance, string name, string level)
+public sealed partial class DanceFigure(Dance dance, string name, string level)
 {
     [Pure]
-    public string Dance { get; } = dance;
+    public Dance Dance { get; } = dance;
 
     [Pure]
     public string Name { get; } = name;

@@ -1,4 +1,6 @@
-﻿using ChoreoHelper.Entities;
+﻿using System.Collections.Immutable;
+using System.Collections.Specialized;
+using ChoreoHelper.Entities;
 using ChoreoHelper.Gateway;
 using ChoreoHelper.Messages;
 
@@ -8,7 +10,8 @@ public sealed class LoadOptionalFiguresBehavior(IDanceFiguresRepository connecti
 {
     public void Activate(MainWindowViewModel viewModel, CompositeDisposable disposables)
     {
-        var optionalFigures = new SourceCache<OptionalFigureSelectionViewModel, string>(vm => vm.Hash);
+        var optionalFigures = new SourceCache<OptionalFigureSelectionViewModel, string>(vm => vm.Hash)
+            .DisposeWith(disposables);
 
         optionalFigures
             .Connect()
@@ -33,7 +36,7 @@ public sealed class LoadOptionalFiguresBehavior(IDanceFiguresRepository connecti
                     .ToHashSet();
 
                 return connection
-                    .GetFigures(vm.SelectedDance, vm.GetLevels())
+                    .GetFigures(vm.SelectedDance.Name, vm.GetLevels())
                     .Where(e => !hashesToIgnore.Contains(e.Hash))
                     .ToArray();
             })
@@ -41,14 +44,24 @@ public sealed class LoadOptionalFiguresBehavior(IDanceFiguresRepository connecti
             .SubscribeOn(RxApp.TaskpoolScheduler)
             .Subscribe(loadedFigures =>
             {
+                var selectedRequiredFiguresHashes = viewModel.RequiredFigures
+                    .Where(rf => rf.IsSelected)
+                    .Select(e => e.Hash)
+                    .ToImmutableHashSet();
+
                 foreach (var loadedFigure in loadedFigures)
                 {
                     var vm = ToViewModel(loadedFigure);
+                    if (selectedRequiredFiguresHashes.Contains(vm.Hash))
+                    {
+                        continue;
+                    }
                     optionalFigures.AddOrUpdate(vm);
                 }
 
                 var toDelete = optionalFigures.Keys
-                    .Except(loadedFigures.Select(e => e.Hash));
+                    .Except(loadedFigures.Select(e => e.Hash))
+                    .Concat(selectedRequiredFiguresHashes);
 
                 optionalFigures.RemoveKeys(toDelete);
             })
@@ -65,19 +78,16 @@ public sealed class LoadOptionalFiguresBehavior(IDanceFiguresRepository connecti
 
     private static IObservable<Unit> Observe(MainWindowViewModel viewModel)
     {
-        var obs0 = viewModel
-            .WhenAnyValue(vm => vm.SelectedDance)
+        var figuresChanged = Observable.FromEventPattern<NotifyCollectionChangedEventHandler, NotifyCollectionChangedEventArgs>(
+                handler => viewModel.Figures.CollectionChanged += handler,
+                handler => viewModel.Figures.CollectionChanged -= handler)
             .Select(_ => Unit.Default);
 
-        var obs1 = MessageBus.Current
+        var requiredFigureChanged = MessageBus.Current
             .Listen<RequiredFigureUpdated>()
             .Select(_ => Unit.Default);
 
-        var obs2 = MessageBus.Current
-            .Listen<LevelChanged>()
-            .Select(_ => Unit.Default);
-
-        return obs0.Merge(obs1).Merge(obs2);
+        return figuresChanged.Merge(requiredFigureChanged);
     }
 
     [Pure]

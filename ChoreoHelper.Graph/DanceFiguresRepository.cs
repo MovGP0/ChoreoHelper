@@ -39,14 +39,14 @@ public sealed class DanceFiguresRepository : IDanceFiguresRepository
         return new(matrix, sortedFigures);
     }
 
-    public IEnumerable<string> GetDances()
+    public IEnumerable<DanceInfo> GetDances()
     {
         var task = EnsureGraphIsLoadedAsync();
         task.Wait();
 
         return Graph.TryPickT0(out var g, out _)
             ? g.GetDances()
-            : [];
+            : Array.Empty<DanceInfo>();
     }
 
     public IEnumerable<DanceStepNodeInfo> GetFigures(string? dance, DanceLevel level = DanceLevel.All)
