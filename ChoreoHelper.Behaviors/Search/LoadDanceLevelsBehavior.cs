@@ -3,11 +3,11 @@ using ChoreoHelper.Behaviors.Extensions;
 using ChoreoHelper.Entities;
 using ChoreoHelper.Gateway;
 
-namespace ChoreoHelper.Behaviors.MainWindow;
+namespace ChoreoHelper.Behaviors.Search;
 
-public sealed class LoadDanceLevelsBehavior(IDanceFiguresRepository connection) : IBehavior<MainWindowViewModel>
+public sealed class LoadDanceLevelsBehavior(IDanceFiguresRepository connection) : IBehavior<SearchViewModel>
 {
-    public void Activate(MainWindowViewModel viewModel, CompositeDisposable disposables)
+    public void Activate(SearchViewModel viewModel, CompositeDisposable disposables)
     {
         var sourceList = new SourceList<LevelSelectionViewModel>()
             .DisposeWith(disposables);

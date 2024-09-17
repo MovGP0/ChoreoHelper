@@ -40,6 +40,8 @@
         <XamlRuntime>Wpf</XamlRuntime>
         <SubType>Designer</SubType>
     </Page>
+    <Page Include="SearchResultView.xaml" />
+    <Page Include="SearchView.xaml" />
   </ItemGroup>
   <ItemGroup>
     <Compile Update="OptionalFigureSelection.cs">

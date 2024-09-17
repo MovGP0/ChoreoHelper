@@ -1,11 +1,10 @@
 using ChoreoHelper.Behaviors.Extensions;
-using DynamicData.Binding;
 
-namespace ChoreoHelper.Behaviors.MainWindow;
+namespace ChoreoHelper.Behaviors.Search;
 
-public sealed class FilterRequiredFiguresBehavior: IBehavior<MainWindowViewModel>
+public sealed class FilterRequiredFiguresBehavior: IBehavior<SearchViewModel>
 {
-    public void Activate(MainWindowViewModel viewModel, CompositeDisposable disposables)
+    public void Activate(SearchViewModel viewModel, CompositeDisposable disposables)
     {
         var requiredFiguresFiltered = new SourceCache<RequiredFigureSelectionViewModel, string>(vm => vm.Hash)
             .DisposeWith(disposables);
@@ -35,7 +34,7 @@ public sealed class FilterRequiredFiguresBehavior: IBehavior<MainWindowViewModel
              .DisposeWith(disposables);
     }
 
-    private static IObservable<Unit> Observe(MainWindowViewModel viewModel)
+    private static IObservable<Unit> Observe(SearchViewModel viewModel)
     {
         var listChanged = viewModel.RequiredFigures
             .OnCollectionChanged()

@@ -1,6 +1,4 @@
-﻿using DynamicData.Binding;
-
-namespace ChoreoHelper.ViewModels;
+﻿namespace ChoreoHelper.ViewModels;
 
 public sealed class MainWindowViewModel: ReactiveObject, IActivatableViewModel, IDisposable
 {
@@ -9,90 +7,16 @@ public sealed class MainWindowViewModel: ReactiveObject, IActivatableViewModel, 
     [Reactive]
     public bool IsDrawerOpen { get; set; }
 
-    [Reactive]
-    public DanceViewModel? SelectedDance { get; set; }
-
-    [Reactive]
-    public string SearchText { get; set; }
-
-    [Reactive]
-    public bool IsStartWithSpecificFigure { get; set; }
-
-    public IObservableCollection<DanceViewModel> Dances { get; }
-        = new ObservableCollectionExtended<DanceViewModel>();
-
-    /// <summary>
-    /// All figures of the selected dance.
-    /// </summary>
-    public IObservableCollection<FigureViewModel> Figures { get; }
-        = new ObservableCollectionExtended<FigureViewModel>();
-
-    public IObservableCollection<RequiredFigureSelectionViewModel> RequiredFigures { get; }
-        = new ObservableCollectionExtended<RequiredFigureSelectionViewModel>();
-
-    public IObservableCollection<RequiredFigureSelectionViewModel> RequiredFiguresFiltered { get; }
-        = new ObservableCollectionExtended<RequiredFigureSelectionViewModel>();
-
-    public IObservableCollection<RequiredFigureSelectionViewModel> SelectedRequiredFigures { get; }
-        = new ObservableCollectionExtended<RequiredFigureSelectionViewModel>();
-
-    public RequiredFigureSelectionViewModel? SelectedSpecificStartFigure { get; set; }
-
-    public IObservableCollection<OptionalFigureSelectionViewModel> OptionalFigures { get; }
-        = new ObservableCollectionExtended<OptionalFigureSelectionViewModel>();
-
-    public IObservableCollection<OptionalFigureSelectionViewModel> OptionalFiguresFiltered { get; }
-        = new ObservableCollectionExtended<OptionalFigureSelectionViewModel>();
-
-    public IObservableCollection<LevelSelectionViewModel> Levels { get; }
-        = new ObservableCollectionExtended<LevelSelectionViewModel>();
-
-    public DanceLevel GetLevels()
-    {
-        return Levels
-            .Where(l => l.IsSelected)
-            .Aggregate(DanceLevel.Undefined, (acc, l) => acc | l.Level);
-    }
-
-    [Reactive]
-    public IReactiveCommand FindChoreography { get; set; }
-
-    public IObservableCollection<ChoreographyViewModel> Choreographies { get; }
-        = new ObservableCollectionExtended<ChoreographyViewModel>();
-
     public MainWindowViewModel()
     {
-        if (this.IsInDesignMode())
-        {
-            Dances.Add(new () { Name = "Waltz", Category = "Standard" });
-            Dances.Add(new () { Name = "Tango", Category = "Standard" });
-            Dances.Add(new () { Name = "Foxtrot", Category = "Standard" });
-            Dances.Add(new () { Name = "Quickstep", Category = "Standard" });
-            Dances.Add(new () { Name = "Viennese Waltz", Category = "Standard" });
-
-            for (var i = 0; i < 5; i++)
-            {
-                RequiredFigures.Add(new RequiredFigureSelectionViewModel());
-            }
-
-            for (var i = 0; i < 5; i++)
-            {
-                OptionalFigures.Add(new OptionalFigureSelectionViewModel());
-            }
-
-            FindChoreography = EnabledCommand.Instance;
-
-            for (var i = 0; i < 5; i++)
-            {
-                Choreographies.Add(new ChoreographyViewModel());
-            }
-        }
-
         foreach(var behavior in Locator.Current.GetServices<IBehavior<MainWindowViewModel>>())
         {
             behavior.Activate(this, Disposables);
         }
     }
+
+    public SearchViewModel SearchViewModel { get; } = new();
+    public SearchResultViewModel SearchResultViewModel { get; } = new();
 
     public ViewModelActivator Activator { get; } = new();
 

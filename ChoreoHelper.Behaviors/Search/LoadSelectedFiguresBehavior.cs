@@ -1,11 +1,11 @@
 using ChoreoHelper.Messages;
 using DynamicData.Kernel;
 
-namespace ChoreoHelper.Behaviors.MainWindow;
+namespace ChoreoHelper.Behaviors.Search;
 
-public sealed class LoadSelectedFiguresBehavior : IBehavior<MainWindowViewModel>
+public sealed class LoadSelectedFiguresBehavior : IBehavior<SearchViewModel>
 {
-    public void Activate(MainWindowViewModel viewModel, CompositeDisposable disposables)
+    public void Activate(SearchViewModel viewModel, CompositeDisposable disposables)
     {
         var selectedFigures = new SourceCache<RequiredFigureSelectionViewModel, string>(vm => vm.Hash)
             .DisposeWith(disposables);
@@ -50,7 +50,7 @@ public sealed class LoadSelectedFiguresBehavior : IBehavior<MainWindowViewModel>
     }
 
     private static void UpdateSelectedFigures(
-        MainWindowViewModel viewModel,
+        SearchViewModel viewModel,
         bool isSelected,
         SourceCache<RequiredFigureSelectionViewModel, string> selectedFigures,
         RequiredFigureSelectionViewModel selectedFigure)

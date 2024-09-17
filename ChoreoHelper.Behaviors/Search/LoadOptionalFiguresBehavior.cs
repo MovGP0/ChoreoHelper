@@ -4,11 +4,11 @@ using ChoreoHelper.Entities;
 using ChoreoHelper.Gateway;
 using ChoreoHelper.Messages;
 
-namespace ChoreoHelper.Behaviors.MainWindow;
+namespace ChoreoHelper.Behaviors.Search;
 
-public sealed class LoadOptionalFiguresBehavior(IDanceFiguresRepository connection) : IBehavior<MainWindowViewModel>
+public sealed class LoadOptionalFiguresBehavior(IDanceFiguresRepository connection) : IBehavior<SearchViewModel>
 {
-    public void Activate(MainWindowViewModel viewModel, CompositeDisposable disposables)
+    public void Activate(SearchViewModel viewModel, CompositeDisposable disposables)
     {
         var optionalFigures = new SourceCache<OptionalFigureSelectionViewModel, string>(vm => vm.Hash)
             .DisposeWith(disposables);
@@ -68,7 +68,7 @@ public sealed class LoadOptionalFiguresBehavior(IDanceFiguresRepository connecti
             .DisposeWith(disposables);
     }
 
-    private static bool IsValid(MainWindowViewModel vm)
+    private static bool IsValid(SearchViewModel vm)
     {
         return vm.SelectedDance is not null
                && vm.RequiredFigures.Count > 0
@@ -76,7 +76,7 @@ public sealed class LoadOptionalFiguresBehavior(IDanceFiguresRepository connecti
                && !vm.RequiredFigures.All(r => r.IsSelected);
     }
 
-    private static IObservable<Unit> Observe(MainWindowViewModel viewModel)
+    private static IObservable<Unit> Observe(SearchViewModel viewModel)
     {
         var figuresChanged = Observable.FromEventPattern<NotifyCollectionChangedEventHandler, NotifyCollectionChangedEventArgs>(
                 handler => viewModel.Figures.CollectionChanged += handler,

@@ -3,11 +3,11 @@ using ChoreoHelper.Behaviors.Extensions;
 using ChoreoHelper.Messages;
 using DynamicData.Binding;
 
-namespace ChoreoHelper.Behaviors.MainWindow;
+namespace ChoreoHelper.Behaviors.Search;
 
-public sealed class FilterOptionalFiguresBehavior: IBehavior<MainWindowViewModel>
+public sealed class FilterOptionalFiguresBehavior: IBehavior<SearchViewModel>
 {
-    public void Activate(MainWindowViewModel viewModel, CompositeDisposable disposables)
+    public void Activate(SearchViewModel viewModel, CompositeDisposable disposables)
     {
         var optionalFiguresFiltered = new SourceCache<OptionalFigureSelectionViewModel, string>(vm => vm.Hash)
             .DisposeWith(disposables);
@@ -43,7 +43,7 @@ public sealed class FilterOptionalFiguresBehavior: IBehavior<MainWindowViewModel
             .DisposeWith(disposables);
     }
 
-    private static IObservable<Unit> Observe(MainWindowViewModel viewModel)
+    private static IObservable<Unit> Observe(SearchViewModel viewModel)
     {
         var lastCount = 0;
         var listChanged = viewModel.OptionalFigures

@@ -13,21 +13,10 @@ namespace ChoreoHelper.Behaviors.MainWindow;
 public sealed class FindChoreographyBehavior(
     IDanceFiguresRepository connection,
     ILogger<FindChoreographyBehavior> logger)
-    : IBehavior<MainWindowViewModel>
+    : IBehavior<SearchViewModel>
 {
-    public void Activate(MainWindowViewModel viewModel, CompositeDisposable disposables)
+    public void Activate(SearchViewModel viewModel, CompositeDisposable disposables)
     {
-        var choreographies = new SourceList<ChoreographyViewModel>()
-            .DisposeWith(disposables);
-
-        choreographies
-            .Connect()
-            .Bind(viewModel.Choreographies)
-            .ObserveOn(RxApp.MainThreadScheduler)
-            .SubscribeOn(RxApp.MainThreadScheduler)
-            .Subscribe()
-            .DisposeWith(disposables);
-
         // at least two required figures are selected
         var obs0 = viewModel.RequiredFigures
             .OnCollectionChanged()
@@ -60,7 +49,7 @@ public sealed class FindChoreographyBehavior(
             .ObserveOn(RxApp.MainThreadScheduler)
             .SubscribeOn(RxApp.TaskpoolScheduler)
             .Select(_ => viewModel)
-            .SelectMany(async (MainWindowViewModel vm, CancellationToken ct) =>
+            .SelectMany(async (SearchViewModel vm, CancellationToken ct) =>
             {
                 var requiredFigures = vm.RequiredFigures
                     .Where(rf => rf.IsSelected)
@@ -123,32 +112,12 @@ public sealed class FindChoreographyBehavior(
                         .ToArray())
                     .ToArray();
             })
-            .Subscribe(choreographyItems =>
-            {
-                choreographies.Clear();
-
-                var viewModels = choreographyItems
-                    .Select(ToChoreographyViewModel)
-                    .ToImmutableArray();
-
-                choreographies.AddRange(viewModels);
-            })
+            .Subscribe(items => MessageBus.Current.SendMessage(new FoundChoreographies(items)))
             .DisposeWith(disposables);
 
         viewModel.FindChoreography = command;
         return;
 
         Unit DoNothing() => Unit.Default;
-    }
-
-    [Pure]
-    private static ChoreographyViewModel ToChoreographyViewModel(DanceStepNodeInfo[] item)
-    {
-        ChoreographyViewModel choreographyViewModel = new()
-        {
-            Rating = 1f / item.Length * 10f
-        };
-        choreographyViewModel.Figures.AddRange(item);
-        return choreographyViewModel;
     }
 }

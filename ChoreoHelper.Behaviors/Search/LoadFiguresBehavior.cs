@@ -3,11 +3,11 @@ using ChoreoHelper.Entities;
 using ChoreoHelper.Gateway;
 using ChoreoHelper.Messages;
 
-namespace ChoreoHelper.Behaviors.MainWindow;
+namespace ChoreoHelper.Behaviors.Search;
 
-public sealed class LoadFiguresBehavior(IDanceFiguresRepository connection) : IBehavior<MainWindowViewModel>
+public sealed class LoadFiguresBehavior(IDanceFiguresRepository connection) : IBehavior<SearchViewModel>
 {
-    public void Activate(MainWindowViewModel viewModel, CompositeDisposable disposables)
+    public void Activate(SearchViewModel viewModel, CompositeDisposable disposables)
     {
         var figures = new SourceCache<FigureViewModel, string>(vm => vm.Hash)
             .DisposeWith(disposables);
@@ -42,12 +42,12 @@ public sealed class LoadFiguresBehavior(IDanceFiguresRepository connection) : IB
             .DisposeWith(disposables);
     }
 
-    private static IObservable<Unit> Observe(MainWindowViewModel viewModel)
+    private static IObservable<Unit> Observe(SearchViewModel viewModel)
     {
         var selectedDanceChanged = viewModel
             .WhenAnyValue(vm => vm.SelectedDance)
             .Select(_ => Unit.Default);
-            
+
         var levelChanged = MessageBus.Current
             .Listen<LevelChanged>()
             .Select(_ => Unit.Default);

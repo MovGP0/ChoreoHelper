@@ -1,12 +1,11 @@
-﻿using System.Collections.Specialized;
-using ChoreoHelper.Behaviors.Extensions;
+﻿using ChoreoHelper.Behaviors.Extensions;
 using ChoreoHelper.Gateway;
 
-namespace ChoreoHelper.Behaviors.MainWindow;
+namespace ChoreoHelper.Behaviors.Search;
 
-public sealed class LoadRequiredFiguresBehavior(IDanceFiguresRepository connection) : IBehavior<MainWindowViewModel>
+public sealed class LoadRequiredFiguresBehavior(IDanceFiguresRepository connection) : IBehavior<SearchViewModel>
 {
-    public void Activate(MainWindowViewModel viewModel, CompositeDisposable disposables)
+    public void Activate(SearchViewModel viewModel, CompositeDisposable disposables)
     {
         var requiredFigures = new SourceCache<RequiredFigureSelectionViewModel, string>(vm => vm.Hash)
             .DisposeWith(disposables);
@@ -40,7 +39,7 @@ public sealed class LoadRequiredFiguresBehavior(IDanceFiguresRepository connecti
             .DisposeWith(disposables);
     }
 
-    private static IObservable<Unit> Observe(MainWindowViewModel viewModel)
+    private static IObservable<Unit> Observe(SearchViewModel viewModel)
     {
         return viewModel.Figures
             .OnCollectionChanged()
