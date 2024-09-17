@@ -12,7 +12,8 @@ public sealed class FigureViewModel : ReactiveObject
     public string Hash { get; set; } = string.Empty;
 
     [Reactive]
-    public DanceLevel Level { get; set; }
+    public DanceLevel Level { get; set; } = DanceLevel.Undefined;
+
     public int LevelSort => (int)Level;
 
     [Reactive]

@@ -3,18 +3,27 @@ using System.Diagnostics;
 
 namespace ChoreoHelper.Behaviors.Algorithms;
 
-public static class BreadthFirstSearchRouteFinder
+public sealed class BreadthFirstSearchRouteFinder : IRouteFinder
 {
-    public static async Task<List<Route>> FindAllRoutesAsync(
+    public async Task<List<Route>> FindAllRoutesAsync(
         int[,] distanceMatrix,
         ImmutableArray<int> requiredNodes,
+        int? startNode,
         int maxDistance,
         CancellationToken cancellationToken = default)
     {
         var frontier = new HashSet<Route>();
-        foreach (var startNode in requiredNodes)
+
+        if (startNode is null)
         {
-            frontier.Add(new Route(startNode));
+            foreach (var node in requiredNodes)
+            {
+                frontier.Add(new Route(node));
+            }
+        }
+        else
+        {
+            frontier.Add(new Route(startNode.Value));
         }
 
         while (!cancellationToken.IsCancellationRequested

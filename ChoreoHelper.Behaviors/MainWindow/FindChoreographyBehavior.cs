@@ -1,5 +1,6 @@
 using System.Collections.Immutable;
 using System.Diagnostics;
+using System.Runtime.CompilerServices;
 using ChoreoHelper.Behaviors.Algorithms;
 using ChoreoHelper.Behaviors.Extensions;
 using ChoreoHelper.Entities;
@@ -12,6 +13,8 @@ namespace ChoreoHelper.Behaviors.MainWindow;
 
 public sealed class FindChoreographyBehavior(
     IDanceFiguresRepository connection,
+    IUnreachableIslandsFinder unreachableIslandsFinder,
+    IRouteFinder routeFinder,
     ILogger<FindChoreographyBehavior> logger)
     : IBehavior<SearchViewModel>
 {
@@ -35,11 +38,17 @@ public sealed class FindChoreographyBehavior(
             })
             .Select(_ => Unit.Default);
 
+        var obs2 = viewModel.WhenAnyValue(
+                vm => vm.IsStartWithSpecificFigure,
+                vm => vm.SelectedSpecificStartFigure)
+            .Select(_ => Unit.Default);
+
         IObservable<bool> canExecute =
-            obs0.Merge(obs1)
+            obs0.Merge(obs1).Merge(obs2)
             .ObserveOn(RxApp.MainThreadScheduler)
             .Select(_ => viewModel)
-            .Select(vm => vm.RequiredFigures.Count(rf => rf.IsSelected) >= 2);
+            .Select(vm => RequiredFiguresAreSelected(vm)
+                          && StartWithSpecificFigureIsValid(vm));
 
         var command = ReactiveCommand
             .Create(DoNothing, canExecute)
@@ -53,12 +62,12 @@ public sealed class FindChoreographyBehavior(
             {
                 var requiredFigures = vm.RequiredFigures
                     .Where(rf => rf.IsSelected)
-                    .Select(f => new DanceStepNodeInfo(f.Name, f.Hash, f.Level))
+                    .Select(rf => new DanceStepNodeInfo(rf.Name, rf.Hash, rf.Level))
                     .ToArray();
 
                 var optionalFigures = vm.OptionalFigures
-                    .Where(rf => rf.IsSelected)
-                    .Select(f => new DanceStepNodeInfo(f.Name, f.Hash, f.Level))
+                    .Where(of => of.IsSelected)
+                    .Select(of => new DanceStepNodeInfo(of.Name, of.Hash, of.Level))
                     .ToArray();
 
                 var figures = requiredFigures.Concat(optionalFigures)
@@ -68,11 +77,11 @@ public sealed class FindChoreographyBehavior(
                 if (danceName == string.Empty)
                 {
                     logger.LogWarning("No dance selected");
-                    return Array.Empty<DanceStepNodeInfo[]>();
+                    return [];
                 }
 
                 var (matrix, sortedFigures) = connection.GetDistanceMatrix(danceName, figures);
-                var islands = DepthFirstSearchUnreachableIslandsFinder.FindUnreachableIslands(matrix);
+                var islands = unreachableIslandsFinder.FindUnreachableIslands(matrix);
                 if (islands.Count > 1)
                 {
                     logger.LogWarning($"Found {islands.Count} islands");
@@ -87,6 +96,13 @@ public sealed class FindChoreographyBehavior(
 
                 var nodes = requiredFigureIndex.ToImmutableArray();
 
+                int? startNode = null;
+                if (viewModel.IsStartWithSpecificFigure && vm.SelectedSpecificStartFigure is {} specificStartFigure)
+                {
+                    startNode = Array.FindIndex(sortedFigures, sf => sf.Hash == specificStartFigure.Hash);
+                    Debug.Assert(startNode >= 0);
+                }
+
                 var timeout = Debugger.IsAttached ? TimeSpan.FromHours(1) : TimeSpan.FromSeconds(figures.Length);
                 using var timeoutCts = new CancellationTokenSource(timeout);
                 using var cts = CancellationTokenSource.CreateLinkedTokenSource(ct, timeoutCts.Token);
@@ -94,9 +110,10 @@ public sealed class FindChoreographyBehavior(
                 List<Route> routes = new();
                 try
                 {
-                    routes = await BreadthFirstSearchRouteFinder.FindAllRoutesAsync(
+                    routes = await routeFinder.FindAllRoutesAsync(
                         matrix,
                         nodes,
+                        startNode,
                         figures.Length * 2,
                         cts.Token);
                 }
@@ -120,4 +137,15 @@ public sealed class FindChoreographyBehavior(
 
         Unit DoNothing() => Unit.Default;
     }
+
+    [MethodImpl(MethodImplOptions.AggressiveInlining)]
+    private static bool StartWithSpecificFigureIsValid(SearchViewModel vm)
+    {
+        return !vm.IsStartWithSpecificFigure
+               || vm.SelectedSpecificStartFigure is not null;
+    }
+
+    [MethodImpl(MethodImplOptions.AggressiveInlining)]
+    private static bool RequiredFiguresAreSelected(SearchViewModel vm)
+        => vm.RequiredFigures.Count(rf => rf.IsSelected) >= 2;
 }

@@ -66,6 +66,7 @@ public sealed class SearchViewModel: ReactiveObject, IActivatableViewModel, IDis
     public IObservableCollection<RequiredFigureSelectionViewModel> SelectedRequiredFigures { get; }
         = new ObservableCollectionExtended<RequiredFigureSelectionViewModel>();
 
+    [Reactive]
     public RequiredFigureSelectionViewModel? SelectedSpecificStartFigure { get; set; }
 
     public IObservableCollection<OptionalFigureSelectionViewModel> OptionalFigures { get; }

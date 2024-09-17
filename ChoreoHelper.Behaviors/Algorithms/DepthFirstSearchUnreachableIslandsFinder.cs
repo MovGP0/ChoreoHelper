@@ -1,8 +1,8 @@
 namespace ChoreoHelper.Behaviors.Algorithms;
 
-public static class DepthFirstSearchUnreachableIslandsFinder
+public sealed class DepthFirstSearchUnreachableIslandsFinder : IUnreachableIslandsFinder
 {
-    public static List<List<int>> FindUnreachableIslands(int[,] matrix)
+    public List<List<int>> FindUnreachableIslands(int[,] matrix)
     {
         var n = (int)Math.Sqrt(matrix.Length);
         var visited = new bool[n];

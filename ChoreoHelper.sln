@@ -32,6 +32,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ChoreoHelper.Entities", "Ch
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ChoreoHelper.Gateway", "ChoreoHelper.Gateway\ChoreoHelper.Gateway.csproj", "{354161A5-050C-4227-870B-DCB991599190}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ChoreoHelper.Behaviors.Tests", "ChoreoHelper.Behaviors.Tests\ChoreoHelper.Behaviors.Tests.csproj", "{52A25683-F2D7-4982-81DE-98632C7EFCB8}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -81,5 +83,9 @@ Global
 		{354161A5-050C-4227-870B-DCB991599190}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{354161A5-050C-4227-870B-DCB991599190}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{354161A5-050C-4227-870B-DCB991599190}.Release|Any CPU.Build.0 = Release|Any CPU
+		{52A25683-F2D7-4982-81DE-98632C7EFCB8}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{52A25683-F2D7-4982-81DE-98632C7EFCB8}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{52A25683-F2D7-4982-81DE-98632C7EFCB8}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{52A25683-F2D7-4982-81DE-98632C7EFCB8}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 EndGlobal

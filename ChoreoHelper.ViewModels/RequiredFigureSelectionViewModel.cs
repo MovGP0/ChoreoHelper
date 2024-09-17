@@ -17,7 +17,8 @@ public sealed class RequiredFigureSelectionViewModel : ReactiveObject, IDisposab
     public bool IsSelected { get; set; }
 
     [Reactive]
-    public DanceLevel Level { get; set; }
+    public DanceLevel Level { get; set; } = DanceLevel.Undefined;
+
     public int LevelSort => (int)Level;
 
     [Reactive]

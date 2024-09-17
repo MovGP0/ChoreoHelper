@@ -1,4 +1,5 @@
-﻿using ChoreoHelper.Behaviors.Choreography;
+﻿using ChoreoHelper.Behaviors.Algorithms;
+using ChoreoHelper.Behaviors.Choreography;
 using ChoreoHelper.Behaviors.LevelSelection;
 using ChoreoHelper.Behaviors.MainWindow;
 using ChoreoHelper.Behaviors.OptionalFigureSelection;
@@ -13,6 +14,8 @@ public static class DependencyInjection
 {
     public static IServiceCollection AddBehaviors(this IServiceCollection services)
     {
+        services.AddSingleton<IUnreachableIslandsFinder, DepthFirstSearchUnreachableIslandsFinder>();
+        services.AddSingleton<IRouteFinder, BreadthFirstSearchRouteFinder>();
         services.AddTransient<IBehavior<ChoreographyViewModel>, CopyBehavior>();
         services.AddTransient<IBehavior<LevelSelectionViewModel>, LevelSelectionChangedBehavior>();
         services.AddTransient<IBehavior<LevelSelectionViewModel>, UpdateDanceLevelNameBehavior>();

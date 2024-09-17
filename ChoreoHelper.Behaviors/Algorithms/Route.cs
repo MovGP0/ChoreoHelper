@@ -56,14 +56,8 @@ public sealed class Route : IEquatable<Route>
         hash.Add(Distance);
         return hash.ToHashCode();
     }
-    
-    public static bool operator ==(Route? left, Route? right)
-    {
-        return Equals(left, right);
-    }
 
-    public static bool operator !=(Route? left, Route? right)
-    {
-        return !Equals(left, right);
-    }
+    public static bool operator ==(Route? left, Route? right) => Equals(left, right);
+
+    public static bool operator !=(Route? left, Route? right) => !Equals(left, right);
 }
