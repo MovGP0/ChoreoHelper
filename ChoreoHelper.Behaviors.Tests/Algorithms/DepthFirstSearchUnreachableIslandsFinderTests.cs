@@ -1,4 +1,5 @@
 ﻿using ChoreoHelper.Behaviors.Algorithms;
+using Shouldly;
 
 namespace ChoreoHelper.Behaviors.Tests.Algorithms;
 
@@ -45,12 +46,7 @@ public static class DepthFirstSearchUnreachableIslandsFinderTests
                 .ToList();
 
             // Assert
-            Assert.Equal(sortedExpected.Count, sortedResult.Count);
-
-            for (int i = 0; i < sortedExpected.Count; i++)
-            {
-                Assert.Equal(sortedExpected[i], sortedResult[i]);
-            }
+            sortedResult.ShouldBe(sortedExpected);
         }
 
         [Fact]
@@ -64,7 +60,7 @@ public static class DepthFirstSearchUnreachableIslandsFinderTests
             var result = finder.FindUnreachableIslands(matrix);
 
             // Assert
-            Assert.Empty(result);
+            result.ShouldBeEmpty();
         }
 
         [Fact]
@@ -82,6 +78,7 @@ public static class DepthFirstSearchUnreachableIslandsFinderTests
             {
                 new() { 0, 1, 2 }
             };
+            var sortedExpectedIsland = expectedIslands[0].OrderBy(node => node).ToList();
 
             var finder = new DepthFirstSearchUnreachableIslandsFinder();
 
@@ -89,12 +86,10 @@ public static class DepthFirstSearchUnreachableIslandsFinderTests
             var result = finder.FindUnreachableIslands(matrix);
 
             // Assert
-            Assert.Single(result);
-
-            var sortedResultIsland = result[0].OrderBy(node => node).ToList();
-            var sortedExpectedIsland = expectedIslands[0].OrderBy(node => node).ToList();
-
-            Assert.Equal(sortedExpectedIsland, sortedResultIsland);
+            result.ShouldSatisfyAllConditions(
+                () => result.ShouldHaveSingleItem(),
+                () => result.FirstOrDefault()?.OrderBy(node => node).ShouldBe(sortedExpectedIsland)
+            );
         }
 
         [Fact]
@@ -117,8 +112,10 @@ public static class DepthFirstSearchUnreachableIslandsFinderTests
             var result = finder.FindUnreachableIslands(matrix);
 
             // Assert
-            Assert.Single(result);
-            Assert.Equal(expectedIslands[0], result[0]);
+            result.ShouldSatisfyAllConditions(
+                () => result.ShouldHaveSingleItem(),
+                () => result.ShouldBe(expectedIslands)
+            );
         }
 
         [Fact]
@@ -151,12 +148,7 @@ public static class DepthFirstSearchUnreachableIslandsFinderTests
                 .ToList();
 
             // Assert
-            Assert.Equal(expectedIslands.Count, sortedResult.Count);
-
-            for (int i = 0; i < expectedIslands.Count; i++)
-            {
-                Assert.Equal(expectedIslands[i], sortedResult[i]);
-            }
+            sortedResult.ShouldBe(expectedIslands);
         }
     }
 }

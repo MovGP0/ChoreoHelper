@@ -20,7 +20,7 @@
   <dancefigure dance="English Waltz" name="Outside Change" level="bronze" />
   <dancefigure dance="English Waltz" name="Basic Weave" level="bronze" />
   <dancefigure dance="English Waltz" name="Chasse from PP" level="bronze" />
-  <dancefigure dance="English Waltz" name="Backward Lock" level="bronze" />
+  <dancefigure dance="English Waltz" name="Backward Locks" level="bronze" />
   <dancefigure dance="English Waltz" name="Open Natural Turn" level="bronze" />
   <dancefigure dance="English Waltz" name="Hesitation Change" level="silver" />
   <dancefigure dance="English Waltz" name="Natural Spin Turn" level="silver" />
@@ -181,8 +181,8 @@
   <dancefigure dance="Quickstep" name="Outside Change" level="bronze" />
   <dancefigure dance="Quickstep" name="Natural Pivot" level="bronze" />
   <dancefigure dance="Quickstep" name="Running Finish" level="bronze" />
-  <dancefigure dance="Quickstep" name="Backward Lock" level="bronze" />
-  <dancefigure dance="Quickstep" name="Forward Locksd" level="bronze" />
+  <dancefigure dance="Quickstep" name="Backward Locks" level="bronze" />
+  <dancefigure dance="Quickstep" name="Forward Locks" level="bronze" />
   <dancefigure dance="Quickstep" name="Open Natural Turn" level="bronze" />
   <dancefigure dance="Quickstep" name="Natural Spin Turn" level="silver" />
   <dancefigure dance="Quickstep" name="Hesitation Change" level="silver" />
@@ -457,7 +457,7 @@
   <dancefiguretransition dance="English Waltz" source="Reverse Turn" target="Hover Corte" distance="2" />
   <dancefiguretransition dance="English Waltz" source="Progressive Chasse to Right" target="Back Whisk" distance="1" />
   <dancefiguretransition dance="English Waltz" source="Progressive Chasse to Right" target="Outside Change" distance="2" />
-  <dancefiguretransition dance="English Waltz" source="Progressive Chasse to Right" target="Backward Lock" distance="1" />
+  <dancefiguretransition dance="English Waltz" source="Progressive Chasse to Right" target="Backward Locks" distance="1" />
   <dancefiguretransition dance="English Waltz" source="Progressive Chasse to Right" target="Hesitation Change" distance="2" />
   <dancefiguretransition dance="English Waltz" source="Progressive Chasse to Right" target="Impetus" distance="2" />
   <dancefiguretransition dance="English Waltz" source="Progressive Chasse to Right" target="Impetus to PP" distance="2" />
@@ -516,16 +516,16 @@
   <dancefiguretransition dance="English Waltz" source="Chasse from PP" target="Running Spin Turn" distance="2" />
   <dancefiguretransition dance="English Waltz" source="Chasse from PP" target="Overturned Running Spin Turn" distance="2" />
   <dancefiguretransition dance="English Waltz" source="Chasse from PP" target="Running Cross Chasse" distance="1" />
-  <dancefiguretransition dance="English Waltz" source="Backward Lock" target="Back Whisk" distance="1" />
-  <dancefiguretransition dance="English Waltz" source="Backward Lock" target="Outside Change" distance="1" />
-  <dancefiguretransition dance="English Waltz" source="Backward Lock" target="Backward Lock" distance="1" />
-  <dancefiguretransition dance="English Waltz" source="Backward Lock" target="Hesitation Change" distance="2" />
-  <dancefiguretransition dance="English Waltz" source="Backward Lock" target="Impetus" distance="2" />
-  <dancefiguretransition dance="English Waltz" source="Backward Lock" target="Impetus to PP" distance="2" />
-  <dancefiguretransition dance="English Waltz" source="Backward Lock" target="Outside Spin" distance="1" />
+  <dancefiguretransition dance="English Waltz" source="Backward Locks" target="Back Whisk" distance="1" />
+  <dancefiguretransition dance="English Waltz" source="Backward Locks" target="Outside Change" distance="1" />
+  <dancefiguretransition dance="English Waltz" source="Backward Locks" target="Backward Locks" distance="1" />
+  <dancefiguretransition dance="English Waltz" source="Backward Locks" target="Hesitation Change" distance="2" />
+  <dancefiguretransition dance="English Waltz" source="Backward Locks" target="Impetus" distance="2" />
+  <dancefiguretransition dance="English Waltz" source="Backward Locks" target="Impetus to PP" distance="2" />
+  <dancefiguretransition dance="English Waltz" source="Backward Locks" target="Outside Spin" distance="1" />
   <dancefiguretransition dance="English Waltz" source="Open Natural Turn" target="Natural Turn" distance="2" />
   <dancefiguretransition dance="English Waltz" source="Open Natural Turn" target="Outside Change" distance="1" />
-  <dancefiguretransition dance="English Waltz" source="Open Natural Turn" target="Backward Lock" distance="1" />
+  <dancefiguretransition dance="English Waltz" source="Open Natural Turn" target="Backward Locks" distance="1" />
   <dancefiguretransition dance="English Waltz" source="Open Natural Turn" target="Hesitation Change" distance="2" />
   <dancefiguretransition dance="English Waltz" source="Open Natural Turn" target="Impetus" distance="2" />
   <dancefiguretransition dance="English Waltz" source="Open Natural Turn" target="Impetus to PP" distance="2" />
@@ -608,7 +608,7 @@
   <dancefiguretransition dance="English Waltz" source="Drag Hesitation" target="Natural Turn" distance="2" />
   <dancefiguretransition dance="English Waltz" source="Drag Hesitation" target="Back Whisk" distance="1" />
   <dancefiguretransition dance="English Waltz" source="Drag Hesitation" target="Outside Change" distance="1" />
-  <dancefiguretransition dance="English Waltz" source="Drag Hesitation" target="Backward Lock" distance="1" />
+  <dancefiguretransition dance="English Waltz" source="Drag Hesitation" target="Backward Locks" distance="1" />
   <dancefiguretransition dance="English Waltz" source="Drag Hesitation" target="Impetus" distance="2" />
   <dancefiguretransition dance="English Waltz" source="Drag Hesitation" target="Impetus to PP" distance="2" />
   <dancefiguretransition dance="English Waltz" source="Drag Hesitation" target="Outside Spin" distance="1" />
@@ -673,7 +673,7 @@
   <dancefiguretransition dance="English Waltz" source="Cross Hesitation from PP" target="Natural Turn" distance="2" />
   <dancefiguretransition dance="English Waltz" source="Cross Hesitation from PP" target="Back Whisk" distance="1" />
   <dancefiguretransition dance="English Waltz" source="Cross Hesitation from PP" target="Outside Change" distance="2" />
-  <dancefiguretransition dance="English Waltz" source="Cross Hesitation from PP" target="Backward Lock" distance="2" />
+  <dancefiguretransition dance="English Waltz" source="Cross Hesitation from PP" target="Backward Locks" distance="2" />
   <dancefiguretransition dance="English Waltz" source="Cross Hesitation from PP" target="Hesitation Change" distance="2" />
   <dancefiguretransition dance="English Waltz" source="Cross Hesitation from PP" target="Impetus" distance="2" />
   <dancefiguretransition dance="English Waltz" source="Cross Hesitation from PP" target="Impetus to PP" distance="2" />
@@ -717,7 +717,7 @@
   <dancefiguretransition dance="English Waltz" source="Running Weave from PP" target="Contra Check" distance="1" />
   <dancefiguretransition dance="English Waltz" source="Running Weave from PP" target="Hover Corte" distance="2" />
   <dancefiguretransition dance="English Waltz" source="Running Spin Turn" target="Outside Change" distance="1" />
-  <dancefiguretransition dance="English Waltz" source="Running Spin Turn" target="Backward Lock" distance="1" />
+  <dancefiguretransition dance="English Waltz" source="Running Spin Turn" target="Backward Locks" distance="1" />
   <dancefiguretransition dance="English Waltz" source="Overturned Running Spin Turn" target="Reverse Turn" distance="2" />
   <dancefiguretransition dance="English Waltz" source="Overturned Running Spin Turn" target="Progressive Chasse to Right" distance="2" />
   <dancefiguretransition dance="English Waltz" source="Overturned Running Spin Turn" target="Whisk" distance="2" />
@@ -762,7 +762,7 @@
   <dancefiguretransition dance="English Waltz" source="Left Whisk" target="Whisk" distance="2" />
   <dancefiguretransition dance="English Waltz" source="Left Whisk" target="Back Whisk" distance="2" />
   <dancefiguretransition dance="English Waltz" source="Left Whisk" target="Outside Change" distance="2" />
-  <dancefiguretransition dance="English Waltz" source="Left Whisk" target="Backward Lock" distance="2" />
+  <dancefiguretransition dance="English Waltz" source="Left Whisk" target="Backward Locks" distance="2" />
   <dancefiguretransition dance="English Waltz" source="Left Whisk" target="Impetus" distance="2" />
   <dancefiguretransition dance="English Waltz" source="Left Whisk" target="Impetus to PP" distance="2" />
   <dancefiguretransition dance="English Waltz" source="Left Whisk" target="Fallaway Reverse and Slip Pivot" distance="1" />
@@ -782,7 +782,7 @@
   <dancefiguretransition dance="English Waltz" source="Contra Check" target="Running Cross Chasse" distance="2" />
   <dancefiguretransition dance="English Waltz" source="Contra Check" target="Left Whisk" distance="2" />
   <dancefiguretransition dance="English Waltz" source="Hover Corte" target="Back Whisk" distance="1" />
-  <dancefiguretransition dance="English Waltz" source="Hover Corte" target="Backward Lock" distance="1" />
+  <dancefiguretransition dance="English Waltz" source="Hover Corte" target="Backward Locks" distance="1" />
   <dancefiguretransition dance="English Waltz" source="Hover Corte" target="Impetus" distance="2" />
   <dancefiguretransition dance="English Waltz" source="Hover Corte" target="Impetus to PP" distance="2" />
   <dancefiguretransition dance="Tango" source="Tap-Alternative Entries to PP" target="Closed Promenade" distance="1" />
@@ -2746,7 +2746,7 @@
   <dancefiguretransition dance="Quickstep" source="Basic Movement" target="Progressive Chasse to Left" distance="2" />
   <dancefiguretransition dance="Quickstep" source="Basic Movement" target="Quarter Turn to Right" distance="2" />
   <dancefiguretransition dance="Quickstep" source="Basic Movement" target="Quarter Turn to Left" distance="2" />
-  <dancefiguretransition dance="Quickstep" source="Basic Movement" target="Forward Locksd" distance="1" />
+  <dancefiguretransition dance="Quickstep" source="Basic Movement" target="Forward Locks" distance="1" />
   <dancefiguretransition dance="Quickstep" source="Basic Movement" target="Open Natural Turn" distance="2" />
   <dancefiguretransition dance="Quickstep" source="Basic Movement" target="Natural Spin Turn" distance="2" />
   <dancefiguretransition dance="Quickstep" source="Basic Movement" target="Tipple Chasse to Left" distance="1" />
@@ -2755,7 +2755,7 @@
   <dancefiguretransition dance="Quickstep" source="Basic Movement" target="Running Cross Chasse" distance="1" />
   <dancefiguretransition dance="Quickstep" source="Natural Turn" target="Natural Pivot" distance="1" />
   <dancefiguretransition dance="Quickstep" source="Natural Turn" target="Running Finish" distance="2" />
-  <dancefiguretransition dance="Quickstep" source="Natural Turn" target="Backward Lock" distance="2" />
+  <dancefiguretransition dance="Quickstep" source="Natural Turn" target="Backward Locks" distance="2" />
   <dancefiguretransition dance="Quickstep" source="Natural Turn" target="Hesitation Change" distance="1" />
   <dancefiguretransition dance="Quickstep" source="Natural Turn" target="Impetus" distance="1" />
   <dancefiguretransition dance="Quickstep" source="Natural Turn" target="Impetus to P.P." distance="1" />
@@ -2771,7 +2771,7 @@
   <dancefiguretransition dance="Quickstep" source="Reverse Turn" target="Hover Corté" distance="1" />
   <dancefiguretransition dance="Quickstep" source="Progressive Chasse to Right" target="Outside Change" distance="2" />
   <dancefiguretransition dance="Quickstep" source="Progressive Chasse to Right" target="Running Finish" distance="1" />
-  <dancefiguretransition dance="Quickstep" source="Progressive Chasse to Right" target="Backward Lock" distance="1" />
+  <dancefiguretransition dance="Quickstep" source="Progressive Chasse to Right" target="Backward Locks" distance="1" />
   <dancefiguretransition dance="Quickstep" source="Progressive Chasse to Right" target="Hesitation Change" distance="2" />
   <dancefiguretransition dance="Quickstep" source="Progressive Chasse to Right" target="Impetus" distance="2" />
   <dancefiguretransition dance="Quickstep" source="Progressive Chasse to Right" target="Impetus to P.P." distance="2" />
@@ -2783,7 +2783,7 @@
   <dancefiguretransition dance="Quickstep" source="Progressive Chasse to Left" target="Basic Movement" distance="2" />
   <dancefiguretransition dance="Quickstep" source="Progressive Chasse to Left" target="Natural Turn" distance="2" />
   <dancefiguretransition dance="Quickstep" source="Progressive Chasse to Left" target="Quarter Turn to Right" distance="2" />
-  <dancefiguretransition dance="Quickstep" source="Progressive Chasse to Left" target="Forward Locksd" distance="1" />
+  <dancefiguretransition dance="Quickstep" source="Progressive Chasse to Left" target="Forward Locks" distance="1" />
   <dancefiguretransition dance="Quickstep" source="Progressive Chasse to Left" target="Open Natural Turn" distance="2" />
   <dancefiguretransition dance="Quickstep" source="Progressive Chasse to Left" target="Natural Spin Turn" distance="2" />
   <dancefiguretransition dance="Quickstep" source="Progressive Chasse to Left" target="Tipple Chasse to Left" distance="1" />
@@ -2793,7 +2793,7 @@
   <dancefiguretransition dance="Quickstep" source="Cross Chasse" target="Basic Movement" distance="2" />
   <dancefiguretransition dance="Quickstep" source="Cross Chasse" target="Natural Turn" distance="2" />
   <dancefiguretransition dance="Quickstep" source="Cross Chasse" target="Quarter Turn to Right" distance="2" />
-  <dancefiguretransition dance="Quickstep" source="Cross Chasse" target="Forward Locksd" distance="1" />
+  <dancefiguretransition dance="Quickstep" source="Cross Chasse" target="Forward Locks" distance="1" />
   <dancefiguretransition dance="Quickstep" source="Cross Chasse" target="Open Natural Turn" distance="2" />
   <dancefiguretransition dance="Quickstep" source="Cross Chasse" target="Natural Spin Turn" distance="2" />
   <dancefiguretransition dance="Quickstep" source="Cross Chasse" target="Tipple Chasse to Left" distance="1" />
@@ -2823,7 +2823,7 @@
   <dancefiguretransition dance="Quickstep" source="Outside Change" target="Basic Movement" distance="2" />
   <dancefiguretransition dance="Quickstep" source="Outside Change" target="Natural Turn" distance="2" />
   <dancefiguretransition dance="Quickstep" source="Outside Change" target="Quarter Turn to Right" distance="2" />
-  <dancefiguretransition dance="Quickstep" source="Outside Change" target="Forward Locksd" distance="1" />
+  <dancefiguretransition dance="Quickstep" source="Outside Change" target="Forward Locks" distance="1" />
   <dancefiguretransition dance="Quickstep" source="Outside Change" target="Open Natural Turn" distance="2" />
   <dancefiguretransition dance="Quickstep" source="Outside Change" target="Natural Spin Turn" distance="2" />
   <dancefiguretransition dance="Quickstep" source="Outside Change" target="Tipple Chasse to Left" distance="1" />
@@ -2833,7 +2833,7 @@
   <dancefiguretransition dance="Quickstep" source="Natural Pivot" target="Basic Movement" distance="2" />
   <dancefiguretransition dance="Quickstep" source="Natural Pivot" target="Natural Turn" distance="2" />
   <dancefiguretransition dance="Quickstep" source="Natural Pivot" target="Quarter Turn to Right" distance="2" />
-  <dancefiguretransition dance="Quickstep" source="Natural Pivot" target="Forward Locksd" distance="2" />
+  <dancefiguretransition dance="Quickstep" source="Natural Pivot" target="Forward Locks" distance="2" />
   <dancefiguretransition dance="Quickstep" source="Natural Pivot" target="Natural Spin Turn" distance="2" />
   <dancefiguretransition dance="Quickstep" source="Natural Pivot" target="Tipple Chasse to Left" distance="2" />
   <dancefiguretransition dance="Quickstep" source="Natural Pivot" target="Running Natural Turn" distance="1" />
@@ -2841,38 +2841,38 @@
   <dancefiguretransition dance="Quickstep" source="Running Finish" target="Basic Movement" distance="2" />
   <dancefiguretransition dance="Quickstep" source="Running Finish" target="Natural Turn" distance="2" />
   <dancefiguretransition dance="Quickstep" source="Running Finish" target="Quarter Turn to Right" distance="2" />
-  <dancefiguretransition dance="Quickstep" source="Running Finish" target="Forward Locksd" distance="1" />
+  <dancefiguretransition dance="Quickstep" source="Running Finish" target="Forward Locks" distance="1" />
   <dancefiguretransition dance="Quickstep" source="Running Finish" target="Open Natural Turn" distance="2" />
   <dancefiguretransition dance="Quickstep" source="Running Finish" target="Natural Spin Turn" distance="2" />
   <dancefiguretransition dance="Quickstep" source="Running Finish" target="Tipple Chasse to Left" distance="1" />
   <dancefiguretransition dance="Quickstep" source="Running Finish" target="Fishtail" distance="2" />
   <dancefiguretransition dance="Quickstep" source="Running Finish" target="Running Natural Turn" distance="2" />
   <dancefiguretransition dance="Quickstep" source="Running Finish" target="Running Cross Chasse" distance="1" />
-  <dancefiguretransition dance="Quickstep" source="Backward Lock" target="Outside Change" distance="1" />
-  <dancefiguretransition dance="Quickstep" source="Backward Lock" target="Running Finish" distance="1" />
-  <dancefiguretransition dance="Quickstep" source="Backward Lock" target="Backward Lock" distance="1" />
-  <dancefiguretransition dance="Quickstep" source="Backward Lock" target="Hesitation Change" distance="2" />
-  <dancefiguretransition dance="Quickstep" source="Backward Lock" target="Impetus" distance="2" />
-  <dancefiguretransition dance="Quickstep" source="Backward Lock" target="Impetus to P.P." distance="2" />
-  <dancefiguretransition dance="Quickstep" source="Backward Lock" target="Back Whisk" distance="1" />
-  <dancefiguretransition dance="Quickstep" source="Backward Lock" target="Tipple Chasse to Right - Corner" distance="1" />
-  <dancefiguretransition dance="Quickstep" source="Backward Lock" target="Tipple Chasse to Right - LOD" distance="1" />
-  <dancefiguretransition dance="Quickstep" source="Backward Lock" target="V-6" distance="2" />
-  <dancefiguretransition dance="Quickstep" source="Backward Lock" target="Outside Spin" distance="1" />
-  <dancefiguretransition dance="Quickstep" source="Backward Lock" target="Six Quick Run" distance="2" />
-  <dancefiguretransition dance="Quickstep" source="Forward Locksd" target="Basic Movement" distance="2" />
-  <dancefiguretransition dance="Quickstep" source="Forward Locksd" target="Natural Turn" distance="2" />
-  <dancefiguretransition dance="Quickstep" source="Forward Locksd" target="Quarter Turn to Right" distance="2" />
-  <dancefiguretransition dance="Quickstep" source="Forward Locksd" target="Forward Locksd" distance="1" />
-  <dancefiguretransition dance="Quickstep" source="Forward Locksd" target="Open Natural Turn" distance="2" />
-  <dancefiguretransition dance="Quickstep" source="Forward Locksd" target="Natural Spin Turn" distance="2" />
-  <dancefiguretransition dance="Quickstep" source="Forward Locksd" target="Tipple Chasse to Left" distance="1" />
-  <dancefiguretransition dance="Quickstep" source="Forward Locksd" target="Fishtail" distance="2" />
-  <dancefiguretransition dance="Quickstep" source="Forward Locksd" target="Running Natural Turn" distance="2" />
-  <dancefiguretransition dance="Quickstep" source="Forward Locksd" target="Running Cross Chasse" distance="1" />
+  <dancefiguretransition dance="Quickstep" source="Backward Locks" target="Outside Change" distance="1" />
+  <dancefiguretransition dance="Quickstep" source="Backward Locks" target="Running Finish" distance="1" />
+  <dancefiguretransition dance="Quickstep" source="Backward Locks" target="Backward Locks" distance="1" />
+  <dancefiguretransition dance="Quickstep" source="Backward Locks" target="Hesitation Change" distance="2" />
+  <dancefiguretransition dance="Quickstep" source="Backward Locks" target="Impetus" distance="2" />
+  <dancefiguretransition dance="Quickstep" source="Backward Locks" target="Impetus to P.P." distance="2" />
+  <dancefiguretransition dance="Quickstep" source="Backward Locks" target="Back Whisk" distance="1" />
+  <dancefiguretransition dance="Quickstep" source="Backward Locks" target="Tipple Chasse to Right - Corner" distance="1" />
+  <dancefiguretransition dance="Quickstep" source="Backward Locks" target="Tipple Chasse to Right - LOD" distance="1" />
+  <dancefiguretransition dance="Quickstep" source="Backward Locks" target="V-6" distance="2" />
+  <dancefiguretransition dance="Quickstep" source="Backward Locks" target="Outside Spin" distance="1" />
+  <dancefiguretransition dance="Quickstep" source="Backward Locks" target="Six Quick Run" distance="2" />
+  <dancefiguretransition dance="Quickstep" source="Forward Locks" target="Basic Movement" distance="2" />
+  <dancefiguretransition dance="Quickstep" source="Forward Locks" target="Natural Turn" distance="2" />
+  <dancefiguretransition dance="Quickstep" source="Forward Locks" target="Quarter Turn to Right" distance="2" />
+  <dancefiguretransition dance="Quickstep" source="Forward Locks" target="Forward Locks" distance="1" />
+  <dancefiguretransition dance="Quickstep" source="Forward Locks" target="Open Natural Turn" distance="2" />
+  <dancefiguretransition dance="Quickstep" source="Forward Locks" target="Natural Spin Turn" distance="2" />
+  <dancefiguretransition dance="Quickstep" source="Forward Locks" target="Tipple Chasse to Left" distance="1" />
+  <dancefiguretransition dance="Quickstep" source="Forward Locks" target="Fishtail" distance="2" />
+  <dancefiguretransition dance="Quickstep" source="Forward Locks" target="Running Natural Turn" distance="2" />
+  <dancefiguretransition dance="Quickstep" source="Forward Locks" target="Running Cross Chasse" distance="1" />
   <dancefiguretransition dance="Quickstep" source="Open Natural Turn" target="Outside Change" distance="1" />
   <dancefiguretransition dance="Quickstep" source="Open Natural Turn" target="Running Finish" distance="1" />
-  <dancefiguretransition dance="Quickstep" source="Open Natural Turn" target="Backward Lock" distance="1" />
+  <dancefiguretransition dance="Quickstep" source="Open Natural Turn" target="Backward Locks" distance="1" />
   <dancefiguretransition dance="Quickstep" source="Open Natural Turn" target="Impetus" distance="2" />
   <dancefiguretransition dance="Quickstep" source="Open Natural Turn" target="Impetus to P.P." distance="2" />
   <dancefiguretransition dance="Quickstep" source="Open Natural Turn" target="Back Whisk" distance="1" />
@@ -2882,7 +2882,7 @@
   <dancefiguretransition dance="Quickstep" source="Open Natural Turn" target="Outside Spin" distance="1" />
   <dancefiguretransition dance="Quickstep" source="Natural Spin Turn" target="Progressive Chasse to Left" distance="1" />
   <dancefiguretransition dance="Quickstep" source="Natural Spin Turn" target="Quarter Turn to Left" distance="1" />
-  <dancefiguretransition dance="Quickstep" source="Natural Spin Turn" target="Backward Lock" distance="2" />
+  <dancefiguretransition dance="Quickstep" source="Natural Spin Turn" target="Backward Locks" distance="2" />
   <dancefiguretransition dance="Quickstep" source="Natural Spin Turn" target="Tipple Chasse to Right - Corner" distance="2" />
   <dancefiguretransition dance="Quickstep" source="Natural Spin Turn" target="Tipple Chasse to Right - LOD" distance="2" />
   <dancefiguretransition dance="Quickstep" source="Natural Spin Turn" target="Four Quick Run" distance="2" />
@@ -2895,7 +2895,7 @@
   <dancefiguretransition dance="Quickstep" source="Hesitation Change" target="Reverse Turn" distance="1" />
   <dancefiguretransition dance="Quickstep" source="Hesitation Change" target="Progressive Chasse to Right" distance="1" />
   <dancefiguretransition dance="Quickstep" source="Hesitation Change" target="Cross Chasse" distance="1" />
-  <dancefiguretransition dance="Quickstep" source="Hesitation Change" target="Forward Locksd" distance="2" />
+  <dancefiguretransition dance="Quickstep" source="Hesitation Change" target="Forward Locks" distance="2" />
   <dancefiguretransition dance="Quickstep" source="Hesitation Change" target="Double Reverse Spin" distance="1" />
   <dancefiguretransition dance="Quickstep" source="Hesitation Change" target="Telemark" distance="1" />
   <dancefiguretransition dance="Quickstep" source="Hesitation Change" target="Telemark to P.P." distance="1" />
@@ -2918,7 +2918,7 @@
   <dancefiguretransition dance="Quickstep" source="Double Reverse Spin" target="Cross Swivel" distance="1" />
   <dancefiguretransition dance="Quickstep" source="Impetus" target="Progressive Chasse to Left" distance="1" />
   <dancefiguretransition dance="Quickstep" source="Impetus" target="Quarter Turn to Left" distance="1" />
-  <dancefiguretransition dance="Quickstep" source="Impetus" target="Backward Lock" distance="2" />
+  <dancefiguretransition dance="Quickstep" source="Impetus" target="Backward Locks" distance="2" />
   <dancefiguretransition dance="Quickstep" source="Impetus" target="Four Quick Run" distance="2" />
   <dancefiguretransition dance="Quickstep" source="Impetus" target="V-6" distance="2" />
   <dancefiguretransition dance="Quickstep" source="Impetus" target="Reverse Pivot" distance="1" />
@@ -2930,7 +2930,7 @@
   <dancefiguretransition dance="Quickstep" source="Telemark" target="Basic Movement" distance="2" />
   <dancefiguretransition dance="Quickstep" source="Telemark" target="Natural Turn" distance="2" />
   <dancefiguretransition dance="Quickstep" source="Telemark" target="Quarter Turn to Right" distance="2" />
-  <dancefiguretransition dance="Quickstep" source="Telemark" target="Forward Locksd" distance="1" />
+  <dancefiguretransition dance="Quickstep" source="Telemark" target="Forward Locks" distance="1" />
   <dancefiguretransition dance="Quickstep" source="Telemark" target="Open Natural Turn" distance="2" />
   <dancefiguretransition dance="Quickstep" source="Telemark" target="Natural Spin Turn" distance="2" />
   <dancefiguretransition dance="Quickstep" source="Telemark" target="Tipple Chasse to Left" distance="1" />
@@ -2949,15 +2949,15 @@
   <dancefiguretransition dance="Quickstep" source="Open Reverse Turn" target="Reverse Pivot" distance="1" />
   <dancefiguretransition dance="Quickstep" source="Open Reverse Turn" target="Six Quick Run" distance="2" />
   <dancefiguretransition dance="Quickstep" source="Open Reverse Turn" target="Hover Corté" distance="1" />
-  <dancefiguretransition dance="Quickstep" source="Tipple Chasse to Right - Corner" target="Forward Locksd" distance="2" />
+  <dancefiguretransition dance="Quickstep" source="Tipple Chasse to Right - Corner" target="Forward Locks" distance="2" />
   <dancefiguretransition dance="Quickstep" source="Tipple Chasse to Right - Corner" target="Tipple Chasse to Left" distance="2" />
   <dancefiguretransition dance="Quickstep" source="Tipple Chasse to Right - Corner" target="Tipsy to Left" distance="2" />
   <dancefiguretransition dance="Quickstep" source="Tipple Chasse to Right - Corner" target="Rumba Cross" distance="1" />
-  <dancefiguretransition dance="Quickstep" source="Tipple Chasse to Right - LOD" target="Forward Locksd" distance="2" />
+  <dancefiguretransition dance="Quickstep" source="Tipple Chasse to Right - LOD" target="Forward Locks" distance="2" />
   <dancefiguretransition dance="Quickstep" source="Tipple Chasse to Right - LOD" target="Tipple Chasse to Left" distance="2" />
   <dancefiguretransition dance="Quickstep" source="Tipple Chasse to Right - LOD" target="Tipsy to Left" distance="2" />
   <dancefiguretransition dance="Quickstep" source="Tipple Chasse to Right - LOD" target="Rumba Cross" distance="1" />
-  <dancefiguretransition dance="Quickstep" source="Tipple Chasse to Left" target="Backward Lock" distance="2" />
+  <dancefiguretransition dance="Quickstep" source="Tipple Chasse to Left" target="Backward Locks" distance="2" />
   <dancefiguretransition dance="Quickstep" source="Tipple Chasse to Left" target="Tipple Chasse to Right - Corner" distance="2" />
   <dancefiguretransition dance="Quickstep" source="Tipple Chasse to Left" target="Tipple Chasse to Right - LOD" distance="2" />
   <dancefiguretransition dance="Quickstep" source="Tipple Chasse to Left" target="V-6" distance="2" />
@@ -2967,7 +2967,7 @@
   <dancefiguretransition dance="Quickstep" source="Four Quick Run" target="Basic Movement" distance="2" />
   <dancefiguretransition dance="Quickstep" source="Four Quick Run" target="Natural Turn" distance="2" />
   <dancefiguretransition dance="Quickstep" source="Four Quick Run" target="Quarter Turn to Right" distance="2" />
-  <dancefiguretransition dance="Quickstep" source="Four Quick Run" target="Forward Locksd" distance="1" />
+  <dancefiguretransition dance="Quickstep" source="Four Quick Run" target="Forward Locks" distance="1" />
   <dancefiguretransition dance="Quickstep" source="Four Quick Run" target="Open Natural Turn" distance="2" />
   <dancefiguretransition dance="Quickstep" source="Four Quick Run" target="Natural Spin Turn" distance="2" />
   <dancefiguretransition dance="Quickstep" source="Four Quick Run" target="Tipple Chasse to Left" distance="1" />
@@ -2976,7 +2976,7 @@
   <dancefiguretransition dance="Quickstep" source="Four Quick Run" target="Running Cross Chasse" distance="1" />
   <dancefiguretransition dance="Quickstep" source="Zig Zag" target="Outside Change" distance="1" />
   <dancefiguretransition dance="Quickstep" source="Zig Zag" target="Running Finish" distance="1" />
-  <dancefiguretransition dance="Quickstep" source="Zig Zag" target="Backward Lock" distance="1" />
+  <dancefiguretransition dance="Quickstep" source="Zig Zag" target="Backward Locks" distance="1" />
   <dancefiguretransition dance="Quickstep" source="Zig Zag" target="Hesitation Change" distance="2" />
   <dancefiguretransition dance="Quickstep" source="Zig Zag" target="Impetus" distance="2" />
   <dancefiguretransition dance="Quickstep" source="Zig Zag" target="Impetus to P.P." distance="2" />
@@ -2987,7 +2987,7 @@
   <dancefiguretransition dance="Quickstep" source="V-6" target="Basic Movement" distance="2" />
   <dancefiguretransition dance="Quickstep" source="V-6" target="Natural Turn" distance="2" />
   <dancefiguretransition dance="Quickstep" source="V-6" target="Quarter Turn to Right" distance="2" />
-  <dancefiguretransition dance="Quickstep" source="V-6" target="Forward Locksd" distance="1" />
+  <dancefiguretransition dance="Quickstep" source="V-6" target="Forward Locks" distance="1" />
   <dancefiguretransition dance="Quickstep" source="V-6" target="Open Natural Turn" distance="2" />
   <dancefiguretransition dance="Quickstep" source="V-6" target="Natural Spin Turn" distance="2" />
   <dancefiguretransition dance="Quickstep" source="V-6" target="Tipple Chasse to Left" distance="1" />
@@ -2997,7 +2997,7 @@
   <dancefiguretransition dance="Quickstep" source="Outside Spin" target="Basic Movement" distance="1" />
   <dancefiguretransition dance="Quickstep" source="Outside Spin" target="Natural Turn" distance="1" />
   <dancefiguretransition dance="Quickstep" source="Outside Spin" target="Quarter Turn to Right" distance="1" />
-  <dancefiguretransition dance="Quickstep" source="Outside Spin" target="Forward Locksd" distance="2" />
+  <dancefiguretransition dance="Quickstep" source="Outside Spin" target="Forward Locks" distance="2" />
   <dancefiguretransition dance="Quickstep" source="Outside Spin" target="Natural Spin Turn" distance="1" />
   <dancefiguretransition dance="Quickstep" source="Outside Spin" target="Tipple Chasse to Left" distance="2" />
   <dancefiguretransition dance="Quickstep" source="Outside Spin" target="Running Natural Turn" distance="1" />
@@ -3015,8 +3015,8 @@
   <dancefiguretransition dance="Quickstep" source="Turning Lock to Right" target="Basic Movement" distance="2" />
   <dancefiguretransition dance="Quickstep" source="Turning Lock to Right" target="Natural Turn" distance="2" />
   <dancefiguretransition dance="Quickstep" source="Turning Lock to Right" target="Quarter Turn to Right" distance="2" />
-  <dancefiguretransition dance="Quickstep" source="Turning Lock to Right" target="Backward Lock" distance="2" />
-  <dancefiguretransition dance="Quickstep" source="Turning Lock to Right" target="Forward Locksd" distance="2" />
+  <dancefiguretransition dance="Quickstep" source="Turning Lock to Right" target="Backward Locks" distance="2" />
+  <dancefiguretransition dance="Quickstep" source="Turning Lock to Right" target="Forward Locks" distance="2" />
   <dancefiguretransition dance="Quickstep" source="Turning Lock to Right" target="Open Natural Turn" distance="1" />
   <dancefiguretransition dance="Quickstep" source="Turning Lock to Right" target="Natural Spin Turn" distance="2" />
   <dancefiguretransition dance="Quickstep" source="Turning Lock to Right" target="Tipple Chasse to Right - Corner" distance="2" />
@@ -3030,7 +3030,7 @@
   <dancefiguretransition dance="Quickstep" source="Turning Lock to Right" target="Tipsy to Right" distance="2" />
   <dancefiguretransition dance="Quickstep" source="Drag Hesitation" target="Outside Change" distance="1" />
   <dancefiguretransition dance="Quickstep" source="Drag Hesitation" target="Running Finish" distance="1" />
-  <dancefiguretransition dance="Quickstep" source="Drag Hesitation" target="Backward Lock" distance="1" />
+  <dancefiguretransition dance="Quickstep" source="Drag Hesitation" target="Backward Locks" distance="1" />
   <dancefiguretransition dance="Quickstep" source="Drag Hesitation" target="Hesitation Change" distance="2" />
   <dancefiguretransition dance="Quickstep" source="Drag Hesitation" target="Impetus" distance="2" />
   <dancefiguretransition dance="Quickstep" source="Drag Hesitation" target="Impetus to P.P." distance="2" />
@@ -3042,7 +3042,7 @@
   <dancefiguretransition dance="Quickstep" source="Cross Swivel" target="Basic Movement" distance="2" />
   <dancefiguretransition dance="Quickstep" source="Cross Swivel" target="Natural Turn" distance="2" />
   <dancefiguretransition dance="Quickstep" source="Cross Swivel" target="Quarter Turn to Right" distance="2" />
-  <dancefiguretransition dance="Quickstep" source="Cross Swivel" target="Forward Locksd" distance="1" />
+  <dancefiguretransition dance="Quickstep" source="Cross Swivel" target="Forward Locks" distance="1" />
   <dancefiguretransition dance="Quickstep" source="Cross Swivel" target="Open Natural Turn" distance="2" />
   <dancefiguretransition dance="Quickstep" source="Cross Swivel" target="Natural Spin Turn" distance="2" />
   <dancefiguretransition dance="Quickstep" source="Cross Swivel" target="Tipple Chasse to Left" distance="1" />
@@ -3052,7 +3052,7 @@
   <dancefiguretransition dance="Quickstep" source="Fishtail" target="Basic Movement" distance="2" />
   <dancefiguretransition dance="Quickstep" source="Fishtail" target="Natural Turn" distance="2" />
   <dancefiguretransition dance="Quickstep" source="Fishtail" target="Quarter Turn to Right" distance="2" />
-  <dancefiguretransition dance="Quickstep" source="Fishtail" target="Forward Locksd" distance="1" />
+  <dancefiguretransition dance="Quickstep" source="Fishtail" target="Forward Locks" distance="1" />
   <dancefiguretransition dance="Quickstep" source="Fishtail" target="Open Natural Turn" distance="2" />
   <dancefiguretransition dance="Quickstep" source="Fishtail" target="Natural Spin Turn" distance="2" />
   <dancefiguretransition dance="Quickstep" source="Fishtail" target="Tipple Chasse to Left" distance="1" />
@@ -3062,8 +3062,8 @@
   <dancefiguretransition dance="Quickstep" source="Running Natural Turn" target="Basic Movement" distance="2" />
   <dancefiguretransition dance="Quickstep" source="Running Natural Turn" target="Natural Turn" distance="2" />
   <dancefiguretransition dance="Quickstep" source="Running Natural Turn" target="Quarter Turn to Right" distance="2" />
-  <dancefiguretransition dance="Quickstep" source="Running Natural Turn" target="Backward Lock" distance="2" />
-  <dancefiguretransition dance="Quickstep" source="Running Natural Turn" target="Forward Locksd" distance="1" />
+  <dancefiguretransition dance="Quickstep" source="Running Natural Turn" target="Backward Locks" distance="2" />
+  <dancefiguretransition dance="Quickstep" source="Running Natural Turn" target="Forward Locks" distance="1" />
   <dancefiguretransition dance="Quickstep" source="Running Natural Turn" target="Open Natural Turn" distance="2" />
   <dancefiguretransition dance="Quickstep" source="Running Natural Turn" target="Natural Spin Turn" distance="2" />
   <dancefiguretransition dance="Quickstep" source="Running Natural Turn" target="Hesitation Change" distance="2" />
@@ -3080,7 +3080,7 @@
   <dancefiguretransition dance="Quickstep" source="Running Cross Chasse" target="Basic Movement" distance="2" />
   <dancefiguretransition dance="Quickstep" source="Running Cross Chasse" target="Natural Turn" distance="2" />
   <dancefiguretransition dance="Quickstep" source="Running Cross Chasse" target="Quarter Turn to Right" distance="2" />
-  <dancefiguretransition dance="Quickstep" source="Running Cross Chasse" target="Forward Locksd" distance="1" />
+  <dancefiguretransition dance="Quickstep" source="Running Cross Chasse" target="Forward Locks" distance="1" />
   <dancefiguretransition dance="Quickstep" source="Running Cross Chasse" target="Open Natural Turn" distance="2" />
   <dancefiguretransition dance="Quickstep" source="Running Cross Chasse" target="Natural Spin Turn" distance="2" />
   <dancefiguretransition dance="Quickstep" source="Running Cross Chasse" target="Tipple Chasse to Left" distance="1" />
@@ -3090,7 +3090,7 @@
   <dancefiguretransition dance="Quickstep" source="Six Quick Run" target="Basic Movement" distance="2" />
   <dancefiguretransition dance="Quickstep" source="Six Quick Run" target="Natural Turn" distance="2" />
   <dancefiguretransition dance="Quickstep" source="Six Quick Run" target="Quarter Turn to Right" distance="2" />
-  <dancefiguretransition dance="Quickstep" source="Six Quick Run" target="Forward Locksd" distance="1" />
+  <dancefiguretransition dance="Quickstep" source="Six Quick Run" target="Forward Locks" distance="1" />
   <dancefiguretransition dance="Quickstep" source="Six Quick Run" target="Open Natural Turn" distance="2" />
   <dancefiguretransition dance="Quickstep" source="Six Quick Run" target="Natural Spin Turn" distance="2" />
   <dancefiguretransition dance="Quickstep" source="Six Quick Run" target="Tipple Chasse to Left" distance="1" />
@@ -3098,7 +3098,7 @@
   <dancefiguretransition dance="Quickstep" source="Six Quick Run" target="Running Natural Turn" distance="2" />
   <dancefiguretransition dance="Quickstep" source="Six Quick Run" target="Running Cross Chasse" distance="1" />
   <dancefiguretransition dance="Quickstep" source="Tipsy to Right" target="Cross Chasse" distance="2" />
-  <dancefiguretransition dance="Quickstep" source="Tipsy to Right" target="Forward Locksd" distance="2" />
+  <dancefiguretransition dance="Quickstep" source="Tipsy to Right" target="Forward Locks" distance="2" />
   <dancefiguretransition dance="Quickstep" source="Tipsy to Right" target="Telemark" distance="2" />
   <dancefiguretransition dance="Quickstep" source="Tipsy to Right" target="Telemark to P.P." distance="2" />
   <dancefiguretransition dance="Quickstep" source="Tipsy to Right" target="Whisk" distance="2" />
@@ -3110,8 +3110,8 @@
   <dancefiguretransition dance="Quickstep" source="Tipsy to Left" target="Basic Movement" distance="2" />
   <dancefiguretransition dance="Quickstep" source="Tipsy to Left" target="Natural Turn" distance="2" />
   <dancefiguretransition dance="Quickstep" source="Tipsy to Left" target="Quarter Turn to Right" distance="2" />
-  <dancefiguretransition dance="Quickstep" source="Tipsy to Left" target="Backward Lock" distance="2" />
-  <dancefiguretransition dance="Quickstep" source="Tipsy to Left" target="Forward Locksd" distance="2" />
+  <dancefiguretransition dance="Quickstep" source="Tipsy to Left" target="Backward Locks" distance="2" />
+  <dancefiguretransition dance="Quickstep" source="Tipsy to Left" target="Forward Locks" distance="2" />
   <dancefiguretransition dance="Quickstep" source="Tipsy to Left" target="Open Natural Turn" distance="2" />
   <dancefiguretransition dance="Quickstep" source="Tipsy to Left" target="Natural Spin Turn" distance="2" />
   <dancefiguretransition dance="Quickstep" source="Tipsy to Left" target="Tipple Chasse to Right - Corner" distance="2" />
@@ -3124,12 +3124,12 @@
   <dancefiguretransition dance="Quickstep" source="Rumba Cross" target="Basic Movement" distance="1" />
   <dancefiguretransition dance="Quickstep" source="Rumba Cross" target="Natural Turn" distance="1" />
   <dancefiguretransition dance="Quickstep" source="Rumba Cross" target="Quarter Turn to Right" distance="1" />
-  <dancefiguretransition dance="Quickstep" source="Rumba Cross" target="Forward Locksd" distance="2" />
+  <dancefiguretransition dance="Quickstep" source="Rumba Cross" target="Forward Locks" distance="2" />
   <dancefiguretransition dance="Quickstep" source="Rumba Cross" target="Natural Spin Turn" distance="1" />
   <dancefiguretransition dance="Quickstep" source="Rumba Cross" target="Tipple Chasse to Left" distance="2" />
   <dancefiguretransition dance="Quickstep" source="Rumba Cross" target="Running Natural Turn" distance="1" />
   <dancefiguretransition dance="Quickstep" source="Hover Corté" target="Outside Change" distance="1" />
-  <dancefiguretransition dance="Quickstep" source="Hover Corté" target="Backward Lock" distance="1" />
+  <dancefiguretransition dance="Quickstep" source="Hover Corté" target="Backward Locks" distance="1" />
   <dancefiguretransition dance="Quickstep" source="Hover Corté" target="Back Whisk" distance="1" />
   <dancefiguretransition dance="Quickstep" source="Hover Corté" target="Tipple Chasse to Right - Corner" distance="2" />
   <dancefiguretransition dance="Quickstep" source="Hover Corté" target="Tipple Chasse to Right - LOD" distance="2" />
