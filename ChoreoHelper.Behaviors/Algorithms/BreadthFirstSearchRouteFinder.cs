@@ -46,6 +46,12 @@ public sealed class BreadthFirstSearchRouteFinder : IRouteFinder
                     continue;
                 }
 
+                // prevent too many routes
+                if (newFrontier.Count > 50_000)
+                {
+                    continue;
+                }
+
                 Debug.Assert(route.Distance == minDistance);
 
                 for (var node = 0; node < distanceMatrix.GetLength(0); node++)
