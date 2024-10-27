@@ -7,4 +7,30 @@
     <Nullable>enable</Nullable>
   </PropertyGroup>
 
+  <ItemGroup>
+    <PackageReference Include="OneOf" Version="3.0.271" />
+    <PackageReference Include="QuikGraph" Version="2.5.0" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Compile Update="DanceFigure.Xml.cs">
+      <DependentUpon>DanceFigure.cs</DependentUpon>
+    </Compile>
+    <Compile Update="DanceFigure.Equatable.cs">
+      <DependentUpon>DanceFigure.cs</DependentUpon>
+    </Compile>
+    <Compile Update="DanceFigureTransition.Equatable.cs">
+      <DependentUpon>DanceFigureTransition.cs</DependentUpon>
+    </Compile>
+    <Compile Update="DanceFigureTransition.Xml.cs">
+      <DependentUpon>DanceFigureTransition.cs</DependentUpon>
+    </Compile>
+    <Compile Update="Dance.Xml.cs">
+      <DependentUpon>Dance.cs</DependentUpon>
+    </Compile>
+    <Compile Update="Dance.Equatable.cs">
+      <DependentUpon>Dance.cs</DependentUpon>
+    </Compile>
+  </ItemGroup>
+
 </Project>

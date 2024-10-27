@@ -1,4 +1,6 @@
-﻿namespace ChoreoHelper.Graph.Entities;
+﻿using System.Globalization;
+
+namespace ChoreoHelper.Entities;
 
 public sealed partial class DanceFigureTransition
 {
@@ -14,7 +16,7 @@ public sealed partial class DanceFigureTransition
     }
 
     [Pure]
-    public static OneOf<DanceFigureTransition, Error> FromXml(XElement element, IReadOnlyList<DanceFigure> figures)
+    public static OneOf<DanceFigureTransition, Error> FromXml(XElement element, IReadOnlyCollection<DanceFigure> figures)
     {
         if (element.Name.LocalName != nameof(DanceFigureTransition).ToLowerInvariant())
         {

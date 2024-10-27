@@ -1,5 +1,5 @@
 ﻿using System.Collections.Immutable;
-using ChoreoHelper.Graph.Entities;
+using ChoreoHelper.Entities;
 
 namespace ChoreoHelper.Graph;
 

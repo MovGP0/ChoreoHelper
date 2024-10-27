@@ -1,6 +1,6 @@
 ﻿using System.Reactive.Concurrency;
 using System.Windows;
-using ChoreHelper.Editor.ViewModels;
+using ChoreoHelper.Editor.ViewModels;
 using Microsoft.Extensions.DependencyInjection;
 using ReactiveUI;
 using Serilog.Sinks.SystemConsole.Themes;
@@ -9,7 +9,7 @@ using Microsoft.Extensions.Hosting;
 using Serilog;
 using Splat.Microsoft.Extensions.DependencyInjection;
 
-namespace ChoreHelper.Editor;
+namespace ChoreoHelper.Editor;
 
 public static class Program
 {

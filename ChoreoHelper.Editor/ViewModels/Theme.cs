@@ -1,7 +1,7 @@
 ﻿using System.Reactive.Disposables;
 using SkiaSharp;
 
-namespace ChoreHelper.Editor.ViewModels;
+namespace ChoreoHelper.Editor.ViewModels;
 
 public sealed class Theme : IDisposable
 {

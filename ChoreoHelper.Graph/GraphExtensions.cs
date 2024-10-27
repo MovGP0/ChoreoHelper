@@ -1,6 +1,5 @@
 ﻿using System.Text;
 using ChoreoHelper.Entities;
-using ChoreoHelper.Graph.Entities;
 
 namespace ChoreoHelper.Graph;
 
@@ -12,7 +11,6 @@ public static class GraphExtensions
     {
         return graph.Vertices
             .Select(v => v.Level)
-            .Select(DanceLevelConverter.ToDanceLevel)
             .Distinct();
     }
 
@@ -55,16 +53,16 @@ public static class GraphExtensions
     }
 
     [Pure]
-    private static IEnumerable<DanceFigure> WhereLevel(this IEnumerable<DanceFigure> nodes, DanceLevel level)
+    private static IEnumerable<DanceFigure> WhereLevel(this IEnumerable<DanceFigure> danceFigures, DanceLevel level)
     {
-        foreach (var e1 in nodes)
+        foreach (var danceFigure in danceFigures)
         {
-            if ((e1.Level == "bronze" && level.IsFlagSet(DanceLevel.Bronze)) ||
-                (e1.Level == "silver" && level.IsFlagSet(DanceLevel.Silver)) ||
-                (e1.Level == "gold" && level.IsFlagSet(DanceLevel.Gold)) ||
-                (e1.Level == "advanced" && level.IsFlagSet(DanceLevel.Advanced)))
+            if ((danceFigure.Level == DanceLevel.Bronze && level.IsFlagSet(DanceLevel.Bronze)) ||
+                (danceFigure.Level == DanceLevel.Silver && level.IsFlagSet(DanceLevel.Silver)) ||
+                (danceFigure.Level == DanceLevel.Gold && level.IsFlagSet(DanceLevel.Gold)) ||
+                (danceFigure.Level == DanceLevel.Advanced && level.IsFlagSet(DanceLevel.Advanced)))
             {
-                yield return e1;
+                yield return danceFigure;
             }
         }
     }

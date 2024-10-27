@@ -1,4 +1,4 @@
-namespace ChoreoHelper.Graph.Entities;
+namespace ChoreoHelper.Entities;
 
 public sealed partial class Dance : IEquatable<Dance>
 {

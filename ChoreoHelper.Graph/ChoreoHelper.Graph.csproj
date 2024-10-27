@@ -17,27 +17,10 @@
         </Content>
     </ItemGroup>
     <ItemGroup>
-      <Compile Update="Entities\DanceFigure.Equatable.cs">
-        <DependentUpon>DanceFigure.cs</DependentUpon>
-      </Compile>
-      <Compile Update="Entities\DanceFigure.Xml.cs">
-        <DependentUpon>DanceFigure.cs</DependentUpon>
-      </Compile>
-      <Compile Update="Entities\DanceFigureTransition.Equatable.cs">
-        <DependentUpon>DanceFigureTransition.cs</DependentUpon>
-      </Compile>
-      <Compile Update="Entities\DanceFigureTransition.Xml.cs">
-        <DependentUpon>DanceFigureTransition.cs</DependentUpon>
-      </Compile>
-      <Compile Update="Entities\Dance.Xml.cs">
-        <DependentUpon>Dance.cs</DependentUpon>
-      </Compile>
-      <Compile Update="Entities\Dance.Equatable.cs">
-        <DependentUpon>Dance.cs</DependentUpon>
-      </Compile>
-    </ItemGroup>
-    <ItemGroup>
       <ProjectReference Include="..\ChoreoHelper.Entities\ChoreoHelper.Entities.csproj" />
       <ProjectReference Include="..\ChoreoHelper.Gateway\ChoreoHelper.Gateway.csproj" />
+    </ItemGroup>
+    <ItemGroup>
+      <Folder Include="Entities\" />
     </ItemGroup>
 </Project>

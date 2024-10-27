@@ -1,10 +1,10 @@
 ﻿using System.Windows;
 using System.Windows.Input;
-using ChoreHelper.Editor.ViewModels;
+using ChoreoHelper.Editor.ViewModels;
 using ReactiveUI;
 using SkiaSharp.Views.Desktop;
 
-namespace ChoreHelper.Editor;
+namespace ChoreoHelper.Editor;
 
 /// <summary>
 /// Interaction logic for MainWindow.xaml

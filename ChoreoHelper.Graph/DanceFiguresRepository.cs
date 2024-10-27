@@ -1,7 +1,6 @@
 using System.Collections.Immutable;
 using ChoreoHelper.Entities;
 using ChoreoHelper.Gateway;
-using ChoreoHelper.Graph.Entities;
 
 namespace ChoreoHelper.Graph;
 
@@ -91,7 +90,7 @@ public sealed class DanceFiguresRepository : IDanceFiguresRepository
     private static DanceStepNodeInfo ToDanceStepNodeInfo(DanceFigure figure)
     {
         var hash = GetHash(figure);
-        var danceLevel = DanceLevelConverter.ToDanceLevel(figure.Level);
+        var danceLevel = figure.Level;
         return new(figure.Name, hash, danceLevel);
     }
 

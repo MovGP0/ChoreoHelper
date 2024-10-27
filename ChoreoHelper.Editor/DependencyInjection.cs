@@ -1,9 +1,10 @@
-﻿using ChoreHelper.Editor.Business;
-using ChoreHelper.Editor.ViewModels;
+﻿using ChoreoHelper.Editor.Behaviors;
+using ChoreoHelper.Editor.Business;
+using ChoreoHelper.Editor.ViewModels;
 using Microsoft.Extensions.DependencyInjection;
 using ReactiveUI;
 
-namespace ChoreHelper.Editor;
+namespace ChoreoHelper.Editor;
 
 public static class DependencyInjection
 {
@@ -13,6 +14,7 @@ public static class DependencyInjection
         services.AddTransient<GridPainter>();
         services.AddTransient<Theme>();
         services.AddTransient<MainViewModel>();
+        services.AddTransient<IBehavior<MainViewModel>, OpenFileBehavior>();
         services.AddTransient<XmlDataLoader>();
         services.AddTransient<XmlDataSaver>();
         return services;

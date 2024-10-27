@@ -1,9 +1,9 @@
 ﻿using System.Reactive.Disposables;
-using ChoreHelper.Editor.Model;
+using ChoreoHelper.Editor.Model;
 using ChoreoHelper.Entities;
 using SkiaSharp;
 
-namespace ChoreHelper.Editor.ViewModels;
+namespace ChoreoHelper.Editor.ViewModels;
 
 public sealed class GridPainter : IDisposable
 {

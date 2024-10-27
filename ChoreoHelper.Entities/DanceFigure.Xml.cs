@@ -1,4 +1,4 @@
-﻿namespace ChoreoHelper.Graph.Entities;
+﻿namespace ChoreoHelper.Entities;
 
 public sealed partial class DanceFigure
 {
@@ -27,6 +27,15 @@ public sealed partial class DanceFigure
         var name = element.Attribute(Xn(ns, nameof(Name)))?.Value ?? string.Empty;
         var level = element.Attribute(Xn(ns, nameof(Level)))?.Value ?? string.Empty;
 
+        var danceLevel = level switch
+        {
+            "bronze" => DanceLevel.Bronze,
+            "silver" => DanceLevel.Silver,
+            "gold" => DanceLevel.Gold,
+            "advanced" => DanceLevel.Advanced,
+            _ => DanceLevel.Undefined
+        };
+        
         if (string.IsNullOrWhiteSpace(danceName)
             || string.IsNullOrWhiteSpace(name)
             || string.IsNullOrWhiteSpace(level))
@@ -44,7 +53,7 @@ public sealed partial class DanceFigure
             return new Error();
         }
 
-        return new DanceFigure(dance[0], name, level);
+        return new DanceFigure(dance[0], name, danceLevel);
     }
 
     [Pure]

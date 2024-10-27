@@ -1,7 +1,8 @@
 ﻿using System.Reactive;
 using System.Reactive.Disposables;
 using System.Windows.Input;
-using ChoreHelper.Editor.Model;
+using ChoreoHelper.Editor.Model;
+using ChoreoHelper.Entities;
 using DynamicData.Binding;
 using ReactiveUI;
 using ReactiveUI.Fody.Helpers;
@@ -9,7 +10,7 @@ using SkiaSharp.Views.Desktop;
 using SkiaSharp.Views.WPF;
 using Splat;
 
-namespace ChoreHelper.Editor.ViewModels;
+namespace ChoreoHelper.Editor.ViewModels;
 
 public sealed class MainViewModel : ReactiveObject, IDisposable
 {
@@ -101,7 +102,7 @@ public sealed class MainViewModel : ReactiveObject, IDisposable
     /// <summary>
     /// The list of the dances
     /// </summary>
-    public IObservableCollection<Dance> Dances { get; } = new ObservableCollectionExtended<Dance>();
+    public ObservableCollectionExtended<Dance> Dances { get; } = new ObservableCollectionExtended<Dance>();
 
     /// <summary>
     /// The currently selected dance
