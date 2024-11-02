@@ -1,0 +1,3 @@
+namespace ChoreoHelper.Editor.TransitionEditor.Events;
+
+public record RenderTransitionEditorCommand;

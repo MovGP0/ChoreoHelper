@@ -29,7 +29,7 @@
     <DockPanel LastChildFill="True">
         <StackPanel Orientation="Horizontal" DockPanel.Dock="Top" Margin="4">
             <ComboBox
-                ItemsSource="{Binding Dances, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"
+                ItemsSource="{Binding Dances}"
                 SelectedItem="{Binding SelectedDance, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"
                 Width="200"
                 Margin="4">
@@ -40,11 +40,6 @@
                 </ComboBox.ItemTemplate>
             </ComboBox>
         </StackPanel>
-
-        <!-- SkiaSharp Canvas -->
-        <skia:SKElement Margin="4"
-            Name="SkiaCanvas"
-            PaintSurface="HandlePaintSurface"
-            MouseLeftButtonUp="HandleMouseLeftButtonUp"/>
+        <skia:SKElement Margin="4" Name="SkiaCanvas"/>
     </DockPanel>
 </reactiveUi:ReactiveUserControl>

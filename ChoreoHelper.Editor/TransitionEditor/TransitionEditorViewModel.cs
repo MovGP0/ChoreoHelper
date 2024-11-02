@@ -1,7 +1,10 @@
-﻿using System.Windows.Input;
+﻿using System.Reactive.Disposables;
+using System.Windows.Input;
+using ChoreoHelper.Editor.Messages;
 using ChoreoHelper.Editor.Model;
 using ChoreoHelper.Entities;
 using DynamicData.Binding;
+using MessagePipe;
 using ReactiveUI;
 using ReactiveUI.Fody.Helpers;
 using SkiaSharp.Views.Desktop;
@@ -14,9 +17,9 @@ public sealed class TransitionEditorViewModel : ReactiveObject, IActivatableView
 {
     private GridPainter? _gridPainter;
 
-    public TransitionEditorViewModel()
+    public TransitionEditorViewModel(IScreen hostScreen, ISubscriber<DataLoadedEvent> dataLoadedSubscriber)
     {
-        HostScreen = Locator.Current.GetRequiredService<IScreen>();
+        HostScreen = hostScreen;
 
         this.WhenActivated(disposables =>
         {
@@ -26,10 +29,11 @@ public sealed class TransitionEditorViewModel : ReactiveObject, IActivatableView
             }
 
             _gridPainter = Locator.Current.GetRequiredService<GridPainter>();
+            dataLoadedSubscriber.Subscribe(e => UpdateDances(e.Dances)).DisposeWith(disposables);
         });
     }
 
-    public void UpdateDances(IList<Dance> dances)
+    private void UpdateDances(ICollection<Dance> dances)
     {
         SelectedDance = null;
         Dances.Clear();

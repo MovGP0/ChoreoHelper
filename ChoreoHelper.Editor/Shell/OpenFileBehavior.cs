@@ -1,6 +1,7 @@
 using System.Reactive;
 using System.Reactive.Disposables;
 using ChoreoHelper.Editor.Business;
+using ChoreoHelper.Editor.Messages;
 using ChoreoHelper.Editor.ViewModels;
 using Microsoft.Win32;
 using OneOf;
@@ -11,7 +12,7 @@ namespace ChoreoHelper.Editor.Behaviors;
 
 public sealed class OpenFileBehavior(
     XmlDataLoader xmlDataLoader,
-    TransitionEditorViewModel transitionEditorViewModel) : IBehavior<ShellViewModel>
+    MessagePipe.IPublisher<DataLoadedEvent> dataLoadedPublisher) : IBehavior<ShellViewModel>
 {
     public void Activate(ShellViewModel viewModel, CompositeDisposable disposables)
     {
@@ -37,7 +38,7 @@ public sealed class OpenFileBehavior(
 
                 // reset view model
                 viewModel.FilePath = filePath;
-                transitionEditorViewModel.UpdateDances(dances);
+                dataLoadedPublisher.Publish(new DataLoadedEvent(dances));
             })
             .DisposeWith(disposables);
 
