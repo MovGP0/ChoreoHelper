@@ -1,5 +1,4 @@
-﻿using System.Reactive.Concurrency;
-using System.Windows;
+﻿using System.Windows;
 using ChoreoHelper.ViewModels;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
@@ -41,9 +40,6 @@ public static class Program
         host.Services.UseMicrosoftDependencyResolver();
 
         var app = new Application();
-
-        RxApp.TaskpoolScheduler = TaskPoolScheduler.Default;
-        RxApp.MainThreadScheduler = DispatcherScheduler.Current;
 
         if (Locator.Current.GetRequiredService<IViewFor<MainWindowViewModel>>() is not Window mainView)
         {

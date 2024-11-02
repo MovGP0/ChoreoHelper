@@ -1,6 +1,4 @@
-﻿using System.Reactive;
-using System.Reactive.Disposables;
-using System.Windows.Input;
+﻿using System.Windows.Input;
 using ChoreoHelper.Editor.Model;
 using ChoreoHelper.Entities;
 using DynamicData.Binding;
@@ -12,26 +10,41 @@ using Splat;
 
 namespace ChoreoHelper.Editor.ViewModels;
 
-public sealed class MainViewModel : ReactiveObject, IDisposable
+public sealed class TransitionEditorViewModel : ReactiveObject, IActivatableViewModel, IRoutableViewModel
 {
-    private readonly CompositeDisposable _disposables = new();
+    private GridPainter? _gridPainter;
 
-    private readonly GridPainter? _gridPainter;
-
-    public MainViewModel()
+    public TransitionEditorViewModel()
     {
-        if (this.IsInDesignMode())
+        HostScreen = Locator.Current.GetRequiredService<IScreen>();
+
+        this.WhenActivated(disposables =>
         {
-            // TODO: set design-time data
-            return;
+            foreach (var behavior in Locator.Current.GetServices<IBehavior<TransitionEditorViewModel>>())
+            {
+                behavior.Activate(this, disposables);
+            }
+
+            _gridPainter = Locator.Current.GetRequiredService<GridPainter>();
+        });
+    }
+
+    public void UpdateDances(IList<Dance> dances)
+    {
+        SelectedDance = null;
+        Dances.Clear();
+        Figures.Clear();
+        Transitions = new byte[0, 0];
+
+        foreach (var dance in dances)
+        {
+            Dances.Add(dance);
         }
 
-        foreach (var behavior in Locator.Current.GetServices<IBehavior<MainViewModel>>())
-        {
-            behavior.Activate(this, _disposables);
-        }
-
-        _gridPainter = Locator.Current.GetRequiredService<GridPainter>();
+        SelectedDance = dances
+            .OrderBy(e => e.Category)
+            .ThenBy(e => e.Name)
+            .First();
     }
 
     private GridPositions _gridPositions = new();
@@ -88,21 +101,9 @@ public sealed class MainViewModel : ReactiveObject, IDisposable
     }
 
     /// <summary>
-    /// Opening the data file.
-    /// </summary>
-    [Reactive]
-    public ReactiveCommand<Unit, Unit> Open { get; set; } = DisabledCommand.Instance;
-
-    /// <summary>
-    /// The path to the data file.
-    /// </summary>
-    [Reactive]
-    public string FilePath { get; set; } = string.Empty;
-
-    /// <summary>
     /// The list of the dances
     /// </summary>
-    public ObservableCollectionExtended<Dance> Dances { get; } = new ObservableCollectionExtended<Dance>();
+    public IObservableCollection<Dance> Dances { get; } = new ObservableCollectionExtended<Dance>();
 
     /// <summary>
     /// The currently selected dance
@@ -129,17 +130,8 @@ public sealed class MainViewModel : ReactiveObject, IDisposable
     public void ToggleCellState(int row, int col)
         => Transitions[row, col] = (byte)((Transitions[row, col] + 1) % 3);
 
-    /// <summary>
-    /// Add a new figure to the selected dance.
-    /// </summary>
-    [Reactive]
-    public ReactiveCommand<Unit, Unit> Add { get; set; } = DisabledCommand.Instance;
+    public ViewModelActivator Activator { get; } = new();
 
-    /// <summary>
-    /// Save the changes to the data file.
-    /// </summary>
-    [Reactive]
-    public ReactiveCommand<Unit, Unit> Save { get; set; } = DisabledCommand.Instance;
-
-    public void Dispose() => _disposables.Dispose();
+    public string? UrlPathSegment { get; } = "transition_editor";
+    public IScreen HostScreen { get; }
 }

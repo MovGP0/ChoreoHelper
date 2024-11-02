@@ -5,10 +5,9 @@
     <LangVersion>latest</LangVersion>
     <ImplicitUsings>enable</ImplicitUsings>
     <Nullable>enable</Nullable>
+    <OutputPath>..\bin\$(Platform)\$(TargetFramework)\</OutputPath>
   </PropertyGroup>
-
   <ItemGroup>
     <ProjectReference Include="..\ChoreoHelper.Entities\ChoreoHelper.Entities.csproj" />
   </ItemGroup>
-
 </Project>

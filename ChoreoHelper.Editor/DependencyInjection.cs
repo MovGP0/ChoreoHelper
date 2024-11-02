@@ -1,6 +1,7 @@
 ﻿using ChoreoHelper.Editor.Behaviors;
 using ChoreoHelper.Editor.Business;
 using ChoreoHelper.Editor.ViewModels;
+using ChoreoHelper.Editor.Views;
 using Microsoft.Extensions.DependencyInjection;
 using ReactiveUI;
 
@@ -10,13 +11,17 @@ public static class DependencyInjection
 {
     public static IServiceCollection AddChoreoHelperEditor(this IServiceCollection services)
     {
-        services.AddTransient<IViewFor<MainViewModel>, MainWindow>();
-        services.AddTransient<GridPainter>();
-        services.AddTransient<Theme>();
-        services.AddTransient<MainViewModel>();
-        services.AddTransient<IBehavior<MainViewModel>, OpenFileBehavior>();
-        services.AddTransient<XmlDataLoader>();
-        services.AddTransient<XmlDataSaver>();
+        services.AddSingleton<ShellViewModel>();
+        services.AddSingleton<IScreen, ShellViewModel>(r => r.GetRequiredService<ShellViewModel>());
+        services.AddSingleton<IViewFor<TransitionEditorViewModel>, TransitionEditorControl>();
+        services.AddSingleton<IViewFor<ShellViewModel>, ShellWindow>();
+        services.AddSingleton<IBehavior<ShellViewModel>, OpenFileBehavior>();
+        services.AddSingleton<IBehavior<ShellViewModel>, NavigateToTransitionEditorBehavior>();
+        services.AddSingleton<GridPainter>();
+        services.AddSingleton<Theme>();
+        services.AddSingleton<TransitionEditorViewModel>();
+        services.AddSingleton<XmlDataLoader>();
+        services.AddSingleton<XmlDataSaver>();
         return services;
     }
 }

@@ -3,7 +3,7 @@ using ChoreoHelper.Gateway;
 
 namespace ChoreoHelper.Behaviors.Search;
 
-public sealed class LoadRequiredFiguresBehavior(IDanceFiguresRepository connection) : IBehavior<SearchViewModel>
+public sealed class LoadRequiredFiguresBehavior : IBehavior<SearchViewModel>
 {
     public void Activate(SearchViewModel viewModel, CompositeDisposable disposables)
     {

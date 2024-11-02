@@ -45,13 +45,17 @@ public static class Program
         RxApp.TaskpoolScheduler = TaskPoolScheduler.Default;
         RxApp.MainThreadScheduler = DispatcherScheduler.Current;
 
-        if (Locator.Current.GetRequiredService<IViewFor<MainViewModel>>() is not Window mainView)
+        var viewModel = Locator.Current.GetRequiredService<ShellViewModel>();
+
+        if (Locator.Current.GetRequiredService<IViewFor<ShellViewModel>>() is not Window mainView)
         {
             app.Shutdown();
             return;
         }
 
         app.MainWindow = mainView;
+        mainView.DataContext = viewModel;
+        viewModel.Activator.Activate();
         mainView.Show();
         app.Run();
     }

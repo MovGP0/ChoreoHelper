@@ -1,15 +1,13 @@
 ﻿<Project Sdk="Microsoft.NET.Sdk">
-
     <PropertyGroup>
         <TargetFramework>net8.0-windows</TargetFramework>
         <ImplicitUsings>enable</ImplicitUsings>
         <Nullable>enable</Nullable>
         <RootNamespace>System.Reactive.Concurrency</RootNamespace>
         <UseWpf>true</UseWpf>
+        <OutputPath>..\bin\$(Platform)\$(TargetFramework)\</OutputPath>
     </PropertyGroup>
-
     <ItemGroup>
       <PackageReference Include="System.Reactive" Version="6.0.0" />
     </ItemGroup>
-
 </Project>

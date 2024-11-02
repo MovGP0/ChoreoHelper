@@ -13,7 +13,7 @@ public sealed class LevelSelectionViewModel: ReactiveObject, IDisposable
     public int LevelSort => (int)Level;
 
     [Reactive]
-    public string Name { get; set; }
+    public string Name { get; set; } = string.Empty;
 
     [Reactive]
     public bool IsSelected { get; set; } = true;

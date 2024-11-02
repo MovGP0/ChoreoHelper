@@ -9,19 +9,17 @@ using ReactiveUI;
 
 namespace ChoreoHelper.Editor.Behaviors;
 
-public sealed class OpenFileBehavior : IBehavior<MainViewModel>
+public sealed class OpenFileBehavior(
+    XmlDataLoader xmlDataLoader,
+    TransitionEditorViewModel transitionEditorViewModel) : IBehavior<ShellViewModel>
 {
-    private readonly XmlDataLoader _xmlDataLoader;
-
-    public OpenFileBehavior(XmlDataLoader xmlDataLoader) => _xmlDataLoader = xmlDataLoader;
-
-    public void Activate(MainViewModel viewModel, CompositeDisposable disposables)
+    public void Activate(ShellViewModel viewModel, CompositeDisposable disposables)
     {
-        viewModel.Open = ReactiveCommand
+        var command = ReactiveCommand
             .Create<Unit>(_ => {})
             .DisposeWith(disposables);
 
-        viewModel.Open
+        command
             .Subscribe(_ =>
             {
                 if (!SelectXmlFile().TryPickT0(out var filePath, out var _))
@@ -30,7 +28,7 @@ public sealed class OpenFileBehavior : IBehavior<MainViewModel>
                     return;
                 }
 
-                var dances = _xmlDataLoader.LoadDances(viewModel.FilePath);
+                var dances = xmlDataLoader.LoadDances(filePath);
                 if (!dances.Any())
                 {
                     // the file could not be loaded
@@ -39,16 +37,14 @@ public sealed class OpenFileBehavior : IBehavior<MainViewModel>
 
                 // reset view model
                 viewModel.FilePath = filePath;
-                viewModel.SelectedDance = null;
-                viewModel.Dances.Clear();
-                viewModel.Figures.Clear();
-                viewModel.Transitions = new byte[0, 0];
-                viewModel.Dances.AddRange(dances);
+                transitionEditorViewModel.UpdateDances(dances);
             })
             .DisposeWith(disposables);
+
+        viewModel.LoadXmlData = command;
     }
 
-    private OneOf<string, None> SelectXmlFile()
+    private static OneOf<string, None> SelectXmlFile()
     {
         var openFileDialog = new OpenFileDialog
         {

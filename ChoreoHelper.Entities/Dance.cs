@@ -1,5 +1,3 @@
-using System.Diagnostics;
-
 namespace ChoreoHelper.Entities;
 
 [DebuggerDisplay("{DebuggerDisplay,nq}")]

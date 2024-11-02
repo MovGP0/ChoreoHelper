@@ -5,6 +5,7 @@
     <Nullable>enable</Nullable>
     <UseWPF>true</UseWPF>
     <EnableDefaultPageItems>false</EnableDefaultPageItems>
+    <OutputPath>..\bin\$(Platform)\$(TargetFramework)\</OutputPath>
   </PropertyGroup>
   <ItemGroup>
     <PackageReference Include="MaterialDesignThemes" Version="5.0.0" />

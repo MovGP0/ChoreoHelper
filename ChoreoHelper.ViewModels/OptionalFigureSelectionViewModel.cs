@@ -22,7 +22,7 @@ public sealed class OptionalFigureSelectionViewModel : ReactiveObject, IDisposab
     public int LevelSort => (int)Level;
 
     [Reactive]
-    public string Name { get; set; }
+    public string Name { get; set; } = string.Empty;
 
     public OptionalFigureSelectionViewModel()
     {

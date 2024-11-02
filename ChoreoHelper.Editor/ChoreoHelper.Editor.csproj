@@ -30,4 +30,11 @@
     <ProjectReference Include="..\ChoreoHelper.Graph\ChoreoHelper.Graph.csproj" />
     <ProjectReference Include="..\ChoreoHelper.ReactiveUI\ChoreoHelper.ReactiveUI.csproj" />
   </ItemGroup>
+  <ItemGroup>
+    <Page Update="Views\TransitionEditorControl.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <XamlRuntime>Wpf</XamlRuntime>
+      <SubType>Designer</SubType>
+    </Page>
+  </ItemGroup>
 </Project>

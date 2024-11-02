@@ -3,6 +3,7 @@
         <TargetFramework>net8.0</TargetFramework>
         <ImplicitUsings>enable</ImplicitUsings>
         <Nullable>enable</Nullable>
+        <OutputPath>..\bin\$(Platform)\$(TargetFramework)\</OutputPath>
     </PropertyGroup>
     <ItemGroup>
         <PackageReference Include="JetBrains.Annotations" Version="2023.3.0" />
@@ -19,8 +20,5 @@
     <ItemGroup>
       <ProjectReference Include="..\ChoreoHelper.Entities\ChoreoHelper.Entities.csproj" />
       <ProjectReference Include="..\ChoreoHelper.Gateway\ChoreoHelper.Gateway.csproj" />
-    </ItemGroup>
-    <ItemGroup>
-      <Folder Include="Entities\" />
     </ItemGroup>
 </Project>

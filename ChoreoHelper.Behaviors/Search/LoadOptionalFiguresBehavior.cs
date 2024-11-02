@@ -36,7 +36,7 @@ public sealed class LoadOptionalFiguresBehavior(IDanceFiguresRepository connecti
                     .ToHashSet();
 
                 return connection
-                    .GetFigures(vm.SelectedDance.Name, vm.GetLevels())
+                    .GetFigures(vm.SelectedDance?.Name, vm.GetLevels())
                     .Where(e => !hashesToIgnore.Contains(e.Hash))
                     .ToArray();
             })
