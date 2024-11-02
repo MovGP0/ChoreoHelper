@@ -1,8 +1,8 @@
 using System.Reactive.Disposables;
-using ChoreoHelper.Editor.ViewModels;
+using ChoreoHelper.Editor.TransitionEditor;
 using ReactiveUI;
 
-namespace ChoreoHelper.Editor.Behaviors;
+namespace ChoreoHelper.Editor.Shell;
 
 public sealed class NavigateToTransitionEditorBehavior(TransitionEditorViewModel targetViewModel) : IBehavior<ShellViewModel>
 {

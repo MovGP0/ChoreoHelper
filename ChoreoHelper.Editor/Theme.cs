@@ -1,29 +1,29 @@
 ﻿using System.Reactive.Disposables;
 using SkiaSharp;
 
-namespace ChoreoHelper.Editor.ViewModels;
+namespace ChoreoHelper.Editor;
 
 public sealed class Theme : IDisposable
 {
     private readonly CompositeDisposable _disposables = new();
 
     /// <summary>The background color of the grid.</summary>
-    public SKColor BackgroundColor { get; } = SKColors.White;
+    public SKColor BackgroundColor { get; } = SKColors.WhiteSmoke;
 
     /// <summary>The color for figures with Platinum difficulty</summary>
-    public SKColor PlatinumColor { get; } = new(0xe5e4e2);
+    public SKColor PlatinumColor { get; } = new(0xe5, 0xe4, 0xe2);
 
     /// <summary>The color for figures with Gold difficulty</summary>
-    public SKColor GoldColor { get; } = new(0xd4af37);
+    public SKColor GoldColor { get; } = new(0xd4, 0xaf, 0x37);
 
     /// <summary>The color for figures with Silver difficulty</summary>
-    public SKColor SilverColor { get; } = new(0xc0c0c0);
+    public SKColor SilverColor { get; } = new(0xc0, 0xc0, 0xc0);
 
     /// <summary>The color for figures with Bronze difficulty</summary>
-    public SKColor BronzeColor { get; } = new(0xcd7f32);
+    public SKColor BronzeColor { get; } = new(0xcd, 0x7f, 0x32);
 
     /// <summary>The color for figures with Brass difficulty</summary>
-    public SKColor BrassColor { get; } = new(0xb5a642);
+    public SKColor BrassColor { get; } = new(0xb5, 0xa6, 0x42);
 
     /// <summary>
     /// Paint for drawing the cell borders.
@@ -48,7 +48,7 @@ public sealed class Theme : IDisposable
 
     public SKPaint PlatinTextPaint { get; } = new()
     {
-        Color = new(0xe5e4e2),
+        Color = new(0xe5, 0xe4, 0xe2),
         TextSize = 14,
         IsStroke = true,
         StrokeWidth = 1
@@ -56,7 +56,7 @@ public sealed class Theme : IDisposable
 
     public SKPaint GoldTextPaint { get; } = new()
     {
-        Color = new(0xd4af37),
+        Color = new(0xd4, 0xaf, 0x37),
         TextSize = 14,
         IsStroke = true,
         StrokeWidth = 1
@@ -64,7 +64,7 @@ public sealed class Theme : IDisposable
 
     public SKPaint SilverTextPaint { get; } = new()
     {
-        Color = new(0xc0c0c0),
+        Color = new(0xc0, 0xc0, 0xc0),
         TextSize = 14,
         IsStroke = true,
         StrokeWidth = 1
@@ -75,7 +75,7 @@ public sealed class Theme : IDisposable
     /// </summary>
     public SKPaint BronzeTextPaint { get; } = new()
     {
-        Color = new(0xcd7f32),
+        Color = new(0xcd, 0x7f, 0x32),
         TextSize = 14,
         IsStroke = true,
         StrokeWidth = 1
@@ -83,7 +83,7 @@ public sealed class Theme : IDisposable
 
     public SKPaint BrassTextPaint { get; } = new()
     {
-        Color = new(0xb5a642),
+        Color = new(0xb5, 0xa6, 0x42),
         TextSize = 14,
         IsStroke = true,
         StrokeWidth = 1
@@ -97,13 +97,13 @@ public sealed class Theme : IDisposable
 
     public SKPaint Distance1Paint { get; } = new()
     {
-        Color = new SKColor(0x0245ee),
+        Color = new SKColor(0x02, 0x45, 0xee),
         IsStroke = false
     };
 
     public SKPaint Distance2Paint { get; } = new()
     {
-        Color = new SKColor(0xeeab02),
+        Color = new SKColor(0xee, 0xab, 0x02),
         IsStroke = false
     };
 

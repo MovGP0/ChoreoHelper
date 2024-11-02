@@ -1,7 +1,5 @@
-﻿using System.Reactive.Disposables;
-using System.Windows.Input;
-using ChoreoHelper.Editor.Messages;
-using ChoreoHelper.Editor.Model;
+﻿using System.Windows.Input;
+using ChoreoHelper.Editor.Shared;
 using ChoreoHelper.Entities;
 using DynamicData.Binding;
 using MessagePipe;
@@ -11,7 +9,7 @@ using SkiaSharp.Views.Desktop;
 using SkiaSharp.Views.WPF;
 using Splat;
 
-namespace ChoreoHelper.Editor.ViewModels;
+namespace ChoreoHelper.Editor.TransitionEditor;
 
 public sealed class TransitionEditorViewModel : ReactiveObject, IActivatableViewModel, IRoutableViewModel
 {
@@ -29,31 +27,12 @@ public sealed class TransitionEditorViewModel : ReactiveObject, IActivatableView
             }
 
             _gridPainter = Locator.Current.GetRequiredService<GridPainter>();
-            dataLoadedSubscriber.Subscribe(e => UpdateDances(e.Dances)).DisposeWith(disposables);
         });
-    }
-
-    private void UpdateDances(ICollection<Dance> dances)
-    {
-        SelectedDance = null;
-        Dances.Clear();
-        Figures.Clear();
-        Transitions = new byte[0, 0];
-
-        foreach (var dance in dances)
-        {
-            Dances.Add(dance);
-        }
-
-        SelectedDance = dances
-            .OrderBy(e => e.Category)
-            .ThenBy(e => e.Name)
-            .First();
     }
 
     private GridPositions _gridPositions = new();
 
-    public void HandlePaintSurface(object sender, SKPaintSurfaceEventArgs e)
+    public void HandlePaintSurface(SKPaintSurfaceEventArgs e)
     {
         var isDanceLoaded = SelectedDance is not null
             && Figures.Count > 0

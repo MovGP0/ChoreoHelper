@@ -4,7 +4,7 @@ using ChoreoHelper.Entities;
 using MessagePipe;
 using ReactiveUI;
 
-namespace ChoreoHelper.Editor.TransitionEditor;
+namespace ChoreoHelper.Editor.TransitionEditor.Behaviors;
 
 public sealed class DancesLoadedBehavior(ISubscriber<DataLoadedEvent> dataLoadedSubscriber)
     : IBehavior<TransitionEditorViewModel>

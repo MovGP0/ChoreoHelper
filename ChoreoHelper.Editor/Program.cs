@@ -1,6 +1,6 @@
 ﻿using System.Reactive.Concurrency;
 using System.Windows;
-using ChoreoHelper.Editor.ViewModels;
+using ChoreoHelper.Editor.Shell;
 using Microsoft.Extensions.DependencyInjection;
 using ReactiveUI;
 using Serilog.Sinks.SystemConsole.Themes;

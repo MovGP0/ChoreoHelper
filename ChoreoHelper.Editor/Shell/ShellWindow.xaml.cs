@@ -1,8 +1,7 @@
 using System.Windows;
-using ChoreoHelper.Editor.ViewModels;
 using ReactiveUI;
 
-namespace ChoreoHelper.Editor.Views;
+namespace ChoreoHelper.Editor.Shell;
 
 public sealed partial class ShellWindow : Window, IViewFor<ShellViewModel>
 {

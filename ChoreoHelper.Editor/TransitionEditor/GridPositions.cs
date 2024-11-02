@@ -1,7 +1,7 @@
 ﻿using System.Drawing;
 using ChoreoHelper.Entities;
 
-namespace ChoreoHelper.Editor.Model;
+namespace ChoreoHelper.Editor.TransitionEditor;
 
 public sealed class GridPositions
 {

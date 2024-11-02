@@ -1,7 +1,7 @@
 ﻿using System.Xml.Linq;
 using ChoreoHelper.Entities;
 
-namespace ChoreoHelper.Editor.Shell;
+namespace ChoreoHelper.Editor.Shared;
 
 public sealed class XmlDataLoader
 {

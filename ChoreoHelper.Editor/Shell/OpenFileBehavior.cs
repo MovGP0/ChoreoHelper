@@ -1,14 +1,12 @@
 using System.Reactive;
 using System.Reactive.Disposables;
-using ChoreoHelper.Editor.Business;
-using ChoreoHelper.Editor.Messages;
-using ChoreoHelper.Editor.ViewModels;
+using ChoreoHelper.Editor.Shared;
 using Microsoft.Win32;
 using OneOf;
 using OneOf.Types;
 using ReactiveUI;
 
-namespace ChoreoHelper.Editor.Behaviors;
+namespace ChoreoHelper.Editor.Shell;
 
 public sealed class OpenFileBehavior(
     XmlDataLoader xmlDataLoader,

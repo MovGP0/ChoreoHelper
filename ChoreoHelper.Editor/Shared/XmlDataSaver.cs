@@ -2,7 +2,7 @@
 using System.Xml.Linq;
 using ChoreoHelper.Entities;
 
-namespace ChoreoHelper.Editor.Business;
+namespace ChoreoHelper.Editor.Shared;
 
 public sealed class XmlDataSaver
 {

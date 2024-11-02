@@ -24,6 +24,8 @@
     <PackageReference Include="MaterialDesignThemes" Version="5.0.0" />
     <PackageReference Include="MaterialDesignThemes.Wpf" Version="1.0.1" />
     <PackageReference Include="MaterialDesignColors" Version="3.0.0" />
+    <PackageReference Include="MessagePipe" Version="1.8.1" />
+    <PackageReference Include="MessagePipe.Analyzer" Version="1.8.1" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\ChoreoHelper.Entities\ChoreoHelper.Entities.csproj" />
@@ -31,7 +33,12 @@
     <ProjectReference Include="..\ChoreoHelper.ReactiveUI\ChoreoHelper.ReactiveUI.csproj" />
   </ItemGroup>
   <ItemGroup>
-    <Page Update="Views\TransitionEditorControl.xaml">
+    <Page Update="TransitionEditor\TransitionEditorControl.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <XamlRuntime>Wpf</XamlRuntime>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Update="Shell\ShellWindow.xaml">
       <Generator>MSBuild:Compile</Generator>
       <XamlRuntime>Wpf</XamlRuntime>
       <SubType>Designer</SubType>

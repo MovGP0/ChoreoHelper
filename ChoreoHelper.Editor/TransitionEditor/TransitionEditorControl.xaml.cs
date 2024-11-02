@@ -1,10 +1,14 @@
 ﻿using System.Reactive.Disposables;
 using System.Reactive.Linq;
+using System.Windows;
 using System.Windows.Input;
+using ChoreoHelper.Editor.TransitionEditor.Events;
+using MessagePipe;
 using ReactiveUI;
 using SkiaSharp.Views.Desktop;
+using Splat;
 
-namespace ChoreoHelper.Editor.Views;
+namespace ChoreoHelper.Editor.TransitionEditor;
 
 public partial class TransitionEditorControl
 {
@@ -14,6 +18,12 @@ public partial class TransitionEditorControl
 
         this.WhenActivated(d =>
         {
+            Observable.FromEventPattern<SizeChangedEventHandler, SizeChangedEventArgs>(
+                eh => MainGrid.SizeChanged += eh,
+                eh => MainGrid.SizeChanged -= eh)
+                .Subscribe(args => OnGridSizeChanged())
+                .DisposeWith(d);
+
             this
                 .WhenAnyValue(x => x.ViewModel)
                 .BindTo(this, x => x.DataContext)
@@ -24,7 +34,7 @@ public partial class TransitionEditorControl
                     eh => SkiaCanvas.PaintSurface -= eh)
                 .Subscribe(args =>
                 {
-                    ViewModel?.HandlePaintSurface(args.Sender ?? this, args.EventArgs);
+                    ViewModel?.HandlePaintSurface(args.EventArgs);
                 })
                 .DisposeWith(d);
 
@@ -36,6 +46,19 @@ public partial class TransitionEditorControl
                     ViewModel?.HandleMouseLeftButtonUp(SkiaCanvas, args.EventArgs);
                 })
                 .DisposeWith(d);
+
+            Locator.Current
+                .GetRequiredService<ISubscriber<RenderTransitionEditorCommand>>()
+                .Subscribe(_ => SkiaCanvas.InvalidateVisual())
+                .DisposeWith(d);
+
+            Locator.Current.GetRequiredService<IPublisher<RenderTransitionEditorCommand>>()
+                .Publish(new RenderTransitionEditorCommand());
         });
+    }
+
+    private void OnGridSizeChanged()
+    {
+        SkiaCanvas.Height = SkiaCanvasRow.ActualHeight - (SkiaCanvas.Margin.Top + SkiaCanvas.Margin.Bottom);
     }
 }

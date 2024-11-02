@@ -1,9 +1,8 @@
 ﻿using System.Reactive.Disposables;
-using ChoreoHelper.Editor.Model;
 using ChoreoHelper.Entities;
 using SkiaSharp;
 
-namespace ChoreoHelper.Editor.ViewModels;
+namespace ChoreoHelper.Editor.TransitionEditor;
 
 public sealed class GridPainter : IDisposable
 {
@@ -105,25 +104,26 @@ public sealed class GridPainter : IDisposable
             };
 
             canvas.DrawRect(x, y, cellWidth, cellHeight, distancePaint);
-            canvas.DrawRect(x, y, cellWidth, cellHeight, Theme.BorderPaint);
+            //canvas.DrawRect(x, y, cellWidth, cellHeight, Theme.BorderPaint);
 
             // TODO: Store the screen location of the cell
             // RectangleF location = new(...);
             // result.CellMap.Add(new(location, row, column));
         }
 
+        canvas.Restore();
         return result;
     }
 
     private SKPaint GetTextPaintForFigure(DanceFigure figureToDraw)
     {
-        var paint = figureToDraw.Level switch
+        var level = figureToDraw.Level;
+        var paint = level switch
         {
-            DanceLevel.Undefined => Theme.TextPaint,
-            DanceLevel.Bronze => Theme.BronzeTextPaint,
-            DanceLevel.Silver => Theme.SilverTextPaint,
-            DanceLevel.Gold => Theme.GoldTextPaint,
-            DanceLevel.Advanced => Theme.PlatinTextPaint,
+            _ when level.HasFlag(DanceLevel.Advanced) => Theme.PlatinTextPaint,
+            _ when level.HasFlag(DanceLevel.Gold) => Theme.GoldTextPaint,
+            _ when level.HasFlag(DanceLevel.Silver) => Theme.SilverTextPaint,
+            _ when level.HasFlag(DanceLevel.Bronze) => Theme.BronzeTextPaint,
             _ => Theme.TextPaint
         };
         return paint;

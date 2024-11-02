@@ -3,7 +3,7 @@ using ReactiveUI;
 using ReactiveUI.Fody.Helpers;
 using Splat;
 
-namespace ChoreoHelper.Editor.ViewModels;
+namespace ChoreoHelper.Editor.Shell;
 
 public sealed class ShellViewModel : ReactiveObject, IScreen, IActivatableViewModel
 {
