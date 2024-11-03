@@ -8,7 +8,7 @@
     xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
     xmlns:reactiveUi="http://reactiveui.net"
     xmlns:viewModels="clr-namespace:ChoreoHelper.Editor.TransitionEditor"
-    xmlns:presenter="clr-namespace:ChoreoHelper.Editor.TransitionEditor.Presenter"
+    xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
     mc:Ignorable="d"
     TextElement.FontWeight="Regular"
     TextElement.FontSize="12"
@@ -25,18 +25,15 @@
                 <ResourceDictionary Source="pack://application:,,,/MaterialDesignThemes.Wpf;component/Themes/materialdesign3.defaults.xaml" />
                 <ResourceDictionary Source="pack://application:,,,/MaterialDesignColors;component/Themes/Recommended/primary/materialdesigncolor.blue.xaml" />
                 <ResourceDictionary Source="pack://application:,,,/MaterialDesignColors;component/Themes/Recommended/secondary/materialdesigncolor.deeppurple.xaml" />
-                <ResourceDictionary>
-                    <presenter:RowHeightToControlHeightConverter x:Key="RowHeightToControlHeightConverter" />
-                </ResourceDictionary>
             </ResourceDictionary.MergedDictionaries>
         </ResourceDictionary>
     </UserControl.Resources>
-    <Grid x:Name="MainGrid"
+    <Grid
           VerticalAlignment="Stretch"
           HorizontalAlignment="Stretch">
         <Grid.RowDefinitions>
             <RowDefinition Height="Auto" />
-            <RowDefinition Height="*" x:Name="SkiaCanvasRow" />
+            <RowDefinition Height="*" />
         </Grid.RowDefinitions>
         <ToolBar
             Grid.Row="0" Grid.Column="0" 
@@ -53,11 +50,16 @@
                     </DataTemplate>
                 </ComboBox.ItemTemplate>
             </ComboBox>
+            <Button
+                Content="{materialDesign:PackIcon Kind=ZoomOutOutline}"
+                Command="{Binding ResetZoom, UpdateSourceTrigger=PropertyChanged}"/>
         </ToolBar>
         <skia:SKElement
             Grid.Row="1" Grid.Column="0"
             x:Name="SkiaCanvas"
             Margin="4"
+            IsManipulationEnabled="True"
+            Focusable="True"
             HorizontalAlignment="Stretch"
             VerticalAlignment="Stretch"/>
     </Grid>

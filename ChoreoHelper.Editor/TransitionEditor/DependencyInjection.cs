@@ -13,6 +13,7 @@ public static class DependencyInjection
             .AddSingleton<TransitionEditorViewModel>()
             .AddSingleton<IViewFor<TransitionEditorViewModel>, TransitionEditorControl>()
             .AddSingleton<IBehavior<TransitionEditorViewModel>, DancesLoadedBehavior>()
-            .AddSingleton<IBehavior<TransitionEditorViewModel>, DanceSelectedBehavior>();
+            .AddSingleton<IBehavior<TransitionEditorViewModel>, DanceSelectedBehavior>()
+            .AddSingleton<IBehavior<TransitionEditorViewModel>, ResetZoomBehavior>();
     }
 }

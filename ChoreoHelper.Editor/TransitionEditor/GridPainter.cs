@@ -25,12 +25,14 @@ public sealed class GridPainter : IDisposable
         SKImageInfo rawInfo,
         byte[,] transitions,
         DanceFigure[] figures,
-        bool isDanceLoaded)
+        bool isDanceLoaded,
+        SKMatrix transformationMatrix)
     {
         var result = new GridPositions();
 
         var canvas = surface.Canvas;
         canvas.Clear(Theme.BackgroundColor);
+        canvas.SetMatrix(transformationMatrix);
 
         if (!isDanceLoaded)
         {

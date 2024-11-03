@@ -1,11 +1,8 @@
 ﻿using System.Reactive.Disposables;
-using System.Reactive.Linq;
-using System.Windows;
-using System.Windows.Input;
 using ChoreoHelper.Editor.TransitionEditor.Events;
 using MessagePipe;
+using ReactiveMarbles.ObservableEvents;
 using ReactiveUI;
-using SkiaSharp.Views.Desktop;
 using Splat;
 
 namespace ChoreoHelper.Editor.TransitionEditor;
@@ -18,33 +15,41 @@ public partial class TransitionEditorControl
 
         this.WhenActivated(d =>
         {
-            Observable.FromEventPattern<SizeChangedEventHandler, SizeChangedEventArgs>(
-                eh => MainGrid.SizeChanged += eh,
-                eh => MainGrid.SizeChanged -= eh)
-                .Subscribe(args => OnGridSizeChanged())
-                .DisposeWith(d);
-
             this
                 .WhenAnyValue(x => x.ViewModel)
                 .BindTo(this, x => x.DataContext)
                 .DisposeWith(d);
 
-            Observable.FromEventPattern<SKPaintSurfaceEventArgs>(
-                    eh => SkiaCanvas.PaintSurface += eh,
-                    eh => SkiaCanvas.PaintSurface -= eh)
-                .Subscribe(args =>
-                {
-                    ViewModel?.HandlePaintSurface(args.EventArgs);
-                })
+            SkiaCanvas.Events().PaintSurface
+                .Subscribe(args => ViewModel?.HandlePaintSurface(args))
                 .DisposeWith(d);
 
-            Observable.FromEventPattern<MouseButtonEventHandler, MouseButtonEventArgs>(
-                eh => SkiaCanvas.MouseLeftButtonUp += eh,
-                eh => SkiaCanvas.MouseLeftButtonDown -= eh)
-                .Subscribe(args =>
-                {
-                    ViewModel?.HandleMouseLeftButtonUp(SkiaCanvas, args.EventArgs);
-                })
+            SkiaCanvas.Events().MouseLeftButtonUp
+                .Subscribe(args => ViewModel?.HandleMouseLeftButtonUp(SkiaCanvas, args))
+                .DisposeWith(d);
+
+            SkiaCanvas.Events().ManipulationDelta
+                .Subscribe(args => ViewModel?.HandleManipulationDelta(args))
+                .DisposeWith(d);
+
+            SkiaCanvas.Events().MouseWheel
+                .Subscribe(args => ViewModel?.HandleMouseWheel(SkiaCanvas, args))
+                .DisposeWith(d);
+
+            SkiaCanvas.Events().MouseDown
+                .Subscribe(args => ViewModel?.HandleMouseDown(SkiaCanvas, args))
+                .DisposeWith(d);
+
+            SkiaCanvas.Events().MouseMove
+                .Subscribe(args => ViewModel?.HandleMouseMove(SkiaCanvas, args))
+                .DisposeWith(d);
+
+            SkiaCanvas.Events().MouseUp
+                .Subscribe(args => ViewModel?.HandleMouseUp(SkiaCanvas, args))
+                .DisposeWith(d);
+
+            SkiaCanvas.Events().KeyDown
+                .Subscribe(args => ViewModel?.HandleKeyDown(SkiaCanvas, args))
                 .DisposeWith(d);
 
             Locator.Current
@@ -55,10 +60,5 @@ public partial class TransitionEditorControl
             Locator.Current.GetRequiredService<IPublisher<RenderTransitionEditorCommand>>()
                 .Publish(new RenderTransitionEditorCommand());
         });
-    }
-
-    private void OnGridSizeChanged()
-    {
-        SkiaCanvas.Height = SkiaCanvasRow.ActualHeight - (SkiaCanvas.Margin.Top + SkiaCanvas.Margin.Bottom);
     }
 }
