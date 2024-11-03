@@ -43,10 +43,14 @@ public sealed class GridPainter : IDisposable
         int figureCount = figures.Length;
 
         // Define cell sizes
-        float cellWidth = 100;
-        float cellHeight = 30;
-        float headerHeight = 100;
-        float headerWidth = 200;
+        float cellWidth = 20;
+        float cellHeight = 20;
+
+        float headerWidth = (
+            from figure in figures
+            let paint = GetTextPaintForFigure(figure)
+            select paint.MeasureText(figure.Name))
+            .Max();
 
         // Draw vertical headers (figures)
         for (int i = 0; i < figureCount; i++)
@@ -55,7 +59,7 @@ public sealed class GridPainter : IDisposable
             var paint = GetTextPaintForFigure(figureToDraw);
 
             // Calculate position
-            float y = headerHeight + i * cellHeight;
+            float y = headerWidth + i * cellHeight;
             canvas.Save();
             canvas.Translate(headerWidth, y + cellHeight / 2);
             canvas.DrawText(figureToDraw.Name, 0, 0, paint);
@@ -77,7 +81,7 @@ public sealed class GridPainter : IDisposable
 
             // Draw figure name vertically
             canvas.Save();
-            canvas.Translate(x + cellWidth / 2, headerHeight);
+            canvas.Translate(x + cellWidth / 2, headerWidth);
             canvas.RotateDegrees(-90);
             canvas.DrawText(figureToDraw.Name, 0, 0, paint);
             canvas.Restore();
@@ -92,7 +96,7 @@ public sealed class GridPainter : IDisposable
         for (int j = 0; j < figureCount; j++)
         {
             float x = headerWidth + j * cellWidth;
-            float y = headerHeight + i * cellHeight;
+            float y = headerWidth + i * cellHeight;
 
             // Get the transition value
             byte value = transitions[i, j];

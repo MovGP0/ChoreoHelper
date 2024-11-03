@@ -1,7 +1,6 @@
 ﻿using System.Reactive;
 using System.Windows;
 using System.Windows.Input;
-using ChoreoHelper.Editor.Shared;
 using ChoreoHelper.Editor.TransitionEditor.Events;
 using ChoreoHelper.Entities;
 using DynamicData.Binding;

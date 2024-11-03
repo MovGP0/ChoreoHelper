@@ -51,7 +51,8 @@ public sealed class Theme : IDisposable
         Color = new(0xe5, 0xe4, 0xe2),
         TextSize = 14,
         IsStroke = true,
-        StrokeWidth = 1
+        StrokeWidth = 1,
+        Style = SKPaintStyle.Fill
     };
 
     public SKPaint GoldTextPaint { get; } = new()
@@ -59,7 +60,8 @@ public sealed class Theme : IDisposable
         Color = new(0xd4, 0xaf, 0x37),
         TextSize = 14,
         IsStroke = true,
-        StrokeWidth = 1
+        StrokeWidth = 1,
+        Style = SKPaintStyle.Fill
     };
 
     public SKPaint SilverTextPaint { get; } = new()
@@ -67,7 +69,8 @@ public sealed class Theme : IDisposable
         Color = new(0xc0, 0xc0, 0xc0),
         TextSize = 14,
         IsStroke = true,
-        StrokeWidth = 1
+        StrokeWidth = 1,
+        Style = SKPaintStyle.Fill
     };
 
     /// <summary>
@@ -78,7 +81,8 @@ public sealed class Theme : IDisposable
         Color = new(0xcd, 0x7f, 0x32),
         TextSize = 14,
         IsStroke = true,
-        StrokeWidth = 1
+        StrokeWidth = 1,
+        Style = SKPaintStyle.Fill
     };
 
     public SKPaint BrassTextPaint { get; } = new()
@@ -86,7 +90,8 @@ public sealed class Theme : IDisposable
         Color = new(0xb5, 0xa6, 0x42),
         TextSize = 14,
         IsStroke = true,
-        StrokeWidth = 1
+        StrokeWidth = 1,
+        Style = SKPaintStyle.Fill
     };
 
     public SKPaint DistanceUnreachablePaint { get; } = new()
