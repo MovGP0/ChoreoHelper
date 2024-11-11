@@ -32,6 +32,7 @@
     <ProjectReference Include="..\ChoreoHelper.Entities\ChoreoHelper.Entities.csproj" />
     <ProjectReference Include="..\ChoreoHelper.Graph\ChoreoHelper.Graph.csproj" />
     <ProjectReference Include="..\ChoreoHelper.ReactiveUI\ChoreoHelper.ReactiveUI.csproj" />
+    <ProjectReference Include="..\ChoreoHelper.ViewModels\ChoreoHelper.ViewModels.csproj" />
   </ItemGroup>
   <ItemGroup>
     <Page Update="TransitionEditor\TransitionEditorControl.xaml">
