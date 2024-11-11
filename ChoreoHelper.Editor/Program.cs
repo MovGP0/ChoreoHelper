@@ -1,5 +1,4 @@
-﻿using System.Reactive.Concurrency;
-using System.Windows;
+﻿using System.Windows;
 using ChoreoHelper.Editor.Shell;
 using Microsoft.Extensions.DependencyInjection;
 using ReactiveUI;
@@ -41,9 +40,6 @@ public static class Program
         host.Services.UseMicrosoftDependencyResolver();
 
         var app = new Application();
-
-        RxApp.TaskpoolScheduler = TaskPoolScheduler.Default;
-        RxApp.MainThreadScheduler = DispatcherScheduler.Current;
 
         var viewModel = Locator.Current.GetRequiredService<ShellViewModel>();
 

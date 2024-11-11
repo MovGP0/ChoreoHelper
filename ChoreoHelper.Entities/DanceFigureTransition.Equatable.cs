@@ -9,7 +9,8 @@ public sealed partial class DanceFigureTransition : IEquatable<DanceFigureTransi
         if (ReferenceEquals(this, other)) return true;
         return Source.Equals(other.Source)
                && Target.Equals(other.Target)
-               && Distance.Equals(other.Distance);
+               && Distance.Equals(other.Distance)
+               && Restriction.Equals(other.Restriction);
     }
 
     [Pure]

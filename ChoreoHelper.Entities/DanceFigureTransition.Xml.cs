@@ -13,6 +13,7 @@ public sealed partial class DanceFigureTransition
         yield return new XAttribute(Xn(ns, nameof(Source)), Source.Name);
         yield return new XAttribute(Xn(ns, nameof(Target)), Target.Name);
         yield return new XAttribute(Xn(ns, nameof(Distance)), Distance.ToString(CultureInfo.InvariantCulture));
+        yield return new XAttribute(Xn(ns, nameof(Restriction)), Restriction.ToString("D"));
     }
 
     [Pure]
@@ -23,10 +24,79 @@ public sealed partial class DanceFigureTransition
             return new Error();
         }
 
+        var danceName = GetDanceName(element);
+        if (string.IsNullOrWhiteSpace(danceName))
+        {
+            return new Error();
+        }
+
+        var sourceFigure = TryFindSourceFigure(element, figures, danceName);
+        if (!sourceFigure.TryPickT0(out var source, out _))
+        {
+            return new Error();
+        }
+
+        var targetFigure = TryFindTargetFigure(element, figures, danceName);
+        if (!targetFigure.TryPickT0(out var target, out _))
+        {
+            return new Error();
+        }
+
+        var distance = TryParseDistance(element);
+        if (!distance.TryPickT0(out var dist, out _))
+        {
+            return new Error();
+        }
+
+        var restriction = ParseRestriction(element);
+
+        return new DanceFigureTransition(source, target, dist, restriction);
+    }
+
+    private static string GetDanceName(XElement element)
+    {
         var ns = element.Name.Namespace;
+        return element.Attribute(Xn(ns, "Dance"))?.Value ?? string.Empty;
+    }
 
-        var danceName = element.Attribute(Xn(ns, "Dance"))?.Value ?? string.Empty;
+    private static OneOf<float, Error> TryParseDistance(XElement element)
+    {
+        var ns = element.Name.Namespace;
+        var distanceValue = element.Attribute(Xn(ns, nameof(Distance)))?.Value ?? string.Empty;
+        if (float.TryParse(distanceValue, CultureInfo.InvariantCulture, out var distance))
+        {
+            return distance;
+        }
 
+        return new Error();
+    }
+
+    private static OneOf<DanceFigure, Error> TryFindTargetFigure(
+        XElement element,
+        IReadOnlyCollection<DanceFigure> figures,
+        string danceName)
+    {
+        var ns = element.Name.Namespace;
+        var sourceName = element.Attribute(Xn(ns, nameof(Target)))?.Value ?? string.Empty;
+        var source = figures
+            .Where(f => f.Name == sourceName && f.Dance.Name == danceName)
+            .Take(1)
+            .ToArray();
+
+        if (source.Length != 1)
+        {
+            return new Error();
+        }
+
+        return source[0];
+    }
+    
+    private static OneOf<DanceFigure, Error> TryFindSourceFigure(
+        XElement element,
+        IReadOnlyCollection<DanceFigure> figures,
+        string danceName)
+    {
+        var ns = element.Name.Namespace;
         var sourceName = element.Attribute(Xn(ns, nameof(Source)))?.Value ?? string.Empty;
         var source = figures
             .Where(f => f.Name == sourceName && f.Dance.Name == danceName)
@@ -38,24 +108,20 @@ public sealed partial class DanceFigureTransition
             return new Error();
         }
 
-        var targetName = element.Attribute(Xn(ns, nameof(Target)))?.Value ?? string.Empty;
-        var target = figures
-            .Where(f => f.Name == targetName && f.Dance.Name == danceName)
-            .Take(1)
-            .ToArray();
+        return source[0];
+    }
 
-        if (target.Length != 1)
+    private static CompetitionRestriction ParseRestriction(XElement element)
+    {
+        var ns = element.Name.Namespace;
+        var restrictionValue = element.Attribute(Xn(ns, nameof(Restriction)))?.Value ?? string.Empty;
+        var restriction = CompetitionRestriction.AllowedInAllClasses;
+        if (int.TryParse(restrictionValue, NumberStyles.Integer, CultureInfo.InvariantCulture, out int restrictionInt))
         {
-            return new Error();
+            restriction = (CompetitionRestriction)restrictionInt;
         }
 
-        var distanceValue = element.Attribute(Xn(ns, nameof(Distance)))?.Value ?? string.Empty;
-        if (float.TryParse(distanceValue, CultureInfo.InvariantCulture, out float distance))
-        {
-            return new DanceFigureTransition(source[0], target[0], distance);
-        }
-
-        return new Error();
+        return restriction;
     }
 
     [Pure]

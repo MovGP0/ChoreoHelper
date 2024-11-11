@@ -1,5 +1,4 @@
-﻿using System.Diagnostics;
-using QuikGraph;
+﻿using QuikGraph;
 
 namespace ChoreoHelper.Entities;
 
@@ -7,7 +6,7 @@ namespace ChoreoHelper.Entities;
 /// Specifies a transition between two dance figures.
 /// </summary>
 [DebuggerDisplay("{DebuggerDisplay,nq}")]
-public sealed partial class DanceFigureTransition(DanceFigure source, DanceFigure target, float distance)
+public sealed partial class DanceFigureTransition(DanceFigure source, DanceFigure target, float distance, CompetitionRestriction restriction)
     : IEdge<DanceFigure>
 {
     [Pure]
@@ -18,6 +17,9 @@ public sealed partial class DanceFigureTransition(DanceFigure source, DanceFigur
 
     [Pure]
     public float Distance { get; } = distance;
+
+    [Pure]
+    public CompetitionRestriction Restriction { get; } = restriction;
 
     [Pure]
     private string DebuggerDisplay => $"{Source} -> {Target} ({Distance})";
