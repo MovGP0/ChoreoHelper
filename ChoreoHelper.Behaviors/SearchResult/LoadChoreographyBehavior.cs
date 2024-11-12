@@ -14,15 +14,11 @@ public sealed class LoadChoreographyBehavior: IBehavior<SearchResultViewModel>
         choreographies
             .Connect()
             .Bind(viewModel.Choreographies)
-            .ObserveOn(RxApp.MainThreadScheduler)
-            .SubscribeOn(RxApp.MainThreadScheduler)
             .Subscribe()
             .DisposeWith(disposables);
 
         MessageBus.Current
             .Listen<FoundChoreographies>()
-            .ObserveOn(RxApp.MainThreadScheduler)
-            .SubscribeOn(RxApp.MainThreadScheduler)
             .Subscribe(cs =>
             {
                 var choreographyItems = cs.Items;

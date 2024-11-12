@@ -34,7 +34,6 @@
     <ProjectReference Include="..\ChoreoHelper.Graph\ChoreoHelper.Graph.csproj" />
     <ProjectReference Include="..\ChoreoHelper.Messages\ChoreoHelper.Messages.csproj" />
     <ProjectReference Include="..\ChoreoHelper.ReactiveUI\ChoreoHelper.ReactiveUI.csproj" />
-    <ProjectReference Include="..\ChoreoHelper.Scheduler\ChoreoHelper.Scheduler.csproj" />
     <ProjectReference Include="..\ChoreoHelper.ViewModels\ChoreoHelper.ViewModels.csproj" />
   </ItemGroup>
 </Project>

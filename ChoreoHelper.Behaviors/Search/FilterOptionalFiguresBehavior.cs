@@ -1,5 +1,6 @@
 using System.Collections.Immutable;
 using ChoreoHelper.Behaviors.Extensions;
+using ChoreoHelper.Entities;
 using ChoreoHelper.Messages;
 using DynamicData.Binding;
 
@@ -15,15 +16,12 @@ public sealed class FilterOptionalFiguresBehavior: IBehavior<SearchViewModel>
         optionalFiguresFiltered
             .Connect()
             .Bind(viewModel.OptionalFiguresFiltered)
-            .ObserveOn(RxApp.MainThreadScheduler)
-            .SubscribeOn(RxApp.MainThreadScheduler)
             .Subscribe()
             .DisposeWith(disposables);
 
         Observe(viewModel)
-            .ObserveOn(RxApp.MainThreadScheduler)
-            .SubscribeOn(RxApp.MainThreadScheduler)
             .Select(_ => viewModel)
+            .ObserveOn(RxApp.MainThreadScheduler)
             .Subscribe(vm =>
             {
                 var selectedRequiredFigureHashes = vm.RequiredFiguresFiltered
@@ -36,11 +34,20 @@ public sealed class FilterOptionalFiguresBehavior: IBehavior<SearchViewModel>
                     .OptionalFigures
                     .Where(rf => string.IsNullOrEmpty(searchText) || rf.Name.Contains(searchText, StringComparison.CurrentCultureIgnoreCase))
                     .Where(of => !selectedRequiredFigureHashes.Contains(of.Hash))
+                    .Where(of => FilterByLevel(of, vm.GetLevels()))
                     .ToImmutableArray();
 
                 optionalFiguresFiltered.Update(figures);
             })
             .DisposeWith(disposables);
+    }
+
+    private static bool FilterByLevel(OptionalFigureSelectionViewModel figure, DanceLevel levelFilter)
+    {
+        return figure.Level.IsFlagSet(DanceLevel.Advanced) && levelFilter.IsFlagSet(DanceLevel.Advanced)
+               || figure.Level.IsFlagSet(DanceLevel.Gold) && levelFilter.IsFlagSet(DanceLevel.Gold)
+               || figure.Level.IsFlagSet(DanceLevel.Silver) && levelFilter.IsFlagSet(DanceLevel.Silver)
+               || figure.Level.IsFlagSet(DanceLevel.Bronze) && levelFilter.IsFlagSet(DanceLevel.Bronze);
     }
 
     private static IObservable<Unit> Observe(SearchViewModel viewModel)
@@ -61,8 +68,12 @@ public sealed class FilterOptionalFiguresBehavior: IBehavior<SearchViewModel>
         var requiredFigureChanged = MessageBus.Current.Listen<RequiredFigureUpdated>()
             .Select(_ => Unit.Default);
 
+        var levelChanged = MessageBus.Current.Listen<LevelChanged>()
+            .Select(_ => Unit.Default);
+
         return searchTextChanged
             .Merge(listChanged)
-            .Merge(requiredFigureChanged);
+            .Merge(requiredFigureChanged)
+            .Merge(levelChanged);
     }
 }

@@ -18,6 +18,7 @@ public static class SourceListExtensions
         {
             sourceList.Remove(itemToRemove);
         }
+
         sourceList.AddRange(toAdd);
     }
 }

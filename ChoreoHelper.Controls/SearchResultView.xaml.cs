@@ -1,8 +1,6 @@
-﻿using System.Windows.Controls;
+﻿namespace ChoreoHelper.Controls;
 
-namespace ChoreoHelper.Controls;
-
-public partial class SearchResultView : UserControl
+public partial class SearchResultView
 {
     public SearchResultView()
     {

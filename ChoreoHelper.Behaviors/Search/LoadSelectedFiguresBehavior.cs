@@ -12,14 +12,10 @@ public sealed class LoadSelectedFiguresBehavior : IBehavior<SearchViewModel>
 
         selectedFigures.Connect()
             .Bind(viewModel.SelectedRequiredFigures)
-            .ObserveOn(RxApp.MainThreadScheduler)
-            .SubscribeOn(RxApp.MainThreadScheduler)
             .Subscribe()
             .DisposeWith(disposables);
 
         MessageBus.Current.Listen<RequiredFigureUpdated>()
-            .ObserveOn(RxApp.MainThreadScheduler)
-            .SubscribeOn(RxApp.MainThreadScheduler)
             .Subscribe(message =>
             {
                 var figureOption = viewModel.RequiredFigures
@@ -33,7 +29,7 @@ public sealed class LoadSelectedFiguresBehavior : IBehavior<SearchViewModel>
                 var figure = figureOption.Value;
                 figure.IsSelected = message.IsSelected;
 
-                var selectedFigure = Locator.Current.GetRequiredService<RequiredFigureSelectionViewModel>();
+                var selectedFigure = new RequiredFigureSelectionViewModel();
                 using (selectedFigure.SuppressChangeNotifications())
                 {
                     selectedFigure.Hash = figure.Hash;

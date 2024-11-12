@@ -12,6 +12,7 @@
         <PackageReference Include="ReactiveUI" />
         <PackageReference Include="Splat.Microsoft.Extensions.DependencyInjection" />
         <PackageReference Include="Splat.Microsoft.Extensions.Logging" />
+        <PackageReference Include="ReactiveMarbles.ObservableEvents.SourceGenerator" PrivateAssets="all" />
     </ItemGroup>
     <ItemGroup>
         <ProjectReference Include="..\ChoreoHelper.Gateway\ChoreoHelper.Gateway.csproj" />

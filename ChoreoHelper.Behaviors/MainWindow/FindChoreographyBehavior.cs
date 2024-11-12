@@ -16,16 +16,20 @@ public sealed class FindChoreographyBehavior(
     IUnreachableIslandsFinder unreachableIslandsFinder,
     IRouteFinder routeFinder,
     ILogger<FindChoreographyBehavior> logger)
-    : IBehavior<SearchViewModel>
+    : IBehavior<SearchViewModel>, IEnableLogger
 {
     public void Activate(SearchViewModel viewModel, CompositeDisposable disposables)
     {
         // at least two required figures are selected
-        var obs0 = viewModel.RequiredFigures
+        var obs0 = viewModel.RequiredFiguresFiltered
             .OnCollectionChanged()
             .Select(_ => Unit.Default);
 
-        var obs1 = MessageBus.Current.Listen<RequiredFigureUpdated>()
+        var obs1 = viewModel.OptionalFiguresFiltered
+            .OnCollectionChanged()
+            .Select(_ => Unit.Default);
+        
+        var obs2 = MessageBus.Current.Listen<RequiredFigureUpdated>()
             .Do(message =>
             {
                 var figure = viewModel.RequiredFigures
@@ -38,17 +42,19 @@ public sealed class FindChoreographyBehavior(
             })
             .Select(_ => Unit.Default);
 
-        var obs2 = viewModel.WhenAnyValue(
+        var obs3 = viewModel.WhenAnyValue(
                 vm => vm.IsStartWithSpecificFigure,
                 vm => vm.SelectedSpecificStartFigure)
             .Select(_ => Unit.Default);
 
         IObservable<bool> canExecute =
-            obs0.Merge(obs1).Merge(obs2)
+            obs0.Merge(obs1).Merge(obs2).Merge(obs3)
+            .Throttle(TimeSpan.FromMilliseconds(100))
             .ObserveOn(RxApp.MainThreadScheduler)
             .Select(_ => viewModel)
             .Select(vm => RequiredFiguresAreSelected(vm)
-                          && StartWithSpecificFigureIsValid(vm));
+                          && StartWithSpecificFigureIsValid(vm))
+            .Log(this, "can command execute", value => value.ToString());
 
         var command = ReactiveCommand
             .Create(DoNothing, canExecute)

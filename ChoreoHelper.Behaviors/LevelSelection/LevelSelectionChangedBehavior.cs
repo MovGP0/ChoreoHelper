@@ -8,8 +8,6 @@ public sealed class LevelSelectionChangedBehavior : IBehavior<LevelSelectionView
     {
         viewModel
             .WhenAnyValue(vm => vm.IsSelected)
-            .ObserveOn(RxApp.MainThreadScheduler)
-            .SubscribeOn(RxApp.MainThreadScheduler)
             .Select(_ => viewModel)
             .Subscribe(vm =>
             {

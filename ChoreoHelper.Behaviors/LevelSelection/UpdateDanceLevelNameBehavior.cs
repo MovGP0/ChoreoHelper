@@ -8,8 +8,6 @@ public sealed class UpdateDanceLevelNameBehavior: IBehavior<LevelSelectionViewMo
     {
         viewModel
             .WhenAnyValue(vm => vm.Level)
-            .ObserveOn(RxApp.MainThreadScheduler)
-            .SubscribeOn(RxApp.MainThreadScheduler)
             .Select(_ => viewModel)
             .Subscribe(vm =>
             {

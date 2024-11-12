@@ -8,8 +8,6 @@ public sealed class CloseDrawerBehavior: IBehavior<MainWindowViewModel>
     {
         MessageBus.Current
             .Listen<CloseDrawer>()
-            .SubscribeOn(RxApp.MainThreadScheduler)
-            .ObserveOn(RxApp.MainThreadScheduler)
             .Subscribe(_ => viewModel.IsDrawerOpen = false)
             .DisposeWith(disposables);
     }

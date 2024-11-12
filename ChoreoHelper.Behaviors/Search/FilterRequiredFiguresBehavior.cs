@@ -1,4 +1,6 @@
 using ChoreoHelper.Behaviors.Extensions;
+using ChoreoHelper.Entities;
+using ChoreoHelper.Messages;
 
 namespace ChoreoHelper.Behaviors.Search;
 
@@ -12,14 +14,10 @@ public sealed class FilterRequiredFiguresBehavior: IBehavior<SearchViewModel>
         requiredFiguresFiltered
             .Connect()
             .Bind(viewModel.RequiredFiguresFiltered)
-            .ObserveOn(RxApp.MainThreadScheduler)
-            .SubscribeOn(RxApp.MainThreadScheduler)
             .Subscribe()
             .DisposeWith(disposables);
 
         Observe(viewModel)
-             .ObserveOn(RxApp.MainThreadScheduler)
-             .SubscribeOn(RxApp.MainThreadScheduler)
              .Select(_ => viewModel)
              .Subscribe(vm =>
              {
@@ -27,11 +25,20 @@ public sealed class FilterRequiredFiguresBehavior: IBehavior<SearchViewModel>
                  var figures = viewModel
                      .RequiredFigures
                      .Where(rf => string.IsNullOrEmpty(searchText) || rf.Name.Contains(searchText, StringComparison.CurrentCultureIgnoreCase))
+                     .Where(of => FilterByLevel(of, vm.GetLevels()))
                      .ToList();
 
                  requiredFiguresFiltered.Update(figures);
              })
              .DisposeWith(disposables);
+    }
+
+    private static bool FilterByLevel(RequiredFigureSelectionViewModel figure, DanceLevel levelFilter)
+    {
+        return figure.Level.IsFlagSet(DanceLevel.Advanced) && levelFilter.IsFlagSet(DanceLevel.Advanced)
+               || figure.Level.IsFlagSet(DanceLevel.Gold) && levelFilter.IsFlagSet(DanceLevel.Gold)
+               || figure.Level.IsFlagSet(DanceLevel.Silver) && levelFilter.IsFlagSet(DanceLevel.Silver)
+               || figure.Level.IsFlagSet(DanceLevel.Bronze) && levelFilter.IsFlagSet(DanceLevel.Bronze);
     }
 
     private static IObservable<Unit> Observe(SearchViewModel viewModel)
@@ -44,6 +51,11 @@ public sealed class FilterRequiredFiguresBehavior: IBehavior<SearchViewModel>
             .WhenAnyValue(vm => vm.SearchText)
             .Select(_ => Unit.Default);
 
-        return searchTextChanged.Merge(listChanged);
+        var levelChanged = MessageBus.Current.Listen<LevelChanged>()
+            .Select(_ => Unit.Default);
+
+        return searchTextChanged
+            .Merge(listChanged)
+            .Merge(levelChanged);
     }
 }

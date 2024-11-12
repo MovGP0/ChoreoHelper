@@ -14,16 +14,12 @@ public sealed class LoadDancesBehavior(IDanceFiguresRepository connection) : IBe
 
         dancesList.Connect()
             .Bind(viewModel.Dances)
-            .ObserveOn(RxApp.MainThreadScheduler)
-            .SubscribeOn(RxApp.MainThreadScheduler)
             .Subscribe()
             .DisposeWith(disposables);
 
         Observable
             .Return(true)
             .Select(_ => GetDancesInAlphabeticalOrder())
-            .ObserveOn(RxApp.MainThreadScheduler)
-            .SubscribeOn(RxApp.TaskpoolScheduler)
             .Subscribe(items =>
             {
                 var vms = items

@@ -20,8 +20,6 @@ public sealed class CopyBehavior : IBehavior<ChoreographyViewModel>
         viewModel.Copy = command;
 
         command
-            .ObserveOn(RxApp.MainThreadScheduler)
-            .SubscribeOn(RxApp.MainThreadScheduler)
             .Select(_ => viewModel)
             .Subscribe(vm =>
             {

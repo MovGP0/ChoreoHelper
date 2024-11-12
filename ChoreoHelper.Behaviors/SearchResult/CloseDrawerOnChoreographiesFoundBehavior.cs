@@ -9,7 +9,6 @@ public sealed class CloseDrawerOnChoreographiesFoundBehavior : IBehavior<SearchR
     {
         viewModel.Choreographies
             .WhenAnyPropertyChanged()
-            .SubscribeOn(RxApp.MainThreadScheduler)
             .Subscribe(_ => MessageBus.Current.SendMessage(new CloseDrawer()))
             .DisposeWith(disposables);
     }

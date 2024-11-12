@@ -14,16 +14,12 @@ public sealed class LoadDanceLevelsBehavior(IDanceFiguresRepository connection) 
 
         sourceList.Connect()
             .Bind(viewModel.Levels)
-            .ObserveOn(RxApp.MainThreadScheduler)
-            .SubscribeOn(RxApp.MainThreadScheduler)
             .Subscribe()
             .DisposeWith(disposables);
 
         Observable
             .Return(true)
             .Select(_ => connection.GetDanceLevels())
-            .ObserveOn(RxApp.MainThreadScheduler)
-            .SubscribeOn(RxApp.TaskpoolScheduler)
             .Select(ToViewModels)
             .Subscribe(items =>
             {

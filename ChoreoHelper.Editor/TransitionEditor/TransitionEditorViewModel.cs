@@ -151,7 +151,12 @@ public sealed class TransitionEditorViewModel : ReactiveObject, IActivatableView
     /// </summary>
     private void ApplyTransformation(SKMatrix newMatrix)
     {
-        TransformationMatrix = SKMatrix.Concat(TransformationMatrix, newMatrix);
+        const float maxZoomFactor = 5f;
+        var newTransformationMatrix = SKMatrix.Concat(TransformationMatrix, newMatrix);
+        if (newTransformationMatrix is { ScaleX: < maxZoomFactor, ScaleY: < maxZoomFactor })
+        {
+            TransformationMatrix = newTransformationMatrix;
+        }
     }
 
     private void Render() => RenderTransitionEditorPublisher.Publish(new RenderTransitionEditorCommand());

@@ -18,7 +18,10 @@ public static class SourceCacheExtensions
             .Select(k => objects.First(o => keySelector(o).Equals(k)))
             .ToArray();
 
-        cache.Remove(toRemove);
-        cache.AddOrUpdate(toAdd);
+        using (cache.SuspendNotifications())
+        {
+            cache.Remove(toRemove);
+            cache.AddOrUpdate(toAdd);
+        }
     }
 }

@@ -16,8 +16,6 @@ public sealed class LoadOptionalFiguresBehavior(IDanceFiguresRepository connecti
         optionalFigures
             .Connect()
             .Bind(viewModel.OptionalFigures)
-            .ObserveOn(RxApp.MainThreadScheduler)
-            .SubscribeOn(RxApp.MainThreadScheduler)
             .Subscribe()
             .DisposeWith(disposables);
 
@@ -40,8 +38,6 @@ public sealed class LoadOptionalFiguresBehavior(IDanceFiguresRepository connecti
                     .Where(e => !hashesToIgnore.Contains(e.Hash))
                     .ToArray();
             })
-            .ObserveOn(RxApp.MainThreadScheduler)
-            .SubscribeOn(RxApp.TaskpoolScheduler)
             .Subscribe(loadedFigures =>
             {
                 var selectedRequiredFiguresHashes = viewModel.RequiredFigures
@@ -81,6 +77,8 @@ public sealed class LoadOptionalFiguresBehavior(IDanceFiguresRepository connecti
         var figuresChanged = Observable.FromEventPattern<NotifyCollectionChangedEventHandler, NotifyCollectionChangedEventArgs>(
                 handler => viewModel.Figures.CollectionChanged += handler,
                 handler => viewModel.Figures.CollectionChanged -= handler)
+            .Throttle(TimeSpan.FromMilliseconds(50))
+            .SubscribeOn(RxApp.MainThreadScheduler)
             .Select(_ => Unit.Default);
 
         var requiredFigureChanged = MessageBus.Current
@@ -93,7 +91,7 @@ public sealed class LoadOptionalFiguresBehavior(IDanceFiguresRepository connecti
     [Pure]
     private static OptionalFigureSelectionViewModel ToViewModel(DanceStepNodeInfo loadedFigure)
     {
-        var vm = Locator.Current.GetRequiredService<OptionalFigureSelectionViewModel>();
+        var vm = new OptionalFigureSelectionViewModel();
         vm.Hash = loadedFigure.Hash;
         vm.Name = loadedFigure.Name;
         vm.IsSelected = true;

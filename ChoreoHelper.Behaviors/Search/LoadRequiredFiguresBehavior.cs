@@ -13,15 +13,11 @@ public sealed class LoadRequiredFiguresBehavior : IBehavior<SearchViewModel>
         requiredFigures
             .Connect()
             .Bind(viewModel.RequiredFigures)
-            .ObserveOn(RxApp.MainThreadScheduler)
-            .SubscribeOn(RxApp.MainThreadScheduler)
             .Subscribe()
             .DisposeWith(disposables);
 
         Observe(viewModel)
             .Select(_ => viewModel)
-            .ObserveOn(RxApp.MainThreadScheduler)
-            .SubscribeOn(RxApp.MainThreadScheduler)
             .Select(vm => vm.Figures)
             .Subscribe(loadedFigures =>
             {
@@ -49,7 +45,7 @@ public sealed class LoadRequiredFiguresBehavior : IBehavior<SearchViewModel>
     [Pure]
     private static RequiredFigureSelectionViewModel ToViewModel(FigureViewModel loadedFigure)
     {
-        var vm = Locator.Current.GetRequiredService<RequiredFigureSelectionViewModel>();
+        var vm = new RequiredFigureSelectionViewModel();
         vm.Hash = loadedFigure.Hash;
         vm.Name = loadedFigure.Name;
         vm.IsSelected = false;
