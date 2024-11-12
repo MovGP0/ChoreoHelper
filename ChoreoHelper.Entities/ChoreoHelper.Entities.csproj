@@ -5,10 +5,11 @@
     <ImplicitUsings>enable</ImplicitUsings>
     <Nullable>enable</Nullable>
     <OutputPath>..\bin\$(Platform)\$(TargetFramework)\</OutputPath>
+    <ManagePackageVersionsCentrally>true</ManagePackageVersionsCentrally>
   </PropertyGroup>
   <ItemGroup>
-    <PackageReference Include="OneOf" Version="3.0.271" />
-    <PackageReference Include="QuikGraph" Version="2.5.0" />
+    <PackageReference Include="OneOf" />
+    <PackageReference Include="QuikGraph" />
   </ItemGroup>
   <ItemGroup>
     <Compile Update="DanceFigure.Xml.cs">

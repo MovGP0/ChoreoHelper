@@ -6,10 +6,12 @@
         <UseWpf>true</UseWpf>
         <RootNamespace>ReactiveUI</RootNamespace>
         <OutputPath>..\bin\$(Platform)\$(TargetFramework)\</OutputPath>
+        <ManagePackageVersionsCentrally>true</ManagePackageVersionsCentrally>
     </PropertyGroup>
     <ItemGroup>
-      <PackageReference Include="ReactiveUI" Version="19.5.41" />
-      <PackageReference Include="Microsoft.Extensions.DependencyInjection.Abstractions" Version="8.0.0" />
-      <PackageReference Include="JetBrains.Annotations" Version="2023.3.0" />
+        <PackageReference Include="ReactiveUI" />
+        <PackageReference Include="Microsoft.Extensions.DependencyInjection.Abstractions" />
+        <PackageReference Include="Microsoft.Extensions.DependencyInjection" />
+        <PackageReference Include="JetBrains.Annotations" />
     </ItemGroup>
 </Project>

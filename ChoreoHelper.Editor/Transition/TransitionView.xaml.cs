@@ -1,8 +1,6 @@
-using System.Windows.Controls;
-
 namespace ChoreoHelper.Editor.Transition;
 
-public partial class TransitionView : UserControl
+public partial class TransitionView
 {
     public TransitionView()
     {

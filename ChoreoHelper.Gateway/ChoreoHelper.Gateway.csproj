@@ -6,6 +6,7 @@
     <ImplicitUsings>enable</ImplicitUsings>
     <Nullable>enable</Nullable>
     <OutputPath>..\bin\$(Platform)\$(TargetFramework)\</OutputPath>
+    <ManagePackageVersionsCentrally>true</ManagePackageVersionsCentrally>
   </PropertyGroup>
   <ItemGroup>
     <ProjectReference Include="..\ChoreoHelper.Entities\ChoreoHelper.Entities.csproj" />

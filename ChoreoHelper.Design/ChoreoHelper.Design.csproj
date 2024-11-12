@@ -1,12 +1,13 @@
 ﻿<Project Sdk="Microsoft.NET.Sdk">
     <PropertyGroup>
-        <TargetFramework>net8.0</TargetFramework>
+        <TargetFramework>net8.0-windows</TargetFramework>
         <ImplicitUsings>enable</ImplicitUsings>
         <Nullable>enable</Nullable>
-        <OutputPath>..\bin\$(Platform)\$(TargetFramework)\</OutputPath>
+        <UseWpf>true</UseWpf>
         <ManagePackageVersionsCentrally>true</ManagePackageVersionsCentrally>
     </PropertyGroup>
     <ItemGroup>
-      <ProjectReference Include="..\ChoreoHelper.Graph\ChoreoHelper.Graph.csproj" />
+      <PackageReference Include="MaterialDesignColors" />
+      <PackageReference Include="MaterialDesignThemes" />
     </ItemGroup>
 </Project>

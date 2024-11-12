@@ -4,12 +4,13 @@
         <ImplicitUsings>enable</ImplicitUsings>
         <Nullable>enable</Nullable>
         <OutputPath>..\bin\$(Platform)\$(TargetFramework)\</OutputPath>
+        <ManagePackageVersionsCentrally>true</ManagePackageVersionsCentrally>
     </PropertyGroup>
     <ItemGroup>
-        <PackageReference Include="JetBrains.Annotations" Version="2023.3.0" />
-        <PackageReference Include="Microsoft.Extensions.DependencyInjection.Abstractions" Version="8.0.0" />
-        <PackageReference Include="OneOf" Version="3.0.271" />
-        <PackageReference Include="QuikGraph" Version="2.5.0" />
+        <PackageReference Include="JetBrains.Annotations" />
+        <PackageReference Include="Microsoft.Extensions.DependencyInjection.Abstractions" />
+        <PackageReference Include="OneOf" />
+        <PackageReference Include="QuikGraph" />
     </ItemGroup>
     <ItemGroup>
         <Content Include="..\dance transitions.xml">

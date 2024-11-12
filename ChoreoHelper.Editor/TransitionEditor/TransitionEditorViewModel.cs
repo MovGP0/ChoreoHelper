@@ -20,6 +20,12 @@ public sealed class TransitionEditorViewModel : ReactiveObject, IActivatableView
 
     private IPublisher<RenderTransitionEditorCommand> RenderTransitionEditorPublisher { get; }
 
+    private TransitionEditorViewModel()
+    {
+        HostScreen = null!;
+        RenderTransitionEditorPublisher = null!;
+    }
+
     public TransitionEditorViewModel(
         IScreen hostScreen,
         IPublisher<RenderTransitionEditorCommand> renderTransitionEditorPublisher)

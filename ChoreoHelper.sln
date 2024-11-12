@@ -24,6 +24,7 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "SolutionItems", "SolutionIt
 		LICENSE = LICENSE
 		Readme.md = Readme.md
 		logo.webp = logo.webp
+		Directory.Packages.props = Directory.Packages.props
 	EndProjectSection
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ChoreoHelper.Graph", "ChoreoHelper.Graph\ChoreoHelper.Graph.csproj", "{E8C863EF-3440-470E-B850-1A2FECD636E3}"
@@ -37,6 +38,8 @@ EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ChoreoHelper.Editor", "ChoreoHelper.Editor\ChoreoHelper.Editor.csproj", "{5D589C56-B6A2-4209-B131-2858E0026654}"
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Libs", "Libs", "{BA492598-CC62-4038-866B-D8A8DBCC65AC}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ChoreoHelper.Design", "ChoreoHelper.Design\ChoreoHelper.Design.csproj", "{9FD6E094-AFBA-4254-B2ED-25D9C5AE662F}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -95,6 +98,10 @@ Global
 		{5D589C56-B6A2-4209-B131-2858E0026654}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{5D589C56-B6A2-4209-B131-2858E0026654}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{5D589C56-B6A2-4209-B131-2858E0026654}.Release|Any CPU.Build.0 = Release|Any CPU
+		{9FD6E094-AFBA-4254-B2ED-25D9C5AE662F}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{9FD6E094-AFBA-4254-B2ED-25D9C5AE662F}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{9FD6E094-AFBA-4254-B2ED-25D9C5AE662F}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{9FD6E094-AFBA-4254-B2ED-25D9C5AE662F}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(NestedProjects) = preSolution
 		{8390591C-488C-458B-9CAD-00FB076EE415} = {BA492598-CC62-4038-866B-D8A8DBCC65AC}
@@ -107,5 +114,6 @@ Global
 		{13A08B18-254D-4890-8349-B1AE3D214BDB} = {BA492598-CC62-4038-866B-D8A8DBCC65AC}
 		{99926D37-CCBE-4660-96D3-F3739F537644} = {BA492598-CC62-4038-866B-D8A8DBCC65AC}
 		{0648AFA5-01BE-4370-9606-A81B87315DDB} = {BA492598-CC62-4038-866B-D8A8DBCC65AC}
+		{9FD6E094-AFBA-4254-B2ED-25D9C5AE662F} = {BA492598-CC62-4038-866B-D8A8DBCC65AC}
 	EndGlobalSection
 EndGlobal

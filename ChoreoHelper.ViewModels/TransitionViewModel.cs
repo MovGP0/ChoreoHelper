@@ -80,17 +80,17 @@ public sealed class TransitionViewModel : ReactiveObject
     [Reactive]
     public string ToFigureName { get; set; } = string.Empty;
 
-    [Reactive]
-    public DistanceViewModel? SelectedDistance { get; set; }
-
     public IObservableCollection<DistanceViewModel> Distances { get; }
         = new ObservableCollectionExtended<DistanceViewModel>();
 
     [Reactive]
-    public RestrictionViewModel? SelectedRestriction { get; set; }
+    public DistanceViewModel? SelectedDistance { get; set; }
 
     public IObservableCollection<RestrictionViewModel> Restrictions { get; }
         = new ObservableCollectionExtended<RestrictionViewModel>();
+
+    [Reactive]
+    public RestrictionViewModel? SelectedRestriction { get; set; }
 
     /// <summary>
     /// Navigates back to the previous view.
