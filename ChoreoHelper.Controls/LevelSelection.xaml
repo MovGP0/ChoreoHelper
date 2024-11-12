@@ -4,6 +4,7 @@
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
              xmlns:viewModels="clr-namespace:ChoreoHelper.ViewModels;assembly=ChoreoHelper.ViewModels"
+             xmlns:design="clr-namespace:ChoreoHelper.Design;assembly=ChoreoHelper.Design"
              TextElement.FontWeight="Regular"
              TextElement.FontSize="12"
              TextOptions.TextFormattingMode="Ideal"
@@ -11,6 +12,9 @@
              d:DataContext="{d:DesignInstance viewModels:LevelSelectionViewModel, IsDesignTimeCreatable=True}"
              mc:Ignorable="d"
              d:DesignWidth="200">
+    <UserControl.Resources>
+        <design:ResourceDictionaryProvider />
+    </UserControl.Resources>
     <Grid>
         <CheckBox Margin="4" Padding="4"
                   IsChecked="{Binding IsSelected, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"

@@ -6,6 +6,7 @@
         xmlns:viewModels="clr-namespace:ChoreoHelper.ViewModels;assembly=ChoreoHelper.ViewModels"
         xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
         xmlns:controls="clr-namespace:ChoreoHelper.Controls"
+        xmlns:design="clr-namespace:ChoreoHelper.Design;assembly=ChoreoHelper.Design"
         TextElement.FontWeight="Regular"
         TextElement.FontSize="12"
         TextOptions.TextFormattingMode="Ideal"
@@ -16,10 +17,7 @@
     <Window.Resources>
         <ResourceDictionary>
             <ResourceDictionary.MergedDictionaries>
-                <ResourceDictionary Source="pack://application:,,,/MaterialDesignThemes.Wpf;component/Themes/MaterialDesignTheme.Light.xaml" />
-                <ResourceDictionary Source="pack://application:,,,/MaterialDesignThemes.Wpf;component/Themes/materialdesign3.defaults.xaml" />
-                <ResourceDictionary Source="pack://application:,,,/MaterialDesignColors;component/Themes/Recommended/primary/materialdesigncolor.blue.xaml" />
-                <ResourceDictionary Source="pack://application:,,,/MaterialDesignColors;component/Themes/Recommended/secondary/materialdesigncolor.deeppurple.xaml" />
+                <design:ResourceDictionaryProvider />
                 <ResourceDictionary>
                     <DataTemplate DataType="{x:Type viewModels:SearchViewModel}">
                         <controls:SearchView />

@@ -6,51 +6,102 @@
         xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
         xmlns:reactiveUi="http://reactiveui.net"
         xmlns:shell="clr-namespace:ChoreoHelper.Editor.Shell"
+        xmlns:design="clr-namespace:ChoreoHelper.Design;assembly=ChoreoHelper.Design"
         mc:Ignorable="d"
         TextElement.FontWeight="Regular"
         TextElement.FontSize="12"
         TextOptions.TextFormattingMode="Ideal"
         TextOptions.TextRenderingMode="Auto"
+        WindowStyle="None"
+        ResizeMode="CanResizeWithGrip"
+        AllowsTransparency="True"
         d:DataContext="{d:DesignInstance shell:ShellViewModel, IsDesignTimeCreatable=True}"
-        Title="Shell" Height="450" Width="800">
+        Title="Shell" Height="450" Width="800"
+        Background="Transparent">
     <Window.Resources>
         <ResourceDictionary>
             <ResourceDictionary.MergedDictionaries>
-                <ResourceDictionary Source="pack://application:,,,/MaterialDesignThemes.Wpf;component/Themes/MaterialDesignTheme.Light.xaml" />
-                <ResourceDictionary Source="pack://application:,,,/MaterialDesignThemes.Wpf;component/Themes/materialdesign3.defaults.xaml" />
-                <ResourceDictionary Source="pack://application:,,,/MaterialDesignColors;component/Themes/Recommended/primary/materialdesigncolor.blue.xaml" />
-                <ResourceDictionary Source="pack://application:,,,/MaterialDesignColors;component/Themes/Recommended/secondary/materialdesigncolor.deeppurple.xaml" />
+                <design:ResourceDictionaryProvider />
+                <ResourceDictionary Source="ShellWindowResources.xaml" />
             </ResourceDictionary.MergedDictionaries>
         </ResourceDictionary>
     </Window.Resources>
     <Window.DataContext>
         <shell:ShellViewModel />
     </Window.DataContext>
-    <DockPanel LastChildFill="True">
-        <ToolBar DockPanel.Dock="Top"
-            ClipToBounds="False"
-            Style="{StaticResource MaterialDesignToolBar}">
-            <Button
-                Content="{materialDesign:PackIcon Kind=File}"
-                Command="{Binding LoadXmlData, UpdateSourceTrigger=PropertyChanged}"/>
-            <Button
-                Content="{materialDesign:PackIcon Kind=Grid}"
-                Command="{Binding GoToTransitionEditor, UpdateSourceTrigger=PropertyChanged}"/>
-            <Button
-                Content="{materialDesign:PackIcon Kind=ReceiptTextEdit}"
-                Command="{Binding GoToSearch, UpdateSourceTrigger=PropertyChanged}"
-                />
-            <Button
-                Content="{materialDesign:PackIcon Kind=FormatListBulleted}"
-                Command="{Binding GoToSearchResult, UpdateSourceTrigger=PropertyChanged}"
-                />
-        </ToolBar>
-        <ContentControl HorizontalAlignment="Stretch"
-                        VerticalAlignment="Stretch">
-            <reactiveUi:RoutedViewHost
-                Router="{Binding Router}"
-                HorizontalContentAlignment="Stretch"
-                VerticalContentAlignment="Stretch" />
-        </ContentControl>
-    </DockPanel>
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="40" />
+            <RowDefinition Height="*" />
+        </Grid.RowDefinitions>
+        <Border Background="{DynamicResource MaterialDesign.Brush.Primary}" Grid.Row="0" CornerRadius="6,6,0,0">
+            <Grid>
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="Auto" />
+                    <ColumnDefinition Width="*" />
+                    <ColumnDefinition Width="Auto" />
+                </Grid.ColumnDefinitions>
+                <!-- App Icon -->
+                <Image Source="pack://application:,,,/ChoreoHelper.Editor;component/Images/icon.webp" Grid.Column="0"
+                       Width="20"
+                       Height="20"
+                       VerticalAlignment="Center"
+                       Margin="6,0,4,0" />
+                <TextBlock Text="Choreo Helper" Foreground="White" Grid.Column="1"
+                           VerticalAlignment="Center"
+                           Margin="4,0,4,0"
+                           FontStyle="Normal"
+                           FontWeight="Bold"/>
+                <StackPanel Orientation="Horizontal" HorizontalAlignment="Right" VerticalAlignment="Center" Grid.Column="2">
+                    <Button Margin="2"
+                            Style="{StaticResource MinimizeAppButtonStyle}"
+                            x:Name="MinimizeAppButton">
+                        <materialDesign:PackIcon Kind="WindowMinimize" />
+                    </Button>
+                    <Button Margin="2"
+                            Style="{StaticResource MaximizeRestoreButtonStyle}"
+                            x:Name="MaximizeRestoreButton">
+                        <materialDesign:PackIcon Kind="WindowMaximize" />
+                    </Button>
+                    <Button Margin="2,2,4,2"
+                            Style="{StaticResource CloseButtonStyle}"
+                            x:Name="CloseAppButton">
+                        <materialDesign:PackIcon Kind="WindowClose" />
+                    </Button>
+                </StackPanel>
+            </Grid>
+        </Border>
+            <Grid Grid.Row="1" Background="White">
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="Auto" />
+                    <RowDefinition Height="*" />
+                </Grid.RowDefinitions>
+                <ToolBar Grid.Row="0"
+                         ClipToBounds="False"
+                         Style="{StaticResource MaterialDesignToolBar}">
+                <Button
+                    Content="{materialDesign:PackIcon Kind=File}"
+                    Command="{Binding LoadXmlData, UpdateSourceTrigger=PropertyChanged}"/>
+                <Button
+                    Content="{materialDesign:PackIcon Kind=Grid}"
+                    Command="{Binding GoToTransitionEditor, UpdateSourceTrigger=PropertyChanged}"/>
+                <Button
+                    Content="{materialDesign:PackIcon Kind=ReceiptTextEdit}"
+                    Command="{Binding GoToSearch, UpdateSourceTrigger=PropertyChanged}"
+                    />
+                <Button
+                    Content="{materialDesign:PackIcon Kind=FormatListBulleted}"
+                    Command="{Binding GoToSearchResult, UpdateSourceTrigger=PropertyChanged}"
+                    />
+            </ToolBar>
+            <ContentControl HorizontalAlignment="Stretch"
+                            Grid.Row="1"
+                            VerticalAlignment="Stretch">
+                    <reactiveUi:RoutedViewHost
+                        Router="{Binding Router}"
+                        HorizontalContentAlignment="Stretch"
+                        VerticalContentAlignment="Stretch" />
+            </ContentControl>
+        </Grid>
+    </Grid>
 </Window>

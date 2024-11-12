@@ -7,16 +7,10 @@
              mc:Ignorable="d"
              d:DesignHeight="450"
              d:DesignWidth="800"
-             xmlns:viewModels="clr-namespace:ChoreoHelper.ViewModels;assembly=ChoreoHelper.ViewModels">
+             xmlns:viewModels="clr-namespace:ChoreoHelper.ViewModels;assembly=ChoreoHelper.ViewModels"
+             xmlns:design="clr-namespace:ChoreoHelper.Design;assembly=ChoreoHelper.Design">
     <UserControl.Resources>
-        <ResourceDictionary>
-            <d:ResourceDictionary.MergedDictionaries>
-                <ResourceDictionary Source="pack://application:,,,/MaterialDesignThemes.Wpf;component/Themes/MaterialDesignTheme.Light.xaml" />
-                <ResourceDictionary Source="pack://application:,,,/MaterialDesignThemes.Wpf;component/Themes/materialdesign3.defaults.xaml" />
-                <ResourceDictionary Source="pack://application:,,,/MaterialDesignColors;component/Themes/Recommended/primary/materialdesigncolor.blue.xaml" />
-                <ResourceDictionary Source="pack://application:,,,/MaterialDesignColors;component/Themes/Recommended/secondary/materialdesigncolor.deeppurple.xaml" />
-            </d:ResourceDictionary.MergedDictionaries>
-        </ResourceDictionary>
+        <design:ResourceDictionaryProvider />
     </UserControl.Resources>
     <UserControl.DataContext>
         <viewModels:SearchResultViewModel />

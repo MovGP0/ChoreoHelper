@@ -9,6 +9,7 @@
     xmlns:viewModels="clr-namespace:ChoreoHelper.ViewModels;assembly=ChoreoHelper.ViewModels"
     xmlns:reactiveUi="http://reactiveui.net"
     xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
+    xmlns:design="clr-namespace:ChoreoHelper.Design;assembly=ChoreoHelper.Design"
     mc:Ignorable="d"
     TextElement.FontWeight="Regular"
     TextElement.FontSize="12"
@@ -19,14 +20,7 @@
     VerticalAlignment="Stretch"
     d:DesignHeight="300" d:DesignWidth="300">
     <UserControl.Resources>
-        <ResourceDictionary>
-            <ResourceDictionary.MergedDictionaries>
-                <ResourceDictionary Source="pack://application:,,,/MaterialDesignThemes.Wpf;component/Themes/materialdesigntheme.light.xaml" />
-                <ResourceDictionary Source="pack://application:,,,/MaterialDesignThemes.Wpf;component/Themes/materialdesign3.defaults.xaml" />
-                <ResourceDictionary Source="pack://application:,,,/MaterialDesignColors;component/Themes/Recommended/primary/materialdesigncolor.bluegrey.xaml" />
-                <ResourceDictionary Source="pack://application:,,,/MaterialDesignColors;component/Themes/Recommended/secondary/materialdesigncolor.deeppurple.xaml" />
-            </ResourceDictionary.MergedDictionaries>
-        </ResourceDictionary>
+        <design:ResourceDictionaryProvider />
     </UserControl.Resources>
     <Grid>
         <Grid.RowDefinitions>

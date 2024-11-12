@@ -49,4 +49,8 @@
       <SubType>Designer</SubType>
     </Page>
   </ItemGroup>
+  <ItemGroup>
+    <None Remove="Images\icon.webp" />
+    <Resource Include="Images\icon.webp" />
+  </ItemGroup>
 </Project>
