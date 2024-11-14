@@ -1,6 +1,9 @@
-﻿using System.Reactive.Disposables;
+﻿using System.Drawing;
+using System.Reactive.Disposables;
 using ChoreoHelper.Entities;
 using SkiaSharp;
+using SkiaSharp.Views.Desktop;
+using SkiaSharp.Views.WPF;
 
 namespace ChoreoHelper.Editor.TransitionEditor;
 
@@ -61,13 +64,12 @@ public sealed class GridPainter : IDisposable
             // Calculate position
             float y = headerWidth + i * cellHeight;
             canvas.Save();
-            canvas.Translate(headerWidth, y + cellHeight / 2);
+            canvas.Translate(0, y + cellHeight / 2);
             canvas.DrawText(figureToDraw.Name, 0, 0, paint);
             canvas.Restore();
 
-            // TODO: Store the screen location of the figure
-            // RectangleF location = new(...);
-            // result.FigureMap.Add(new(location, figureToDraw));
+            RectangleF location = new(0, y, cellWidth, cellHeight);
+            result.FigureMap.Add(new(location, figureToDraw));
         }
 
         // Draw horizontal headers (figures)
@@ -86,20 +88,19 @@ public sealed class GridPainter : IDisposable
             canvas.DrawText(figureToDraw.Name, 0, 0, paint);
             canvas.Restore();
 
-            // TODO: Store the screen location of the figure
-            // RectangleF location = new(...);
-            // result.FigureMap.Add(new(location, figureToDraw));
+            RectangleF location = new(x, headerWidth, cellWidth, cellHeight);
+            result.FigureMap.Add(new(location, figureToDraw));
         }
 
         // Draw grid cells
-        for (int i = 0; i < figureCount; i++)
-        for (int j = 0; j < figureCount; j++)
+        for (int col = 0; col < figureCount; col++)
+        for (int row = 0; row < figureCount; row++)
         {
-            float x = headerWidth + j * cellWidth;
-            float y = headerWidth + i * cellHeight;
+            float y = headerWidth + row * cellHeight;
+            float x = headerWidth + col * cellWidth;
 
             // Get the transition value
-            byte value = transitions[i, j];
+            byte value = transitions[col, row];
 
             SKPaint distancePaint = value switch
             {
@@ -110,11 +111,9 @@ public sealed class GridPainter : IDisposable
             };
 
             canvas.DrawRect(x, y, cellWidth, cellHeight, distancePaint);
-            //canvas.DrawRect(x, y, cellWidth, cellHeight, Theme.BorderPaint);
 
-            // TODO: Store the screen location of the cell
-            // RectangleF location = new(...);
-            // result.CellMap.Add(new(location, row, column));
+            RectangleF location = new(x, y, cellWidth, cellHeight);
+            result.CellMap.Add(new(location, row, col));
         }
 
         canvas.Restore();

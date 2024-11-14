@@ -1,6 +1,7 @@
 ﻿using System.Reactive;
 using System.Windows;
 using System.Windows.Input;
+using System.Windows.Media;
 using ChoreoHelper.Editor.TransitionEditor.Events;
 using ChoreoHelper.Entities;
 using DynamicData.Binding;
@@ -70,14 +71,20 @@ public sealed class TransitionEditorViewModel : ReactiveObject, IActivatableView
 
     public void HandleMouseLeftButtonUp(SKElement canvasElement, MouseButtonEventArgs e)
     {
+        // Get the DPI scaling factors
+        var dpiScaleX = VisualTreeHelper.GetDpi(canvasElement).DpiScaleX;
+        var dpiScaleY = VisualTreeHelper.GetDpi(canvasElement).DpiScaleY;
+
+        // get adjusted mouse position
         var point = e.GetPosition(canvasElement);
-        float x = (float)point.X;
-        float y = (float)point.Y;
+        var adjustedPoint = new Point(point.X * dpiScaleX, point.Y * dpiScaleY);
+        var skPoint = adjustedPoint.ToSKPoint();
+        var mouseLocation = TransformationMatrix.Invert().MapPoint(skPoint);
 
         foreach (var map in _gridPositions.CellMap)
         {
-            var rect = map.ScreenLocation;
-            if (rect.Contains(x, y))
+            var rect = map.ScreenLocation.ToSKRect();
+            if (rect.Contains(mouseLocation))
             {
                 var (row, col) = (map.Row, map.Column);
                 ToggleCellState(row, col);
@@ -88,8 +95,8 @@ public sealed class TransitionEditorViewModel : ReactiveObject, IActivatableView
 
         foreach (var map in _gridPositions.FigureMap)
         {
-            var rect = map.ScreenLocation;
-            if (rect.Contains(x, y))
+            var rect = map.ScreenLocation.ToSKRect();
+            if (rect.Contains(mouseLocation))
             {
                 var figure = map.DanceFigure;
                 // TODO: handle figure selection
@@ -126,7 +133,7 @@ public sealed class TransitionEditorViewModel : ReactiveObject, IActivatableView
     /// <param name="row">The row of the figure</param>
     /// <param name="col">The column of the figure</param>
     private void ToggleCellState(int row, int col)
-        => Transitions[row, col] = (byte)((Transitions[row, col] + 1) % 3);
+        => Transitions[col, row] = (byte)((Transitions[col, row] + 1) % 3);
 
     public ViewModelActivator Activator { get; } = new();
 
