@@ -13,7 +13,7 @@ public static class BreadthFirstSearchRouteFinderTests
         public async Task ShouldReturnEmptyListWhenNoRequiredNodes()
         {
             // Arrange
-            var distanceMatrix = new int[0, 0];
+            var distanceMatrix = new OneOf<float, None>[0, 0];
             var requiredNodes = ImmutableArray<int>.Empty;
             const int maxDistance = 10;
 
@@ -33,7 +33,7 @@ public static class BreadthFirstSearchRouteFinderTests
         public async Task ShouldReturnEmptyListWhenNoPathsExist()
         {
             // Arrange
-            int[,] distanceMatrix = {
+            OneOf<float, None>[,] distanceMatrix = {
                 { -1, -1 },
                 { -1, -1 }
             };
@@ -56,7 +56,7 @@ public static class BreadthFirstSearchRouteFinderTests
         public async Task ShouldFindRoutesInSimpleGraph()
         {
             // Arrange
-            int[,] distanceMatrix = {
+            OneOf<float, None>[,] distanceMatrix = {
                 { -1, 1, -1 },
                 { 1, -1, 1 },
                 { -1, 1, -1 }
@@ -83,7 +83,7 @@ public static class BreadthFirstSearchRouteFinderTests
         public async Task ShouldNotReturnRoutesExceedingMaxDistance()
         {
             // Arrange
-            int[,] distanceMatrix = {
+            OneOf<float, None>[,] distanceMatrix = {
                 { -1, 5 },
                 { 5, -1 }
             };
@@ -106,7 +106,7 @@ public static class BreadthFirstSearchRouteFinderTests
         public async Task ShouldRespectCancellationToken()
         {
             // Arrange
-            int[,] distanceMatrix = {
+            OneOf<float, None>[,] distanceMatrix = {
                 { -1, 1 },
                 { 1, -1 }
             };
@@ -132,7 +132,7 @@ public static class BreadthFirstSearchRouteFinderTests
         public async Task ShouldHandlePenaltiesForRevisitingNodes()
         {
             // Arrange
-            int[,] distanceMatrix = {
+            OneOf<float, None>[,] distanceMatrix = {
                 { -1, 1, -1 },
                 { 1, -1, 1 },
                 { -1, 1, -1 }
@@ -169,7 +169,7 @@ public static class BreadthFirstSearchRouteFinderTests
         public async Task ShouldSkipRoutesWithTooManyRepetitions()
         {
             // Arrange
-            int[,] distanceMatrix = {
+            OneOf<float, None>[,] distanceMatrix = {
                 { -1, 1 },
                 { 1, -1 }
             };

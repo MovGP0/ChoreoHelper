@@ -8,14 +8,14 @@ public sealed class DanceFiguresRepository : IDanceFiguresRepository
 {
     private OneOf<UndirectedGraph<DanceFigure, DanceFigureTransition>, None> Graph { get; set; } = new None();
 
-    public (int[,] array, DanceStepNodeInfo[] figures) GetDistanceMatrix(string dance, DanceStepNodeInfo[] figures)
+    public (OneOf<float, None>[,] array, DanceStepNodeInfo[] figures) GetDistanceMatrix(string dance, DanceStepNodeInfo[] figures)
     {
         var task = EnsureGraphIsLoadedAsync();
         task.Wait();
 
         if (figures.Length == 0 || !Graph.TryPickT0(out var g, out _))
         {
-            return new(new int[0, 0], figures);
+            return new(new OneOf<float, None>[0, 0], figures);
         }
 
         var hashSet = new HashSet<string>();

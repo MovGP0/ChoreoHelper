@@ -21,7 +21,7 @@ public sealed class DancesLoadedBehavior(ISubscriber<DataLoadedEvent> dataLoaded
         viewModel.SelectedDance = null;
         viewModel.Dances.Clear();
         viewModel.Figures.Clear();
-        viewModel.Transitions = new byte[0, 0];
+        viewModel.Transitions = new DanceFigureTransition[0, 0];
 
         foreach (var dance in dances)
         {

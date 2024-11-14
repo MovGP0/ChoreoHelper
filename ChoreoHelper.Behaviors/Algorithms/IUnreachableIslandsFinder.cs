@@ -2,5 +2,5 @@
 
 public interface IUnreachableIslandsFinder
 {
-    List<List<int>> FindUnreachableIslands(int[,] matrix);
+    List<List<int>> FindUnreachableIslands(OneOf<float, None>[,] matrix);
 }

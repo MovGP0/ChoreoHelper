@@ -5,6 +5,7 @@
         <Nullable>enable</Nullable>
         <OutputPath>..\bin\$(Platform)\$(TargetFramework)\</OutputPath>
         <ManagePackageVersionsCentrally>true</ManagePackageVersionsCentrally>
+        <LangVersion>13</LangVersion>
     </PropertyGroup>
     <ItemGroup>
         <PackageReference Include="JetBrains.Annotations" />

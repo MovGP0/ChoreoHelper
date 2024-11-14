@@ -7,6 +7,7 @@
     <UseWPF>true</UseWPF>
     <ApplicationIcon>Images\icon.ico</ApplicationIcon>
     <ManagePackageVersionsCentrally>true</ManagePackageVersionsCentrally>
+    <LangVersion>13</LangVersion>
   </PropertyGroup>
   <ItemGroup>
     <PackageReference Include="MessagePipe.Analyzer" />
@@ -36,6 +37,10 @@
     <ProjectReference Include="..\ChoreoHelper.Graph\ChoreoHelper.Graph.csproj" />
     <ProjectReference Include="..\ChoreoHelper.ReactiveUI\ChoreoHelper.ReactiveUI.csproj" />
     <ProjectReference Include="..\ChoreoHelper.ViewModels\ChoreoHelper.ViewModels.csproj" />
+  </ItemGroup>
+  <ItemGroup>
+    <Using Include="OneOf" />
+    <Using Include="OneOf.Types" />
   </ItemGroup>
   <ItemGroup>
     <Page Update="TransitionEditor\TransitionEditorControl.xaml">

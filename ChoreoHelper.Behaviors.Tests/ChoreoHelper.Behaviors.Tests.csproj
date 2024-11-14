@@ -6,6 +6,7 @@
         <IsPackable>false</IsPackable>
         <IsTestProject>true</IsTestProject>
         <ManagePackageVersionsCentrally>true</ManagePackageVersionsCentrally>
+        <LangVersion>13</LangVersion>
     </PropertyGroup>
     <ItemGroup>
         <PackageReference Include="coverlet.collector">
@@ -22,6 +23,8 @@
         <Using Include="Xunit"/>
         <Using Include="Shouldly"/>
         <Using Include="ChoreoHelper.Tests"/>
+        <Using Include="OneOf"/>
+        <Using Include="OneOf.Types"/>
     </ItemGroup>
     <ItemGroup>
       <ProjectReference Include="..\ChoreoHelper.Behaviors\ChoreoHelper.Behaviors.csproj" />

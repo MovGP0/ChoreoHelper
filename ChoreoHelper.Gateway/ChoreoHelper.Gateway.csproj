@@ -7,7 +7,15 @@
     <Nullable>enable</Nullable>
     <OutputPath>..\bin\$(Platform)\$(TargetFramework)\</OutputPath>
     <ManagePackageVersionsCentrally>true</ManagePackageVersionsCentrally>
+    <LangVersion>13</LangVersion>
   </PropertyGroup>
+  <ItemGroup>
+    <PackageReference Include="OneOf" />
+  </ItemGroup>
+  <ItemGroup>
+    <Using Include="OneOf" />
+    <Using Include="OneOf.Types" />
+  </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\ChoreoHelper.Entities\ChoreoHelper.Entities.csproj" />
   </ItemGroup>

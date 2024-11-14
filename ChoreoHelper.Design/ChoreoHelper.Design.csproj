@@ -5,6 +5,7 @@
         <Nullable>enable</Nullable>
         <UseWpf>true</UseWpf>
         <ManagePackageVersionsCentrally>true</ManagePackageVersionsCentrally>
+        <LangVersion>13</LangVersion>
     </PropertyGroup>
     <ItemGroup>
       <PackageReference Include="MaterialDesignColors" />

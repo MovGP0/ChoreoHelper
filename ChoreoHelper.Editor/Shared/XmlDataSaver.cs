@@ -24,6 +24,7 @@ public sealed class XmlDataSaver
         var danceFigureTransitionsElements =
             from dance in dances
             from transition in dance.Transitions
+            where transition.Distance.IsT0
             select ToDanceFigureTransitionElement(
                 dance,
                 transition.Source,
@@ -54,12 +55,14 @@ public sealed class XmlDataSaver
             new XAttribute(XNamespaces.ChoreoHelper + "level", figure.Level.ToString("G").ToLowerInvariant()));
     }
 
-    private static XElement ToDanceFigureTransitionElement(Dance dance, DanceFigure source, DanceFigure target, float distance)
+    private static XElement ToDanceFigureTransitionElement(Dance dance, DanceFigure source, DanceFigure target, OneOf<float, None> distance)
     {
         return new XElement(XNamespaces.ChoreoHelper + "dancefiguretransition",
             new XAttribute(XNamespaces.ChoreoHelper + "dance", dance.Name),
             new XAttribute(XNamespaces.ChoreoHelper + "source", source.Name),
             new XAttribute(XNamespaces.ChoreoHelper + "target", target.Name),
-            new XAttribute(XNamespaces.ChoreoHelper + "distance", distance.ToString("G", CultureInfo.InvariantCulture)));
+            new XAttribute(XNamespaces.ChoreoHelper + "distance", distance.TryPickT0(out var distanceValue, out _)
+                ? distanceValue.ToString("G", CultureInfo.InvariantCulture)
+                : ""));
     }
 }

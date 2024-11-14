@@ -69,42 +69,6 @@ public sealed class TransitionEditorViewModel : ReactiveObject, IActivatableView
         }
     }
 
-    public void HandleMouseLeftButtonUp(SKElement canvasElement, MouseButtonEventArgs e)
-    {
-        // Get the DPI scaling factors
-        var dpiScaleX = VisualTreeHelper.GetDpi(canvasElement).DpiScaleX;
-        var dpiScaleY = VisualTreeHelper.GetDpi(canvasElement).DpiScaleY;
-
-        // get adjusted mouse position
-        var point = e.GetPosition(canvasElement);
-        var adjustedPoint = new Point(point.X * dpiScaleX, point.Y * dpiScaleY);
-        var skPoint = adjustedPoint.ToSKPoint();
-        var mouseLocation = TransformationMatrix.Invert().MapPoint(skPoint);
-
-        foreach (var map in _gridPositions.CellMap)
-        {
-            var rect = map.ScreenLocation.ToSKRect();
-            if (rect.Contains(mouseLocation))
-            {
-                var (row, col) = (map.Row, map.Column);
-                ToggleCellState(row, col);
-                canvasElement.InvalidateVisual(); // Redraw the canvas
-                break;
-            }
-        }
-
-        foreach (var map in _gridPositions.FigureMap)
-        {
-            var rect = map.ScreenLocation.ToSKRect();
-            if (rect.Contains(mouseLocation))
-            {
-                var figure = map.DanceFigure;
-                // TODO: handle figure selection
-                break;
-            }
-        }
-    }
-
     /// <summary>
     /// The list of the dances
     /// </summary>
@@ -125,15 +89,14 @@ public sealed class TransitionEditorViewModel : ReactiveObject, IActivatableView
     /// Grid data representing transitions between figures.
     /// </summary>
     [Reactive]
-    public byte[,] Transitions { get; set; } = new byte[0, 0];
+    public DanceFigureTransition[,] Transitions { get; set; } = new DanceFigureTransition[0, 0];
 
     /// <summary>
     /// Cycle through states 0 -> 1 -> 2 -> 0
     /// </summary>
     /// <param name="row">The row of the figure</param>
     /// <param name="col">The column of the figure</param>
-    private void ToggleCellState(int row, int col)
-        => Transitions[col, row] = (byte)((Transitions[col, row] + 1) % 3);
+    private DanceFigureTransition GetTransition(int row, int col) => Transitions[col, row];
 
     public ViewModelActivator Activator { get; } = new();
 
@@ -276,5 +239,77 @@ public sealed class TransitionEditorViewModel : ReactiveObject, IActivatableView
 
         ApplyTransformation(transformation);
         Render();
+    }
+
+    public void HandleTouchUp(SKElement canvasElement, TouchEventArgs args)
+    {
+        // Get the DPI scaling factors
+        var dpiScaleX = VisualTreeHelper.GetDpi(canvasElement).DpiScaleX;
+        var dpiScaleY = VisualTreeHelper.GetDpi(canvasElement).DpiScaleY;
+
+        // get adjusted touch position
+        var point = args.GetTouchPoint(canvasElement).Position;
+        var adjustedPoint = new Point(point.X * dpiScaleX, point.Y * dpiScaleY);
+        var skPoint = adjustedPoint.ToSKPoint();
+        var touchLocation = TransformationMatrix.Invert().MapPoint(skPoint);
+
+        SelectElementAtLocation(touchLocation);
+    }
+
+    public void HandleStylusUp(SKElement canvasElement, StylusEventArgs args)
+    {
+        // Get the DPI scaling factors
+        var dpiScaleX = VisualTreeHelper.GetDpi(canvasElement).DpiScaleX;
+        var dpiScaleY = VisualTreeHelper.GetDpi(canvasElement).DpiScaleY;
+
+        // get adjusted stylus position
+        var point = args.GetStylusPoints(canvasElement).First().ToPoint();
+        var adjustedPoint = new Point(point.X * dpiScaleX, point.Y * dpiScaleY);
+        var skPoint = adjustedPoint.ToSKPoint();
+        var stylusLocation = TransformationMatrix.Invert().MapPoint(skPoint);
+
+        SelectElementAtLocation(stylusLocation);
+    }
+
+    public void HandleMouseLeftButtonUp(SKElement canvasElement, MouseButtonEventArgs e)
+    {
+        // Get the DPI scaling factors
+        var dpiScaleX = VisualTreeHelper.GetDpi(canvasElement).DpiScaleX;
+        var dpiScaleY = VisualTreeHelper.GetDpi(canvasElement).DpiScaleY;
+
+        // get adjusted mouse position
+        var point = e.GetPosition(canvasElement);
+        var adjustedPoint = new Point(point.X * dpiScaleX, point.Y * dpiScaleY);
+        var skPoint = adjustedPoint.ToSKPoint();
+        var mouseLocation = TransformationMatrix.Invert().MapPoint(skPoint);
+
+        SelectElementAtLocation(mouseLocation);
+    }
+
+    private void SelectElementAtLocation(SKPoint location)
+    {
+        foreach (var map in _gridPositions.CellMap)
+        {
+            var rect = map.ScreenLocation.ToSKRect();
+            if (rect.Contains(location))
+            {
+                var (row, col) = (map.Row, map.Column);
+                var transition = GetTransition(row, col);
+                // TODO: load transition editor dialog
+                // TODO: canvasElement.InvalidateVisual(); // Redraw the canvas
+                break;
+            }
+        }
+
+        foreach (var map in _gridPositions.FigureMap)
+        {
+            var rect = map.ScreenLocation.ToSKRect();
+            if (rect.Contains(location))
+            {
+                var figure = map.DanceFigure;
+                // TODO: load figure editor dialog
+                break;
+            }
+        }
     }
 }

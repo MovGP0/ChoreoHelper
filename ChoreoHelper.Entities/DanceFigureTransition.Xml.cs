@@ -12,7 +12,7 @@ public sealed partial class DanceFigureTransition
     {
         yield return new XAttribute(Xn(ns, nameof(Source)), Source.Name);
         yield return new XAttribute(Xn(ns, nameof(Target)), Target.Name);
-        yield return new XAttribute(Xn(ns, nameof(Distance)), Distance.ToString(CultureInfo.InvariantCulture));
+        yield return new XAttribute(Xn(ns, nameof(Distance)), Distance.TryPickT0(out var distance, out _) ? distance.ToString(CultureInfo.InvariantCulture) : "");
         yield return new XAttribute(Xn(ns, nameof(Restriction)), Restriction.ToString("D"));
     }
 
@@ -43,14 +43,10 @@ public sealed partial class DanceFigureTransition
         }
 
         var distance = TryParseDistance(element);
-        if (!distance.TryPickT0(out var dist, out _))
-        {
-            return new Error();
-        }
 
         var restriction = ParseRestriction(element);
 
-        return new DanceFigureTransition(source, target, dist, restriction);
+        return new DanceFigureTransition(source, target, distance, restriction);
     }
 
     private static string GetDanceName(XElement element)
@@ -59,16 +55,22 @@ public sealed partial class DanceFigureTransition
         return element.Attribute(Xn(ns, "Dance"))?.Value ?? string.Empty;
     }
 
-    private static OneOf<float, Error> TryParseDistance(XElement element)
+    private static OneOf<float, None> TryParseDistance(XElement element)
     {
         var ns = element.Name.Namespace;
         var distanceValue = element.Attribute(Xn(ns, nameof(Distance)))?.Value ?? string.Empty;
+
+        if (string.IsNullOrWhiteSpace(distanceValue))
+        {
+            return new None();
+        }
+
         if (float.TryParse(distanceValue, CultureInfo.InvariantCulture, out var distance))
         {
             return distance;
         }
 
-        return new Error();
+        return new None();
     }
 
     private static OneOf<DanceFigure, Error> TryFindTargetFigure(

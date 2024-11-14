@@ -1,5 +1,4 @@
 ﻿using ChoreoHelper.Behaviors.Extensions;
-using ChoreoHelper.Gateway;
 
 namespace ChoreoHelper.Behaviors.Search;
 

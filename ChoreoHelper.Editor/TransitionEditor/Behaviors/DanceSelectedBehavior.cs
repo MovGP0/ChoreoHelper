@@ -1,6 +1,7 @@
 using System.Reactive.Disposables;
 using System.Reactive.Linq;
 using ChoreoHelper.Editor.TransitionEditor.Events;
+using ChoreoHelper.Entities;
 using DynamicData;
 using DynamicData.Kernel;
 using MessagePipe;
@@ -30,7 +31,7 @@ public sealed class DanceSelectedBehavior(IPublisher<RenderTransitionEditorComma
 
                 var numberOfFigures = vm.SelectedDance.Figures.Count;
 
-                var transitionMatrix = new byte[numberOfFigures, numberOfFigures];
+                var transitionMatrix = new DanceFigureTransition[numberOfFigures, numberOfFigures];
                 for (var column = 0; column < numberOfFigures; column++)
                 for (var row = 0; row < numberOfFigures; row++)
                 {
@@ -40,8 +41,8 @@ public sealed class DanceSelectedBehavior(IPublisher<RenderTransitionEditorComma
                         .FirstOrOptional(t => t.Source == source && t.Target == target);
 
                     transitionMatrix[column, row] = transition.HasValue
-                        ? (byte)transition.Value.Distance
-                        : (byte)0;
+                        ? transition.Value
+                        : new DanceFigureTransition(source, target, new None(), CompetitionRestriction.AllowedInAllClasses);
                 }
 
                 vm.Transitions = transitionMatrix;

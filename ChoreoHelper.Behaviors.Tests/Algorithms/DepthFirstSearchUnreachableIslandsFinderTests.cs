@@ -14,7 +14,7 @@ public static class DepthFirstSearchUnreachableIslandsFinderTests
         public void ShouldFindUnreachableIslands()
         {
             // Arrange
-            var matrix = new[,]
+            var matrix = new OneOf<float, None>[,]
             {
                 { 0, 1, 0, 0 },
                 { 1, 0, 0, 0 },
@@ -52,7 +52,7 @@ public static class DepthFirstSearchUnreachableIslandsFinderTests
         public void ShouldReturnEmptyListForEmptyMatrix()
         {
             // Arrange
-            var matrix = new int[0, 0];
+            var matrix = new OneOf<float, None>[0, 0];
             var finder = new DepthFirstSearchUnreachableIslandsFinder();
 
             // Act
@@ -66,7 +66,7 @@ public static class DepthFirstSearchUnreachableIslandsFinderTests
         public void ShouldFindSingleIsland()
         {
             // Arrange
-            var matrix = new[,]
+            var matrix = new OneOf<float, None>[,]
             {
                 { 0, 1, 0 },
                 { 1, 0, 1 },
@@ -95,7 +95,7 @@ public static class DepthFirstSearchUnreachableIslandsFinderTests
         public void ShouldHandleSingleNode()
         {
             // Arrange
-            var matrix = new[,]
+            var matrix = new OneOf<float, None>[,]
             {
                 { 0 }
             };
@@ -121,7 +121,7 @@ public static class DepthFirstSearchUnreachableIslandsFinderTests
         public void ShouldHandleDisconnectedNodes()
         {
             // Arrange
-            var matrix = new[,]
+            var matrix = new OneOf<float, None>[,]
             {
                 { 0, 0, 0 },
                 { 0, 0, 0 },

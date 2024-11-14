@@ -68,9 +68,9 @@ public static class GraphExtensions
     }
 
     [Pure]
-    public static int[,] GetDistanceMatrix(this UndirectedGraph<DanceFigure, DanceFigureTransition> graph, DanceFigure[] figures)
+    public static OneOf<float, None>[,] GetDistanceMatrix(this UndirectedGraph<DanceFigure, DanceFigureTransition> graph, DanceFigure[] figures)
     {
-        var matrix = new int[figures.Length, figures.Length];
+        var matrix = new OneOf<float, None>[figures.Length, figures.Length];
 
         for (var row = 0; row < figures.Length; row++)
         for (var col = 0; col < figures.Length; col++)
@@ -85,11 +85,11 @@ public static class GraphExtensions
 
             if (distance.Length < 1)
             {
-                matrix[row, col] = -1;
+                matrix[row, col] = new None();
             }
             else
             {
-                matrix[row, col] = (int)distance[0];
+                matrix[row, col] = distance[0];
             }
         }
 

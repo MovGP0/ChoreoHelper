@@ -5,6 +5,7 @@
         <Nullable>enable</Nullable>
         <OutputPath>..\bin\$(Platform)\$(TargetFramework)\</OutputPath>
         <ManagePackageVersionsCentrally>true</ManagePackageVersionsCentrally>
+        <LangVersion>13</LangVersion>
     </PropertyGroup>
     <ItemGroup>
         <PackageReference Include="MessagePipe" />
@@ -21,6 +22,10 @@
         <ProjectReference Include="..\ChoreoHelper.Messages\ChoreoHelper.Messages.csproj" />
         <ProjectReference Include="..\ChoreoHelper.ReactiveUI\ChoreoHelper.ReactiveUI.csproj" />
         <ProjectReference Include="..\ChoreoHelper.ViewModels\ChoreoHelper.ViewModels.csproj" />
+    </ItemGroup>
+    <ItemGroup>
+        <Using Include="OneOf" />
+        <Using Include="OneOf.Types" />
     </ItemGroup>
     <ItemGroup>
       <EmbeddedResource Update="Resources.resx">

@@ -5,7 +5,7 @@ namespace ChoreoHelper.Behaviors.Algorithms;
 public interface IRouteFinder
 {
     public Task<List<Route>> FindAllRoutesAsync(
-        int[,] distanceMatrix,
+        OneOf<float, None>[,] distanceMatrix,
         ImmutableArray<int> requiredNodes,
         int? startNode,
         int maxDistance,

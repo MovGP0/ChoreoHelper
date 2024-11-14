@@ -6,7 +6,7 @@ namespace ChoreoHelper.Behaviors.Algorithms;
 public sealed class BreadthFirstSearchRouteFinder : IRouteFinder
 {
     public async Task<List<Route>> FindAllRoutesAsync(
-        int[,] distanceMatrix,
+        OneOf<float, None>[,] distanceMatrix,
         ImmutableArray<int> requiredNodes,
         int? startNode,
         int maxDistance,
@@ -57,14 +57,14 @@ public sealed class BreadthFirstSearchRouteFinder : IRouteFinder
                 for (var node = 0; node < distanceMatrix.GetLength(0); node++)
                 {
                     var distance = distanceMatrix[route.LastVisitedNode, node];
-                    if (distance < 0)
+                    if (distance.TryPickT0(out var distanceValue, out _) || distanceValue <= 0)
                     {
                         // not connected
                         continue;
                     }
 
                     var penalty = route.VisitedNodes.Count(n => n == node);
-                    var newRoute = route.Append(node, route.Distance + distance + penalty);
+                    var newRoute = route.Append(node, route.Distance + distanceValue + penalty);
                     Debug.Assert(newRoute.LastVisitedNode == node);
 
                     var numberOfRepetitions =

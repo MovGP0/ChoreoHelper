@@ -7,6 +7,7 @@
     <EnableDefaultPageItems>false</EnableDefaultPageItems>
     <OutputPath>..\bin\$(Platform)\$(TargetFramework)\</OutputPath>
     <ManagePackageVersionsCentrally>true</ManagePackageVersionsCentrally>
+    <LangVersion>13</LangVersion>
   </PropertyGroup>
   <ItemGroup>
     <PackageReference Include="MaterialDesignThemes" />

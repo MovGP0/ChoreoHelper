@@ -2,7 +2,7 @@ namespace ChoreoHelper.Behaviors.Algorithms;
 
 public sealed class DepthFirstSearchUnreachableIslandsFinder : IUnreachableIslandsFinder
 {
-    public List<List<int>> FindUnreachableIslands(int[,] matrix)
+    public List<List<int>> FindUnreachableIslands(OneOf<float, None>[,] matrix)
     {
         var n = (int)Math.Sqrt(matrix.Length);
         var visited = new bool[n];
@@ -20,7 +20,7 @@ public sealed class DepthFirstSearchUnreachableIslandsFinder : IUnreachableIslan
     }
 
     private static void DepthFirstSearchRecursive(
-        int[,] matrix,
+        OneOf<float, None>[,] matrix,
         int node,
         IList<bool> visited,
         ICollection<int> island)
@@ -30,7 +30,7 @@ public sealed class DepthFirstSearchUnreachableIslandsFinder : IUnreachableIslan
 
         for (var i = 0; i < visited.Count; i++)
         {
-            if (matrix[node, i] != 0 && !visited[i])
+            if (matrix[node, i].TryPickT0(out var value, out _) && value > 0f && !visited[i])
             {
                 // There is a path and it's not visited
                 DepthFirstSearchRecursive(matrix, i, visited, island);

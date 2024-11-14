@@ -28,6 +28,14 @@ public partial class TransitionEditorControl
                 .Subscribe(args => ViewModel?.HandleMouseLeftButtonUp(SkiaCanvas, args))
                 .DisposeWith(d);
 
+            SkiaCanvas.Events().TouchUp
+                .Subscribe(args => ViewModel?.HandleTouchUp(SkiaCanvas, args))
+                .DisposeWith(d);
+
+            SkiaCanvas.Events().StylusUp
+                .Subscribe(args => ViewModel?.HandleStylusUp(SkiaCanvas, args))
+                .DisposeWith(d);
+
             SkiaCanvas.Events().ManipulationDelta
                 .Subscribe(args => ViewModel?.HandleManipulationDelta(args))
                 .DisposeWith(d);

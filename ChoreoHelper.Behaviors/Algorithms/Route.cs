@@ -2,7 +2,7 @@
 
 public sealed partial class Route
 {
-    public int Distance { get; }
+    public float Distance { get; }
 
     private readonly Stack<int> _visitedNodes = new();
     public IEnumerable<int> VisitedNodes => _visitedNodes;
@@ -15,7 +15,7 @@ public sealed partial class Route
         _visitedNodes.Push(startNode);
     }
 
-    private Route(int distance, IEnumerable<int> nodes)
+    private Route(float distance, IEnumerable<int> nodes)
     {
         Distance = distance;
         foreach (var node in nodes)
@@ -25,7 +25,7 @@ public sealed partial class Route
     }
 
     [Pure]
-    public Route Append(int node, int distance) => new(distance, VisitedNodes.Reverse().Concat([node]));
+    public Route Append(int node, float distance) => new(distance, VisitedNodes.Reverse().Concat([node]));
 
     [Pure]
     public bool HasVisitedAllRequiredNodes(

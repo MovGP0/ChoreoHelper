@@ -26,7 +26,7 @@ public sealed class GridPainter : IDisposable
         SKSurface surface,
         SKImageInfo info,
         SKImageInfo rawInfo,
-        byte[,] transitions,
+        DanceFigureTransition[,] transitions,
         DanceFigure[] figures,
         bool isDanceLoaded,
         SKMatrix transformationMatrix)
@@ -100,15 +100,8 @@ public sealed class GridPainter : IDisposable
             float x = headerWidth + col * cellWidth;
 
             // Get the transition value
-            byte value = transitions[col, row];
-
-            SKPaint distancePaint = value switch
-            {
-                0 => Theme.DistanceUnreachablePaint,
-                1 => Theme.Distance1Paint,
-                2 => Theme.Distance2Paint,
-                _ => Theme.DistanceInvalidPaint
-            };
+            var transition = transitions[col, row];
+            var distancePaint = GetPaintForDistance(transition.Distance);
 
             canvas.DrawRect(x, y, cellWidth, cellHeight, distancePaint);
 
@@ -118,6 +111,19 @@ public sealed class GridPainter : IDisposable
 
         canvas.Restore();
         return result;
+    }
+
+    private SKPaint GetPaintForDistance(OneOf<float, None> distance)
+    {
+        return distance.TryPickT0(out var value, out _)
+            ? value switch
+            {
+                <= 0 => Theme.DistanceUnreachablePaint,
+                <= 1 => Theme.Distance1Paint,
+                > 1 => Theme.Distance2Paint,
+                _ => Theme.DistanceInvalidPaint
+            }
+            : Theme.DistanceUnreachablePaint;
     }
 
     private SKPaint GetTextPaintForFigure(DanceFigure figureToDraw)
