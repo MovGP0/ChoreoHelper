@@ -134,16 +134,19 @@ public sealed class TransitionEditorViewModel : ReactiveObject, IActivatableView
     /// <summary>
     /// Touch Gesture for Zoom and Pan
     /// </summary>
-    public void HandleManipulationDelta(ManipulationDeltaEventArgs args)
+    public void HandleManipulationDelta(SKElement skiaCanvas, ManipulationDeltaEventArgs args)
     {
-        const float panAmount = 1.5f;
+        // Get the DPI scaling factors
+        var dpiScaleX = VisualTreeHelper.GetDpi(skiaCanvas).DpiScaleX;
+        var dpiScaleY = VisualTreeHelper.GetDpi(skiaCanvas).DpiScaleY;
+
         var sx = TransformationMatrix.ScaleX;
         var sy = TransformationMatrix.ScaleY;
 
         // Pan based on touch translation
         var translationMatrix = SKMatrix.CreateTranslation(
-            (float)args.DeltaManipulation.Translation.X * panAmount / sx,
-            (float)args.DeltaManipulation.Translation.Y * panAmount / sy);
+            (float)(args.DeltaManipulation.Translation.X * dpiScaleX) / sx,
+            (float)(args.DeltaManipulation.Translation.Y * dpiScaleY) / sy);
 
         // Scale based on touch zoom
         var scaleMatrix = SKMatrix.CreateScale((float)args.DeltaManipulation.Scale.X, (float)args.DeltaManipulation.Scale.Y, 0, 0);
@@ -155,7 +158,7 @@ public sealed class TransitionEditorViewModel : ReactiveObject, IActivatableView
 
     public void HandleMouseWheel(IInputElement skiaCanvas, MouseWheelEventArgs args)
     {
-        var zoomFactor = args.Delta > 0 ? 1.1f : 0.9f;
+        var zoomFactor = (args.Delta > 0 ? 1.1f : 0.9f) * Math.Abs(args.Delta);
         var mousePosition = args.GetPosition(skiaCanvas);
 
         var scaleMatrix = SKMatrix.CreateScale(zoomFactor, zoomFactor, (float)mousePosition.X, (float)mousePosition.Y);
@@ -175,9 +178,12 @@ public sealed class TransitionEditorViewModel : ReactiveObject, IActivatableView
         }
     }
 
-    public void HandleMouseMove(IInputElement skiaCanvas, MouseEventArgs e)
+    public void HandleMouseMove(SKElement skiaCanvas, MouseEventArgs e)
     {
-        const float panAmount = 1.5f;
+        // Get the DPI scaling factors
+        var dpiScaleX = VisualTreeHelper.GetDpi(skiaCanvas).DpiScaleX;
+        var dpiScaleY = VisualTreeHelper.GetDpi(skiaCanvas).DpiScaleY;
+
         var sx = TransformationMatrix.ScaleX;
         var sy = TransformationMatrix.ScaleY;
 
@@ -191,8 +197,8 @@ public sealed class TransitionEditorViewModel : ReactiveObject, IActivatableView
                     var delta = currentPosition - LastMousePosition.Value;
 
                     var translationMatrix = SKMatrix.CreateTranslation(
-                        (float)delta.X * panAmount / sx,
-                        (float)delta.Y * panAmount / sy);
+                        (float)(delta.X * dpiScaleX) / sx,
+                        (float)(delta.Y * dpiScaleY) / sy);
                     ApplyTransformation(translationMatrix);
 
                     LastMousePosition = currentPosition;
@@ -203,10 +209,16 @@ public sealed class TransitionEditorViewModel : ReactiveObject, IActivatableView
         }
     }
 
-    public void HandleMouseUp(IInputElement skiaCanvas, MouseButtonEventArgs e)
+    public void HandleMouseUp(SKElement skiaCanvas, MouseButtonEventArgs e)
     {
         if (e.LeftButton == MouseButtonState.Released)
         {
+            var newPosition = e.GetPosition(skiaCanvas);
+            if (LastMousePosition == newPosition)
+            {
+                HandleMouseClick(skiaCanvas, e);
+            }
+
             LastMousePosition = null;
             skiaCanvas.ReleaseMouseCapture();
         }
@@ -271,7 +283,7 @@ public sealed class TransitionEditorViewModel : ReactiveObject, IActivatableView
         SelectElementAtLocation(stylusLocation);
     }
 
-    public void HandleMouseLeftButtonUp(SKElement canvasElement, MouseButtonEventArgs e)
+    private void HandleMouseClick(SKElement canvasElement, MouseButtonEventArgs e)
     {
         // Get the DPI scaling factors
         var dpiScaleX = VisualTreeHelper.GetDpi(canvasElement).DpiScaleX;
