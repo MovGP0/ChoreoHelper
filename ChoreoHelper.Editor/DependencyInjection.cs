@@ -1,4 +1,5 @@
-﻿using ChoreoHelper.Editor.Shared;
+﻿using ChoreoHelper.Controls;
+using ChoreoHelper.Editor.Shared;
 using ChoreoHelper.Editor.Shell;
 using ChoreoHelper.Editor.TransitionEditor;
 using Microsoft.Extensions.DependencyInjection;
@@ -11,6 +12,7 @@ public static class DependencyInjection
     {
         services.AddMessagePipe();
         services.AddTransitionEditor();
+        services.AddChoreoHelperControls();
         services.AddShell();
         services.AddSingleton<Theme>();
         services.AddSingleton<XmlDataLoader>();

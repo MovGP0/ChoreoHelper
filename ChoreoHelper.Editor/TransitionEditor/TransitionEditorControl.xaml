@@ -52,13 +52,31 @@
                 Content="{materialDesign:PackIcon Kind=ZoomOutOutline}"
                 Command="{Binding ResetZoom, UpdateSourceTrigger=PropertyChanged}"/>
         </ToolBar>
-        <skia:SKElement
+        <materialDesign:DrawerHost
             Grid.Row="1" Grid.Column="0"
-            x:Name="SkiaCanvas"
+            x:Name="DrawerHost"
             Margin="4"
-            IsManipulationEnabled="True"
-            Focusable="True"
             HorizontalAlignment="Stretch"
-            VerticalAlignment="Stretch"/>
+            VerticalAlignment="Stretch"
+            BorderBrush="{DynamicResource MaterialDesignDivider}"
+            OverlayBackground="Transparent"
+            BorderThickness="2"
+            IsRightDrawerOpen="{Binding IsEditViewOpen, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"
+            RightDrawerBackground="{DynamicResource PrimaryHueLightBrush}">
+            <materialDesign:DrawerHost.RightDrawerContent>
+                <Border Width="300">
+                    <reactiveUi:ViewModelViewHost 
+                        HorizontalAlignment="Stretch"
+                        ViewModel="{Binding EditViewModel, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" />
+                </Border>
+            </materialDesign:DrawerHost.RightDrawerContent>
+            <skia:SKElement
+                x:Name="SkiaCanvas"
+                Margin="0"
+                IsManipulationEnabled="True"
+                Focusable="True"
+                HorizontalAlignment="Stretch"
+                VerticalAlignment="Stretch"/>
+        </materialDesign:DrawerHost>
     </Grid>
 </reactiveUi:ReactiveUserControl>

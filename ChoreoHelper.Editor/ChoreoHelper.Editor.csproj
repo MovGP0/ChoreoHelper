@@ -32,6 +32,7 @@
     <PackageReference Include="ReactiveMarbles.ObservableEvents.SourceGenerator" PrivateAssets="all" />
   </ItemGroup>
   <ItemGroup>
+    <ProjectReference Include="..\ChoreoHelper.Controls\ChoreoHelper.Controls.csproj" />
     <ProjectReference Include="..\ChoreoHelper.Design\ChoreoHelper.Design.csproj" />
     <ProjectReference Include="..\ChoreoHelper.Entities\ChoreoHelper.Entities.csproj" />
     <ProjectReference Include="..\ChoreoHelper.Graph\ChoreoHelper.Graph.csproj" />

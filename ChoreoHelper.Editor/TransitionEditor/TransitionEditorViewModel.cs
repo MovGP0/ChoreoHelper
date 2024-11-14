@@ -4,7 +4,9 @@ using System.Windows.Input;
 using System.Windows.Media;
 using ChoreoHelper.Editor.TransitionEditor.Events;
 using ChoreoHelper.Entities;
+using ChoreoHelper.ViewModels;
 using DynamicData.Binding;
+using DynamicData.Kernel;
 using MessagePipe;
 using ReactiveUI;
 using ReactiveUI.Fody.Helpers;
@@ -25,6 +27,12 @@ public sealed class TransitionEditorViewModel : ReactiveObject, IActivatableView
     {
         HostScreen = null!;
         RenderTransitionEditorPublisher = null!;
+
+        if (this.IsInDesignMode())
+        {
+            IsEditViewOpen = true;
+            EditViewModel = new TransitionViewModel();
+        }
     }
 
     public TransitionEditorViewModel(
@@ -110,6 +118,12 @@ public sealed class TransitionEditorViewModel : ReactiveObject, IActivatableView
     /// Matrix that gets applied for zoom/pan operations.
     /// </summary>
     public SKMatrix TransformationMatrix { get; set; } = SKMatrix.CreateIdentity();
+
+    [Reactive]
+    public bool IsEditViewOpen { get; set; } = false;
+
+    [Reactive]
+    public object EditViewModel { get; set; } = null!;
 
     /// <summary>
     /// Keeps the mouse position for dragging operations. <c>null</c> when no drag is in progress.
@@ -307,9 +321,31 @@ public sealed class TransitionEditorViewModel : ReactiveObject, IActivatableView
             {
                 var (row, col) = (map.Row, map.Column);
                 var transition = GetTransition(row, col);
+
                 // TODO: load transition editor dialog
-                // TODO: canvasElement.InvalidateVisual(); // Redraw the canvas
-                break;
+                var transitionViewModel = new TransitionViewModel
+                {
+                    FromFigureName = transition.Source.Name,
+                    ToFigureName = transition.Target.Name
+                };
+
+                var result = transitionViewModel.Distances
+                    .FirstOrOptional(d => DistanceComparer.Default.Equals(d.Distance, transition.Distance));
+
+                transitionViewModel.SelectedDistance = result.HasValue
+                    ? result.Value
+                    : null;
+
+                var rest = transitionViewModel.Restrictions
+                    .FirstOrOptional(r => r.Restriction == transition.Restriction);
+
+                transitionViewModel.SelectedRestriction = rest.HasValue
+                    ? rest.Value
+                    : null;
+
+                EditViewModel = transitionViewModel;
+                IsEditViewOpen = true;
+                return;
             }
         }
 
@@ -320,8 +356,11 @@ public sealed class TransitionEditorViewModel : ReactiveObject, IActivatableView
             {
                 var figure = map.DanceFigure;
                 // TODO: load figure editor dialog
-                break;
+                IsEditViewOpen = true;
+                return;
             }
         }
+
+        IsEditViewOpen = false;
     }
 }

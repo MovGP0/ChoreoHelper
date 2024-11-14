@@ -18,60 +18,60 @@ public sealed class TransitionViewModel : ReactiveObject
                 Distance = new None()
             };
 
-            Distances.Add(new()
-            {
-                Description = "Not reachable",
-                Distance = new None()
-            });
-
-            Distances.Add(new()
-            {
-                Description = "Reachable without modification",
-                Distance = 1
-            });
-
-            Distances.Add(new()
-            {
-                Description = "Reachable with modification",
-                Distance = 2
-            });
-
             SelectedRestriction = new()
             {
                 Description = "Allowed in all classes",
                 Restriction = CompetitionRestriction.AllowedInAllClasses
             };
-            
-            Restrictions.Add(new()
-            {
-                Description = "Allowed in all classes",
-                Restriction = CompetitionRestriction.AllowedInAllClasses
-            });
-            
-            Restrictions.Add(new()
-            {
-                Description = "Not allowed in class D, C, B, A",
-                Restriction = CompetitionRestriction.NotAllowedInClassA
-            });
-
-            Restrictions.Add(new()
-            {
-                Description = "Not allowed in class D, C, B",
-                Restriction = CompetitionRestriction.NotAllowedInClassB
-            });
-
-            Restrictions.Add(new()
-            {
-                Description = "Not allowed in class D, C",
-                Restriction = CompetitionRestriction.NotAllowedInClassC
-            });
-
-            Restrictions.Add(new()
-            {
-                Description = "Not allowed in class D",
-                Restriction = CompetitionRestriction.NotAllowedInClassD
-            });
         }
+
+        Distances.Add(new()
+        {
+            Description = "Not reachable",
+            Distance = new None()
+        });
+
+        Distances.Add(new()
+        {
+            Description = "Reachable without modification",
+            Distance = 1
+        });
+
+        Distances.Add(new()
+        {
+            Description = "Reachable with modification",
+            Distance = 2
+        });
+
+        Restrictions.Add(new()
+        {
+            Description = "Allowed in all classes",
+            Restriction = CompetitionRestriction.AllowedInAllClasses
+        });
+            
+        Restrictions.Add(new()
+        {
+            Description = "Not allowed in class D, C, B, A",
+            Restriction = CompetitionRestriction.NotAllowedInClassA
+        });
+
+        Restrictions.Add(new()
+        {
+            Description = "Not allowed in class D, C, B",
+            Restriction = CompetitionRestriction.NotAllowedInClassB
+        });
+
+        Restrictions.Add(new()
+        {
+            Description = "Not allowed in class D, C",
+            Restriction = CompetitionRestriction.NotAllowedInClassC
+        });
+
+        Restrictions.Add(new()
+        {
+            Description = "Not allowed in class D",
+            Restriction = CompetitionRestriction.NotAllowedInClassD
+        });
     }
 
     [Reactive]
