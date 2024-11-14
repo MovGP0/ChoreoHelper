@@ -10,6 +10,7 @@ public static class DependencyInjection
 {
     public static IServiceCollection AddChoreoHelper(this IServiceCollection services)
     {
+        services.AddMessagePipe();
         services.AddChoreoHelperDatabase();
         services.AddBehaviors();
         services.AddChoreoHelperControls();

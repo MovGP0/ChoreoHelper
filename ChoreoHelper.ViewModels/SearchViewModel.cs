@@ -29,8 +29,6 @@ public sealed class SearchViewModel: ReactiveObject, IActivatableViewModel, IDis
             Levels.Add(new LevelSelectionViewModel { Level = DanceLevel.Bronze });
             Levels.Add(new LevelSelectionViewModel { Level = DanceLevel.Silver });
             Levels.Add(new LevelSelectionViewModel { Level = DanceLevel.Gold });
-
-            FindChoreography = EnabledCommand.Instance;
         }
 
         foreach(var behavior in Locator.Current.GetServices<IBehavior<SearchViewModel>>())

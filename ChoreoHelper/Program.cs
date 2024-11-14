@@ -15,7 +15,8 @@ public static class Program
     [STAThread]
     public static void Main(string[] args)
     {
-        var host = Host.CreateDefaultBuilder(args)
+        var host = Host
+            .CreateDefaultBuilder(args)
             .ConfigureServices((hostBuilderContext, services) =>
             {
                 services.AddLogging();

@@ -20,8 +20,11 @@
     </ItemGroup>
     <ItemGroup>
         <Using Include="Xunit"/>
+        <Using Include="Shouldly"/>
+        <Using Include="ChoreoHelper.Tests"/>
     </ItemGroup>
     <ItemGroup>
       <ProjectReference Include="..\ChoreoHelper.Behaviors\ChoreoHelper.Behaviors.csproj" />
+      <ProjectReference Include="..\ChoreoHelper.Tests\ChoreoHelper.Tests.csproj" />
     </ItemGroup>
 </Project>

@@ -1,15 +1,4 @@
 namespace ChoreoHelper.Entities;
 
-public readonly record struct DanceStepNodeInfo
-{
-    public DanceStepNodeInfo(string name, string hash, DanceLevel level)
-    {
-        Name = name;
-        Hash = hash;
-        Level = level;
-    }
-
-    public string Name { get; }
-    public string Hash { get; }
-    public DanceLevel Level { get; }
-}
+[DebuggerDisplay("{Name} ({Level})")]
+public readonly record struct DanceStepNodeInfo(string Name, string Hash, DanceLevel Level);

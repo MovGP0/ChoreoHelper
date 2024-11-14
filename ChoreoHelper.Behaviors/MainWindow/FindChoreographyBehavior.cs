@@ -1,22 +1,16 @@
-using System.Collections.Immutable;
-using System.Diagnostics;
 using System.Runtime.CompilerServices;
 using ChoreoHelper.Behaviors.Algorithms;
 using ChoreoHelper.Behaviors.Extensions;
-using ChoreoHelper.Entities;
-using ChoreoHelper.Gateway;
 using ChoreoHelper.Messages;
 using DynamicData.Kernel;
-using Microsoft.Extensions.Logging;
 
 namespace ChoreoHelper.Behaviors.MainWindow;
 
 public sealed class FindChoreographyBehavior(
-    IDanceFiguresRepository connection,
-    IUnreachableIslandsFinder unreachableIslandsFinder,
-    IRouteFinder routeFinder,
-    ILogger<FindChoreographyBehavior> logger)
-    : IBehavior<SearchViewModel>, IEnableLogger
+    ISubscriber<RequiredFigureUpdated> requiredFigureUpdated,
+    IPublisher<FoundChoreographies> foundChoreographies,
+    ISearchChoreographies searchChoreographies)
+    : IBehavior<SearchViewModel>
 {
     public void Activate(SearchViewModel viewModel, CompositeDisposable disposables)
     {
@@ -28,8 +22,9 @@ public sealed class FindChoreographyBehavior(
         var obs1 = viewModel.OptionalFiguresFiltered
             .OnCollectionChanged()
             .Select(_ => Unit.Default);
-        
-        var obs2 = MessageBus.Current.Listen<RequiredFigureUpdated>()
+
+        var obs2 = requiredFigureUpdated
+            .AsObservable()
             .Do(message =>
             {
                 var figure = viewModel.RequiredFigures
@@ -52,90 +47,17 @@ public sealed class FindChoreographyBehavior(
             .Throttle(TimeSpan.FromMilliseconds(100))
             .ObserveOn(RxApp.MainThreadScheduler)
             .Select(_ => viewModel)
-            .Select(vm => RequiredFiguresAreSelected(vm)
-                          && StartWithSpecificFigureIsValid(vm))
-            .Log(this, "can command execute", value => value.ToString());
+            .Select(vm => RequiredFiguresAreSelected(vm) && StartWithSpecificFigureIsValid(vm));
 
         var command = ReactiveCommand
             .Create(DoNothing, canExecute)
             .DisposeWith(disposables);
 
         command
-            .ObserveOn(RxApp.MainThreadScheduler)
             .SubscribeOn(RxApp.TaskpoolScheduler)
             .Select(_ => viewModel)
-            .SelectMany(async (SearchViewModel vm, CancellationToken ct) =>
-            {
-                var requiredFigures = vm.RequiredFigures
-                    .Where(rf => rf.IsSelected)
-                    .Select(rf => new DanceStepNodeInfo(rf.Name, rf.Hash, rf.Level))
-                    .ToArray();
-
-                var optionalFigures = vm.OptionalFigures
-                    .Where(of => of.IsSelected)
-                    .Select(of => new DanceStepNodeInfo(of.Name, of.Hash, of.Level))
-                    .ToArray();
-
-                var figures = requiredFigures.Concat(optionalFigures)
-                    .ToArray();
-
-                var danceName = vm.SelectedDance?.Name ?? string.Empty;
-                if (danceName == string.Empty)
-                {
-                    logger.LogWarning("No dance selected");
-                    return [];
-                }
-
-                var (matrix, sortedFigures) = connection.GetDistanceMatrix(danceName, figures);
-                var islands = unreachableIslandsFinder.FindUnreachableIslands(matrix);
-                if (islands.Count > 1)
-                {
-                    logger.LogWarning($"Found {islands.Count} islands");
-                }
-
-                var requiredFigureIndex = new int[requiredFigures.Length];
-                for (var i = 0; i < requiredFigureIndex.Length; i++)
-                {
-                    var requiredFigure = requiredFigures[i];
-                    requiredFigureIndex[i] = Array.IndexOf(sortedFigures, requiredFigure);
-                }
-
-                var nodes = requiredFigureIndex.ToImmutableArray();
-
-                int? startNode = null;
-                if (viewModel.IsStartWithSpecificFigure && vm.SelectedSpecificStartFigure is {} specificStartFigure)
-                {
-                    startNode = Array.FindIndex(sortedFigures, sf => sf.Hash == specificStartFigure.Hash);
-                    Debug.Assert(startNode >= 0);
-                }
-
-                var timeout = Debugger.IsAttached ? TimeSpan.FromHours(1) : TimeSpan.FromSeconds(figures.Length);
-                using var timeoutCts = new CancellationTokenSource(timeout);
-                using var cts = CancellationTokenSource.CreateLinkedTokenSource(ct, timeoutCts.Token);
-
-                List<Route> routes = new();
-                try
-                {
-                    routes = await routeFinder.FindAllRoutesAsync(
-                        matrix,
-                        nodes,
-                        startNode,
-                        figures.Length * 2,
-                        cts.Token);
-                }
-                catch (Exception ex)
-                {
-                    logger.LogError(ex, "Failure while determining choreography route");
-                }
-
-                // convert routes:List<List<int>> to figures:List<List<DanceStepNodeInfo>>
-                return routes
-                    .Select<Route, DanceStepNodeInfo[]>(route => route
-                        .VisitedNodes.Reverse().Select(index => sortedFigures[index])
-                        .ToArray())
-                    .ToArray();
-            })
-            .Subscribe(items => MessageBus.Current.SendMessage(new FoundChoreographies(items)))
+            .SelectMany(async (SearchViewModel vm, CancellationToken ct) => await searchChoreographies.ExecuteAsync(vm, ct))
+            .Subscribe(foundChoreographies.Publish)
             .DisposeWith(disposables);
 
         viewModel.FindChoreography = command;

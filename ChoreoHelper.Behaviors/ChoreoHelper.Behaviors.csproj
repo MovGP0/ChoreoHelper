@@ -7,6 +7,7 @@
         <ManagePackageVersionsCentrally>true</ManagePackageVersionsCentrally>
     </PropertyGroup>
     <ItemGroup>
+        <PackageReference Include="MessagePipe" />
         <PackageReference Include="Microsoft.Extensions.DependencyInjection" />
         <PackageReference Include="Microsoft.Extensions.Logging.Abstractions" />
         <PackageReference Include="ReactiveUI" />
@@ -30,6 +31,9 @@
         <DesignTime>True</DesignTime>
         <AutoGen>True</AutoGen>
         <DependentUpon>Resources.resx</DependentUpon>
+      </Compile>
+      <Compile Update="Algorithms\Route.Equatable.cs">
+        <DependentUpon>Route.cs</DependentUpon>
       </Compile>
     </ItemGroup>
 </Project>

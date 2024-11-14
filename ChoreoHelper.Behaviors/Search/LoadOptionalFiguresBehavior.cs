@@ -6,7 +6,10 @@ using ChoreoHelper.Messages;
 
 namespace ChoreoHelper.Behaviors.Search;
 
-public sealed class LoadOptionalFiguresBehavior(IDanceFiguresRepository connection) : IBehavior<SearchViewModel>
+public sealed class LoadOptionalFiguresBehavior(
+    IDanceFiguresRepository connection,
+    ISubscriber<RequiredFigureUpdated> requiredFigureUpdatedSubscriber)
+    : IBehavior<SearchViewModel>
 {
     public void Activate(SearchViewModel viewModel, CompositeDisposable disposables)
     {
@@ -72,7 +75,7 @@ public sealed class LoadOptionalFiguresBehavior(IDanceFiguresRepository connecti
                && !vm.RequiredFigures.All(r => r.IsSelected);
     }
 
-    private static IObservable<Unit> Observe(SearchViewModel viewModel)
+    private IObservable<Unit> Observe(SearchViewModel viewModel)
     {
         var figuresChanged = Observable.FromEventPattern<NotifyCollectionChangedEventHandler, NotifyCollectionChangedEventArgs>(
                 handler => viewModel.Figures.CollectionChanged += handler,
@@ -81,8 +84,7 @@ public sealed class LoadOptionalFiguresBehavior(IDanceFiguresRepository connecti
             .SubscribeOn(RxApp.MainThreadScheduler)
             .Select(_ => Unit.Default);
 
-        var requiredFigureChanged = MessageBus.Current
-            .Listen<RequiredFigureUpdated>()
+        var requiredFigureChanged = requiredFigureUpdatedSubscriber.AsObservable()
             .Select(_ => Unit.Default);
 
         return figuresChanged.Merge(requiredFigureChanged);

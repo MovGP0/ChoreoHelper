@@ -3,7 +3,9 @@ using DynamicData.Kernel;
 
 namespace ChoreoHelper.Behaviors.Search;
 
-public sealed class LoadSelectedFiguresBehavior : IBehavior<SearchViewModel>
+public sealed class LoadSelectedFiguresBehavior(
+    ISubscriber<RequiredFigureUpdated> requiredFigureUpdatedSubscriber)
+    : IBehavior<SearchViewModel>
 {
     public void Activate(SearchViewModel viewModel, CompositeDisposable disposables)
     {
@@ -15,7 +17,7 @@ public sealed class LoadSelectedFiguresBehavior : IBehavior<SearchViewModel>
             .Subscribe()
             .DisposeWith(disposables);
 
-        MessageBus.Current.Listen<RequiredFigureUpdated>()
+        requiredFigureUpdatedSubscriber
             .Subscribe(message =>
             {
                 var figureOption = viewModel.RequiredFigures

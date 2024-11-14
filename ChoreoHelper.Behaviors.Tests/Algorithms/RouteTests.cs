@@ -1,5 +1,4 @@
 ﻿using ChoreoHelper.Behaviors.Algorithms;
-using Shouldly;
 
 namespace ChoreoHelper.Behaviors.Tests.Algorithms;
 

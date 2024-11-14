@@ -33,6 +33,7 @@ public static class DependencyInjection
         services.AddTransient<IBehavior<SearchViewModel>, LoadOptionalFiguresBehavior>();
         services.AddTransient<IBehavior<SearchViewModel>, LoadRequiredFiguresBehavior>();
         services.AddTransient<IBehavior<SearchViewModel>, LoadSelectedFiguresBehavior>();
+        services.AddTransient<ISearchChoreographies, SearchChoreographies>();
         return services;
     }
 }

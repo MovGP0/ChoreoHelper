@@ -6,3 +6,4 @@ global using ReactiveUI;
 global using ChoreoHelper.ViewModels;
 global using System.Diagnostics.Contracts;
 global using Splat;
+global using MessagePipe;

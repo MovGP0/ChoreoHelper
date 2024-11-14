@@ -3,13 +3,15 @@ using DynamicData.Binding;
 
 namespace ChoreoHelper.Behaviors.SearchResult;
 
-public sealed class CloseDrawerOnChoreographiesFoundBehavior : IBehavior<SearchResultViewModel>
+public sealed class CloseDrawerOnChoreographiesFoundBehavior(
+    IPublisher<CloseDrawer> closeDrawerPublisher)
+    : IBehavior<SearchResultViewModel>
 {
     public void Activate(SearchResultViewModel viewModel, CompositeDisposable disposables)
     {
         viewModel.Choreographies
             .WhenAnyPropertyChanged()
-            .Subscribe(_ => MessageBus.Current.SendMessage(new CloseDrawer()))
+            .Subscribe(_ => closeDrawerPublisher.Publish(new CloseDrawer()))
             .DisposeWith(disposables);
     }
 }

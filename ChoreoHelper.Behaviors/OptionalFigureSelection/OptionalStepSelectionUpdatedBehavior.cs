@@ -2,7 +2,9 @@ using ChoreoHelper.Messages;
 
 namespace ChoreoHelper.Behaviors.OptionalFigureSelection;
 
-public sealed class OptionalStepSelectionUpdatedBehavior : IBehavior<OptionalFigureSelectionViewModel>
+public sealed class OptionalStepSelectionUpdatedBehavior(
+    IPublisher<OptionalFigureUpdated> optionalFigureUpdatedPublisher)
+    : IBehavior<OptionalFigureSelectionViewModel>
 {
     public void Activate(OptionalFigureSelectionViewModel viewModel, CompositeDisposable disposables)
     {
@@ -12,7 +14,7 @@ public sealed class OptionalStepSelectionUpdatedBehavior : IBehavior<OptionalFig
             .Subscribe(vm =>
             {
                 var message = new OptionalFigureUpdated(vm.Hash, vm.IsSelected);
-                MessageBus.Current.SendMessage(message);
+                optionalFigureUpdatedPublisher.Publish(message);
             })
             .DisposeWith(disposables);
     }

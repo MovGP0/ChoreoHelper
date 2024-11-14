@@ -2,7 +2,9 @@
 
 namespace ChoreoHelper.Behaviors.RequiredFigureSelection;
 
-public sealed class RequiredStepSelectionUpdatedBehavior : IBehavior<RequiredFigureSelectionViewModel>
+public sealed class RequiredStepSelectionUpdatedBehavior(
+    IPublisher<RequiredFigureUpdated> requiredFigureUpdatedPublisher)
+    : IBehavior<RequiredFigureSelectionViewModel>
 {
     public void Activate(RequiredFigureSelectionViewModel viewModel, CompositeDisposable disposables)
     {
@@ -12,7 +14,7 @@ public sealed class RequiredStepSelectionUpdatedBehavior : IBehavior<RequiredFig
             .Subscribe(vm =>
             {
                 var message = new RequiredFigureUpdated(vm.Hash, vm.IsSelected);
-                MessageBus.Current.SendMessage(message);
+                requiredFigureUpdatedPublisher.Publish(message);
             })
             .DisposeWith(disposables);
     }

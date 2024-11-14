@@ -4,7 +4,9 @@ using ChoreoHelper.Messages;
 
 namespace ChoreoHelper.Behaviors.Search;
 
-public sealed class FilterRequiredFiguresBehavior: IBehavior<SearchViewModel>
+public sealed class FilterRequiredFiguresBehavior(
+    ISubscriber<LevelChanged> levelChangedSubscriber)
+    : IBehavior<SearchViewModel>
 {
     public void Activate(SearchViewModel viewModel, CompositeDisposable disposables)
     {
@@ -41,7 +43,7 @@ public sealed class FilterRequiredFiguresBehavior: IBehavior<SearchViewModel>
                || figure.Level.IsFlagSet(DanceLevel.Bronze) && levelFilter.IsFlagSet(DanceLevel.Bronze);
     }
 
-    private static IObservable<Unit> Observe(SearchViewModel viewModel)
+    private IObservable<Unit> Observe(SearchViewModel viewModel)
     {
         var listChanged = viewModel.RequiredFigures
             .OnCollectionChanged()
@@ -51,7 +53,7 @@ public sealed class FilterRequiredFiguresBehavior: IBehavior<SearchViewModel>
             .WhenAnyValue(vm => vm.SearchText)
             .Select(_ => Unit.Default);
 
-        var levelChanged = MessageBus.Current.Listen<LevelChanged>()
+        var levelChanged = levelChangedSubscriber.AsObservable()
             .Select(_ => Unit.Default);
 
         return searchTextChanged

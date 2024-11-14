@@ -6,7 +6,10 @@ using DynamicData.Binding;
 
 namespace ChoreoHelper.Behaviors.Search;
 
-public sealed class FilterOptionalFiguresBehavior: IBehavior<SearchViewModel>
+public sealed class FilterOptionalFiguresBehavior(
+    ISubscriber<RequiredFigureUpdated> requiredFigureUpdatedSubscriber,
+    ISubscriber<LevelChanged> levelChangedSubscriber)
+    : IBehavior<SearchViewModel>
 {
     public void Activate(SearchViewModel viewModel, CompositeDisposable disposables)
     {
@@ -50,7 +53,7 @@ public sealed class FilterOptionalFiguresBehavior: IBehavior<SearchViewModel>
                || figure.Level.IsFlagSet(DanceLevel.Bronze) && levelFilter.IsFlagSet(DanceLevel.Bronze);
     }
 
-    private static IObservable<Unit> Observe(SearchViewModel viewModel)
+    private IObservable<Unit> Observe(SearchViewModel viewModel)
     {
         var lastCount = 0;
         var listChanged = viewModel.OptionalFigures
@@ -65,10 +68,10 @@ public sealed class FilterOptionalFiguresBehavior: IBehavior<SearchViewModel>
                 vm => vm.SelectedDance)
             .Select(_ => Unit.Default);
 
-        var requiredFigureChanged = MessageBus.Current.Listen<RequiredFigureUpdated>()
+        var requiredFigureChanged = requiredFigureUpdatedSubscriber.AsObservable()
             .Select(_ => Unit.Default);
 
-        var levelChanged = MessageBus.Current.Listen<LevelChanged>()
+        var levelChanged = levelChangedSubscriber.AsObservable()
             .Select(_ => Unit.Default);
 
         return searchTextChanged

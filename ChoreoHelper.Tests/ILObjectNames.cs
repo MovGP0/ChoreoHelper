@@ -1,5 +1,4 @@
-﻿namespace ChoreoHelper.Behaviors.Tests;
-
+﻿namespace ChoreoHelper.Tests;
 
 /// <summary>
 /// Provides constants for special IL (Intermediate Language) names used in .NET for various operations and constructs.

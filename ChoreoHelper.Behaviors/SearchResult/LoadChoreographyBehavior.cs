@@ -4,7 +4,9 @@ using ChoreoHelper.Messages;
 
 namespace ChoreoHelper.Behaviors.SearchResult;
 
-public sealed class LoadChoreographyBehavior: IBehavior<SearchResultViewModel>
+public sealed class LoadChoreographyBehavior(
+    ISubscriber<FoundChoreographies> foundChoreographiesSubscriber)
+    : IBehavior<SearchResultViewModel>
 {
     public void Activate(SearchResultViewModel viewModel, CompositeDisposable disposables)
     {
@@ -17,8 +19,7 @@ public sealed class LoadChoreographyBehavior: IBehavior<SearchResultViewModel>
             .Subscribe()
             .DisposeWith(disposables);
 
-        MessageBus.Current
-            .Listen<FoundChoreographies>()
+        foundChoreographiesSubscriber
             .Subscribe(cs =>
             {
                 var choreographyItems = cs.Items;
