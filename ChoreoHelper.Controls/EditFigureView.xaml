@@ -9,13 +9,17 @@
     xmlns:viewModels="clr-namespace:ChoreoHelper.ViewModels;assembly=ChoreoHelper.ViewModels"
     xmlns:design="clr-namespace:ChoreoHelper.Design;assembly=ChoreoHelper.Design"
     mc:Ignorable="d"
+    TextElement.FontWeight="Regular"
+    TextElement.FontSize="12"
+    TextOptions.TextFormattingMode="Ideal"
+    TextOptions.TextRenderingMode="Auto"
+    d:DataContext="{d:DesignInstance viewModels:EditFigureViewModel, IsDesignTimeCreatable=True}"
+    HorizontalAlignment="Stretch"
+    VerticalAlignment="Stretch"
     d:DesignHeight="300" d:DesignWidth="300">
     <UserControl.Resources>
         <design:ResourceDictionaryProvider />
     </UserControl.Resources>
-    <UserControl.DataContext>
-        <viewModels:EditFigureViewModel />
-    </UserControl.DataContext>
     <Grid>
         <Grid.RowDefinitions>
             <RowDefinition Height="Auto" />
@@ -60,11 +64,13 @@
         <Button Grid.Row="3" Grid.Column="0" 
                 Content="OK"
                 IsDefault="True"
-                Margin="4" />
+                Margin="4"
+                Command="{Binding SaveAndNavigateBack, UpdateSourceTrigger=PropertyChanged}" />
 
         <Button Grid.Row="3" Grid.Column="1"
                 Content="Cancel"
                 IsCancel="True"
-                Margin="4" />
+                Margin="4"
+                Command="{Binding NavigateBack, UpdateSourceTrigger=PropertyChanged}"/>
     </Grid>
 </reactiveUi:ReactiveUserControl>

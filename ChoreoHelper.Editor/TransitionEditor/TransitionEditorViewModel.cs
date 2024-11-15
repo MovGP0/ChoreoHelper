@@ -172,29 +172,33 @@ public sealed class TransitionEditorViewModel : ReactiveObject, IActivatableView
         Render();
     }
 
-    public void HandleMouseWheel(IInputElement skiaCanvas, MouseWheelEventArgs args)
+    public void HandleMouseWheel(SKElement skiaCanvas, MouseWheelEventArgs args)
     {
-        var zoomFactor = (args.Delta > 0 ? 1.1f : 0.9f) * Math.Abs(args.Delta);
+        var zoomFactor = args.Delta > 0 ? 1.1f : 0.9f;
         var mousePosition = args.GetPosition(skiaCanvas);
 
-        var scaleMatrix = SKMatrix.CreateScale(zoomFactor, zoomFactor, (float)mousePosition.X, (float)mousePosition.Y);
+        var scaleMatrix = SKMatrix.CreateScale(
+            zoomFactor,
+            zoomFactor,
+            (float)mousePosition.X,
+            (float)mousePosition.Y);
 
         ApplyTransformation(scaleMatrix);
         Render();
     }
 
-    public void HandleMouseDown(IInputElement skiaCanvas, MouseButtonEventArgs e)
+    public void HandleMouseDown(IInputElement skiaCanvas, MouseButtonEventArgs args)
     {
-        switch (e.LeftButton)
+        switch (args.LeftButton)
         {
             case MouseButtonState.Pressed:
-                LastMousePosition = e.GetPosition(skiaCanvas);
+                LastMousePosition = args.GetPosition(skiaCanvas);
                 skiaCanvas.CaptureMouse();
                 break;
         }
     }
 
-    public void HandleMouseMove(SKElement skiaCanvas, MouseEventArgs e)
+    public void HandleMouseMove(SKElement skiaCanvas, MouseEventArgs args)
     {
         // Get the DPI scaling factors
         var dpiScaleX = VisualTreeHelper.GetDpi(skiaCanvas).DpiScaleX;
@@ -203,13 +207,13 @@ public sealed class TransitionEditorViewModel : ReactiveObject, IActivatableView
         var sx = TransformationMatrix.ScaleX;
         var sy = TransformationMatrix.ScaleY;
 
-        switch (e.LeftButton)
+        switch (args.LeftButton)
         {
             case MouseButtonState.Pressed:
             {
                 if (LastMousePosition.HasValue)
                 {
-                    var currentPosition = e.GetPosition(skiaCanvas);
+                    var currentPosition = args.GetPosition(skiaCanvas);
                     var delta = currentPosition - LastMousePosition.Value;
 
                     var translationMatrix = SKMatrix.CreateTranslation(
@@ -225,14 +229,14 @@ public sealed class TransitionEditorViewModel : ReactiveObject, IActivatableView
         }
     }
 
-    public void HandleMouseUp(SKElement skiaCanvas, MouseButtonEventArgs e)
+    public void HandleMouseUp(SKElement skiaCanvas, MouseButtonEventArgs args)
     {
-        if (e.LeftButton == MouseButtonState.Released)
+        if (args.LeftButton == MouseButtonState.Released)
         {
-            var newPosition = e.GetPosition(skiaCanvas);
+            var newPosition = args.GetPosition(skiaCanvas);
             if (LastMousePosition == newPosition)
             {
-                HandleMouseClick(skiaCanvas, e);
+                HandleMouseClick(skiaCanvas, args);
             }
 
             LastMousePosition = null;
@@ -321,32 +325,8 @@ public sealed class TransitionEditorViewModel : ReactiveObject, IActivatableView
             var rect = map.ScreenLocation.ToSKRect();
             if (rect.Contains(location))
             {
-                var (row, col) = (map.Row, map.Column);
-                var transition = GetTransition(row, col);
-
-                // TODO: load transition editor dialog
-                var transitionViewModel = new TransitionViewModel
-                {
-                    FromFigureName = transition.Source.Name,
-                    ToFigureName = transition.Target.Name
-                };
-
-                var result = transitionViewModel.Distances
-                    .FirstOrOptional(d => DistanceComparer.Default.Equals(d.Distance, transition.Distance));
-
-                transitionViewModel.SelectedDistance = result.HasValue
-                    ? result.Value
-                    : null;
-
-                var rest = transitionViewModel.Restrictions
-                    .FirstOrOptional(r => r.Restriction == transition.Restriction);
-
-                transitionViewModel.SelectedRestriction = rest.HasValue
-                    ? rest.Value
-                    : null;
-
-                EditViewModel = transitionViewModel;
-                IsEditViewOpen = true;
+                var transition = GetTransition(map.Row, map.Column);
+                ShowTransitionEditor(transition);
                 return;
             }
         }
@@ -357,12 +337,63 @@ public sealed class TransitionEditorViewModel : ReactiveObject, IActivatableView
             if (rect.Contains(location))
             {
                 var figure = map.DanceFigure;
-                // TODO: load figure editor dialog
-                IsEditViewOpen = true;
+                ShowFigureEditor(figure);
                 return;
             }
         }
 
         IsEditViewOpen = false;
+    }
+
+    private void ShowFigureEditor(DanceFigure figure)
+    {
+        var figureViewModel = new EditFigureViewModel
+        {
+            Name = figure.Name,
+            Hash = figure.Dance.Name + '|' + figure.Name
+        };
+
+        var level = figureViewModel.Levels
+            .FirstOrOptional(l => l.Level == figure.Level);
+
+        figureViewModel.Level = level.HasValue
+            ? level.Value
+            : figureViewModel.Level = figureViewModel.Levels.First();
+
+        var restriction = figureViewModel.Restrictions
+            .FirstOrOptional(r => r.Restriction == figure.Restriction);
+        
+        figureViewModel.Restriction = restriction.HasValue
+            ? restriction.Value
+            : figureViewModel.Restrictions.First();
+
+        EditViewModel = figureViewModel;
+        IsEditViewOpen = true;
+    }
+
+    private void ShowTransitionEditor(DanceFigureTransition transition)
+    {
+        var transitionViewModel = new TransitionViewModel
+        {
+            FromFigureName = transition.Source.Name,
+            ToFigureName = transition.Target.Name
+        };
+
+        var result = transitionViewModel.Distances
+            .FirstOrOptional(d => DistanceComparer.Default.Equals(d.Distance, transition.Distance));
+
+        transitionViewModel.SelectedDistance = result.HasValue
+            ? result.Value
+            : transitionViewModel.Distances.First();
+
+        var rest = transitionViewModel.Restrictions
+            .FirstOrOptional(r => r.Restriction == transition.Restriction);
+
+        transitionViewModel.SelectedRestriction = rest.HasValue
+            ? rest.Value
+            :  transitionViewModel.Restrictions.First();
+
+        EditViewModel = transitionViewModel;
+        IsEditViewOpen = true;
     }
 }

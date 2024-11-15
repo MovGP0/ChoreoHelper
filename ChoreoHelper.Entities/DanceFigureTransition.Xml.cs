@@ -1,4 +1,5 @@
 ﻿using System.Globalization;
+using static ChoreoHelper.Entities.Xml.XElementParsers;
 
 namespace ChoreoHelper.Entities;
 
@@ -112,21 +113,4 @@ public sealed partial class DanceFigureTransition
 
         return source[0];
     }
-
-    private static CompetitionRestriction ParseRestriction(XElement element)
-    {
-        var ns = element.Name.Namespace;
-        var restrictionValue = element.Attribute(Xn(ns, nameof(Restriction)))?.Value ?? string.Empty;
-        var restriction = CompetitionRestriction.AllowedInAllClasses;
-        if (int.TryParse(restrictionValue, NumberStyles.Integer, CultureInfo.InvariantCulture, out int restrictionInt))
-        {
-            restriction = (CompetitionRestriction)restrictionInt;
-        }
-
-        return restriction;
-    }
-
-    [Pure]
-    [MethodImpl(MethodImplOptions.AggressiveInlining)]
-    private static XName Xn(XNamespace ns, string name) => ns + name.ToLowerInvariant();
 }

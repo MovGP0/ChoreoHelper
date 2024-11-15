@@ -1,9 +1,17 @@
+using System.Reactive;
+using DynamicData;
 using DynamicData.Binding;
 
 namespace ChoreoHelper.ViewModels;
 
 public sealed class EditFigureViewModel : ReactiveObject
 {
+    public EditFigureViewModel()
+    {
+        Levels.AddRange(LevelSelectionViewModelFactory.Create());
+        Restrictions.AddRange(RestrictionViewModelFactory.Create());
+    }
+
     /// <summary>
     /// The hash code of the dance step.
     /// </summary>
@@ -23,4 +31,10 @@ public sealed class EditFigureViewModel : ReactiveObject
 
     [Reactive]
     public RestrictionViewModel? Restriction { get; set; }
+
+    [Reactive]
+    public ReactiveCommand<Unit, Unit> SaveAndNavigateBack { get; set; } = DisabledCommand.Instance;
+
+    [Reactive]
+    public ReactiveCommand<Unit, Unit> NavigateBack { get; set; } = DisabledCommand.Instance;
 }

@@ -1,7 +1,7 @@
 ﻿namespace ChoreoHelper.Entities;
 
 [DebuggerDisplay("{DebuggerDisplay,nq}")]
-public sealed partial class DanceFigure(Dance dance, string name, DanceLevel level)
+public sealed partial class DanceFigure(Dance dance, string name, DanceLevel level, CompetitionRestriction restriction)
 {
     [Pure]
     public Dance Dance { get; } = dance;
@@ -11,6 +11,8 @@ public sealed partial class DanceFigure(Dance dance, string name, DanceLevel lev
 
     [Pure]
     public DanceLevel Level { get; } = level;
+
+    public CompetitionRestriction Restriction { get; } = restriction;
 
     [Pure]
     private string DebuggerDisplay => $"{Dance} {Name} {Level}";

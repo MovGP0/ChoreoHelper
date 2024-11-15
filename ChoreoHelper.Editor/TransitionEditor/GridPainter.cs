@@ -68,7 +68,7 @@ public sealed class GridPainter : IDisposable
             canvas.DrawText(figureToDraw.Name, 0, 0, paint);
             canvas.Restore();
 
-            RectangleF location = new(0, y, cellWidth, cellHeight);
+            RectangleF location = new(0, y, headerWidth, cellHeight);
             result.FigureMap.Add(new(location, figureToDraw));
         }
 
@@ -88,7 +88,7 @@ public sealed class GridPainter : IDisposable
             canvas.DrawText(figureToDraw.Name, 0, 0, paint);
             canvas.Restore();
 
-            RectangleF location = new(x, headerWidth, cellWidth, cellHeight);
+            RectangleF location = new(x, 0, cellWidth, headerWidth);
             result.FigureMap.Add(new(location, figureToDraw));
         }
 

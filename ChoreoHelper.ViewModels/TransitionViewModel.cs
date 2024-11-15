@@ -1,4 +1,5 @@
 using System.Reactive;
+using DynamicData;
 using DynamicData.Binding;
 using OneOf.Types;
 
@@ -8,70 +9,16 @@ public sealed class TransitionViewModel : ReactiveObject
 {
     public TransitionViewModel()
     {
+        Distances.AddRange(DistancesViewModelFactory.Create());
+        Restrictions.AddRange(RestrictionViewModelFactory.Create());
+
         if (this.IsInDesignMode())
         {
             FromFigureName = "FromFigureName";
             ToFigureName = "ToFigureName";
-            SelectedDistance = new()
-            {
-                Description = "Not reachable",
-                Distance = new None()
-            };
-
-            SelectedRestriction = new()
-            {
-                Description = "Allowed in all classes",
-                Restriction = CompetitionRestriction.AllowedInAllClasses
-            };
+            SelectedDistance = Distances.First();
+            SelectedRestriction = Restrictions.First();
         }
-
-        Distances.Add(new()
-        {
-            Description = "Not reachable",
-            Distance = new None()
-        });
-
-        Distances.Add(new()
-        {
-            Description = "Reachable without modification",
-            Distance = 1
-        });
-
-        Distances.Add(new()
-        {
-            Description = "Reachable with modification",
-            Distance = 2
-        });
-
-        Restrictions.Add(new()
-        {
-            Description = "Allowed in all classes",
-            Restriction = CompetitionRestriction.AllowedInAllClasses
-        });
-            
-        Restrictions.Add(new()
-        {
-            Description = "Not allowed in class D, C, B, A",
-            Restriction = CompetitionRestriction.NotAllowedInClassA
-        });
-
-        Restrictions.Add(new()
-        {
-            Description = "Not allowed in class D, C, B",
-            Restriction = CompetitionRestriction.NotAllowedInClassB
-        });
-
-        Restrictions.Add(new()
-        {
-            Description = "Not allowed in class D, C",
-            Restriction = CompetitionRestriction.NotAllowedInClassC
-        });
-
-        Restrictions.Add(new()
-        {
-            Description = "Not allowed in class D",
-            Restriction = CompetitionRestriction.NotAllowedInClassD
-        });
     }
 
     [Reactive]

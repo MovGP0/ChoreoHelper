@@ -62,14 +62,13 @@
             OverlayBackground="Transparent"
             BorderThickness="2"
             IsRightDrawerOpen="{Binding IsEditViewOpen, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"
-            RightDrawerBackground="{DynamicResource PrimaryHueLightBrush}">
+            RightDrawerBackground="White">
             <materialDesign:DrawerHost.RightDrawerContent>
-                <Border Width="300">
                     <reactiveUi:ViewModelViewHost 
-                        HorizontalAlignment="Stretch"
+                        Width="400"
+                        VerticalAlignment="Stretch"
                         ViewModel="{Binding UpdateSourceTrigger=PropertyChanged}"
                         DataContext="{Binding EditViewModel, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" />
-                </Border>
             </materialDesign:DrawerHost.RightDrawerContent>
             <skia:SKElement
                 x:Name="SkiaCanvas"

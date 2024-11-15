@@ -1,4 +1,6 @@
-﻿namespace ChoreoHelper.Entities;
+﻿using static ChoreoHelper.Entities.Xml.XElementParsers;
+
+namespace ChoreoHelper.Entities;
 
 public sealed partial class DanceFigure
 {
@@ -12,6 +14,7 @@ public sealed partial class DanceFigure
         yield return new XAttribute(Xn(ns, nameof(Dance)), Dance.Name);
         yield return new XAttribute(Xn(ns, nameof(Name)), Name);
         yield return new XAttribute(Xn(ns, nameof(Level)), Level);
+        yield return new XAttribute(Xn(ns, nameof(Restriction)), Restriction.ToString("D"));
     }
 
     [Pure]
@@ -53,10 +56,8 @@ public sealed partial class DanceFigure
             return new Error();
         }
 
-        return new DanceFigure(dance[0], name, danceLevel);
-    }
+        var restriction = ParseRestriction(element);
 
-    [Pure]
-    [MethodImpl(MethodImplOptions.AggressiveInlining)]
-    private static XName Xn(XNamespace ns, string name) => ns + name.ToLowerInvariant();
+        return new DanceFigure(dance[0], name, danceLevel, restriction);
+    }
 }

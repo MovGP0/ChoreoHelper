@@ -42,13 +42,25 @@
         <GroupBox Grid.Row="2" Grid.Column="0" Grid.ColumnSpan="2" Header="Distance" Margin="4">
             <ComboBox Margin="4" 
                       ItemsSource="{Binding Distances, Mode=OneWay, UpdateSourceTrigger=PropertyChanged}"
-                      SelectedItem="{Binding SelectedDistance, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" />
+                      SelectedItem="{Binding SelectedDistance, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}">
+                <ComboBox.ItemTemplate>
+                    <DataTemplate DataType="{x:Type viewModels:DistanceViewModel}">
+                        <Label Content="{Binding Description}"/>
+                    </DataTemplate>
+                </ComboBox.ItemTemplate>
+            </ComboBox>
         </GroupBox>
         <GroupBox Grid.Row="3" Grid.Column="0" Grid.ColumnSpan="2" Header="Restrictions" Margin="4">
             <ComboBox
                 Margin="4"
                 ItemsSource="{Binding Restrictions, Mode=OneWay, UpdateSourceTrigger=PropertyChanged}"
-                SelectedItem="{Binding SelectedRestriction, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"/>
+                SelectedItem="{Binding SelectedRestriction, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}">
+                <ComboBox.ItemTemplate>
+                    <DataTemplate DataType="{x:Type viewModels:RestrictionViewModel}">
+                        <Label Content="{Binding Description}"/>
+                    </DataTemplate>
+                </ComboBox.ItemTemplate>
+            </ComboBox>
         </GroupBox>
         <Grid Grid.Row="4" Grid.Column="0" Grid.ColumnSpan="2">
             <Grid.ColumnDefinitions>
