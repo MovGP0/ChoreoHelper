@@ -67,7 +67,8 @@
                 <Border Width="300">
                     <reactiveUi:ViewModelViewHost 
                         HorizontalAlignment="Stretch"
-                        ViewModel="{Binding EditViewModel, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" />
+                        ViewModel="{Binding UpdateSourceTrigger=PropertyChanged}"
+                        DataContext="{Binding EditViewModel, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" />
                 </Border>
             </materialDesign:DrawerHost.RightDrawerContent>
             <skia:SKElement

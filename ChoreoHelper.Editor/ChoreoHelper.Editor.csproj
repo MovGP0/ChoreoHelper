@@ -8,6 +8,7 @@
     <ApplicationIcon>Images\icon.ico</ApplicationIcon>
     <ManagePackageVersionsCentrally>true</ManagePackageVersionsCentrally>
     <LangVersion>13</LangVersion>
+    <AllowUnsafeBlocks>true</AllowUnsafeBlocks>
   </PropertyGroup>
   <ItemGroup>
     <PackageReference Include="MessagePipe.Analyzer" />

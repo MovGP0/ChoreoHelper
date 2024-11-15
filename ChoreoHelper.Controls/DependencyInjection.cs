@@ -1,5 +1,4 @@
-﻿using ChoreoHelper.Editor.Transition;
-using ChoreoHelper.ViewModels;
+﻿using ChoreoHelper.ViewModels;
 using JetBrains.Annotations;
 using Microsoft.Extensions.DependencyInjection;
 using ReactiveUI;

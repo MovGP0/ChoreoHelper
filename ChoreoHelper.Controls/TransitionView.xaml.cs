@@ -1,4 +1,4 @@
-namespace ChoreoHelper.Editor.Transition;
+namespace ChoreoHelper.Controls;
 
 public partial class TransitionView
 {

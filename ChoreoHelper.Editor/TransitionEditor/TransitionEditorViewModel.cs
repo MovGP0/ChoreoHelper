@@ -7,6 +7,7 @@ using ChoreoHelper.Entities;
 using ChoreoHelper.ViewModels;
 using DynamicData.Binding;
 using DynamicData.Kernel;
+using JetBrains.Annotations;
 using MessagePipe;
 using ReactiveUI;
 using ReactiveUI.Fody.Helpers;
@@ -23,6 +24,7 @@ public sealed class TransitionEditorViewModel : ReactiveObject, IActivatableView
 
     private IPublisher<RenderTransitionEditorCommand> RenderTransitionEditorPublisher { get; }
 
+    [UsedImplicitly]
     private TransitionEditorViewModel()
     {
         HostScreen = null!;
@@ -123,7 +125,7 @@ public sealed class TransitionEditorViewModel : ReactiveObject, IActivatableView
     public bool IsEditViewOpen { get; set; } = false;
 
     [Reactive]
-    public object EditViewModel { get; set; } = null!;
+    public object? EditViewModel { get; set; }
 
     /// <summary>
     /// Keeps the mouse position for dragging operations. <c>null</c> when no drag is in progress.
