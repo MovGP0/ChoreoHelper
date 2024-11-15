@@ -1,5 +1,6 @@
 using System.Collections.Immutable;
 using ChoreoHelper.Behaviors.Algorithms;
+using ChoreoHelper.Entities;
 
 namespace ChoreoHelper.Behaviors.Tests.Algorithms;
 
@@ -13,7 +14,7 @@ public static class BreadthFirstSearchRouteFinderTests
         public async Task ShouldReturnEmptyListWhenNoRequiredNodes()
         {
             // Arrange
-            var distanceMatrix = new OneOf<float, None>[0, 0];
+            var distanceMatrix = new Distance[0, 0];
             var requiredNodes = ImmutableArray<int>.Empty;
             const int maxDistance = 10;
 
@@ -33,7 +34,7 @@ public static class BreadthFirstSearchRouteFinderTests
         public async Task ShouldReturnEmptyListWhenNoPathsExist()
         {
             // Arrange
-            OneOf<float, None>[,] distanceMatrix = {
+            Distance[,] distanceMatrix = {
                 { -1, -1 },
                 { -1, -1 }
             };
@@ -56,7 +57,7 @@ public static class BreadthFirstSearchRouteFinderTests
         public async Task ShouldFindRoutesInSimpleGraph()
         {
             // Arrange
-            OneOf<float, None>[,] distanceMatrix = {
+            Distance[,] distanceMatrix = {
                 { -1, 1, -1 },
                 { 1, -1, 1 },
                 { -1, 1, -1 }
@@ -83,7 +84,7 @@ public static class BreadthFirstSearchRouteFinderTests
         public async Task ShouldNotReturnRoutesExceedingMaxDistance()
         {
             // Arrange
-            OneOf<float, None>[,] distanceMatrix = {
+            Distance[,] distanceMatrix = {
                 { -1, 5 },
                 { 5, -1 }
             };
@@ -106,7 +107,7 @@ public static class BreadthFirstSearchRouteFinderTests
         public async Task ShouldRespectCancellationToken()
         {
             // Arrange
-            OneOf<float, None>[,] distanceMatrix = {
+            Distance[,] distanceMatrix = {
                 { -1, 1 },
                 { 1, -1 }
             };
@@ -132,7 +133,7 @@ public static class BreadthFirstSearchRouteFinderTests
         public async Task ShouldHandlePenaltiesForRevisitingNodes()
         {
             // Arrange
-            OneOf<float, None>[,] distanceMatrix = {
+            Distance[,] distanceMatrix = {
                 { -1, 1, -1 },
                 { 1, -1, 1 },
                 { -1, 1, -1 }
@@ -169,7 +170,7 @@ public static class BreadthFirstSearchRouteFinderTests
         public async Task ShouldSkipRoutesWithTooManyRepetitions()
         {
             // Arrange
-            OneOf<float, None>[,] distanceMatrix = {
+            Distance[,] distanceMatrix = {
                 { -1, 1 },
                 { 1, -1 }
             };

@@ -23,6 +23,7 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "SolutionItems", "SolutionIt
 		Readme.md = Readme.md
 		logo.webp = logo.webp
 		Directory.Packages.props = Directory.Packages.props
+		dance transitions.xml = dance transitions.xml
 	EndProjectSection
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ChoreoHelper.Graph", "ChoreoHelper.Graph\ChoreoHelper.Graph.csproj", "{E8C863EF-3440-470E-B850-1A2FECD636E3}"

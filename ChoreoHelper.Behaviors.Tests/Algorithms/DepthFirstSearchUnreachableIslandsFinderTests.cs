@@ -1,4 +1,5 @@
 ﻿using ChoreoHelper.Behaviors.Algorithms;
+using ChoreoHelper.Entities;
 
 namespace ChoreoHelper.Behaviors.Tests.Algorithms;
 
@@ -14,7 +15,7 @@ public static class DepthFirstSearchUnreachableIslandsFinderTests
         public void ShouldFindUnreachableIslands()
         {
             // Arrange
-            var matrix = new OneOf<float, None>[,]
+            var matrix = new Distance[,]
             {
                 { 0, 1, 0, 0 },
                 { 1, 0, 0, 0 },
@@ -52,7 +53,7 @@ public static class DepthFirstSearchUnreachableIslandsFinderTests
         public void ShouldReturnEmptyListForEmptyMatrix()
         {
             // Arrange
-            var matrix = new OneOf<float, None>[0, 0];
+            var matrix = new Distance[0, 0];
             var finder = new DepthFirstSearchUnreachableIslandsFinder();
 
             // Act
@@ -66,7 +67,7 @@ public static class DepthFirstSearchUnreachableIslandsFinderTests
         public void ShouldFindSingleIsland()
         {
             // Arrange
-            var matrix = new OneOf<float, None>[,]
+            var matrix = new Distance[,]
             {
                 { 0, 1, 0 },
                 { 1, 0, 1 },
@@ -95,7 +96,7 @@ public static class DepthFirstSearchUnreachableIslandsFinderTests
         public void ShouldHandleSingleNode()
         {
             // Arrange
-            var matrix = new OneOf<float, None>[,]
+            var matrix = new Distance[,]
             {
                 { 0 }
             };
@@ -121,7 +122,7 @@ public static class DepthFirstSearchUnreachableIslandsFinderTests
         public void ShouldHandleDisconnectedNodes()
         {
             // Arrange
-            var matrix = new OneOf<float, None>[,]
+            var matrix = new Distance[,]
             {
                 { 0, 0, 0 },
                 { 0, 0, 0 },

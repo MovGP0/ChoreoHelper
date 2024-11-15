@@ -6,31 +6,31 @@ public static class LevelSelectionViewModelFactory
     {
         yield return new()
         {
-            Name = "Undefined",
+            Name = LevelResources.Undefined,
             Level = DanceLevel.Undefined
         };
 
         yield return new()
         {
-            Name = "Bronze",
+            Name = LevelResources.Bronze,
             Level = DanceLevel.Bronze
         };
 
         yield return new()
         {
-            Name = "Silver",
+            Name = LevelResources.Silver,
             Level = DanceLevel.Silver
         };
 
         yield return new()
         {
-            Name = "Gold",
+            Name = LevelResources.Gold,
             Level = DanceLevel.Gold
         };
 
         yield return new()
         {
-            Name = "Advanced",
+            Name = LevelResources.Advanced,
             Level = DanceLevel.Advanced
         };
     }

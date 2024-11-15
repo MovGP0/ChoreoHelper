@@ -1,11 +1,12 @@
 ﻿using System.Collections.Immutable;
+using ChoreoHelper.Entities;
 
 namespace ChoreoHelper.Behaviors.Algorithms;
 
 public interface IRouteFinder
 {
     public Task<List<Route>> FindAllRoutesAsync(
-        OneOf<float, None>[,] distanceMatrix,
+        Distance[,] distanceMatrix,
         ImmutableArray<int> requiredNodes,
         int? startNode,
         int maxDistance,

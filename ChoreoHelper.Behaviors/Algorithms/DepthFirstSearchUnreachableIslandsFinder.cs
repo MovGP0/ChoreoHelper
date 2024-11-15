@@ -1,8 +1,10 @@
+using ChoreoHelper.Entities;
+
 namespace ChoreoHelper.Behaviors.Algorithms;
 
 public sealed class DepthFirstSearchUnreachableIslandsFinder : IUnreachableIslandsFinder
 {
-    public List<List<int>> FindUnreachableIslands(OneOf<float, None>[,] matrix)
+    public List<List<int>> FindUnreachableIslands(Distance[,] matrix)
     {
         var n = (int)Math.Sqrt(matrix.Length);
         var visited = new bool[n];
@@ -20,7 +22,7 @@ public sealed class DepthFirstSearchUnreachableIslandsFinder : IUnreachableIslan
     }
 
     private static void DepthFirstSearchRecursive(
-        OneOf<float, None>[,] matrix,
+        Distance[,] matrix,
         int node,
         IList<bool> visited,
         ICollection<int> island)

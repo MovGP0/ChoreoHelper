@@ -25,4 +25,26 @@
         <ProjectReference Include="..\ChoreoHelper.Messages\ChoreoHelper.Messages.csproj" />
         <ProjectReference Include="..\ChoreoHelper.ReactiveUI\ChoreoHelper.ReactiveUI.csproj" />
     </ItemGroup>
+    <ItemGroup>
+      <EmbeddedResource Update="LevelResources.resx">
+        <Generator>PublicResXFileCodeGenerator</Generator>
+        <LastGenOutput>LevelResources.Designer.cs</LastGenOutput>
+      </EmbeddedResource>
+      <EmbeddedResource Update="DistanceResources.resx">
+        <Generator>ResXFileCodeGenerator</Generator>
+        <LastGenOutput>DistanceResources.Designer.cs</LastGenOutput>
+      </EmbeddedResource>
+    </ItemGroup>
+    <ItemGroup>
+      <Compile Update="LevelResources.Designer.cs">
+        <DesignTime>True</DesignTime>
+        <AutoGen>True</AutoGen>
+        <DependentUpon>LevelResources.resx</DependentUpon>
+      </Compile>
+      <Compile Update="DistanceResources.Designer.cs">
+        <DesignTime>True</DesignTime>
+        <AutoGen>True</AutoGen>
+        <DependentUpon>DistanceResources.resx</DependentUpon>
+      </Compile>
+    </ItemGroup>
 </Project>

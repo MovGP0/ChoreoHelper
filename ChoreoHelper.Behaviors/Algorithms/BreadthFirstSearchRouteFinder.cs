@@ -1,12 +1,13 @@
 using System.Collections.Immutable;
 using System.Diagnostics;
+using ChoreoHelper.Entities;
 
 namespace ChoreoHelper.Behaviors.Algorithms;
 
 public sealed class BreadthFirstSearchRouteFinder : IRouteFinder
 {
     public async Task<List<Route>> FindAllRoutesAsync(
-        OneOf<float, None>[,] distanceMatrix,
+        Distance[,] distanceMatrix,
         ImmutableArray<int> requiredNodes,
         int? startNode,
         int maxDistance,
@@ -51,8 +52,6 @@ public sealed class BreadthFirstSearchRouteFinder : IRouteFinder
                 {
                     continue;
                 }
-
-                Debug.Assert(route.Distance == minDistance);
 
                 for (var node = 0; node < distanceMatrix.GetLength(0); node++)
                 {

@@ -55,14 +55,15 @@ public sealed class XmlDataSaver
             new XAttribute(XNamespaces.ChoreoHelper + "level", figure.Level.ToString("G").ToLowerInvariant()));
     }
 
-    private static XElement ToDanceFigureTransitionElement(Dance dance, DanceFigure source, DanceFigure target, OneOf<float, None> distance)
+    private static XElement ToDanceFigureTransitionElement(Dance dance, DanceFigure source, DanceFigure target, Distance distance)
     {
         return new XElement(XNamespaces.ChoreoHelper + "dancefiguretransition",
             new XAttribute(XNamespaces.ChoreoHelper + "dance", dance.Name),
             new XAttribute(XNamespaces.ChoreoHelper + "source", source.Name),
             new XAttribute(XNamespaces.ChoreoHelper + "target", target.Name),
-            new XAttribute(XNamespaces.ChoreoHelper + "distance", distance.TryPickT0(out var distanceValue, out _)
-                ? distanceValue.ToString("G", CultureInfo.InvariantCulture)
-                : ""));
+            new XAttribute(XNamespaces.ChoreoHelper + "distance", distance.Match(
+                distanceValue => distanceValue.ToString("G", CultureInfo.InvariantCulture),
+                none => "none",
+                unknown => "unknown")));
     }
 }

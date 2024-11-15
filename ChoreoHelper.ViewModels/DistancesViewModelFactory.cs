@@ -1,5 +1,3 @@
-using OneOf.Types;
-
 namespace ChoreoHelper.ViewModels;
 
 public static class DistancesViewModelFactory
@@ -8,19 +6,25 @@ public static class DistancesViewModelFactory
     {
         yield return new()
         {
-            Description = "Not reachable",
+            Description = DistanceResources.Undefined,
+            Distance = new Unknown()
+        };
+
+        yield return new()
+        {
+            Description = DistanceResources.NotReachable,
             Distance = new None()
         };
 
         yield return new()
         {
-            Description = "Reachable without modification",
+            Description = DistanceResources.ReachableWithoutModification,
             Distance = 1
         };
 
         yield return new()
         {
-            Description = "Reachable with modification",
+            Description = DistanceResources.ReachableWithModification,
             Distance = 2
         };
     }

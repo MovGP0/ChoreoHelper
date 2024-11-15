@@ -1,6 +1,8 @@
-﻿namespace ChoreoHelper.Behaviors.Algorithms;
+﻿using ChoreoHelper.Entities;
+
+namespace ChoreoHelper.Behaviors.Algorithms;
 
 public interface IUnreachableIslandsFinder
 {
-    List<List<int>> FindUnreachableIslands(OneOf<float, None>[,] matrix);
+    List<List<int>> FindUnreachableIslands(Distance[,] matrix);
 }

@@ -56,7 +56,7 @@ public sealed partial class DanceFigureTransition
         return element.Attribute(Xn(ns, "Dance"))?.Value ?? string.Empty;
     }
 
-    private static OneOf<float, None> TryParseDistance(XElement element)
+    private static Distance TryParseDistance(XElement element)
     {
         var ns = element.Name.Namespace;
         var distanceValue = element.Attribute(Xn(ns, nameof(Distance)))?.Value ?? string.Empty;

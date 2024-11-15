@@ -113,17 +113,18 @@ public sealed class GridPainter : IDisposable
         return result;
     }
 
-    private SKPaint GetPaintForDistance(OneOf<float, None> distance)
+    private SKPaint GetPaintForDistance(Distance distance)
     {
-        return distance.TryPickT0(out var value, out _)
-            ? value switch
-            {
-                <= 0 => Theme.DistanceUnreachablePaint,
-                <= 1 => Theme.Distance1Paint,
-                > 1 => Theme.Distance2Paint,
-                _ => Theme.DistanceInvalidPaint
-            }
-            : Theme.DistanceUnreachablePaint;
+        return distance.Match(
+                value => value switch
+                {
+                    <= 0 => Theme.DistanceUnreachablePaint,
+                    <= 1 => Theme.Distance1Paint,
+                    > 1 => Theme.Distance2Paint,
+                    _ => Theme.DistanceInvalidPaint
+                },
+                none => Theme.DistanceUnreachablePaint,
+                unknown => Theme.DistanceUnreachablePaint);
     }
 
     private SKPaint GetTextPaintForFigure(DanceFigure figureToDraw)
