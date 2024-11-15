@@ -34,7 +34,7 @@
                 <!-- Search TextBox -->
                 <TextBox Grid.Column="1"
                          Margin="8"
-                         materialDesign:HintAssist.Hint="Search Figures"
+                         materialDesign:HintAssist.Hint="{x:Static local:ControlResources.SearchFigures}"
                          VerticalAlignment="Center"
                          materialDesign:TextFieldAssist.DecorationVisibility="Hidden"
                          BorderThickness="0"
@@ -44,7 +44,7 @@
                 <Button Grid.Column="2"
                         MinWidth="120"
                         Padding="4" Margin="4"
-                        Content="Go"
+                        Content="{x:Static local:ControlResources.SearchFigures}"
                         Command="{Binding FindChoreography}"
                         Style="{DynamicResource MaterialDesignRaisedDarkButton}" />
             </Grid>
@@ -60,7 +60,7 @@
                 <!-- Left Column: Dance Selection and Levels -->
                 <StackPanel Orientation="Vertical" Grid.Column="0">
                     <!-- Dance Selection -->
-                    <GroupBox Margin="4" Padding="4" Header="Dance">
+                    <GroupBox Margin="4" Padding="4" Header="{x:Static local:ControlResources.Dance}">
                         <ComboBox Padding="4" Width="400"
                                   ItemsSource="{Binding Dances}"
                                   SelectedItem="{Binding SelectedDance, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}">
@@ -82,7 +82,7 @@
                     </GroupBox>
 
                     <!-- Level Selection -->
-                    <GroupBox Margin="4" Padding="4" Header="Level">
+                    <GroupBox Margin="4" Padding="4" Header="{x:Static local:ControlResources.Level}">
                         <ListView Padding="4" Width="400" MinHeight="24"
                                   ItemsSource="{Binding Levels}">
                             <ListView.ItemTemplate>
@@ -94,7 +94,7 @@
                     </GroupBox>
 
                     <!-- Start Figure -->
-                    <GroupBox Margin="4" Padding="4" Header="Start Figure">
+                    <GroupBox Margin="4" Padding="4" Header="{x:Static local:ControlResources.StartFigure}">
                         <Grid>
                             <Grid.ColumnDefinitions>
                                 <ColumnDefinition Width="Auto" />
@@ -122,7 +122,7 @@
                 </StackPanel>
 
                 <!-- Middle Column: Required Figures -->
-                <GroupBox Grid.Column="1" Margin="4" Padding="4" Header="Required Figures">
+                <GroupBox Grid.Column="1" Margin="4" Padding="4" Header="{x:Static local:ControlResources.RequiredFigures}">
                     <ListView Padding="12" Width="400" Height="800" Margin="12"
                               ItemsSource="{Binding RequiredFiguresFiltered}">
                         <ListView.ItemTemplate>
@@ -134,7 +134,7 @@
                 </GroupBox>
 
                 <!-- Right Column: Optional Figures -->
-                <GroupBox Grid.Column="2" Margin="4" Padding="4" Header="Optional Figures">
+                <GroupBox Grid.Column="2" Margin="4" Padding="4" Header="{x:Static local:ControlResources.OptionalFigures}">
                     <ListView Padding="4" Width="400" Height="800"
                               ItemsSource="{Binding OptionalFiguresFiltered}">
                         <ListView.ItemTemplate>

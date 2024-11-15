@@ -10,6 +10,7 @@
     xmlns:entities="clr-namespace:ChoreoHelper.Entities;assembly=ChoreoHelper.Entities"
     xmlns:design="clr-namespace:ChoreoHelper.Design;assembly=ChoreoHelper.Design"
     xmlns:reactiveUi="http://reactiveui.net"
+    xmlns:controls="clr-namespace:ChoreoHelper.Controls"
     mc:Ignorable="d"
     TextElement.FontWeight="Regular"
     TextElement.FontSize="12"
@@ -25,7 +26,7 @@
             <ContextMenu>
                 <MenuItem 
                     Icon="{materialDesign:PackIcon ContentCopy}"
-                    Header="Copy"
+                    Header="{x:Static controls:ControlResources.Copy}"
                     Command="{Binding Copy, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" />
             </ContextMenu>
         </Grid.ContextMenu>

@@ -13,7 +13,7 @@
         TextOptions.TextRenderingMode="Auto"
         mc:Ignorable="d"
         d:DataContext="{d:DesignInstance viewModels:MainWindowViewModel, IsDesignTimeCreatable=True}"
-        Title="Choreo Helper" Height="800" Width="1400" MinHeight="800" MinWidth="1400">
+        Title="{x:Static controls:ControlResources.ChoreoHelper}" Height="800" Width="1400" MinHeight="800" MinWidth="1400">
     <Window.Resources>
         <ResourceDictionary>
             <ResourceDictionary.MergedDictionaries>

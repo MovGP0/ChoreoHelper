@@ -1,0 +1,63 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<root>
+    <xsd:schema id="root" xmlns="" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:msdata="urn:schemas-microsoft-com:xml-msdata">
+        <xsd:element name="root" msdata:IsDataSet="true">
+            
+        </xsd:element>
+    </xsd:schema>
+    <resheader name="resmimetype">
+        <value>text/microsoft-resx</value>
+    </resheader>
+    <resheader name="version">
+        <value>1.3</value>
+    </resheader>
+    <resheader name="reader">
+        <value>System.Resources.ResXResourceReader, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+    </resheader>
+    <resheader name="writer">
+        <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+    </resheader>
+    <data name="Copy" xml:space="preserve">
+        <value>Kopieren</value>
+    </data>
+    <data name="ChoreoHelper" xml:space="preserve">
+        <value>Choreographie Helfer</value>
+    </data>
+    <data name="Cancel" xml:space="preserve">
+        <value>Abbrechen</value>
+    </data>
+    <data name="Dance" xml:space="preserve">
+        <value>Tanz</value>
+    </data>
+    <data name="FigureName" xml:space="preserve">
+        <value>Name der Figur</value>
+    </data>
+    <data name="Level" xml:space="preserve">
+        <value>Level</value>
+    </data>
+    <data name="OK" xml:space="preserve">
+        <value>OK</value>
+    </data>
+    <data name="OptionalFigures" xml:space="preserve">
+        <value>Optionale Figuren</value>
+    </data>
+    <data name="RequiredFigures" xml:space="preserve">
+        <value>Benötigte Figuren</value>
+    </data>
+    <data name="Restriction" xml:space="preserve">
+        <value>Einschränkung</value>
+    </data>
+    <data name="SearchFigures" xml:space="preserve">
+        <value>Suche Figuren</value>
+    </data>
+    <data name="StartFigure" xml:space="preserve">
+        <value>Startfigur</value>
+    </data>
+    <data name="Restrictions" xml:space="preserve">
+        <value>Einschränkungen</value>
+    </data>
+    <data name="Distance" xml:space="preserve">
+        <value>Distanz</value>
+    </data>
+</root>

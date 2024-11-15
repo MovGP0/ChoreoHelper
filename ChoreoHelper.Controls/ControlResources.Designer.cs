@@ -21,14 +21,14 @@ namespace ChoreoHelper.Controls {
     [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Resources.Tools.StronglyTypedResourceBuilder", "4.0.0.0")]
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
     [global::System.Runtime.CompilerServices.CompilerGeneratedAttribute()]
-    public class MainWindowResources {
+    public class ControlResources {
         
         private static global::System.Resources.ResourceManager resourceMan;
         
         private static global::System.Globalization.CultureInfo resourceCulture;
         
         [global::System.Diagnostics.CodeAnalysis.SuppressMessageAttribute("Microsoft.Performance", "CA1811:AvoidUncalledPrivateCode")]
-        internal MainWindowResources() {
+        internal ControlResources() {
         }
         
         /// <summary>
@@ -38,7 +38,7 @@ namespace ChoreoHelper.Controls {
         public static global::System.Resources.ResourceManager ResourceManager {
             get {
                 if (object.ReferenceEquals(resourceMan, null)) {
-                    global::System.Resources.ResourceManager temp = new global::System.Resources.ResourceManager("ChoreoHelper.Controls.MainWindowResources", typeof(MainWindowResources).Assembly);
+                    global::System.Resources.ResourceManager temp = new global::System.Resources.ResourceManager("ChoreoHelper.Controls.ControlResources", typeof(ControlResources).Assembly);
                     resourceMan = temp;
                 }
                 return resourceMan;
@@ -60,6 +60,33 @@ namespace ChoreoHelper.Controls {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Cancel.
+        /// </summary>
+        public static string Cancel {
+            get {
+                return ResourceManager.GetString("Cancel", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Choreo Helper.
+        /// </summary>
+        public static string ChoreoHelper {
+            get {
+                return ResourceManager.GetString("ChoreoHelper", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Copy.
+        /// </summary>
+        public static string Copy {
+            get {
+                return ResourceManager.GetString("Copy", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Dance.
         /// </summary>
         public static string Dance {
@@ -69,11 +96,38 @@ namespace ChoreoHelper.Controls {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Distance.
+        /// </summary>
+        public static string Distance {
+            get {
+                return ResourceManager.GetString("Distance", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Figure Name.
+        /// </summary>
+        public static string FigureName {
+            get {
+                return ResourceManager.GetString("FigureName", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Level.
         /// </summary>
         public static string Level {
             get {
                 return ResourceManager.GetString("Level", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to OK.
+        /// </summary>
+        public static string OK {
+            get {
+                return ResourceManager.GetString("OK", resourceCulture);
             }
         }
         
@@ -92,6 +146,24 @@ namespace ChoreoHelper.Controls {
         public static string RequiredFigures {
             get {
                 return ResourceManager.GetString("RequiredFigures", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Restriction.
+        /// </summary>
+        public static string Restriction {
+            get {
+                return ResourceManager.GetString("Restriction", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Restrictions.
+        /// </summary>
+        public static string Restrictions {
+            get {
+                return ResourceManager.GetString("Restrictions", resourceCulture);
             }
         }
         

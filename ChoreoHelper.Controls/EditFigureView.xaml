@@ -8,6 +8,7 @@
     xmlns:reactiveUi="http://reactiveui.net"
     xmlns:viewModels="clr-namespace:ChoreoHelper.ViewModels;assembly=ChoreoHelper.ViewModels"
     xmlns:design="clr-namespace:ChoreoHelper.Design;assembly=ChoreoHelper.Design"
+    xmlns:controls="clr-namespace:ChoreoHelper.Controls"
     mc:Ignorable="d"
     TextElement.FontWeight="Regular"
     TextElement.FontSize="12"
@@ -33,12 +34,12 @@
         </Grid.ColumnDefinitions>
 
         <GroupBox Grid.Row="0" Grid.Column="0" Grid.ColumnSpan="2" Margin="4"
-            Header="Figure Name">
+            Header="{x:Static controls:ControlResources.FigureName}">
             <TextBox Text="{Binding Name, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" />
         </GroupBox>
 
         <GroupBox Grid.Row="1" Grid.Column="0" Grid.ColumnSpan="2"
-                  Header="Level" Margin="4">
+                  Header="{x:Static controls:ControlResources.Level}" Margin="4">
             <ComboBox ItemsSource="{Binding Levels, Mode=OneWay, UpdateSourceTrigger=PropertyChanged}"
                       SelectedItem="{Binding Level, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}">
                 <ComboBox.ItemTemplate>
@@ -50,7 +51,7 @@
         </GroupBox>
 
         <GroupBox Grid.Row="2" Grid.Column="0" Grid.ColumnSpan="2"
-                  Header="Restriction" Margin="4">
+                  Header="{x:Static controls:ControlResources.Restriction}" Margin="4">
             <ComboBox ItemsSource="{Binding Restrictions, Mode=OneWay, UpdateSourceTrigger=PropertyChanged}"
                       SelectedItem="{Binding Restriction, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}">
                 <ComboBox.ItemTemplate>
@@ -62,13 +63,13 @@
         </GroupBox>
 
         <Button Grid.Row="3" Grid.Column="0" 
-                Content="OK"
+                Content="{x:Static controls:ControlResources.OK}"
                 IsDefault="True"
                 Margin="4"
                 Command="{Binding SaveAndNavigateBack, UpdateSourceTrigger=PropertyChanged}" />
 
         <Button Grid.Row="3" Grid.Column="1"
-                Content="Cancel"
+                Content="{x:Static controls:ControlResources.Cancel}"
                 IsCancel="True"
                 Margin="4"
                 Command="{Binding NavigateBack, UpdateSourceTrigger=PropertyChanged}"/>

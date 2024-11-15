@@ -58,14 +58,18 @@
     <Compile Update="OptionalFigureSelection.cs">
       <DependentUpon>OptionalFigureSelection.xaml</DependentUpon>
     </Compile>
-    <EmbeddedResource Update="MainWindowResources.resx">
+    <EmbeddedResource Update="ControlResources.resx">
       <Generator>PublicResXFileCodeGenerator</Generator>
-      <LastGenOutput>MainWindowResources.Designer.cs</LastGenOutput>
+      <LastGenOutput>ChoreographyResources.Designer.cs</LastGenOutput>
     </EmbeddedResource>
-    <Compile Update="MainWindowResources.Designer.cs">
+    <Compile Update="ControlResources.Designer.cs">
       <DesignTime>True</DesignTime>
       <AutoGen>True</AutoGen>
-      <DependentUpon>MainWindowResources.resx</DependentUpon>
+      <DependentUpon>ControlResources.resx</DependentUpon>
     </Compile>
+    <EmbeddedResource Update="ControlResources.de.resx">
+      <LastGenOutput>ChoreographyResources.de.Designer.cs</LastGenOutput>
+      <DependentUpon>ControlResources.resx</DependentUpon>
+    </EmbeddedResource>
   </ItemGroup>
 </Project>
