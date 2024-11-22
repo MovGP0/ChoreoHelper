@@ -42,11 +42,13 @@
                     <ColumnDefinition Width="Auto" />
                 </Grid.ColumnDefinitions>
                 <!-- App Icon -->
-                <Image Source="pack://application:,,,/ChoreoHelper.Editor;component/Images/icon.webp" Grid.Column="0"
+                <Image Grid.Column="0"
+                       Source="{DynamicResource DancersIcon}"
                        Width="20"
                        Height="20"
                        VerticalAlignment="Center"
-                       Margin="6,0,4,0" />
+                       Margin="6,0,4,0">
+                </Image>
                 <TextBlock Text="Choreo Helper" Foreground="White" Grid.Column="1"
                            VerticalAlignment="Center"
                            Margin="4,0,4,0"
