@@ -1,0 +1,26 @@
+﻿<Solution>
+  <Folder Name="/Libs/">
+    <Project Path="ChoreoHelper.Behaviors.Tests\ChoreoHelper.Behaviors.Tests.csproj" Type="Classic C#" />
+    <Project Path="ChoreoHelper.Behaviors\ChoreoHelper.Behaviors.csproj" Type="Classic C#" />
+    <Project Path="ChoreoHelper.Controls\ChoreoHelper.Controls.csproj" Type="Classic C#" />
+    <Project Path="ChoreoHelper.Design\ChoreoHelper.Design.csproj" Type="Classic C#" />
+    <Project Path="ChoreoHelper.Entities\ChoreoHelper.Entities.csproj" Type="Classic C#" />
+    <Project Path="ChoreoHelper.Gateway\ChoreoHelper.Gateway.csproj" Type="Classic C#" />
+    <Project Path="ChoreoHelper.Graph\ChoreoHelper.Graph.csproj" Type="Classic C#" />
+    <Project Path="ChoreoHelper.Messages\ChoreoHelper.Messages.csproj" Type="Classic C#" />
+    <Project Path="ChoreoHelper.ReactiveUI\ChoreoHelper.ReactiveUI.csproj" Type="Classic C#" />
+    <Project Path="ChoreoHelper.Tests\ChoreoHelper.Tests.csproj" Type="Classic C#" />
+    <Project Path="ChoreoHelper.ViewModels\ChoreoHelper.ViewModels.csproj" Type="Classic C#" />
+  </Folder>
+  <Folder Name="/SolutionItems/">
+    <File Path=".gitconfig" />
+    <File Path=".gitignore" />
+    <File Path="LICENSE" />
+    <File Path="Readme.md" />
+    <File Path="logo.webp" />
+    <File Path="Directory.Packages.props" />
+    <File Path="dance transitions.xml" />
+  </Folder>
+  <Project Path="ChoreoHelper.Editor\ChoreoHelper.Editor.csproj" Type="Classic C#" />
+  <Project Path="ChoreoHelper\ChoreoHelper.csproj" Type="Classic C#" />
+</Solution>
