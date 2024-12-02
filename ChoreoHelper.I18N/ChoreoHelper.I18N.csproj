@@ -1,0 +1,68 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+
+    <PropertyGroup>
+        <TargetFramework>net9.0</TargetFramework>
+        <ImplicitUsings>enable</ImplicitUsings>
+        <Nullable>enable</Nullable>
+    </PropertyGroup>
+
+    <ItemGroup>
+      <EmbeddedResource Update="ControlResources.resx">
+        <Generator>PublicResXFileCodeGenerator</Generator>
+        <LastGenOutput>ChoreographyResources.Designer.cs</LastGenOutput>
+        <CustomToolNamespace>ChoreoHelper.I18N</CustomToolNamespace>
+      </EmbeddedResource>
+      <EmbeddedResource Update="ControlResources.de.resx">
+        <LastGenOutput>ChoreographyResources.de.Designer.cs</LastGenOutput>
+        <DependentUpon>ControlResources.resx</DependentUpon>
+      </EmbeddedResource>
+      <EmbeddedResource Update="LevelResources.resx">
+        <Generator>PublicResXFileCodeGenerator</Generator>
+        <LastGenOutput>LevelResources.Designer.cs</LastGenOutput>
+        <CustomToolNamespace>ChoreoHelper.I18N</CustomToolNamespace>
+      </EmbeddedResource>
+      <EmbeddedResource Update="DistanceResources.resx">
+        <Generator>PublicResXFileCodeGenerator</Generator>
+        <LastGenOutput>DistanceResources.Designer.cs</LastGenOutput>
+        <CustomToolNamespace>ChoreoHelper.I18N</CustomToolNamespace>
+      </EmbeddedResource>
+      <EmbeddedResource Update="LevelResources.de.resx">
+        <DependentUpon>LevelResources.resx</DependentUpon>
+      </EmbeddedResource>
+      <EmbeddedResource Update="DistanceResources.de.resx">
+        <DependentUpon>DistanceResources.resx</DependentUpon>
+      </EmbeddedResource>
+      <EmbeddedResource Update="Resources.resx">
+        <Generator>PublicResXFileCodeGenerator</Generator>
+        <LastGenOutput>Resources.Designer.cs</LastGenOutput>
+        <CustomToolNamespace>ChoreoHelper.I18N</CustomToolNamespace>
+      </EmbeddedResource>
+      <EmbeddedResource Update="Resources.de.resx">
+        <DependentUpon>Resources.resx</DependentUpon>
+      </EmbeddedResource>
+    </ItemGroup>
+
+    <ItemGroup>
+      <Compile Update="ControlResources.Designer.cs">
+        <DesignTime>True</DesignTime>
+        <AutoGen>True</AutoGen>
+        <DependentUpon>ControlResources.resx</DependentUpon>
+      </Compile>
+      <Compile Update="LevelResources.Designer.cs">
+        <DesignTime>True</DesignTime>
+        <AutoGen>True</AutoGen>
+        <DependentUpon>LevelResources.resx</DependentUpon>
+      </Compile>
+      <Compile Update="DistanceResources.Designer.cs">
+        <DesignTime>True</DesignTime>
+        <AutoGen>True</AutoGen>
+        <DependentUpon>DistanceResources.resx</DependentUpon>
+      </Compile>
+      <Compile Update="Resources.Designer.cs">
+        <DesignTime>True</DesignTime>
+        <AutoGen>True</AutoGen>
+        <DependentUpon>Resources.resx</DependentUpon>
+      </Compile>
+    </ItemGroup>
+
+</Project>

@@ -1,0 +1,13 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+    <Import Project="..\Control.props" />
+    <ItemGroup>
+        <ProjectReference Include="..\ChoreoHelper.Algorithms\ChoreoHelper.Algorithms.csproj" />
+        <ProjectReference Include="..\ChoreoHelper.Dance\ChoreoHelper.Dance.csproj" />
+        <ProjectReference Include="..\ChoreoHelper.Figure\ChoreoHelper.Figure.csproj" />
+        <ProjectReference Include="..\ChoreoHelper.Gateway\ChoreoHelper.Gateway.csproj" />
+        <ProjectReference Include="..\ChoreoHelper.Graph\ChoreoHelper.Graph.csproj" />
+        <ProjectReference Include="..\ChoreoHelper.LevelSelection\ChoreoHelper.LevelSelection.csproj" />
+        <ProjectReference Include="..\ChoreoHelper.OptionalFigureSelection\ChoreoHelper.OptionalFigureSelection.csproj" />
+        <ProjectReference Include="..\ChoreoHelper.RequiredFigureSelection\ChoreoHelper.RequiredFigureSelection.csproj" />
+    </ItemGroup>
+</Project>

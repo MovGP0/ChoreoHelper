@@ -1,8 +1,9 @@
 ﻿using System.Windows;
-using ChoreoHelper.ViewModels;
+using ChoreoHelper.MainWindow;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 using ReactiveUI;
+using ReactiveUI.Extensions;
 using Splat;
 using Splat.Microsoft.Extensions.DependencyInjection;
 using Serilog;

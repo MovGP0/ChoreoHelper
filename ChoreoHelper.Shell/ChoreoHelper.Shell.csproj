@@ -1,0 +1,18 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+    <Import Project="..\Control.props" />
+    <ItemGroup>
+      <Page Update="ShellWindow.xaml">
+        <Generator>MSBuild:Compile</Generator>
+        <XamlRuntime>Wpf</XamlRuntime>
+        <SubType>Designer</SubType>
+      </Page>
+      <Page Update="ShellWindowResources.xaml">
+        <Generator>MSBuild:Compile</Generator>
+        <XamlRuntime>Wpf</XamlRuntime>
+        <SubType>Designer</SubType>
+      </Page>
+    </ItemGroup>
+    <ItemGroup>
+      <ProjectReference Include="..\ChoreoHelper.TransitionEditor\ChoreoHelper.TransitionEditor.csproj" />
+    </ItemGroup>
+</Project>

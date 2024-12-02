@@ -2,7 +2,7 @@
 
   <PropertyGroup>
     <OutputType>WinExe</OutputType>
-    <TargetFramework>net8.0-windows10.0.17763</TargetFramework>
+    <TargetFramework>net9.0-windows10.0.17763</TargetFramework>
     <Nullable>enable</Nullable>
     <ImplicitUsings>enable</ImplicitUsings>
     <UseWpf>true</UseWpf>
@@ -32,11 +32,14 @@
     <PackageReference Include="System.Text.Json" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\ChoreoHelper.Behaviors\ChoreoHelper.Behaviors.csproj" />
-    <ProjectReference Include="..\ChoreoHelper.Controls\ChoreoHelper.Controls.csproj" />
+    <ProjectReference Include="..\ChoreoHelper.Distance\ChoreoHelper.Distance.csproj" />
+    <ProjectReference Include="..\ChoreoHelper.EditFigure\ChoreoHelper.EditFigure.csproj" />
     <ProjectReference Include="..\ChoreoHelper.Graph\ChoreoHelper.Graph.csproj" />
+    <ProjectReference Include="..\ChoreoHelper.MainWindow\ChoreoHelper.MainWindow.csproj" />
     <ProjectReference Include="..\ChoreoHelper.Messages\ChoreoHelper.Messages.csproj" />
     <ProjectReference Include="..\ChoreoHelper.ReactiveUI\ChoreoHelper.ReactiveUI.csproj" />
-    <ProjectReference Include="..\ChoreoHelper.ViewModels\ChoreoHelper.ViewModels.csproj" />
+    <ProjectReference Include="..\ChoreoHelper.Restriction\ChoreoHelper.Restriction.csproj" />
+    <ProjectReference Include="..\ChoreoHelper.TransitionEditor\ChoreoHelper.TransitionEditor.csproj" />
+    <ProjectReference Include="..\ChoreoHelper.Transition\ChoreoHelper.Transition.csproj" />
   </ItemGroup>
 </Project>

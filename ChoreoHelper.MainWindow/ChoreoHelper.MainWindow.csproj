@@ -1,0 +1,7 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+    <Import Project="..\Control.props" />
+    <ItemGroup>
+      <ProjectReference Include="..\ChoreoHelper.SearchResult\ChoreoHelper.SearchResult.csproj" />
+      <ProjectReference Include="..\ChoreoHelper.Search\ChoreoHelper.Search.csproj" />
+    </ItemGroup>
+</Project>

@@ -1,10 +1,11 @@
 ﻿using System.Windows;
-using ChoreoHelper.Editor.Shell;
+using ChoreoHelper.Shell;
 using Microsoft.Extensions.DependencyInjection;
 using ReactiveUI;
 using Serilog.Sinks.SystemConsole.Themes;
 using Splat;
 using Microsoft.Extensions.Hosting;
+using ReactiveUI.Extensions;
 using Serilog;
 using Splat.Microsoft.Extensions.DependencyInjection;
 

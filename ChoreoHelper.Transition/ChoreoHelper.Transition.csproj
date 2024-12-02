@@ -1,0 +1,7 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+    <Import Project="..\Control.props" />
+    <ItemGroup>
+      <ProjectReference Include="..\ChoreoHelper.Distance\ChoreoHelper.Distance.csproj" />
+      <ProjectReference Include="..\ChoreoHelper.Restriction\ChoreoHelper.Restriction.csproj" />
+    </ItemGroup>
+</Project>

@@ -1,0 +1,37 @@
+<Project Sdk="Microsoft.NET.Sdk">
+    <PropertyGroup>
+        <TargetFramework>net9.0-windows10.0.17763</TargetFramework>
+        <ImplicitUsings>enable</ImplicitUsings>
+        <Nullable>enable</Nullable>
+        <IsPackable>false</IsPackable>
+        <IsTestProject>true</IsTestProject>
+        <ManagePackageVersionsCentrally>true</ManagePackageVersionsCentrally>
+        <LangVersion>13</LangVersion>
+        <UseMicrosoftTestingPlatformRunner>true</UseMicrosoftTestingPlatformRunner>
+        <TestingPlatformDotnetTestSupport>true</TestingPlatformDotnetTestSupport>
+        <RootNamespace>ChoreoHelper.Behaviors.Tests</RootNamespace>
+    </PropertyGroup>
+    <ItemGroup>
+        <PackageReference Include="coverlet.collector">
+          <PrivateAssets>all</PrivateAssets>
+          <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
+        </PackageReference>
+        <PackageReference Include="Microsoft.NET.Test.Sdk" />
+        <PackageReference Include="xunit" />
+        <PackageReference Include="xunit.runner.visualstudio" />
+        <PackageReference Include="Shouldly" />
+        <PackageReference Include="Shouldly.FromAssert" />
+        <PackageReference Include="Microsoft.Testing.Platform" />
+    </ItemGroup>
+    <ItemGroup>
+        <Using Include="Xunit"/>
+        <Using Include="Shouldly"/>
+        <Using Include="ChoreoHelper.Tests"/>
+        <Using Include="OneOf"/>
+        <Using Include="OneOf.Types"/>
+    </ItemGroup>
+    <ItemGroup>
+      <ProjectReference Include="..\ChoreoHelper.Algorithms\ChoreoHelper.Algorithms.csproj" />
+      <ProjectReference Include="..\ChoreoHelper.Tests\ChoreoHelper.Tests.csproj" />
+    </ItemGroup>
+</Project>

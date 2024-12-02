@@ -1,0 +1,157 @@
+﻿<reactiveUi:ReactiveUserControl
+    x:TypeArguments="search:SearchViewModel"
+    x:Class="ChoreoHelper.Search.SearchView"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+    xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
+    xmlns:design="clr-namespace:ChoreoHelper.Design;assembly=ChoreoHelper.Design"
+    xmlns:search="clr-namespace:ChoreoHelper.Search"
+    xmlns:i18n="clr-namespace:ChoreoHelper.I18N;assembly=ChoreoHelper.I18N"
+    xmlns:levelSelection="clr-namespace:ChoreoHelper.LevelSelection;assembly=ChoreoHelper.LevelSelection"
+    xmlns:requiredFigureSelection="clr-namespace:ChoreoHelper.RequiredFigureSelection;assembly=ChoreoHelper.RequiredFigureSelection"
+    xmlns:optionalFigureSelection="clr-namespace:ChoreoHelper.OptionalFigureSelection;assembly=ChoreoHelper.OptionalFigureSelection"
+    xmlns:dance="clr-namespace:ChoreoHelper.Dance;assembly=ChoreoHelper.Dance"
+    xmlns:reactiveUi="http://reactiveui.net"
+    mc:Ignorable="d"
+    d:DesignHeight="908" Width="1280">
+    <UserControl.Resources>
+        <design:ResourceDictionaryProvider />
+    </UserControl.Resources>
+    <UserControl.DataContext>
+        <search:SearchViewModel />
+    </UserControl.DataContext>
+    <ScrollViewer VerticalScrollBarVisibility="Auto">
+        <StackPanel Orientation="Vertical">
+            <!-- Search Bar -->
+            <Grid>
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="Auto" />
+                    <ColumnDefinition Width="*" />
+                    <ColumnDefinition Width="Auto" />
+                </Grid.ColumnDefinitions>
+
+                <!-- Search Icon -->
+                <Button Grid.Column="0"
+                        Style="{StaticResource MaterialDesignToolButton}">
+                    <materialDesign:PackIcon Kind="Search" Opacity=".56" />
+                </Button>
+
+                <!-- Search TextBox -->
+                <TextBox Grid.Column="1"
+                         Margin="8"
+                         materialDesign:HintAssist.Hint="{x:Static i18n:ControlResources.SearchFigures}"
+                         VerticalAlignment="Center"
+                         materialDesign:TextFieldAssist.DecorationVisibility="Hidden"
+                         BorderThickness="0"
+                         Text="{Binding SearchText, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" />
+
+                <!-- Go Button -->
+                <Button Grid.Column="2"
+                        MinWidth="120"
+                        Padding="4" Margin="4"
+                        Content="{x:Static i18n:ControlResources.SearchFigures}"
+                        Command="{Binding FindChoreography}"
+                        Style="{DynamicResource MaterialDesignRaisedDarkButton}" />
+            </Grid>
+
+            <!-- Main Content Grid -->
+            <Grid>
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="Auto" />
+                    <ColumnDefinition Width="Auto" />
+                    <ColumnDefinition Width="Auto" />
+                </Grid.ColumnDefinitions>
+
+                <!-- Left Column: Dance Selection and Levels -->
+                <StackPanel Orientation="Vertical" Grid.Column="0">
+                    <!-- Dance Selection -->
+                    <GroupBox Margin="4" Padding="4" Header="{x:Static i18n:ControlResources.Dance}">
+                        <ComboBox Padding="4" Width="400"
+                                  ItemsSource="{Binding Dances}"
+                                  SelectedItem="{Binding SelectedDance, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}">
+                            <ComboBox.GroupStyle>
+                                <GroupStyle>
+                                    <GroupStyle.HeaderTemplate>
+                                        <DataTemplate DataType="{x:Type dance:DanceViewModel}">
+                                            <TextBlock FontWeight="Bold" Text="{Binding Category}" />
+                                        </DataTemplate>
+                                    </GroupStyle.HeaderTemplate>
+                                </GroupStyle>
+                            </ComboBox.GroupStyle>
+                            <ComboBox.ItemTemplate>
+                                <DataTemplate DataType="{x:Type dance:DanceViewModel}">
+                                    <TextBlock Text="{Binding Name}" />
+                                </DataTemplate>
+                            </ComboBox.ItemTemplate>
+                        </ComboBox>
+                    </GroupBox>
+
+                    <!-- Level Selection -->
+                    <GroupBox Margin="4" Padding="4" Header="{x:Static i18n:ControlResources.Level}">
+                        <ListView Padding="4" Width="400" MinHeight="24"
+                                  ItemsSource="{Binding Levels}">
+                            <ListView.ItemTemplate>
+                                <DataTemplate DataType="{x:Type levelSelection:LevelSelectionViewModel}">
+                                    <levelSelection:LevelSelectionView ViewModel="{Binding}" />
+                                </DataTemplate>
+                            </ListView.ItemTemplate>
+                        </ListView>
+                    </GroupBox>
+
+                    <!-- Start Figure -->
+                    <GroupBox Margin="4" Padding="4" Header="{x:Static i18n:ControlResources.StartFigure}">
+                        <Grid>
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition Width="Auto" />
+                                <ColumnDefinition Width="*" />
+                            </Grid.ColumnDefinitions>
+                            <CheckBox Grid.Column="0"
+                                      Padding="4"
+                                      Margin="4"
+                                      VerticalAlignment="Center"
+                                      IsChecked="{Binding IsStartWithSpecificFigure, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" />
+                            <ComboBox Grid.Column="1"
+                                      Margin="4"
+                                      Padding="4"
+                                      IsEnabled="{Binding IsStartWithSpecificFigure}"
+                                      ItemsSource="{Binding SelectedRequiredFigures}"
+                                      SelectedItem="{Binding SelectedSpecificStartFigure, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}">
+                                <ComboBox.ItemTemplate>
+                                    <DataTemplate>
+                                        <TextBlock Text="{Binding Name}" />
+                                    </DataTemplate>
+                                </ComboBox.ItemTemplate>
+                            </ComboBox>
+                        </Grid>
+                    </GroupBox>
+                </StackPanel>
+
+                <!-- Middle Column: Required Figures -->
+                <GroupBox Grid.Column="1" Margin="4" Padding="4" Header="{x:Static i18n:ControlResources.RequiredFigures}">
+                    <ListView Padding="12" Width="400" Height="800" Margin="12"
+                              ItemsSource="{Binding RequiredFiguresFiltered}">
+                        <ListView.ItemTemplate>
+                            <DataTemplate DataType="{x:Type requiredFigureSelection:RequiredFigureSelectionViewModel}">
+                                <requiredFigureSelection:RequiredFigureSelectionView ViewModel="{Binding UpdateSourceTrigger=PropertyChanged}" />
+                            </DataTemplate>
+                        </ListView.ItemTemplate>
+                    </ListView>
+                </GroupBox>
+
+                <!-- Right Column: Optional Figures -->
+                <GroupBox Grid.Column="2" Margin="4" Padding="4" Header="{x:Static i18n:ControlResources.OptionalFigures}">
+                    <ListView Padding="4" Width="400" Height="800"
+                              ItemsSource="{Binding OptionalFiguresFiltered}">
+                        <ListView.ItemTemplate>
+                            <DataTemplate DataType="{x:Type optionalFigureSelection:OptionalFigureSelectionViewModel}">
+                                <requiredFigureSelection:RequiredFigureSelectionView ViewModel="{Binding UpdateSourceTrigger=PropertyChanged}" />
+                            </DataTemplate>
+                        </ListView.ItemTemplate>
+                    </ListView>
+                </GroupBox>
+            </Grid>
+        </StackPanel>
+    </ScrollViewer>
+</reactiveUi:ReactiveUserControl>

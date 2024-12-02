@@ -1,0 +1,29 @@
+﻿<reactiveUi:ReactiveUserControl
+    x:TypeArguments="local:RequiredFigureSelectionViewModel"
+    x:Class="ChoreoHelper.RequiredFigureSelection.RequiredFigureSelectionView"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+    xmlns:design="clr-namespace:ChoreoHelper.Design;assembly=ChoreoHelper.Design"
+    xmlns:reactiveUi="http://reactiveui.net"
+    xmlns:local="clr-namespace:ChoreoHelper.RequiredFigureSelection"
+    TextElement.FontWeight="Regular"
+    TextElement.FontSize="12"
+    TextOptions.TextFormattingMode="Ideal"
+    TextOptions.TextRenderingMode="Auto"
+    mc:Ignorable="d"
+    d:DataContext="{d:DesignInstance local:RequiredFigureSelectionViewModel, IsDesignTimeCreatable=True}"
+    d:DesignWidth="200">
+    <UserControl.Resources>
+        <design:ResourceDictionaryProvider />
+    </UserControl.Resources>
+    <Grid>
+        <CheckBox Margin="4" Padding="4"
+                  IsChecked="{Binding IsSelected, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"
+                  Content="{Binding Name, Mode=OneWay, UpdateSourceTrigger=PropertyChanged}"
+                  ToolTip="{Binding Name, Mode=OneWay, UpdateSourceTrigger=PropertyChanged}"
+                  VerticalAlignment="Center"
+                  HorizontalAlignment="Left"/>
+    </Grid>
+</reactiveUi:ReactiveUserControl>

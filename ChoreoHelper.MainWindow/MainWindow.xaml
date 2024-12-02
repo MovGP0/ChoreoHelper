@@ -1,0 +1,57 @@
+﻿<Window x:Class="ChoreoHelper.MainWindow.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
+        xmlns:design="clr-namespace:ChoreoHelper.Design;assembly=ChoreoHelper.Design"
+        xmlns:mainWindow="clr-namespace:ChoreoHelper.MainWindow"
+        xmlns:search="clr-namespace:ChoreoHelper.I18N;assembly=ChoreoHelper.I18N"
+        xmlns:viewModels1="clr-namespace:ChoreoHelper.Search;assembly=ChoreoHelper.Search"
+        xmlns:searchResult="clr-namespace:ChoreoHelper.SearchResult;assembly=ChoreoHelper.SearchResult"
+        TextElement.FontWeight="Regular"
+        TextElement.FontSize="12"
+        TextOptions.TextFormattingMode="Ideal"
+        TextOptions.TextRenderingMode="Auto"
+        mc:Ignorable="d"
+        d:DataContext="{d:DesignInstance mainWindow:MainWindowViewModel, IsDesignTimeCreatable=True}"
+        Title="{x:Static search:ControlResources.ChoreoHelper}" Height="800" Width="1400" MinHeight="800" MinWidth="1400">
+    <Window.Resources>
+        <ResourceDictionary>
+            <ResourceDictionary.MergedDictionaries>
+                <design:ResourceDictionaryProvider />
+                <ResourceDictionary>
+                    <DataTemplate DataType="{x:Type viewModels1:SearchViewModel}">
+                        <viewModels1:SearchView />
+                    </DataTemplate>
+                    <DataTemplate DataType="{x:Type searchResult:SearchResultViewModel}">
+                        <searchResult:SearchResultView />
+                    </DataTemplate>
+                </ResourceDictionary>
+            </ResourceDictionary.MergedDictionaries>
+        </ResourceDictionary>
+    </Window.Resources>
+    <Window.DataContext>
+        <mainWindow:MainWindowViewModel />
+    </Window.DataContext>
+    <Grid>
+        <materialDesign:DrawerHost
+            IsLeftDrawerOpen="{Binding IsDrawerOpen, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}">
+            <materialDesign:DrawerHost.LeftDrawerContent>
+                <ContentControl Content="{Binding SearchViewModel}" />
+            </materialDesign:DrawerHost.LeftDrawerContent>
+            <DockPanel LastChildFill="True">
+                <materialDesign:ColorZone DockPanel.Dock="Top" Padding="8,4,8,4" Mode="Standard">
+                    <Grid>
+                        <ToggleButton
+                            Margin="16"
+                            HorizontalAlignment="Left"
+                            IsChecked="{Binding IsDrawerOpen, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"
+                            Style="{StaticResource MaterialDesignHamburgerToggleButton}" />
+                    </Grid>
+                </materialDesign:ColorZone>
+                <ContentControl Content="{Binding SearchResultViewModel}" />
+            </DockPanel>
+        </materialDesign:DrawerHost>
+    </Grid>
+</Window>

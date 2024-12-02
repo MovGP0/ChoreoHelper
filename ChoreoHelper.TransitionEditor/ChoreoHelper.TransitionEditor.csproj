@@ -1,0 +1,11 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+    <Import Project="..\Control.props" />
+    <ItemGroup>
+      <ProjectReference Include="..\ChoreoHelper.EditFigure\ChoreoHelper.EditFigure.csproj" />
+      <ProjectReference Include="..\ChoreoHelper.Transition\ChoreoHelper.Transition.csproj" />
+    </ItemGroup>
+    <ItemGroup>
+        <PackageReference Include="SkiaSharp" />
+        <PackageReference Include="SkiaSharp.Views.WPF" />
+    </ItemGroup>
+</Project>

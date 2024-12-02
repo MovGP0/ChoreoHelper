@@ -1,0 +1,48 @@
+<Project>
+    <!-- Shared properties and items for control projects -->
+    <PropertyGroup>
+        <TargetFramework>net9.0-windows10.0.17763</TargetFramework>
+        <ImplicitUsings>enable</ImplicitUsings>
+        <Nullable>enable</Nullable>
+        <OutputPath>..\bin\$(Platform)\$(TargetFramework)\</OutputPath>
+        <ManagePackageVersionsCentrally>true</ManagePackageVersionsCentrally>
+        <LangVersion>13</LangVersion>
+        <ImplicitUsings>enable</ImplicitUsings>
+        <UseWpf>true</UseWpf>
+    </PropertyGroup>
+    <ItemGroup>
+        <PackageReference Include="MessagePipe" />
+        <PackageReference Include="Microsoft.Extensions.DependencyInjection" />
+        <PackageReference Include="Microsoft.Extensions.Logging.Abstractions" />
+        <PackageReference Include="ReactiveMarbles.ObservableEvents.SourceGenerator" PrivateAssets="all" />
+        <PackageReference Include="ReactiveUI" />
+        <PackageReference Include="ReactiveUI.Fody" />
+        <PackageReference Include="ReactiveUI.WPF" />
+        <PackageReference Include="Splat.Microsoft.Extensions.DependencyInjection" />
+        <PackageReference Include="Splat.Microsoft.Extensions.Logging" />
+        <PackageReference Include="OneOf" />
+        <PackageReference Include="System.Text.Json" />
+    </ItemGroup>
+    <ItemGroup>
+        <Using Include="DynamicData" />
+        <Using Include="OneOf" />
+        <Using Include="OneOf.Types" />
+        <Using Include="ReactiveUI" />
+        <Using Include="ReactiveUI.Fody.Helpers" />
+        <Using Include="ReactiveUI.Wpf" />
+        <Using Include="Splat" />
+        <Using Include="System.Diagnostics.Contracts" />
+        <Using Include="System.Reactive" />
+        <Using Include="System.Reactive.Disposables" />
+        <Using Include="System.Reactive.Linq" />
+        <Using Include="MessagePipe" />
+        <Using Include="System.Collections.Immutable;" />
+    </ItemGroup>
+    <ItemGroup>
+        <ProjectReference Include="..\ChoreoHelper.Design\ChoreoHelper.Design.csproj" />
+        <ProjectReference Include="..\ChoreoHelper.Entities\ChoreoHelper.Entities.csproj" />
+        <ProjectReference Include="..\ChoreoHelper.I18N\ChoreoHelper.I18N.csproj" />
+        <ProjectReference Include="..\ChoreoHelper.Messages\ChoreoHelper.Messages.csproj" />
+        <ProjectReference Include="..\ChoreoHelper.ReactiveUI\ChoreoHelper.ReactiveUI.csproj" />
+    </ItemGroup>
+</Project>
