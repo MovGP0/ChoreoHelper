@@ -12,6 +12,8 @@ public static class DependencyInjection
             .AddSingleton<IScreen, ShellViewModel>(r => r.GetRequiredService<ShellViewModel>())
             .AddSingleton<IViewFor<ShellViewModel>, ShellWindow>()
             .AddSingleton<IBehavior<ShellViewModel>, OpenFileBehavior>()
-            .AddSingleton<IBehavior<ShellViewModel>, NavigateToTransitionEditorBehavior>();
+            .AddSingleton<IBehavior<ShellViewModel>, NavigateToTransitionEditorBehavior>()
+            .AddSingleton<IBehavior<ShellViewModel>, NavigateToSearchBehavior>()
+            .AddSingleton<IBehavior<ShellViewModel>, NavigateToSearchResultBehavior>();
     }
 }

@@ -2,15 +2,18 @@
 using System.Globalization;
 using ChoreoHelper.Entities;
 using DynamicData.Binding;
+using JetBrains.Annotations;
 using ReactiveUI.Extensions;
 
 namespace ChoreoHelper.Choreography;
 
 [DebuggerDisplay("{DebuggerDisplay}")]
-public sealed class ChoreographyViewModel : ReactiveObject, IDisposable
+public sealed class ChoreographyViewModel:
+    ReactiveObject,
+    IActivatableViewModel,
+    IDisposable,
+    IRoutableViewModel
 {
-    private CompositeDisposable Disposables { get; } = new();
-
     [Reactive]
     public float Rating { get; set; }
 
@@ -20,44 +23,40 @@ public sealed class ChoreographyViewModel : ReactiveObject, IDisposable
     [Reactive]
     public IReactiveCommand Copy { get; set; } = DisabledCommand.Instance;
 
+    [UsedImplicitly(ImplicitUseKindFlags.InstantiatedWithFixedConstructorSignature, ImplicitUseTargetFlags.Itself)]
+    public ChoreographyViewModel(IScreen hostScreen)
+    {
+        HostScreen = hostScreen;
+        this.WhenActivated(ActivateBehaviors);
+    }
+
     public ChoreographyViewModel()
     {
+        HostScreen = null!;
+
         if (this.IsInDesignMode())
         {
-            Rating = 5;
-            for (var i = 0; i < 5; i++)
-            {
-                Figures.Add(new DanceStepNodeInfo("Foobar", "01234", DanceLevel.Gold));
-            }
+            InitializeDesignTimeData();
         }
 
-        foreach (var behavior in Locator.Current.GetServices<IBehavior<ChoreographyViewModel>>())
+        this.WhenActivated(ActivateBehaviors);
+    }
+
+    private void InitializeDesignTimeData()
+    {
+        Rating = 5;
+        for (var i = 0; i < 5; i++)
         {
-            behavior.Activate(this, Disposables);
+            Figures.Add(new DanceStepNodeInfo("Foobar", "01234", DanceLevel.Gold));
         }
     }
 
-    private bool _isDisposed;
-
-    public void Dispose() => Dispose(true);
-
-    ~ChoreographyViewModel() => Dispose(false);
-
-    private void Dispose(bool disposing)
+    private void ActivateBehaviors(CompositeDisposable disposables)
     {
-        if (_isDisposed)
+        foreach (var behavior in Locator.Current.GetServices<IBehavior<ChoreographyViewModel>>())
         {
-            return;
+            behavior.Activate(this, disposables);
         }
-
-        Disposables.Dispose();
-
-        if (disposing)
-        {
-            GC.SuppressFinalize(this);
-        }
-
-        _isDisposed = true;
     }
 
     private string DebuggerDisplay
@@ -69,4 +68,11 @@ public sealed class ChoreographyViewModel : ReactiveObject, IDisposable
             return $"Rating = {rating}; Figures = [{figures}]";
         }
     }
+
+    public ViewModelActivator Activator { get; } = new();
+
+    public void Dispose() => Activator.Dispose();
+
+    public string UrlPathSegment => "choreography";
+    public IScreen HostScreen { get; }
 }

@@ -17,15 +17,15 @@ namespace ChoreoHelper.TransitionEditor;
 
 public sealed class TransitionEditorViewModel : ReactiveObject, IActivatableViewModel, IRoutableViewModel
 {
-    private GridPainter? _gridPainter;
-
+    private GridPainter GridPainter { get; }
     private IPublisher<RenderTransitionEditorCommand> RenderTransitionEditorPublisher { get; }
 
-    [UsedImplicitly]
+    [UsedImplicitly(ImplicitUseKindFlags.InstantiatedWithFixedConstructorSignature, ImplicitUseTargetFlags.Itself)]
     private TransitionEditorViewModel()
     {
         HostScreen = null!;
         RenderTransitionEditorPublisher = null!;
+        GridPainter = null!;
 
         if (this.IsInDesignMode())
         {
@@ -34,22 +34,25 @@ public sealed class TransitionEditorViewModel : ReactiveObject, IActivatableView
         }
     }
 
+    [UsedImplicitly(ImplicitUseKindFlags.InstantiatedWithFixedConstructorSignature, ImplicitUseTargetFlags.Itself)]
     public TransitionEditorViewModel(
         IScreen hostScreen,
-        IPublisher<RenderTransitionEditorCommand> renderTransitionEditorPublisher)
+        IPublisher<RenderTransitionEditorCommand> renderTransitionEditorPublisher,
+        GridPainter gridPainter)
     {
         HostScreen = hostScreen;
         RenderTransitionEditorPublisher = renderTransitionEditorPublisher;
+        GridPainter = gridPainter;
 
-        this.WhenActivated(disposables =>
+        this.WhenActivated(ActivateBehaviors);
+    }
+
+    private void ActivateBehaviors(CompositeDisposable disposables)
+    {
+        foreach (var behavior in Locator.Current.GetServices<IBehavior<TransitionEditorViewModel>>())
         {
-            foreach (var behavior in Locator.Current.GetServices<IBehavior<TransitionEditorViewModel>>())
-            {
-                behavior.Activate(this, disposables);
-            }
-
-            _gridPainter = Locator.Current.GetRequiredService<GridPainter>();
-        });
+            behavior.Activate(this, disposables);
+        }
     }
 
     private GridPositions _gridPositions = new();
@@ -61,7 +64,7 @@ public sealed class TransitionEditorViewModel : ReactiveObject, IActivatableView
             && Transitions.GetLength(0) == Figures.Count
             && Transitions.GetLength(1) == Figures.Count;
 
-        var result = _gridPainter?.PaintSurface(
+        var result = GridPainter?.PaintSurface(
             e.Surface,
             e.Info,
             e.RawInfo,

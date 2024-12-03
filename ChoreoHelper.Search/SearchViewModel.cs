@@ -5,43 +5,65 @@ using ChoreoHelper.LevelSelection;
 using ChoreoHelper.OptionalFigureSelection;
 using ChoreoHelper.RequiredFigureSelection;
 using DynamicData.Binding;
+using JetBrains.Annotations;
 using ReactiveUI.Extensions;
 
 namespace ChoreoHelper.Search;
 
-public sealed class SearchViewModel: ReactiveObject, IActivatableViewModel, IDisposable
+public sealed class SearchViewModel:
+    ReactiveObject,
+    IActivatableViewModel,
+    IDisposable,
+    IRoutableViewModel
 {
-    private CompositeDisposable Disposables { get; } = new();
+    [UsedImplicitly(ImplicitUseKindFlags.InstantiatedWithFixedConstructorSignature, ImplicitUseTargetFlags.Itself)]
+    public SearchViewModel(IScreen hostScreen)
+    {
+        HostScreen = hostScreen;
+        this.WhenActivated(ActivateBehaviors);
+    }
+
+    private void ActivateBehaviors(CompositeDisposable disposables)
+    {
+        foreach(var behavior in Locator.Current.GetServices<IBehavior<SearchViewModel>>())
+        {
+            behavior.Activate(this, disposables);
+        }
+    }
 
     public SearchViewModel()
     {
+        HostScreen = null!;
         if (this.IsInDesignMode())
         {
-            Dances.Add(new () { Name = "Waltz", Category = "Standard" });
-            Dances.Add(new () { Name = "Tango", Category = "Standard" });
-            Dances.Add(new () { Name = "Foxtrot", Category = "Standard" });
-            Dances.Add(new () { Name = "Quickstep", Category = "Standard" });
-            Dances.Add(new () { Name = "Viennese Waltz", Category = "Standard" });
-
-            for (var i = 0; i < 5; i++)
-            {
-                RequiredFigures.Add(new RequiredFigureSelectionViewModel());
-            }
-
-            for (var i = 0; i < 5; i++)
-            {
-                OptionalFigures.Add(new OptionalFigureSelectionViewModel());
-            }
-
-            Levels.Add(new LevelSelectionViewModel { Level = DanceLevel.Bronze });
-            Levels.Add(new LevelSelectionViewModel { Level = DanceLevel.Silver });
-            Levels.Add(new LevelSelectionViewModel { Level = DanceLevel.Gold });
+            InitializeDesignTimeData();
+            return;
         }
 
-        foreach(var behavior in Locator.Current.GetServices<IBehavior<SearchViewModel>>())
+        this.WhenActivated(ActivateBehaviors);
+    }
+
+    private void InitializeDesignTimeData()
+    {
+        Dances.Add(new () { Name = "Waltz", Category = "Standard" });
+        Dances.Add(new () { Name = "Tango", Category = "Standard" });
+        Dances.Add(new () { Name = "Foxtrot", Category = "Standard" });
+        Dances.Add(new () { Name = "Quickstep", Category = "Standard" });
+        Dances.Add(new () { Name = "Viennese Waltz", Category = "Standard" });
+
+        for (var i = 0; i < 5; i++)
         {
-            behavior.Activate(this, Disposables);
+            RequiredFigures.Add(new RequiredFigureSelectionViewModel());
         }
+
+        for (var i = 0; i < 5; i++)
+        {
+            OptionalFigures.Add(new OptionalFigureSelectionViewModel());
+        }
+
+        Levels.Add(new LevelSelectionViewModel { Level = DanceLevel.Bronze });
+        Levels.Add(new LevelSelectionViewModel { Level = DanceLevel.Silver });
+        Levels.Add(new LevelSelectionViewModel { Level = DanceLevel.Gold });
     }
 
     [Reactive]
@@ -94,9 +116,8 @@ public sealed class SearchViewModel: ReactiveObject, IActivatableViewModel, IDis
 
     public ViewModelActivator Activator { get; } = new();
 
-    public void Dispose()
-    {
-        Disposables.Dispose();
-        Activator.Dispose();
-    }
+    public void Dispose() => Activator.Dispose();
+
+    public string UrlPathSegment => "search";
+    public IScreen HostScreen { get; }
 }

@@ -58,7 +58,4 @@
     <None Remove="Images\icon.webp" />
     <Resource Include="Images\icon.webp" />
   </ItemGroup>
-  <ItemGroup>
-    <Folder Include="Shell\" />
-  </ItemGroup>
 </Project>
