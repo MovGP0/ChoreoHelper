@@ -1,3 +1,5 @@
+using ReactiveUI.Extensions;
+
 namespace ChoreoHelper.Shell;
 
 public sealed class ShellViewModel : ReactiveObject, IScreen, IActivatableViewModel
@@ -24,13 +26,20 @@ public sealed class ShellViewModel : ReactiveObject, IScreen, IActivatableViewMo
 
     public ShellViewModel()
     {
-        this.WhenActivated(disposables =>
+        if (this.IsInDesignMode())
         {
-            foreach (var behavior in Locator.Current.GetServices<IBehavior<ShellViewModel>>())
-            {
-                behavior.Activate(this, disposables);
-            }
-        });
+            InitializeDesignModeData();
+        }
+
+        this.WhenActivated(this.ActivateBehaviors);
+    }
+
+    private void InitializeDesignModeData()
+    {
+        LoadXmlData = EnabledCommand.Instance;
+        GoToTransitionEditor = EnabledCommand.Instance;
+        GoToSearch = EnabledCommand.Instance;
+        GoToSearchResult = EnabledCommand.Instance;
     }
 
     public ViewModelActivator Activator { get; } = new();

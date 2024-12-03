@@ -10,7 +10,7 @@ public sealed class LoadSelectedFiguresBehavior(
 {
     public void Activate(SearchViewModel viewModel, CompositeDisposable disposables)
     {
-        var selectedFigures = new SourceCache<RequiredFigureSelectionViewModel, string>(vm => vm.Hash)
+        var selectedFigures = new SourceCache<RequiredFigureSelectionViewModel, string>(vm => vm.Name)
             .DisposeWith(disposables);
 
         selectedFigures.Connect()
@@ -22,7 +22,7 @@ public sealed class LoadSelectedFiguresBehavior(
             .Subscribe(message =>
             {
                 var figureOption = viewModel.RequiredFigures
-                    .FirstOrOptional(rf => rf.Hash == message.Hash);
+                    .FirstOrOptional(rf => rf.Name == message.Name);
 
                 if (!figureOption.HasValue)
                 {
@@ -35,7 +35,6 @@ public sealed class LoadSelectedFiguresBehavior(
                 var selectedFigure = new RequiredFigureSelectionViewModel();
                 using (selectedFigure.SuppressChangeNotifications())
                 {
-                    selectedFigure.Hash = figure.Hash;
                     selectedFigure.Name = figure.Name;
                 }
 
@@ -61,7 +60,7 @@ public sealed class LoadSelectedFiguresBehavior(
         }
         selectedFigures.Remove(selectedFigure);
 
-        if (viewModel.SelectedSpecificStartFigure != null && viewModel.SelectedSpecificStartFigure.Hash == selectedFigure.Hash)
+        if (viewModel.SelectedSpecificStartFigure != null && viewModel.SelectedSpecificStartFigure.Name == selectedFigure.Name)
         {
             viewModel.SelectedSpecificStartFigure = null;
         }

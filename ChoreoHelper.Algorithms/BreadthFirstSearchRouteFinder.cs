@@ -13,6 +13,9 @@ public sealed class BreadthFirstSearchRouteFinder : IRouteFinder
         int maxDistance,
         CancellationToken cancellationToken = default)
     {
+        Debug.Assert(distanceMatrix.GetLength(0) >= requiredNodes.Length);
+        Debug.Assert(distanceMatrix.GetLength(1) >= requiredNodes.Length);
+
         var frontier = new HashSet<Route>();
 
         if (startNode is null)

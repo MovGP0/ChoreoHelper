@@ -1,7 +1,7 @@
-﻿using System.Collections.Immutable;
-using ChoreoHelper.Choreography;
+﻿using ChoreoHelper.Choreography;
 using ChoreoHelper.Entities;
 using ChoreoHelper.Messages;
+using ReactiveUI.Extensions;
 
 namespace ChoreoHelper.SearchResult.Behaviors;
 
@@ -25,13 +25,11 @@ public sealed class LoadChoreographyBehavior(
             {
                 var choreographyItems = cs.Items;
 
-                choreographies.Clear();
-
                 var viewModels = choreographyItems
                     .Select(ToChoreographyViewModel)
                     .ToImmutableArray();
 
-                choreographies.AddRange(viewModels);
+                choreographies.Update(viewModels);
             })
             .DisposeWith(disposables);
     }
@@ -43,7 +41,8 @@ public sealed class LoadChoreographyBehavior(
         {
             Rating = 1f / item.Length * 10f
         };
-        choreographyViewModel.Figures.AddRange(item);
+        choreographyViewModel.Activator.Activate();
+        ListEx.AddRange(choreographyViewModel.Figures, item);
         return choreographyViewModel;
     }
 }

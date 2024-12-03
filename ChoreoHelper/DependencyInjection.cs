@@ -5,14 +5,13 @@ using ChoreoHelper.Distance;
 using ChoreoHelper.EditFigure;
 using ChoreoHelper.Figure;
 using ChoreoHelper.Gateway;
-using ChoreoHelper.Graph;
 using ChoreoHelper.LevelSelection;
-using ChoreoHelper.MainWindow;
 using ChoreoHelper.OptionalFigureSelection;
 using ChoreoHelper.RequiredFigureSelection;
 using ChoreoHelper.Restriction;
 using ChoreoHelper.Search;
 using ChoreoHelper.SearchResult;
+using ChoreoHelper.Shell;
 using ChoreoHelper.Transition;
 using ChoreoHelper.TransitionEditor;
 using Microsoft.Extensions.DependencyInjection;
@@ -21,13 +20,11 @@ namespace ChoreoHelper;
 
 public static class DependencyInjection
 {
-    public static IServiceCollection AddChoreoHelper(this IServiceCollection services)
+    public static IServiceCollection AddChoreoHelperEditor(this IServiceCollection services)
     {
         services.AddMessagePipe();
         services.AddGateway();
         services.AddAlgorithms();
-        services.AddChoreoHelperDatabase();
-
         AddControls(services);
         return services;
     }
@@ -45,7 +42,7 @@ public static class DependencyInjection
         services.AddRestriction();
         services.AddSearch();
         services.AddSearchResult();
-        services.AddMainWindow();
+        services.AddShell();
         services.AddTransition();
         services.AddTransitionEditor();
     }

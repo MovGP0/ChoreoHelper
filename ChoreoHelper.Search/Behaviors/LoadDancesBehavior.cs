@@ -1,11 +1,11 @@
 ﻿using ChoreoHelper.Dance;
 using ChoreoHelper.Entities;
-using ChoreoHelper.Gateway;
 using ReactiveUI.Extensions;
 
 namespace ChoreoHelper.Search.Behaviors;
 
-public sealed class LoadDancesBehavior(IDanceFiguresRepository connection) : IBehavior<SearchViewModel>
+public sealed class LoadDancesBehavior(
+    ISubscriber<Messages.DataLoadedEvent> dataLoadedSubscriber) : IBehavior<SearchViewModel>
 {
     public void Activate(SearchViewModel viewModel, CompositeDisposable disposables)
     {
@@ -17,13 +17,16 @@ public sealed class LoadDancesBehavior(IDanceFiguresRepository connection) : IBe
             .Subscribe()
             .DisposeWith(disposables);
 
-        Observable
-            .Return(true)
-            .Select(_ => GetDancesInAlphabeticalOrder())
-            .Subscribe(items =>
+        dataLoadedSubscriber
+            .Subscribe(data =>
             {
-                var vms = items
-                    .Select((i, idx) => ToViewModel(i))
+                viewModel.DancesCollection.Clear();
+                viewModel.DancesCollection.AddRange(data.Dances);
+
+                var vms = data.Dances
+                    .OrderBy(d => d.Category, StringComparer.CurrentCulture)
+                    .ThenBy(d => d.Name, StringComparer.CurrentCulture)
+                    .Select(ToViewModel)
                     .ToImmutableArray();
 
                 dancesList.Update(vms);
@@ -31,21 +34,21 @@ public sealed class LoadDancesBehavior(IDanceFiguresRepository connection) : IBe
             .DisposeWith(disposables);
     }
 
-    private DanceViewModel ToViewModel(DanceInfo danceInfo)
+    private static DanceViewModel ToViewModel(ChoreoHelper.Entities.Dance dance)
+    {
+        var vm = Locator.Current.GetRequiredService<DanceViewModel>();
+        vm.Hash = dance.Name;
+        vm.Category = dance.Category;
+        vm.Name = dance.Name;
+        return vm;
+    }
+
+    private static DanceViewModel ToViewModel(DanceInfo danceInfo)
     {
         var vm = Locator.Current.GetRequiredService<DanceViewModel>();
         vm.Hash = danceInfo.Hash;
         vm.Category = danceInfo.Category;
         vm.Name = danceInfo.Name;
         return vm;
-    }
-
-    private DanceInfo[] GetDancesInAlphabeticalOrder()
-    {
-        return connection
-            .GetDances()
-            .OrderBy(d => d.Category)
-            .ThenBy(d => d.Name)
-            .ToArray();
     }
 }

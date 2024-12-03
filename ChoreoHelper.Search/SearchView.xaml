@@ -1,4 +1,5 @@
 ﻿<reactiveUi:ReactiveUserControl
+    x:Name="SearchControl"
     x:TypeArguments="search:SearchViewModel"
     x:Class="ChoreoHelper.Search.SearchView"
     xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
@@ -8,21 +9,38 @@
     xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
     xmlns:design="clr-namespace:ChoreoHelper.Design;assembly=ChoreoHelper.Design"
     xmlns:search="clr-namespace:ChoreoHelper.Search"
-    xmlns:i18n="clr-namespace:ChoreoHelper.I18N;assembly=ChoreoHelper.I18N"
+    xmlns:i18N="clr-namespace:ChoreoHelper.I18N;assembly=ChoreoHelper.I18N"
     xmlns:levelSelection="clr-namespace:ChoreoHelper.LevelSelection;assembly=ChoreoHelper.LevelSelection"
     xmlns:requiredFigureSelection="clr-namespace:ChoreoHelper.RequiredFigureSelection;assembly=ChoreoHelper.RequiredFigureSelection"
     xmlns:optionalFigureSelection="clr-namespace:ChoreoHelper.OptionalFigureSelection;assembly=ChoreoHelper.OptionalFigureSelection"
     xmlns:dance="clr-namespace:ChoreoHelper.Dance;assembly=ChoreoHelper.Dance"
     xmlns:reactiveUi="http://reactiveui.net"
+    xmlns:componentModel="clr-namespace:System.ComponentModel;assembly=WindowsBase"
     mc:Ignorable="d"
+    d:DataContext="{d:DesignInstance search:SearchViewModel, IsDesignTimeCreatable=True}"
     d:DesignHeight="908" Width="1280">
     <UserControl.Resources>
-        <design:ResourceDictionaryProvider />
+        <ResourceDictionary>
+            <ResourceDictionary.MergedDictionaries>
+                <design:ResourceDictionaryProvider />
+                <ResourceDictionary>
+                    <!-- This is currently not working, but might be useful in the future -->
+                    <CollectionViewSource
+                        x:Key="GroupedDances"
+                        Source="{Binding Dances}">
+                        <CollectionViewSource.GroupDescriptions>
+                            <PropertyGroupDescription PropertyName="Category" />
+                        </CollectionViewSource.GroupDescriptions>
+                        <CollectionViewSource.SortDescriptions>
+                            <componentModel:SortDescription PropertyName="Category" Direction="Ascending" />
+                            <componentModel:SortDescription PropertyName="Name" Direction="Ascending" />
+                        </CollectionViewSource.SortDescriptions>
+                    </CollectionViewSource>
+                </ResourceDictionary>
+            </ResourceDictionary.MergedDictionaries>
+        </ResourceDictionary>
     </UserControl.Resources>
-    <UserControl.DataContext>
-        <search:SearchViewModel />
-    </UserControl.DataContext>
-    <ScrollViewer VerticalScrollBarVisibility="Auto">
+    <ScrollViewer VerticalScrollBarVisibility="Auto" DataContext="{Binding  Path=ViewModel, ElementName=SearchControl}">
         <StackPanel Orientation="Vertical">
             <!-- Search Bar -->
             <Grid>
@@ -41,7 +59,7 @@
                 <!-- Search TextBox -->
                 <TextBox Grid.Column="1"
                          Margin="8"
-                         materialDesign:HintAssist.Hint="{x:Static i18n:ControlResources.SearchFigures}"
+                         materialDesign:HintAssist.Hint="{x:Static i18N:ControlResources.SearchFigures}"
                          VerticalAlignment="Center"
                          materialDesign:TextFieldAssist.DecorationVisibility="Hidden"
                          BorderThickness="0"
@@ -51,7 +69,7 @@
                 <Button Grid.Column="2"
                         MinWidth="120"
                         Padding="4" Margin="4"
-                        Content="{x:Static i18n:ControlResources.SearchFigures}"
+                        Content="{x:Static i18N:ControlResources.SearchFigures}"
                         Command="{Binding FindChoreography}"
                         Style="{DynamicResource MaterialDesignRaisedDarkButton}" />
             </Grid>
@@ -67,10 +85,10 @@
                 <!-- Left Column: Dance Selection and Levels -->
                 <StackPanel Orientation="Vertical" Grid.Column="0">
                     <!-- Dance Selection -->
-                    <GroupBox Margin="4" Padding="4" Header="{x:Static i18n:ControlResources.Dance}">
+                    <GroupBox Margin="4" Padding="4" Header="{x:Static i18N:ControlResources.Dance}">
                         <ComboBox Padding="4" Width="400"
-                                  ItemsSource="{Binding Dances}"
-                                  SelectedItem="{Binding SelectedDance, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}">
+                                  SelectedItem="{Binding SelectedDance, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"
+                                  ItemsSource="{Binding Dances}">
                             <ComboBox.GroupStyle>
                                 <GroupStyle>
                                     <GroupStyle.HeaderTemplate>
@@ -89,7 +107,7 @@
                     </GroupBox>
 
                     <!-- Level Selection -->
-                    <GroupBox Margin="4" Padding="4" Header="{x:Static i18n:ControlResources.Level}">
+                    <GroupBox Margin="4" Padding="4" Header="{x:Static i18N:ControlResources.Level}">
                         <ListView Padding="4" Width="400" MinHeight="24"
                                   ItemsSource="{Binding Levels}">
                             <ListView.ItemTemplate>
@@ -101,7 +119,7 @@
                     </GroupBox>
 
                     <!-- Start Figure -->
-                    <GroupBox Margin="4" Padding="4" Header="{x:Static i18n:ControlResources.StartFigure}">
+                    <GroupBox Margin="4" Padding="4" Header="{x:Static i18N:ControlResources.StartFigure}">
                         <Grid>
                             <Grid.ColumnDefinitions>
                                 <ColumnDefinition Width="Auto" />
@@ -129,7 +147,7 @@
                 </StackPanel>
 
                 <!-- Middle Column: Required Figures -->
-                <GroupBox Grid.Column="1" Margin="4" Padding="4" Header="{x:Static i18n:ControlResources.RequiredFigures}">
+                <GroupBox Grid.Column="1" Margin="4" Padding="4" Header="{x:Static i18N:ControlResources.RequiredFigures}">
                     <ListView Padding="12" Width="400" Height="800" Margin="12"
                               ItemsSource="{Binding RequiredFiguresFiltered}">
                         <ListView.ItemTemplate>
@@ -141,7 +159,7 @@
                 </GroupBox>
 
                 <!-- Right Column: Optional Figures -->
-                <GroupBox Grid.Column="2" Margin="4" Padding="4" Header="{x:Static i18n:ControlResources.OptionalFigures}">
+                <GroupBox Grid.Column="2" Margin="4" Padding="4" Header="{x:Static i18N:ControlResources.OptionalFigures}">
                     <ListView Padding="4" Width="400" Height="800"
                               ItemsSource="{Binding OptionalFiguresFiltered}">
                         <ListView.ItemTemplate>

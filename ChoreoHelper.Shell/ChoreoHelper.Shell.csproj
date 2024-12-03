@@ -14,6 +14,7 @@
     </ItemGroup>
     <ItemGroup>
       <ProjectReference Include="..\ChoreoHelper.Choreography\ChoreoHelper.Choreography.csproj" />
+      <ProjectReference Include="..\ChoreoHelper.SearchResult\ChoreoHelper.SearchResult.csproj" />
       <ProjectReference Include="..\ChoreoHelper.Search\ChoreoHelper.Search.csproj" />
       <ProjectReference Include="..\ChoreoHelper.TransitionEditor\ChoreoHelper.TransitionEditor.csproj" />
     </ItemGroup>

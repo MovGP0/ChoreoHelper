@@ -7,12 +7,6 @@ namespace ChoreoHelper.Figure;
 [DebuggerDisplay("{DebuggerDisplay}")]
 public sealed class FigureViewModel : ReactiveObject
 {
-    /// <summary>
-    /// The hash code of the dance step.
-    /// </summary>
-    [Reactive]
-    public string Hash { get; set; } = string.Empty;
-
     [Reactive]
     public DanceLevel Level { get; set; } = DanceLevel.Undefined;
 
@@ -25,8 +19,14 @@ public sealed class FigureViewModel : ReactiveObject
     {
         if (this.IsInDesignMode())
         {
-            Name = "Dance Figure Name";
+            InitializeDesignModeData();
         }
+    }
+
+    private void InitializeDesignModeData()
+    {
+        Name = "Dance Figure Name";
+        Level = DanceLevel.Bronze;
     }
 
     private string DebuggerDisplay => $"[{Level}] {Name}";

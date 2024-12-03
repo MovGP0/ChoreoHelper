@@ -6,8 +6,6 @@ namespace ChoreoHelper.Graph;
 
 public sealed class DanceFiguresRepository : IDanceFiguresRepository
 {
-    private OneOf<UndirectedGraph<DanceFigure, DanceFigureTransition>, None> Graph { get; set; } = new None();
-
     public (Distance[,] array, DanceStepNodeInfo[] figures) GetDistanceMatrix(string dance, DanceStepNodeInfo[] figures)
     {
         var task = EnsureGraphIsLoadedAsync();

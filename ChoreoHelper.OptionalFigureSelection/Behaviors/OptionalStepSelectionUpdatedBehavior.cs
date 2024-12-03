@@ -13,7 +13,7 @@ public sealed class OptionalStepSelectionUpdatedBehavior(
             .Select(_ => viewModel)
             .Subscribe(vm =>
             {
-                var message = new OptionalFigureUpdated(vm.Hash, vm.IsSelected);
+                var message = new OptionalFigureUpdated(vm.Name, vm.IsSelected);
                 optionalFigureUpdatedPublisher.Publish(message);
             })
             .DisposeWith(disposables);

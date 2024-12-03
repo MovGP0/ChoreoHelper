@@ -17,7 +17,7 @@ namespace ChoreoHelper.TransitionEditor;
 
 public sealed class TransitionEditorViewModel : ReactiveObject, IActivatableViewModel, IRoutableViewModel
 {
-    private GridPainter GridPainter { get; }
+    private GridPainter? GridPainter { get; }
     private IPublisher<RenderTransitionEditorCommand> RenderTransitionEditorPublisher { get; }
 
     [UsedImplicitly(ImplicitUseKindFlags.InstantiatedWithFixedConstructorSignature, ImplicitUseTargetFlags.Itself)]
@@ -25,13 +25,21 @@ public sealed class TransitionEditorViewModel : ReactiveObject, IActivatableView
     {
         HostScreen = null!;
         RenderTransitionEditorPublisher = null!;
-        GridPainter = null!;
+        GridPainter = null;
 
         if (this.IsInDesignMode())
         {
-            IsEditViewOpen = true;
-            EditViewModel = new TransitionViewModel();
+            InitializeDesignModeData();
         }
+
+        this.WhenActivated(this.ActivateBehaviors);
+    }
+
+    private void InitializeDesignModeData()
+    {
+        IsEditViewOpen = true;
+        EditViewModel = new TransitionViewModel();
+        ResetZoom = EnabledCommand.Instance;
     }
 
     [UsedImplicitly(ImplicitUseKindFlags.InstantiatedWithFixedConstructorSignature, ImplicitUseTargetFlags.Itself)]
@@ -44,15 +52,7 @@ public sealed class TransitionEditorViewModel : ReactiveObject, IActivatableView
         RenderTransitionEditorPublisher = renderTransitionEditorPublisher;
         GridPainter = gridPainter;
 
-        this.WhenActivated(ActivateBehaviors);
-    }
-
-    private void ActivateBehaviors(CompositeDisposable disposables)
-    {
-        foreach (var behavior in Locator.Current.GetServices<IBehavior<TransitionEditorViewModel>>())
-        {
-            behavior.Activate(this, disposables);
-        }
+        this.WhenActivated(this.ActivateBehaviors);
     }
 
     private GridPositions _gridPositions = new();
@@ -122,7 +122,7 @@ public sealed class TransitionEditorViewModel : ReactiveObject, IActivatableView
     public SKMatrix TransformationMatrix { get; set; } = SKMatrix.CreateIdentity();
 
     [Reactive]
-    public bool IsEditViewOpen { get; set; } = false;
+    public bool IsEditViewOpen { get; set; }
 
     [Reactive]
     public object? EditViewModel { get; set; }

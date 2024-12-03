@@ -1,37 +1,55 @@
 ﻿using ChoreoHelper.Choreography;
+using ChoreoHelper.Entities;
 using DynamicData.Binding;
+using JetBrains.Annotations;
 using ReactiveUI.Extensions;
 
 namespace ChoreoHelper.SearchResult;
 
-public sealed class SearchResultViewModel: ReactiveObject, IActivatableViewModel, IDisposable
+public sealed class SearchResultViewModel: ReactiveObject, IActivatableViewModel, IDisposable, IRoutableViewModel
 {
-    private CompositeDisposable Disposables { get; } = new();
-
     public IObservableCollection<ChoreographyViewModel> Choreographies { get; }
         = new ObservableCollectionExtended<ChoreographyViewModel>();
 
     public SearchResultViewModel()
     {
+        HostScreen = null!;
         if (this.IsInDesignMode())
         {
-            for (var i = 0; i < 5; i++)
-            {
-                Choreographies.Add(new ChoreographyViewModel());
-            }
+            InitializeDesignModeData();
         }
 
-        foreach(var behavior in Locator.Current.GetServices<IBehavior<SearchResultViewModel>>())
+        this.WhenActivated(this.ActivateBehaviors);
+    }
+
+    [UsedImplicitly]
+    public SearchResultViewModel(IScreen hostScreen)
+    {
+        HostScreen = hostScreen;
+        if (this.IsInDesignMode())
         {
-            behavior.Activate(this, Disposables);
+            InitializeDesignModeData();
+        }
+
+        this.WhenActivated(this.ActivateBehaviors);
+    }
+
+    private void InitializeDesignModeData()
+    {
+        for (var i = 0; i < 5; i++)
+        {
+            Choreographies.Add(new ChoreographyViewModel()
+            {
+                Rating = i,
+                Figures = { new(), new(), new(), new() }
+            });
         }
     }
 
     public ViewModelActivator Activator { get; } = new();
 
-    public void Dispose()
-    {
-        Disposables.Dispose();
-        Activator.Dispose();
-    }
+    public void Dispose() => Activator.Dispose();
+
+    public string UrlPathSegment => "search-result";
+    public IScreen HostScreen { get; }
 }

@@ -1,6 +1,7 @@
 using ChoreoHelper.LevelSelection;
 using ChoreoHelper.Restriction;
 using DynamicData.Binding;
+using ReactiveUI.Extensions;
 
 namespace ChoreoHelper.EditFigure;
 
@@ -10,6 +11,21 @@ public sealed class EditFigureViewModel : ReactiveObject
     {
         Levels.AddRange(LevelSelectionViewModelFactory.Create());
         Restrictions.AddRange(RestrictionViewModelFactory.Create());
+
+        if (this.IsInDesignMode())
+        {
+            InitializeDesignModeData();
+        }
+    }
+
+    private void InitializeDesignModeData()
+    {
+        Hash = "43523984";
+        Name = "Some Figure Name";
+        Level = Levels.First();
+        Restriction = Restrictions.First();
+        SaveAndNavigateBack = EnabledCommand.Instance;
+        NavigateBack = EnabledCommand.Instance;
     }
 
     /// <summary>

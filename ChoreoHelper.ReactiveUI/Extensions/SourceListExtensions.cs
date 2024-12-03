@@ -16,11 +16,7 @@ public static class SourceListExtensions
             .Except(existingKeys)
             .ToArray();
 
-        foreach (var itemToRemove in toRemove)
-        {
-            sourceList.Remove(itemToRemove);
-        }
-
+        sourceList.RemoveMany(toRemove);
         sourceList.AddRange(toAdd);
     }
 }

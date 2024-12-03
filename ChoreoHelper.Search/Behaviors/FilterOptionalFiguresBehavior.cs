@@ -13,7 +13,7 @@ public sealed class FilterOptionalFiguresBehavior(
 {
     public void Activate(SearchViewModel viewModel, CompositeDisposable disposables)
     {
-        var optionalFiguresFiltered = new SourceCache<OptionalFigureSelectionViewModel, string>(vm => vm.Hash)
+        var optionalFiguresFiltered = new SourceCache<OptionalFigureSelectionViewModel, string>(vm => vm.Name)
             .DisposeWith(disposables);
 
         optionalFiguresFiltered
@@ -29,14 +29,14 @@ public sealed class FilterOptionalFiguresBehavior(
             {
                 var selectedRequiredFigureHashes = vm.RequiredFiguresFiltered
                     .Where(rf => rf.IsSelected)
-                    .Select(rf => rf.Hash)
+                    .Select(rf => rf.Name)
                     .ToImmutableHashSet();
 
                 var searchText = vm.SearchText;
                 var figures = viewModel
                     .OptionalFigures
                     .Where(rf => string.IsNullOrEmpty(searchText) || rf.Name.Contains(searchText, StringComparison.CurrentCultureIgnoreCase))
-                    .Where(of => !selectedRequiredFigureHashes.Contains(of.Hash))
+                    .Where(of => !selectedRequiredFigureHashes.Contains(of.Name))
                     .Where(of => FilterByLevel(of, vm.GetLevels()))
                     .ToImmutableArray();
 

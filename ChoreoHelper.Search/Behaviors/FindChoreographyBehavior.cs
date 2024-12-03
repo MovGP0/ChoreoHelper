@@ -28,7 +28,7 @@ public sealed class FindChoreographyBehavior(
             .Do(message =>
             {
                 var figure = viewModel.RequiredFigures
-                    .FirstOrOptional(rf => rf.Hash == message.Hash);
+                    .FirstOrOptional(rf => rf.Name == message.Name);
 
                 if (figure.HasValue)
                 {

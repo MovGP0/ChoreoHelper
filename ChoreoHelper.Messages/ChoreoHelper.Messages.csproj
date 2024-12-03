@@ -8,6 +8,6 @@
         <LangVersion>13</LangVersion>
     </PropertyGroup>
     <ItemGroup>
-      <ProjectReference Include="..\ChoreoHelper.Graph\ChoreoHelper.Graph.csproj" />
+      <ProjectReference Include="..\ChoreoHelper.Entities\ChoreoHelper.Entities.csproj" />
     </ItemGroup>
 </Project>

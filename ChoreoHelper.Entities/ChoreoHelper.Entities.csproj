@@ -10,7 +10,6 @@
   </PropertyGroup>
   <ItemGroup>
     <PackageReference Include="OneOf" />
-    <PackageReference Include="QuikGraph" />
   </ItemGroup>
   <ItemGroup>
     <Compile Update="DanceFigure.Xml.cs">

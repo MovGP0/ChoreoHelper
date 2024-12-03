@@ -9,12 +9,6 @@ public sealed class RequiredFigureSelectionViewModel : ReactiveObject, IDisposab
 {
     private CompositeDisposable Disposables { get; } = new();
 
-    /// <summary>
-    /// The hash code of the dance step.
-    /// </summary>
-    [Reactive]
-    public string Hash { get; set; } = string.Empty;
-
     [Reactive]
     public bool IsSelected { get; set; }
 
@@ -30,14 +24,16 @@ public sealed class RequiredFigureSelectionViewModel : ReactiveObject, IDisposab
     {
         if (this.IsInDesignMode())
         {
-            Name = "Dance Figure Name";
-            IsSelected = true;
+            InitializeDesignModeData();
         }
 
-        foreach (var behavior in Locator.Current.GetServices<IBehavior<RequiredFigureSelectionViewModel>>())
-        {
-            behavior.Activate(this, Disposables);
-        }
+        this.ActivateBehaviors(Disposables);
+    }
+
+    private void InitializeDesignModeData()
+    {
+        Name = "Dance Figure Name";
+        IsSelected = true;
     }
 
     public void Dispose() => Disposables.Dispose();

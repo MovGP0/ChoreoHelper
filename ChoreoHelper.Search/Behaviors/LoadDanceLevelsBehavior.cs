@@ -1,12 +1,12 @@
-﻿using System.Collections.Immutable;
-using ChoreoHelper.Entities;
+﻿using ChoreoHelper.Entities;
 using ChoreoHelper.Gateway;
 using ChoreoHelper.LevelSelection;
 using ReactiveUI.Extensions;
 
 namespace ChoreoHelper.Search.Behaviors;
 
-public sealed class LoadDanceLevelsBehavior(IDanceFiguresRepository connection) : IBehavior<SearchViewModel>
+public sealed class LoadDanceLevelsBehavior(
+    ISubscriber<Messages.DataLoadedEvent> dataLoadedSubscriber) : IBehavior<SearchViewModel>
 {
     public void Activate(SearchViewModel viewModel, CompositeDisposable disposables)
     {
@@ -18,13 +18,18 @@ public sealed class LoadDanceLevelsBehavior(IDanceFiguresRepository connection) 
             .Subscribe()
             .DisposeWith(disposables);
 
-        Observable
-            .Return(true)
-            .Select(_ => connection.GetDanceLevels())
-            .Select(ToViewModels)
-            .Subscribe(items =>
+        dataLoadedSubscriber
+            .Subscribe(args =>
             {
-                sourceList.Update(items);
+                var levels = (
+                    from dance in args.Dances
+                    from figure in dance.Figures
+                    select figure.Level)
+                    .Distinct()
+                    .Select(ToViewModel)
+                    .ToImmutableArray();
+
+                sourceList.Update(levels);
             })
             .DisposeWith(disposables);
     }

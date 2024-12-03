@@ -18,7 +18,7 @@ public static class DependencyInjection
         services.AddTransient<IBehavior<SearchViewModel>, LoadRequiredFiguresBehavior>();
         services.AddTransient<IBehavior<SearchViewModel>, LoadSelectedFiguresBehavior>();
         services.AddTransient<IViewFor<SearchViewModel>, SearchView>();
-        services.AddTransient<SearchViewModel>();
+        services.AddScoped<SearchViewModel>();
         services.AddTransient<ISearchChoreographies, SearchChoreographies>();
         return services;
     }

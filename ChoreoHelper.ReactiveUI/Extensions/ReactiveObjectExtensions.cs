@@ -1,4 +1,5 @@
 ﻿using System.ComponentModel;
+using System.Reactive.Disposables;
 using System.Windows;
 using JetBrains.Annotations;
 using Microsoft.Extensions.DependencyInjection;
@@ -27,5 +28,14 @@ public static class ReactiveObjectExtensions
             .DefaultValue;
 
         return value is true;
+    }
+
+    public static void ActivateBehaviors<TViewModel>(this TViewModel viewModel, CompositeDisposable disposables)
+        where TViewModel: ReactiveObject
+    {
+        foreach (var behavior in Locator.Current.GetServices<IBehavior<TViewModel>>())
+        {
+            behavior.Activate(viewModel, disposables);
+        }
     }
 }

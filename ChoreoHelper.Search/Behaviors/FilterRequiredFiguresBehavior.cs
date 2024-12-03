@@ -11,7 +11,7 @@ public sealed class FilterRequiredFiguresBehavior(
 {
     public void Activate(SearchViewModel viewModel, CompositeDisposable disposables)
     {
-        var requiredFiguresFiltered = new SourceCache<RequiredFigureSelectionViewModel, string>(vm => vm.Hash)
+        var requiredFiguresFiltered = new SourceCache<RequiredFigureSelectionViewModel, string>(vm => vm.Name)
             .DisposeWith(disposables);
 
         requiredFiguresFiltered

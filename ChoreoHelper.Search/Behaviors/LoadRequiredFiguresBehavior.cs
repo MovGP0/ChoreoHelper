@@ -8,7 +8,7 @@ public sealed class LoadRequiredFiguresBehavior : IBehavior<SearchViewModel>
 {
     public void Activate(SearchViewModel viewModel, CompositeDisposable disposables)
     {
-        var requiredFigures = new SourceCache<RequiredFigureSelectionViewModel, string>(vm => vm.Hash)
+        var requiredFigures = new SourceCache<RequiredFigureSelectionViewModel, string>(vm => vm.Name)
             .DisposeWith(disposables);
 
         requiredFigures
@@ -29,7 +29,7 @@ public sealed class LoadRequiredFiguresBehavior : IBehavior<SearchViewModel>
                 }
 
                 var toDelete = requiredFigures.Keys
-                    .Except(loadedFigures.Select(e => e.Hash));
+                    .Except(loadedFigures.Select(e => e.Name));
 
                 requiredFigures.RemoveKeys(toDelete);
             })
@@ -47,7 +47,6 @@ public sealed class LoadRequiredFiguresBehavior : IBehavior<SearchViewModel>
     private static RequiredFigureSelectionViewModel ToViewModel(FigureViewModel loadedFigure)
     {
         var vm = new RequiredFigureSelectionViewModel();
-        vm.Hash = loadedFigure.Hash;
         vm.Name = loadedFigure.Name;
         vm.IsSelected = false;
         vm.Level = loadedFigure.Level;

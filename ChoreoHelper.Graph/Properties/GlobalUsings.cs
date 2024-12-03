@@ -5,4 +5,3 @@ global using System.Xml.Linq;
 global using OneOf;
 global using OneOf.Types;
 global using System.Globalization;
-global using QuikGraph;

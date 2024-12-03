@@ -16,7 +16,9 @@
         ResizeMode="CanResizeWithGrip"
         AllowsTransparency="True"
         d:DataContext="{d:DesignInstance shell:ShellViewModel, IsDesignTimeCreatable=True}"
-        Title="Shell" Height="450" Width="800"
+        Title="Shell"
+        Height="450" Width="800"
+        MinHeight="450" MinWidth="800"
         Background="Transparent">
     <Window.Resources>
         <ResourceDictionary>
@@ -26,9 +28,6 @@
             </ResourceDictionary.MergedDictionaries>
         </ResourceDictionary>
     </Window.Resources>
-    <Window.DataContext>
-        <shell:ShellViewModel />
-    </Window.DataContext>
     <Grid>
         <Grid.RowDefinitions>
             <RowDefinition Height="40" />

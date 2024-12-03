@@ -1,26 +1,33 @@
-﻿using System.Collections.Immutable;
-using System.Collections.Specialized;
+﻿using System.Collections.Specialized;
 using ChoreoHelper.Entities;
-using ChoreoHelper.Gateway;
 using ChoreoHelper.Messages;
 using ChoreoHelper.OptionalFigureSelection;
 
 namespace ChoreoHelper.Search.Behaviors;
 
 public sealed class LoadOptionalFiguresBehavior(
-    IDanceFiguresRepository connection,
-    ISubscriber<RequiredFigureUpdated> requiredFigureUpdatedSubscriber)
+    ISubscriber<RequiredFigureUpdated> requiredFigureUpdatedSubscriber,
+    ISubscriber<DataLoadedEvent> dataLoadedSubscriber)
     : IBehavior<SearchViewModel>
 {
     public void Activate(SearchViewModel viewModel, CompositeDisposable disposables)
     {
-        var optionalFigures = new SourceCache<OptionalFigureSelectionViewModel, string>(vm => vm.Hash)
+        var optionalFigures = new SourceCache<OptionalFigureSelectionViewModel, string>(vm => vm.Name)
             .DisposeWith(disposables);
 
         optionalFigures
             .Connect()
             .Bind(viewModel.OptionalFigures)
             .Subscribe()
+            .DisposeWith(disposables);
+
+        ICollection<Entities.Dance> dances = new List<Entities.Dance>();
+
+        dataLoadedSubscriber
+            .Subscribe(message =>
+            {
+                dances = message.Dances;
+            })
             .DisposeWith(disposables);
 
         Observe(viewModel)
@@ -34,25 +41,27 @@ public sealed class LoadOptionalFiguresBehavior(
 
                 var hashesToIgnore = vm.RequiredFigures
                     .Where(r => r.IsSelected)
-                    .Select(e => e.Hash)
+                    .Select(e => e.Name)
                     .ToHashSet();
 
-                return connection
-                    .GetFigures(vm.SelectedDance?.Name, vm.GetLevels())
-                    .Where(e => !hashesToIgnore.Contains(e.Hash))
+                return dances
+                    .Where(d => vm.SelectedDance is not null && d.Name == vm.SelectedDance?.Name)
+                    .SelectMany(dance => dance.Figures)
+                    .Where(e => !hashesToIgnore.Contains(e.Name))
+                    .Select(danceFigure => new DanceStepNodeInfo(danceFigure.Name, danceFigure.Level))
                     .ToArray();
             })
             .Subscribe(loadedFigures =>
             {
                 var selectedRequiredFiguresHashes = viewModel.RequiredFigures
                     .Where(rf => rf.IsSelected)
-                    .Select(e => e.Hash)
+                    .Select(e => e.Name)
                     .ToImmutableHashSet();
 
                 foreach (var loadedFigure in loadedFigures)
                 {
                     var vm = ToViewModel(loadedFigure);
-                    if (selectedRequiredFiguresHashes.Contains(vm.Hash))
+                    if (selectedRequiredFiguresHashes.Contains(vm.Name))
                     {
                         continue;
                     }
@@ -60,7 +69,7 @@ public sealed class LoadOptionalFiguresBehavior(
                 }
 
                 var toDelete = optionalFigures.Keys
-                    .Except(loadedFigures.Select(e => e.Hash))
+                    .Except(loadedFigures.Select(e => e.Name))
                     .Concat(selectedRequiredFiguresHashes);
 
                 optionalFigures.RemoveKeys(toDelete);
@@ -95,7 +104,6 @@ public sealed class LoadOptionalFiguresBehavior(
     private static OptionalFigureSelectionViewModel ToViewModel(DanceStepNodeInfo loadedFigure)
     {
         var vm = new OptionalFigureSelectionViewModel();
-        vm.Hash = loadedFigure.Hash;
         vm.Name = loadedFigure.Name;
         vm.IsSelected = true;
         vm.Level = loadedFigure.Level;

@@ -13,7 +13,7 @@ public sealed class RequiredStepSelectionUpdatedBehavior(
             .Select(_ => viewModel)
             .Subscribe(vm =>
             {
-                var message = new RequiredFigureUpdated(vm.Hash, vm.IsSelected);
+                var message = new RequiredFigureUpdated(vm.Name, vm.IsSelected);
                 requiredFigureUpdatedPublisher.Publish(message);
             })
             .DisposeWith(disposables);

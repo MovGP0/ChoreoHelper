@@ -18,6 +18,7 @@
     TextOptions.TextFormattingMode="Ideal"
     TextOptions.TextRenderingMode="Auto"
     d:DataContext="{d:DesignInstance local:TransitionViewModel, IsDesignTimeCreatable=True}"
+    DataContext="{Binding Path=ViewModel, RelativeSource={RelativeSource Self}}"
     HorizontalAlignment="Stretch"
     VerticalAlignment="Stretch"
     d:DesignHeight="300" d:DesignWidth="300">

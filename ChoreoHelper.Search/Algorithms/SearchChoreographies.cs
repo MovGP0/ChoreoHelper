@@ -1,4 +1,3 @@
-using System.Collections.Immutable;
 using System.Diagnostics;
 using ChoreoHelper.Algorithms;
 using ChoreoHelper.Entities;
@@ -9,7 +8,6 @@ using Microsoft.Extensions.Logging;
 namespace ChoreoHelper.Search.Algorithms;
 
 public sealed class SearchChoreographies(
-    IDanceFiguresRepository connection,
     IUnreachableIslandsFinder unreachableIslandsFinder,
     IRouteFinder routeFinder,
     ILogger<SearchChoreographies> logger) : ISearchChoreographies
@@ -18,12 +16,12 @@ public sealed class SearchChoreographies(
     {
         var requiredFigures = viewModel.RequiredFigures
             .Where(rf => rf.IsSelected)
-            .Select(rf => new DanceStepNodeInfo(rf.Name, rf.Hash, rf.Level))
+            .Select(rf => new DanceStepNodeInfo(rf.Name, rf.Level))
             .ToArray();
 
         var optionalFigures = viewModel.OptionalFigures
             .Where(of => of.IsSelected)
-            .Select(of => new DanceStepNodeInfo(of.Name, of.Hash, of.Level))
+            .Select(of => new DanceStepNodeInfo(of.Name, of.Level))
             .ToArray();
 
         var figures = requiredFigures.Concat(optionalFigures)
@@ -36,7 +34,7 @@ public sealed class SearchChoreographies(
             return new([]);
         }
 
-        var (matrix, sortedFigures) = connection.GetDistanceMatrix(danceName, figures);
+        var (matrix, sortedFigures) = viewModel.GetDistanceMatrix(danceName, figures);
         var islands = unreachableIslandsFinder.FindUnreachableIslands(matrix);
         if (islands.Count > 1)
         {
@@ -55,7 +53,7 @@ public sealed class SearchChoreographies(
         int? startNode = null;
         if (viewModel is { IsStartWithSpecificFigure: true, SelectedSpecificStartFigure: {} specificStartFigure })
         {
-            startNode = Array.FindIndex(sortedFigures, sf => sf.Hash == specificStartFigure.Hash);
+            startNode = Array.FindIndex(sortedFigures, sf => sf.Name == specificStartFigure.Name);
             Debug.Assert(startNode >= 0);
         }
 

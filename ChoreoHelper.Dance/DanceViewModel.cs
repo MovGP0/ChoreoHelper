@@ -22,9 +22,14 @@ public sealed class DanceViewModel : ReactiveObject
     {
         if (this.IsInDesignMode())
         {
-            Name = "Dance Name";
-            Category = "Latin";
+            InitializeDesignModeData();
         }
+    }
+
+    private void InitializeDesignModeData()
+    {
+        Name = "Dance Name";
+        Category = "Latin";
     }
 
     private string DebuggerDisplay => $"[{Category}] {Name}";

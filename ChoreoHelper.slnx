@@ -6,7 +6,6 @@
     <Project Path="ChoreoHelper.EditFigure\ChoreoHelper.EditFigure.csproj" />
     <Project Path="ChoreoHelper.Figure\ChoreoHelper.Figure.csproj" />
     <Project Path="ChoreoHelper.LevelSelection\ChoreoHelper.LevelSelection.csproj" />
-    <Project Path="ChoreoHelper.MainWindow\ChoreoHelper.MainWindow.csproj" />
     <Project Path="ChoreoHelper.OptionalFigureSelection\ChoreoHelper.OptionalFigureSelection.csproj" />
     <Project Path="ChoreoHelper.RequiredFigureSelection\ChoreoHelper.RequiredFigureSelection.csproj" />
     <Project Path="ChoreoHelper.Restriction\ChoreoHelper.Restriction.csproj" />
@@ -22,7 +21,6 @@
     <Project Path="ChoreoHelper.Design\ChoreoHelper.Design.csproj" />
     <Project Path="ChoreoHelper.Entities\ChoreoHelper.Entities.csproj" />
     <Project Path="ChoreoHelper.Gateway\ChoreoHelper.Gateway.csproj" />
-    <Project Path="ChoreoHelper.Graph\ChoreoHelper.Graph.csproj" />
     <Project Path="ChoreoHelper.I18N\ChoreoHelper.I18N.csproj" />
     <Project Path="ChoreoHelper.Messages\ChoreoHelper.Messages.csproj" />
     <Project Path="ChoreoHelper.ReactiveUI\ChoreoHelper.ReactiveUI.csproj" />
@@ -38,6 +36,5 @@
     <File Path="dance transitions.xml" />
     <File Path="Control.props" />
   </Folder>
-  <Project Path="ChoreoHelper.Editor\ChoreoHelper.Editor.csproj" />
   <Project Path="ChoreoHelper\ChoreoHelper.csproj" />
 </Solution>

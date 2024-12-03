@@ -1,13 +1,10 @@
-﻿using QuikGraph;
-
-namespace ChoreoHelper.Entities;
+﻿namespace ChoreoHelper.Entities;
 
 /// <summary>
 /// Specifies a transition between two dance figures.
 /// </summary>
 [DebuggerDisplay("{DebuggerDisplay,nq}")]
 public sealed partial class DanceFigureTransition(DanceFigure source, DanceFigure target, Distance distance, CompetitionRestriction restriction)
-    : IEdge<DanceFigure>
 {
     [Pure]
     public DanceFigure Source { get; } = source;

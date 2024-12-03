@@ -10,7 +10,7 @@ public static class DependencyInjection
         services.AddTransient<IBehavior<SearchResultViewModel>, CloseDrawerOnChoreographiesFoundBehavior>();
         services.AddTransient<IBehavior<SearchResultViewModel>, LoadChoreographyBehavior>();
         services.AddTransient<IViewFor<SearchResultViewModel>, SearchResultView>();
-        services.AddTransient<SearchResultViewModel>();
+        services.AddScoped<SearchResultViewModel>();
         return services;
     }
 }

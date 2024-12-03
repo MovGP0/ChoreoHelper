@@ -10,7 +10,7 @@ public static class DependencyInjection
         return services
             .AddSingleton<Theme>()
             .AddSingleton<GridPainter>()
-            .AddSingleton<TransitionEditorViewModel>()
+            .AddScoped<TransitionEditorViewModel>()
             .AddSingleton<IViewFor<TransitionEditorViewModel>, TransitionEditorView>()
             .AddSingleton<IBehavior<TransitionEditorViewModel>, DancesLoadedBehavior>()
             .AddSingleton<IBehavior<TransitionEditorViewModel>, DanceSelectedBehavior>()

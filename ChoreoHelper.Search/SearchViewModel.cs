@@ -1,9 +1,11 @@
 ﻿using ChoreoHelper.Dance;
 using ChoreoHelper.Entities;
 using ChoreoHelper.Figure;
+using ChoreoHelper.Gateway;
 using ChoreoHelper.LevelSelection;
 using ChoreoHelper.OptionalFigureSelection;
 using ChoreoHelper.RequiredFigureSelection;
+using ChoreoHelper.Search.Extensions;
 using DynamicData.Binding;
 using JetBrains.Annotations;
 using ReactiveUI.Extensions;
@@ -16,31 +18,27 @@ public sealed class SearchViewModel:
     IDisposable,
     IRoutableViewModel
 {
-    [UsedImplicitly(ImplicitUseKindFlags.InstantiatedWithFixedConstructorSignature, ImplicitUseTargetFlags.Itself)]
-    public SearchViewModel(IScreen hostScreen)
-    {
-        HostScreen = hostScreen;
-        this.WhenActivated(ActivateBehaviors);
-    }
-
-    private void ActivateBehaviors(CompositeDisposable disposables)
-    {
-        foreach(var behavior in Locator.Current.GetServices<IBehavior<SearchViewModel>>())
-        {
-            behavior.Activate(this, disposables);
-        }
-    }
-
     public SearchViewModel()
     {
         HostScreen = null!;
+        
         if (this.IsInDesignMode())
         {
             InitializeDesignTimeData();
-            return;
+        }
+    }
+
+    [UsedImplicitly]
+    public SearchViewModel(IScreen hostScreen)
+    {
+        HostScreen = hostScreen;
+
+        if (this.IsInDesignMode())
+        {
+            InitializeDesignTimeData();
         }
 
-        this.WhenActivated(ActivateBehaviors);
+        this.WhenActivated(this.ActivateBehaviors);
     }
 
     private void InitializeDesignTimeData()
@@ -64,6 +62,8 @@ public sealed class SearchViewModel:
         Levels.Add(new LevelSelectionViewModel { Level = DanceLevel.Bronze });
         Levels.Add(new LevelSelectionViewModel { Level = DanceLevel.Silver });
         Levels.Add(new LevelSelectionViewModel { Level = DanceLevel.Gold });
+
+        FindChoreography = EnabledCommand.Instance;
     }
 
     [Reactive]
@@ -120,4 +120,11 @@ public sealed class SearchViewModel:
 
     public string UrlPathSegment => "search";
     public IScreen HostScreen { get; }
+
+    public ICollection<Entities.Dance> DancesCollection { get; } = new List<Entities.Dance>(); 
+
+    public (Distance[,] array, DanceStepNodeInfo[] figures) GetDistanceMatrix(string danceName, DanceStepNodeInfo[] figures)
+    {
+        return DancesCollection.GetDistanceMatrix(danceName, figures);
+    }
 }

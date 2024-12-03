@@ -1,9 +1,9 @@
-using ChoreoHelper.Choreography;
+using ChoreoHelper.SearchResult;
 
 namespace ChoreoHelper.Shell.Behaviors;
 
 public sealed class NavigateToSearchResultBehavior(
-    ChoreographyViewModel targetViewModel,
+    SearchResultViewModel targetViewModel,
     ISubscriber<Messages.FoundChoreographies> foundChoreographiesSubscriber)
     : IBehavior<ShellViewModel>
 {

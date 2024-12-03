@@ -14,11 +14,16 @@ public sealed class TransitionViewModel : ReactiveObject
 
         if (this.IsInDesignMode())
         {
-            FromFigureName = "FromFigureName";
-            ToFigureName = "ToFigureName";
-            SelectedDistance = Distances.First();
-            SelectedRestriction = Restrictions.First();
+            InitializeDesignModeData();
         }
+    }
+
+    private void InitializeDesignModeData()
+    {
+        FromFigureName = "FromFigureName";
+        ToFigureName = "ToFigureName";
+        SelectedDistance = Distances.First();
+        SelectedRestriction = Restrictions.First();
     }
 
     [Reactive]

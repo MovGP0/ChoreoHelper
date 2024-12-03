@@ -24,14 +24,16 @@ public sealed class LevelSelectionViewModel: ReactiveObject, IDisposable
     {
         if (this.IsInDesignMode())
         {
-            Level = DanceLevel.Bronze;
-            Name = DanceLevel.Bronze.ToString();
+            InitializeDesignModeData();
         }
 
-        foreach (var behavior in Locator.Current.GetServices<IBehavior<LevelSelectionViewModel>>())
-        {
-            behavior.Activate(this, Disposables);
-        }
+        this.ActivateBehaviors(Disposables);
+    }
+
+    private void InitializeDesignModeData()
+    {
+        Level = DanceLevel.Bronze;
+        Name = DanceLevel.Bronze.ToString();
     }
 
     public void Dispose() => Disposables.Dispose();
