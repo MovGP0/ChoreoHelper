@@ -27,7 +27,7 @@
                     <!-- This is currently not working, but might be useful in the future -->
                     <CollectionViewSource
                         x:Key="GroupedDances"
-                        Source="{Binding Dances}">
+                        Source="{Binding Path=ViewModel.Dances, ElementName=SearchControl}">
                         <CollectionViewSource.GroupDescriptions>
                             <PropertyGroupDescription PropertyName="Category" />
                         </CollectionViewSource.GroupDescriptions>
@@ -88,12 +88,12 @@
                     <GroupBox Margin="4" Padding="4" Header="{x:Static i18N:ControlResources.Dance}">
                         <ComboBox Padding="4" Width="400"
                                   SelectedItem="{Binding SelectedDance, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"
-                                  ItemsSource="{Binding Dances}">
+                                  ItemsSource="{Binding Source={StaticResource GroupedDances}}">
                             <ComboBox.GroupStyle>
                                 <GroupStyle>
                                     <GroupStyle.HeaderTemplate>
-                                        <DataTemplate DataType="{x:Type dance:DanceViewModel}">
-                                            <TextBlock FontWeight="Bold" Text="{Binding Category}" />
+                                        <DataTemplate DataType="{x:Type CollectionViewGroup}">
+                                            <TextBlock FontWeight="Bold" Text="{Binding Name}" />
                                         </DataTemplate>
                                     </GroupStyle.HeaderTemplate>
                                 </GroupStyle>
@@ -164,7 +164,7 @@
                               ItemsSource="{Binding OptionalFiguresFiltered}">
                         <ListView.ItemTemplate>
                             <DataTemplate DataType="{x:Type optionalFigureSelection:OptionalFigureSelectionViewModel}">
-                                <requiredFigureSelection:RequiredFigureSelectionView ViewModel="{Binding UpdateSourceTrigger=PropertyChanged}" />
+                                <optionalFigureSelection:OptionalFigureSelectionView ViewModel="{Binding UpdateSourceTrigger=PropertyChanged}" />
                             </DataTemplate>
                         </ListView.ItemTemplate>
                     </ListView>

@@ -1,4 +1,5 @@
-﻿using System.Windows;
+﻿using System.Diagnostics;
+using System.Windows;
 using ChoreoHelper.Shell;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
@@ -33,10 +34,13 @@ public static class Program
             .UseSerilog((hostBuilderContext, loggerConfiguration) =>
             {
                 loggerConfiguration
-                    .MinimumLevel.Information()
+                    .MinimumLevel.Debug()
                     .WriteTo.Console(theme: AnsiConsoleTheme.Code);
             })
             .Build();
+
+        PresentationTraceSources.DataBindingSource.Listeners.Add(new DataBindingTraceListener());
+        PresentationTraceSources.DataBindingSource.Switch.Level = SourceLevels.Warning | SourceLevels.Error;
 
         host.Services.UseMicrosoftDependencyResolver();
 
