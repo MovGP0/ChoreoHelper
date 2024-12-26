@@ -7,6 +7,7 @@
         xmlns:reactiveUi="http://reactiveui.net"
         xmlns:design="clr-namespace:ChoreoHelper.Design;assembly=ChoreoHelper.Design"
         xmlns:shell="clr-namespace:ChoreoHelper.Shell"
+        xmlns:i18n="clr-namespace:ChoreoHelper.I18N;assembly=ChoreoHelper.I18N"
         mc:Ignorable="d"
         TextElement.FontWeight="Regular"
         TextElement.FontSize="12"
@@ -48,7 +49,7 @@
                        VerticalAlignment="Center"
                        Margin="6,0,4,0">
                 </Image>
-                <TextBlock Text="Choreo Helper" Foreground="White" Grid.Column="1"
+                <TextBlock Text="{x:Static i18n:ShellResources.ChoreoHelper}" Foreground="White" Grid.Column="1"
                            VerticalAlignment="Center"
                            Margin="4,0,4,0"
                            FontStyle="Normal"
@@ -82,16 +83,24 @@
                          Style="{StaticResource MaterialDesignToolBar}">
                 <Button
                     Content="{materialDesign:PackIcon Kind=File}"
-                    Command="{Binding LoadXmlData, UpdateSourceTrigger=PropertyChanged}"/>
+                    Command="{Binding LoadXmlData, UpdateSourceTrigger=PropertyChanged}"
+                    ToolTip="{x:Static i18n:ShellResources.OpenFile}" />
                 <Button
                     Content="{materialDesign:PackIcon Kind=Grid}"
-                    Command="{Binding GoToTransitionEditor, UpdateSourceTrigger=PropertyChanged}"/>
+                    Command="{Binding GoToTransitionEditor, UpdateSourceTrigger=PropertyChanged}"
+                    ToolTip="{x:Static i18n:ShellResources.Transitions}" />
                 <Button
                     Content="{materialDesign:PackIcon Kind=ReceiptTextEdit}"
-                    Command="{Binding GoToSearch, UpdateSourceTrigger=PropertyChanged}" />
+                    Command="{Binding GoToSearch, UpdateSourceTrigger=PropertyChanged}"
+                    ToolTip="{x:Static i18n:ShellResources.Search}" />
                 <Button
                     Content="{materialDesign:PackIcon Kind=FormatListBulleted}"
-                    Command="{Binding GoToSearchResult, UpdateSourceTrigger=PropertyChanged}" />
+                    Command="{Binding GoToSearchResult, UpdateSourceTrigger=PropertyChanged}"
+                    ToolTip="{x:Static i18n:ShellResources.SearchResult}"/>
+                <Button
+                    Content="{materialDesign:PackIcon Kind=ContentSave}"
+                    Command="{Binding SaveXmlData, UpdateSourceTrigger=PropertyChanged}"
+                    ToolTip="{x:Static i18n:ShellResources.Save}" />
             </ToolBar>
             <ContentControl HorizontalAlignment="Stretch"
                             Grid.Row="1"

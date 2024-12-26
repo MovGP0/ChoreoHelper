@@ -10,6 +10,7 @@ public static class DependencyInjection
         services.AddTransient<IViewFor<TransitionViewModel>, TransitionView>();
         services.AddTransient<TransitionViewModel>();
         services.AddTransient<IBehavior<TransitionViewModel>, NavigateBackBehavior>();
+        services.AddTransient<IBehavior<TransitionViewModel>, SaveAndNavigateBackBehavior>();
         return services;
     }
 }

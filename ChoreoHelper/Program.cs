@@ -3,6 +3,7 @@ using System.Windows;
 using ChoreoHelper.Shell;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
+using NodaTime;
 using ReactiveUI;
 using ReactiveUI.Extensions;
 using Serilog;
@@ -20,6 +21,7 @@ public static class Program
         var host = Host.CreateDefaultBuilder(args)
             .ConfigureServices((hostBuilderContext, services) =>
             {
+                services.AddSingleton<IClock>(SystemClock.Instance);
                 services.AddLogging();
                 services.UseMicrosoftDependencyResolver();
                 var resolver = Locator.CurrentMutable;

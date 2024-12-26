@@ -15,6 +15,9 @@ public sealed class ShellViewModel : ReactiveObject, IScreen, IActivatableViewMo
 
     [Reactive]
     public ReactiveCommand<Unit, Unit> LoadXmlData { get; set; } = DisabledCommand.Instance;
+    
+    [Reactive]
+    public ReactiveCommand<Unit, Unit> SaveXmlData { get; set; } = DisabledCommand.Instance;
 
     [Reactive]
     public ReactiveCommand<Unit, Unit> GoToTransitionEditor { get; set; } = DisabledCommand.Instance;

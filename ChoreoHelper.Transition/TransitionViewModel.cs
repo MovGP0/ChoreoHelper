@@ -28,11 +28,15 @@ public sealed class TransitionViewModel : ReactiveObject, IActivatableViewModel
 
     private void InitializeDesignModeData()
     {
+        DanceName = "Viennese Waltz";
         FromFigureName = "FromFigureName";
         ToFigureName = "ToFigureName";
         SelectedDistance = Distances.First();
         SelectedRestriction = Restrictions.First();
     }
+
+    [Reactive]
+    public string DanceName { get; set; } = string.Empty;
 
     [Reactive]
     public string FromFigureName { get; set; } = string.Empty;

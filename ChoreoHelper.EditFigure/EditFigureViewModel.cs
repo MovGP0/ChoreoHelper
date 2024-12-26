@@ -36,6 +36,9 @@ public sealed class EditFigureViewModel : ReactiveObject, IActivatableViewModel
         NavigateBack = EnabledCommand.Instance;
     }
 
+    [Reactive]
+    public string DanceName { get; set; } = string.Empty;
+
     /// <summary>
     /// The hash code of the dance step.
     /// </summary>

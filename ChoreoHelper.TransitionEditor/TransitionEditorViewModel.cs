@@ -347,8 +347,14 @@ public sealed class TransitionEditorViewModel : ReactiveObject, IActivatableView
 
     private void ShowFigureEditor(DanceFigure figure)
     {
+        if (SelectedDance is not {} selectedDance)
+        {
+            return;
+        }
+
         var figureViewModel = new EditFigureViewModel
         {
+            DanceName = selectedDance.Name,
             Name = figure.Name,
             Hash = figure.Hash
         };
@@ -373,8 +379,14 @@ public sealed class TransitionEditorViewModel : ReactiveObject, IActivatableView
 
     private void ShowTransitionEditor(DanceFigureTransition transition)
     {
+        if (SelectedDance is not {} selectedDance)
+        {
+            return;
+        }
+
         var transitionViewModel = new TransitionViewModel
         {
+            DanceName = selectedDance.Name,
             FromFigureName = transition.Source.Name,
             ToFigureName = transition.Target.Name
         };

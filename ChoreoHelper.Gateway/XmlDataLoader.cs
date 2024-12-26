@@ -3,9 +3,9 @@ using ChoreoHelper.Entities;
 
 namespace ChoreoHelper.Gateway;
 
-public sealed class XmlDataLoader
+public sealed class XmlDataLoader : IXmlDataLoader
 {
-    public List<Dance> LoadDances(string filePath)
+    public async Task<List<Dance>> LoadDancesAsync(string filePath, CancellationToken cancellationToken)
     {
         var ns = XNamespaces.ChoreoHelper;
         var doc = XDocument.Load(filePath);
@@ -63,6 +63,7 @@ public sealed class XmlDataLoader
             }
         }
 
+        await Task.CompletedTask;
         return dances;
     }
 }

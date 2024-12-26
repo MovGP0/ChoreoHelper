@@ -40,6 +40,13 @@
       <EmbeddedResource Update="Resources.de.resx">
         <DependentUpon>Resources.resx</DependentUpon>
       </EmbeddedResource>
+      <EmbeddedResource Update="ShellResources.resx">
+        <Generator>PublicResXFileCodeGenerator</Generator>
+        <LastGenOutput>ShellResources.Designer.cs</LastGenOutput>
+      </EmbeddedResource>
+      <EmbeddedResource Update="ShellResources.de.resx">
+        <DependentUpon>ShellResources.resx</DependentUpon>
+      </EmbeddedResource>
     </ItemGroup>
 
     <ItemGroup>
@@ -62,6 +69,11 @@
         <DesignTime>True</DesignTime>
         <AutoGen>True</AutoGen>
         <DependentUpon>Resources.resx</DependentUpon>
+      </Compile>
+      <Compile Update="ShellResources.Designer.cs">
+        <DesignTime>True</DesignTime>
+        <AutoGen>True</AutoGen>
+        <DependentUpon>ShellResources.resx</DependentUpon>
       </Compile>
     </ItemGroup>
 

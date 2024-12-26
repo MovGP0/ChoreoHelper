@@ -10,6 +10,7 @@ public static class DependencyInjection
         services.AddTransient<EditFigureViewModel>();
         services.AddTransient<IViewFor<EditFigureViewModel>, EditFigureView>();
         services.AddTransient<IBehavior<EditFigureViewModel>, NavigateBackBehavior>();
+        services.AddTransient<IBehavior<EditFigureViewModel>, SaveAndNavigateBackBehavior>();
         return services;
     }
 }

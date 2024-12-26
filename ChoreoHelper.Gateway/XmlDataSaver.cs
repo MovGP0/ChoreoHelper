@@ -4,9 +4,9 @@ using ChoreoHelper.Entities;
 
 namespace ChoreoHelper.Gateway;
 
-public sealed class XmlDataSaver
+public sealed class XmlDataSaver : IXmlDataSaver
 {
-    public void Save(string fileName, IList<Dance> dances)
+    public async Task SaveAsync(string fileName, IReadOnlyList<Dance> dances, CancellationToken cancellationToken)
     {
         var rootElement = new XElement(XNamespaces.ChoreoHelper + "dance");
 
@@ -38,6 +38,7 @@ public sealed class XmlDataSaver
             rootElement);
 
         document.Save(fileName);
+        await Task.CompletedTask;
     }
 
     private static XElement ToDanceElement(Dance dance)
