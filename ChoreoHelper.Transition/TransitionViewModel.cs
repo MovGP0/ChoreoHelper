@@ -5,7 +5,7 @@ using ReactiveUI.Extensions;
 
 namespace ChoreoHelper.Transition;
 
-public sealed class TransitionViewModel : ReactiveObject
+public sealed class TransitionViewModel : ReactiveObject, IActivatableViewModel
 {
     public TransitionViewModel()
     {
@@ -16,6 +16,14 @@ public sealed class TransitionViewModel : ReactiveObject
         {
             InitializeDesignModeData();
         }
+
+        this.WhenActivated(disposables =>
+        {
+            foreach (var behavior in Locator.Current.GetServices<IBehavior<TransitionViewModel>>())
+            {
+                behavior.Activate(this, disposables);
+            }
+        });
     }
 
     private void InitializeDesignModeData()
@@ -32,14 +40,12 @@ public sealed class TransitionViewModel : ReactiveObject
     [Reactive]
     public string ToFigureName { get; set; } = string.Empty;
 
-    public IObservableCollection<DistanceViewModel> Distances { get; }
-        = new ObservableCollectionExtended<DistanceViewModel>();
+    public ObservableCollectionExtended<DistanceViewModel> Distances { get; } = new();
 
     [Reactive]
     public DistanceViewModel? SelectedDistance { get; set; }
 
-    public IObservableCollection<RestrictionViewModel> Restrictions { get; }
-        = new ObservableCollectionExtended<RestrictionViewModel>();
+    public ObservableCollectionExtended<RestrictionViewModel> Restrictions { get; } = new();
 
     [Reactive]
     public RestrictionViewModel? SelectedRestriction { get; set; }
@@ -55,4 +61,6 @@ public sealed class TransitionViewModel : ReactiveObject
     /// </summary>
     [Reactive]
     public ReactiveCommand<Unit, Unit> SaveAndNavigateBack { get; set; } = DisabledCommand.Instance;
+
+    public ViewModelActivator Activator { get; } = new();
 }

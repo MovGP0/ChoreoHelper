@@ -1,11 +1,9 @@
 ﻿using ChoreoHelper.Dance;
 using ChoreoHelper.Entities;
 using ChoreoHelper.Figure;
-using ChoreoHelper.Gateway;
 using ChoreoHelper.LevelSelection;
 using ChoreoHelper.OptionalFigureSelection;
 using ChoreoHelper.RequiredFigureSelection;
-using ChoreoHelper.Search.Extensions;
 using DynamicData.Binding;
 using JetBrains.Annotations;
 using ReactiveUI.Extensions;
@@ -75,35 +73,27 @@ public sealed class SearchViewModel:
     [Reactive]
     public bool IsStartWithSpecificFigure { get; set; }
 
-    public IObservableCollection<DanceViewModel> Dances { get; }
-        = new ObservableCollectionExtended<DanceViewModel>();
+    public ObservableCollectionExtended<DanceViewModel> Dances { get; } = new();
 
     /// <summary>
     /// All figures of the selected dance.
     /// </summary>
-    public IObservableCollection<FigureViewModel> Figures { get; }
-        = new ObservableCollectionExtended<FigureViewModel>();
+    public ObservableCollectionExtended<FigureViewModel> Figures { get; } = new();
 
-    public IObservableCollection<RequiredFigureSelectionViewModel> RequiredFigures { get; }
-        = new ObservableCollectionExtended<RequiredFigureSelectionViewModel>();
+    public ObservableCollectionExtended<RequiredFigureSelectionViewModel> RequiredFigures { get; } = new();
 
-    public IObservableCollection<RequiredFigureSelectionViewModel> RequiredFiguresFiltered { get; }
-        = new ObservableCollectionExtended<RequiredFigureSelectionViewModel>();
+    public ObservableCollectionExtended<RequiredFigureSelectionViewModel> RequiredFiguresFiltered { get; } = new();
 
-    public IObservableCollection<RequiredFigureSelectionViewModel> SelectedRequiredFigures { get; }
-        = new ObservableCollectionExtended<RequiredFigureSelectionViewModel>();
+    public ObservableCollectionExtended<RequiredFigureSelectionViewModel> SelectedRequiredFigures { get; } = new();
 
     [Reactive]
     public RequiredFigureSelectionViewModel? SelectedSpecificStartFigure { get; set; }
 
-    public IObservableCollection<OptionalFigureSelectionViewModel> OptionalFigures { get; }
-        = new ObservableCollectionExtended<OptionalFigureSelectionViewModel>();
+    public ObservableCollectionExtended<OptionalFigureSelectionViewModel> OptionalFigures { get; } = new();
 
-    public IObservableCollection<OptionalFigureSelectionViewModel> OptionalFiguresFiltered { get; }
-        = new ObservableCollectionExtended<OptionalFigureSelectionViewModel>();
+    public ObservableCollectionExtended<OptionalFigureSelectionViewModel> OptionalFiguresFiltered { get; } = new();
 
-    public IObservableCollection<LevelSelectionViewModel> Levels { get; }
-        = new ObservableCollectionExtended<LevelSelectionViewModel>();
+    public ObservableCollectionExtended<LevelSelectionViewModel> Levels { get; } = new();
 
     public DanceLevel GetLevels()
     {
@@ -120,11 +110,4 @@ public sealed class SearchViewModel:
 
     public string UrlPathSegment => "search";
     public IScreen HostScreen { get; }
-
-    public ICollection<Entities.Dance> DancesCollection { get; } = new List<Entities.Dance>(); 
-
-    public (Distance[,] array, DanceStepNodeInfo[] figures) GetDistanceMatrix(string danceName, DanceStepNodeInfo[] figures)
-    {
-        return DancesCollection.GetDistanceMatrix(danceName, figures);
-    }
 }

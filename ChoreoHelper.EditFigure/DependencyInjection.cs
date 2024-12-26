@@ -1,3 +1,4 @@
+using ChoreoHelper.EditFigure.Behaviors;
 using Microsoft.Extensions.DependencyInjection;
 
 namespace ChoreoHelper.EditFigure;
@@ -8,6 +9,7 @@ public static class DependencyInjection
     {
         services.AddTransient<EditFigureViewModel>();
         services.AddTransient<IViewFor<EditFigureViewModel>, EditFigureView>();
+        services.AddTransient<IBehavior<EditFigureViewModel>, NavigateBackBehavior>();
         return services;
     }
 }

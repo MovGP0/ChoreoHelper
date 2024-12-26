@@ -10,6 +10,12 @@
   </PropertyGroup>
   <ItemGroup>
     <PackageReference Include="OneOf" />
+    <PackageReference Include="DynamicData" />
+    <PackageReference Include="ReactiveUI" />
+  </ItemGroup>
+  <ItemGroup>
+    <Using Include="ReactiveUI" />
+    <Using Include="DynamicData" />
   </ItemGroup>
   <ItemGroup>
     <Compile Update="DanceFigure.Xml.cs">
@@ -29,6 +35,21 @@
     </Compile>
     <Compile Update="Dance.Equatable.cs">
       <DependentUpon>Dance.cs</DependentUpon>
+    </Compile>
+    <Compile Update="DancesCache.Disposable.cs">
+      <DependentUpon>DancesCache.cs</DependentUpon>
+    </Compile>
+    <Compile Update="DancesCache.NotifyCollectionChangedSuspender.cs">
+      <DependentUpon>DancesCache.cs</DependentUpon>
+    </Compile>
+    <Compile Update="DancesCache.SourceCache.cs">
+      <DependentUpon>DancesCache.cs</DependentUpon>
+    </Compile>
+    <Compile Update="DancesCache.ConnectableCache.cs">
+      <DependentUpon>DancesCache.cs</DependentUpon>
+    </Compile>
+    <Compile Update="DancesCache.ObservableCache.cs">
+      <DependentUpon>DancesCache.cs</DependentUpon>
     </Compile>
   </ItemGroup>
 </Project>

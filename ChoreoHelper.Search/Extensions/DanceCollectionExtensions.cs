@@ -6,7 +6,7 @@ namespace ChoreoHelper.Search.Extensions;
 public static class DanceCollectionExtensions
 {
     public static (Distance[,] array, DanceStepNodeInfo[] figures) GetDistanceMatrix(
-        this ICollection<Entities.Dance> dances,
+        this IReadOnlyCollection<Entities.Dance> dances,
         string danceName,
         DanceStepNodeInfo[] figures)
     {

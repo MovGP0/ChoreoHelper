@@ -1,12 +1,10 @@
 ﻿using ChoreoHelper.Entities;
-using ChoreoHelper.Gateway;
 using ChoreoHelper.LevelSelection;
 using ReactiveUI.Extensions;
 
 namespace ChoreoHelper.Search.Behaviors;
 
-public sealed class LoadDanceLevelsBehavior(
-    ISubscriber<Messages.DataLoadedEvent> dataLoadedSubscriber) : IBehavior<SearchViewModel>
+public sealed class LoadDanceLevelsBehavior(DancesCache dancesCache) : IBehavior<SearchViewModel>
 {
     public void Activate(SearchViewModel viewModel, CompositeDisposable disposables)
     {
@@ -18,11 +16,12 @@ public sealed class LoadDanceLevelsBehavior(
             .Subscribe()
             .DisposeWith(disposables);
 
-        dataLoadedSubscriber
-            .Subscribe(args =>
+        dancesCache
+            .Connect()
+            .Subscribe(changes =>
             {
                 var levels = (
-                    from dance in args.Dances
+                    from dance in dancesCache.Items
                     from figure in dance.Figures
                     select figure.Level)
                     .Distinct()

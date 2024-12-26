@@ -5,7 +5,7 @@ using ReactiveUI.Extensions;
 
 namespace ChoreoHelper.EditFigure;
 
-public sealed class EditFigureViewModel : ReactiveObject
+public sealed class EditFigureViewModel : ReactiveObject, IActivatableViewModel
 {
     public EditFigureViewModel()
     {
@@ -16,12 +16,20 @@ public sealed class EditFigureViewModel : ReactiveObject
         {
             InitializeDesignModeData();
         }
+
+        this.WhenActivated(disposables =>
+        {
+            foreach (var behavior in Locator.Current.GetServices<IBehavior<EditFigureViewModel>>())
+            {
+                behavior.Activate(this, disposables);
+            }
+        });
     }
 
     private void InitializeDesignModeData()
     {
-        Hash = "43523984";
-        Name = "Some Figure Name";
+        Hash = "Viennese Waltz|Natural Turn";
+        Name = "Natural Turn";
         Level = Levels.First();
         Restriction = Restrictions.First();
         SaveAndNavigateBack = EnabledCommand.Instance;
@@ -36,14 +44,12 @@ public sealed class EditFigureViewModel : ReactiveObject
     [Reactive]
     public string Name { get; set; } = string.Empty;
 
-    public IObservableCollection<LevelSelectionViewModel> Levels { get; }
-        = new ObservableCollectionExtended<LevelSelectionViewModel>();
+    public ObservableCollectionExtended<LevelSelectionViewModel> Levels { get; } = new();
 
     [Reactive]
     public LevelSelectionViewModel? Level { get; set; }
 
-    public IObservableCollection<RestrictionViewModel> Restrictions { get; }
-        = new ObservableCollectionExtended<RestrictionViewModel>();
+    public ObservableCollectionExtended<RestrictionViewModel> Restrictions { get; } = new();
 
     [Reactive]
     public RestrictionViewModel? Restriction { get; set; }
@@ -53,4 +59,6 @@ public sealed class EditFigureViewModel : ReactiveObject
 
     [Reactive]
     public ReactiveCommand<Unit, Unit> NavigateBack { get; set; } = DisabledCommand.Instance;
+
+    public ViewModelActivator Activator { get; } = new();
 }

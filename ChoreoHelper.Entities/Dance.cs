@@ -1,3 +1,5 @@
+using DynamicData.Binding;
+
 namespace ChoreoHelper.Entities;
 
 [DebuggerDisplay("{DebuggerDisplay,nq}")]
@@ -10,10 +12,10 @@ public sealed partial class Dance(string category, string name)
     public string Name { get; } = name;
 
     [Pure]
-    public IList<DanceFigureTransition> Transitions { get; } = new List<DanceFigureTransition>();
-    
+    public ObservableCollectionExtended<DanceFigureTransition> Transitions { get; } = new();
+
     [Pure]
-    public IList<DanceFigure> Figures { get; } = new List<DanceFigure>();
+    public ObservableCollectionExtended<DanceFigure> Figures { get; } = new();
 
     [Pure]
     private string DebuggerDisplay => $"{Category} {Name}";

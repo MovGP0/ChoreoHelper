@@ -350,7 +350,7 @@ public sealed class TransitionEditorViewModel : ReactiveObject, IActivatableView
         var figureViewModel = new EditFigureViewModel
         {
             Name = figure.Name,
-            Hash = figure.Dance.Name + '|' + figure.Name
+            Hash = figure.Hash
         };
 
         var level = figureViewModel.Levels

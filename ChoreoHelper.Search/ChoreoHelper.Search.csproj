@@ -9,4 +9,7 @@
         <ProjectReference Include="..\ChoreoHelper.OptionalFigureSelection\ChoreoHelper.OptionalFigureSelection.csproj" />
         <ProjectReference Include="..\ChoreoHelper.RequiredFigureSelection\ChoreoHelper.RequiredFigureSelection.csproj" />
     </ItemGroup>
+    <ItemGroup>
+        <PackageReference Include="ReactiveMarbles.ObservableEvents.SourceGenerator" />
+    </ItemGroup>
 </Project>

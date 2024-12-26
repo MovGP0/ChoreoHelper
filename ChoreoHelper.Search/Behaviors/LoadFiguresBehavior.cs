@@ -5,11 +5,8 @@ using ReactiveUI.Extensions;
 
 namespace ChoreoHelper.Search.Behaviors;
 
-public sealed class LoadFiguresBehavior(
-    ISubscriber<Messages.DataLoadedEvent> dataLoadedSubscriber) : IBehavior<SearchViewModel>
+public sealed class LoadFiguresBehavior(DancesCache dancesCache) : IBehavior<SearchViewModel>
 {
-    private ICollection<Entities.Dance> Dances { get; } = new List<Entities.Dance>();
-    
     public void Activate(SearchViewModel viewModel, CompositeDisposable disposables)
     {
         var figures = new SourceCache<FigureViewModel, string>(vm => vm.Name)
@@ -30,7 +27,7 @@ public sealed class LoadFiguresBehavior(
                     return [];
                 }
 
-                var dance = Dances.FirstOrOptional(dance => dance.Name == vm.SelectedDance.Name);
+                var dance = dancesCache.Items.FirstOrOptional(dance => dance.Name == vm.SelectedDance.Name);
                 if (dance.HasValue)
                 {
                     return dance.Value.Figures
@@ -43,14 +40,6 @@ public sealed class LoadFiguresBehavior(
             .Subscribe(fs =>
             {
                 figures.Update(fs);
-            })
-            .DisposeWith(disposables);
-
-        dataLoadedSubscriber
-            .Subscribe(data =>
-            {
-                Dances.Clear();
-                Dances.AddRange(data.Dances);
             })
             .DisposeWith(disposables);
     }

@@ -1,15 +1,16 @@
 using System.Diagnostics;
 using ChoreoHelper.Algorithms;
 using ChoreoHelper.Entities;
-using ChoreoHelper.Gateway;
 using ChoreoHelper.Messages;
 using Microsoft.Extensions.Logging;
+using ChoreoHelper.Search.Extensions;
 
 namespace ChoreoHelper.Search.Algorithms;
 
 public sealed class SearchChoreographies(
     IUnreachableIslandsFinder unreachableIslandsFinder,
     IRouteFinder routeFinder,
+    DancesCache dancesCache,
     ILogger<SearchChoreographies> logger) : ISearchChoreographies
 {
     public async Task<FoundChoreographies> ExecuteAsync(SearchViewModel viewModel, CancellationToken ct)
@@ -34,7 +35,7 @@ public sealed class SearchChoreographies(
             return new([]);
         }
 
-        var (matrix, sortedFigures) = viewModel.GetDistanceMatrix(danceName, figures);
+        var (matrix, sortedFigures) = dancesCache.Items.GetDistanceMatrix(danceName, figures);
         var islands = unreachableIslandsFinder.FindUnreachableIslands(matrix);
         if (islands.Count > 1)
         {

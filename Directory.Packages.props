@@ -34,5 +34,6 @@
         <PackageVersion Include="System.Reactive" Version="6.0.1" />
         <PackageVersion Include="System.Text.Json" Version="9.0.0" />
         <PackageVersion Include="Microsoft.Testing.Platform" Version="1.4.3" />
+        <PackageVersion Include="DynamicData" Version="9.0.4" />
     </ItemGroup>
 </Project>

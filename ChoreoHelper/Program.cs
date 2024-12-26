@@ -25,7 +25,7 @@ public static class Program
                 var resolver = Locator.CurrentMutable;
                 resolver.InitializeSplat();
                 resolver.InitializeReactiveUI();
-                services.AddChoreoHelperEditor();
+                services.AddChoreoHelper();
             })
             .ConfigureLogging((hostBuilderContext, loggingBuilder) =>
             {

@@ -4,8 +4,7 @@ using ReactiveUI.Extensions;
 
 namespace ChoreoHelper.Search.Behaviors;
 
-public sealed class LoadDancesBehavior(
-    ISubscriber<Messages.DataLoadedEvent> dataLoadedSubscriber) : IBehavior<SearchViewModel>
+public sealed class LoadDancesBehavior(DancesCache dancesCache) : IBehavior<SearchViewModel>
 {
     public void Activate(SearchViewModel viewModel, CompositeDisposable disposables)
     {
@@ -17,13 +16,12 @@ public sealed class LoadDancesBehavior(
             .Subscribe()
             .DisposeWith(disposables);
 
-        dataLoadedSubscriber
-            .Subscribe(data =>
+        dancesCache
+            .Connect()
+            .Select(_ => dancesCache.Items)
+            .Subscribe(dances =>
             {
-                viewModel.DancesCollection.Clear();
-                viewModel.DancesCollection.AddRange(data.Dances);
-
-                var vms = data.Dances
+                var vms = dances
                     .OrderBy(d => d.Category, StringComparer.CurrentCulture)
                     .ThenBy(d => d.Name, StringComparer.CurrentCulture)
                     .Select(ToViewModel)

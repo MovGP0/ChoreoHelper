@@ -15,6 +15,7 @@ public static class DependencyInjection
             .AddSingleton<IBehavior<ShellViewModel>, ActivateViewModelsBehavior>()
             .AddSingleton<IBehavior<ShellViewModel>, NavigateToTransitionEditorBehavior>()
             .AddSingleton<IBehavior<ShellViewModel>, NavigateToSearchBehavior>()
-            .AddSingleton<IBehavior<ShellViewModel>, NavigateToSearchResultBehavior>();
+            .AddSingleton<IBehavior<ShellViewModel>, NavigateToSearchResultBehavior>()
+            .AddSingleton<IBehavior<ShellViewModel>, CacheDancesBehavior>();
     }
 }

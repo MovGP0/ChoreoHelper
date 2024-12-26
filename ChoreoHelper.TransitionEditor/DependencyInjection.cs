@@ -11,9 +11,10 @@ public static class DependencyInjection
             .AddSingleton<Theme>()
             .AddSingleton<GridPainter>()
             .AddScoped<TransitionEditorViewModel>()
-            .AddSingleton<IViewFor<TransitionEditorViewModel>, TransitionEditorView>()
-            .AddSingleton<IBehavior<TransitionEditorViewModel>, DancesLoadedBehavior>()
-            .AddSingleton<IBehavior<TransitionEditorViewModel>, DanceSelectedBehavior>()
-            .AddSingleton<IBehavior<TransitionEditorViewModel>, ResetZoomBehavior>();
+            .AddTransient<IViewFor<TransitionEditorViewModel>, TransitionEditorView>()
+            .AddTransient<IBehavior<TransitionEditorViewModel>, DancesLoadedBehavior>()
+            .AddTransient<IBehavior<TransitionEditorViewModel>, DanceSelectedBehavior>()
+            .AddTransient<IBehavior<TransitionEditorViewModel>, ResetZoomBehavior>()
+            .AddTransient<IBehavior<TransitionEditorViewModel>, CloseEditViewBehavior>();
     }
 }

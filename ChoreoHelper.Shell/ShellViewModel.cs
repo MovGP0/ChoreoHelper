@@ -1,3 +1,4 @@
+using ChoreoHelper.Entities;
 using ReactiveUI.Extensions;
 
 namespace ChoreoHelper.Shell;

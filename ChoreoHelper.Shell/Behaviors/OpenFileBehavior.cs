@@ -2,11 +2,12 @@ using ChoreoHelper.Gateway;
 using ChoreoHelper.Messages;
 using Microsoft.Win32;
 
-namespace ChoreoHelper.Shell;
+namespace ChoreoHelper.Shell.Behaviors;
 
 public sealed class OpenFileBehavior(
     XmlDataLoader xmlDataLoader,
-    IPublisher<DataLoadedEvent> dataLoadedPublisher) : IBehavior<ShellViewModel>
+    IPublisher<DataLoadedEvent> dataLoadedPublisher)
+    : IBehavior<ShellViewModel>
 {
     public void Activate(ShellViewModel viewModel, CompositeDisposable disposables)
     {

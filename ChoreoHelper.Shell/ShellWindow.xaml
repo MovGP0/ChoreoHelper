@@ -88,12 +88,10 @@
                     Command="{Binding GoToTransitionEditor, UpdateSourceTrigger=PropertyChanged}"/>
                 <Button
                     Content="{materialDesign:PackIcon Kind=ReceiptTextEdit}"
-                    Command="{Binding GoToSearch, UpdateSourceTrigger=PropertyChanged}"
-                    />
+                    Command="{Binding GoToSearch, UpdateSourceTrigger=PropertyChanged}" />
                 <Button
                     Content="{materialDesign:PackIcon Kind=FormatListBulleted}"
-                    Command="{Binding GoToSearchResult, UpdateSourceTrigger=PropertyChanged}"
-                    />
+                    Command="{Binding GoToSearchResult, UpdateSourceTrigger=PropertyChanged}" />
             </ToolBar>
             <ContentControl HorizontalAlignment="Stretch"
                             Grid.Row="1"

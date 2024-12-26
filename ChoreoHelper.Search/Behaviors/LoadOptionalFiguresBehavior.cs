@@ -1,13 +1,13 @@
-﻿using System.Collections.Specialized;
-using ChoreoHelper.Entities;
+﻿using ChoreoHelper.Entities;
 using ChoreoHelper.Messages;
 using ChoreoHelper.OptionalFigureSelection;
+using ReactiveMarbles.ObservableEvents;
 
 namespace ChoreoHelper.Search.Behaviors;
 
 public sealed class LoadOptionalFiguresBehavior(
     ISubscriber<RequiredFigureUpdated> requiredFigureUpdatedSubscriber,
-    ISubscriber<DataLoadedEvent> dataLoadedSubscriber)
+    DancesCache dancesCache)
     : IBehavior<SearchViewModel>
 {
     public void Activate(SearchViewModel viewModel, CompositeDisposable disposables)
@@ -19,15 +19,6 @@ public sealed class LoadOptionalFiguresBehavior(
             .Connect()
             .Bind(viewModel.OptionalFigures)
             .Subscribe()
-            .DisposeWith(disposables);
-
-        ICollection<Entities.Dance> dances = new List<Entities.Dance>();
-
-        dataLoadedSubscriber
-            .Subscribe(message =>
-            {
-                dances = message.Dances;
-            })
             .DisposeWith(disposables);
 
         Observe(viewModel)
@@ -44,7 +35,7 @@ public sealed class LoadOptionalFiguresBehavior(
                     .Select(e => e.Name)
                     .ToHashSet();
 
-                return dances
+                return dancesCache.Items
                     .Where(d => vm.SelectedDance is not null && d.Name == vm.SelectedDance?.Name)
                     .SelectMany(dance => dance.Figures)
                     .Where(e => !hashesToIgnore.Contains(e.Name))
@@ -87,9 +78,9 @@ public sealed class LoadOptionalFiguresBehavior(
 
     private IObservable<Unit> Observe(SearchViewModel viewModel)
     {
-        var figuresChanged = Observable.FromEventPattern<NotifyCollectionChangedEventHandler, NotifyCollectionChangedEventArgs>(
-                handler => viewModel.Figures.CollectionChanged += handler,
-                handler => viewModel.Figures.CollectionChanged -= handler)
+        var figuresChanged = viewModel.Figures
+            .Events()
+            .CollectionChanged
             .Throttle(TimeSpan.FromMilliseconds(50))
             .SubscribeOn(RxApp.MainThreadScheduler)
             .Select(_ => Unit.Default);
@@ -97,7 +88,13 @@ public sealed class LoadOptionalFiguresBehavior(
         var requiredFigureChanged = requiredFigureUpdatedSubscriber.AsObservable()
             .Select(_ => Unit.Default);
 
-        return figuresChanged.Merge(requiredFigureChanged);
+        var dancesChanged = dancesCache
+            .Connect()
+            .Select(change => Unit.Default);
+
+        return figuresChanged
+            .Merge(requiredFigureChanged)
+            .Merge(dancesChanged);
     }
 
     [Pure]

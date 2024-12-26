@@ -1,19 +1,19 @@
 using ChoreoHelper.Entities;
-using ChoreoHelper.Messages;
 
 namespace ChoreoHelper.TransitionEditor.Behaviors;
 
-public sealed class DancesLoadedBehavior(ISubscriber<DataLoadedEvent> dataLoadedSubscriber)
+public sealed class DancesLoadedBehavior(DancesCache dancesCache)
     : IBehavior<TransitionEditorViewModel>
 {
     public void Activate(TransitionEditorViewModel viewModel, CompositeDisposable disposables)
     {
-        dataLoadedSubscriber
-            .Subscribe(e => UpdateDances(viewModel, e.Dances))
+        dancesCache
+            .Connect()
+            .Subscribe(_ => UpdateDances(viewModel, dancesCache.Items.ToImmutableArray()))
             .DisposeWith(disposables);
     }
 
-    private static void UpdateDances(TransitionEditorViewModel viewModel, ICollection<Dance> dances)
+    private static void UpdateDances(TransitionEditorViewModel viewModel, IReadOnlyCollection<Dance> dances)
     {
         viewModel.SelectedDance = null;
         viewModel.Dances.Clear();
@@ -28,6 +28,6 @@ public sealed class DancesLoadedBehavior(ISubscriber<DataLoadedEvent> dataLoaded
         viewModel.SelectedDance = dances
             .OrderBy(e => e.Category)
             .ThenBy(e => e.Name)
-            .First();
+            .FirstOrDefault();
     }
 }
