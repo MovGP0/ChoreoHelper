@@ -15,12 +15,12 @@ public sealed class SearchChoreographies(
 {
     public async Task<FoundChoreographies> ExecuteAsync(SearchViewModel viewModel, CancellationToken ct)
     {
-        var requiredFigures = viewModel.RequiredFigures
+        var requiredFigures = viewModel.RequiredFiguresFiltered
             .Where(rf => rf.IsSelected)
             .Select(rf => new DanceStepNodeInfo(rf.Name, rf.Level))
             .ToArray();
 
-        var optionalFigures = viewModel.OptionalFigures
+        var optionalFigures = viewModel.OptionalFiguresFiltered
             .Where(of => of.IsSelected)
             .Select(of => new DanceStepNodeInfo(of.Name, of.Level))
             .ToArray();

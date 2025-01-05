@@ -51,11 +51,8 @@
                 </ItemsPanelTemplate>
             </ListView.ItemsPanel>
             <ListView.ItemTemplate>
-                <DataTemplate DataType="{x:Type entities:DanceStepNodeInfo}">
-                    <!--materialDesign:Chip
-                        Content="{Binding Name, Mode=OneTime}"
-                        Style="{StaticResource MaterialDesignOutlineChip}" /-->
-                    <Label Content="{Binding Name}" />
+                <DataTemplate DataType="{x:Type local:ChoreographyItemViewModel}">
+                    <local:ChoreographyItemView ViewModel="{Binding}" />
                 </DataTemplate>
             </ListView.ItemTemplate>
         </ListView>

@@ -1,4 +1,5 @@
 ﻿using System.Diagnostics;
+using System.Windows.Media;
 using ChoreoHelper.Entities;
 using ReactiveUI.Extensions;
 
@@ -19,6 +20,9 @@ public sealed class OptionalFigureSelectionViewModel : ReactiveObject, IDisposab
 
     [Reactive]
     public string Name { get; set; } = string.Empty;
+
+    [Reactive]
+    public Brush Color { get; set; } = Brushes.Transparent;
 
     public OptionalFigureSelectionViewModel()
     {

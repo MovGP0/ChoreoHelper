@@ -97,13 +97,13 @@ public sealed class GridPainter : IDisposable
             float x = headerWidth + col * cellWidth;
 
             // Get the transition value
-            var transition = transitions[col, row];
+            var transition = transitions[row, col];
             var distancePaint = GetPaintForDistance(transition.Distance);
 
             canvas.DrawRect(x, y, cellWidth, cellHeight, distancePaint);
 
             RectangleF location = new(x, y, cellWidth, cellHeight);
-            result.CellMap.Add(new(location, row, col));
+            result.CellMap.Add(new(location, col, row));
         }
 
         canvas.Restore();

@@ -2,7 +2,6 @@
 using System.Globalization;
 using ChoreoHelper.Entities;
 using DynamicData.Binding;
-using JetBrains.Annotations;
 using ReactiveUI.Extensions;
 
 namespace ChoreoHelper.Choreography;
@@ -16,8 +15,8 @@ public sealed class ChoreographyViewModel:
     [Reactive]
     public float Rating { get; set; }
 
-    public IObservableCollection<DanceStepNodeInfo> Figures { get; }
-        = new ObservableCollectionExtended<DanceStepNodeInfo>();
+    public IObservableCollection<ChoreographyItemViewModel> Figures { get; }
+        = new ObservableCollectionExtended<ChoreographyItemViewModel>();
 
     [Reactive]
     public IReactiveCommand Copy { get; set; } = DisabledCommand.Instance;
@@ -38,7 +37,12 @@ public sealed class ChoreographyViewModel:
         Rating = 5;
         for (var i = 0; i < 5; i++)
         {
-            Figures.Add(new DanceStepNodeInfo("Foobar", DanceLevel.Gold));
+            var vm = new ChoreographyItemViewModel
+            {
+                Name = $"Figure {i}",
+                Level = DanceLevel.Gold
+            };
+            Figures.Add(vm);
         }
     }
 

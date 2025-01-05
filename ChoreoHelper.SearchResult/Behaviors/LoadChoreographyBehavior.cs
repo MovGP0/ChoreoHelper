@@ -35,14 +35,28 @@ public sealed class LoadChoreographyBehavior(
     }
 
     [Pure]
-    private static ChoreographyViewModel ToChoreographyViewModel(DanceStepNodeInfo[] item)
+    private static ChoreographyViewModel ToChoreographyViewModel(DanceStepNodeInfo[] items)
     {
         ChoreographyViewModel choreographyViewModel = new()
         {
-            Rating = 1f / item.Length * 10f
+            Rating = 1f / items.Length * 10f
         };
+
+        var itemModels = items.Select(ToViewModel);
+        choreographyViewModel.Figures.AddRange(itemModels);
+        
         choreographyViewModel.Activator.Activate();
-        ListEx.AddRange(choreographyViewModel.Figures, item);
         return choreographyViewModel;
+    }
+
+    private static ChoreographyItemViewModel ToViewModel(DanceStepNodeInfo item)
+    {
+        var vm = new ChoreographyItemViewModel
+        {
+            Name = item.Name,
+            Level = item.Level
+        };
+        _ = vm.Activator.Activate();
+        return vm;
     }
 }

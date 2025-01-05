@@ -10,6 +10,10 @@ public static class DependencyInjection
         services.AddTransient<IBehavior<ChoreographyViewModel>, CopyBehavior>();
         services.AddTransient<IViewFor<ChoreographyViewModel>, ChoreographyView>();
         services.AddTransient<ChoreographyViewModel>();
+
+        services.AddTransient<IBehavior<ChoreographyItemViewModel>, SetColorBasedOnLevelBehavior>();
+        services.AddTransient<IViewFor<ChoreographyItemViewModel>, ChoreographyItemView>();
+        services.AddTransient<ChoreographyItemViewModel>();
         return services;
     }
 }

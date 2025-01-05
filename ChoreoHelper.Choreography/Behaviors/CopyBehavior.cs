@@ -10,6 +10,7 @@ public sealed class CopyBehavior : IBehavior<ChoreographyViewModel>
     {
         IObservable<bool> canExecute = viewModel.Figures
             .WhenAnyPropertyChanged()
+            .StartWith(viewModel.Figures)
             .Select(figures => figures is { Count: > 0 });
 
         var command = ReactiveCommand

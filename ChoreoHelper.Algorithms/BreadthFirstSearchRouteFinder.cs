@@ -69,11 +69,13 @@ public sealed class BreadthFirstSearchRouteFinder : IRouteFinder
                     var newRoute = route.Append(node, route.Distance + distanceValue + penalty);
                     Debug.Assert(newRoute.LastVisitedNode == node);
 
-                    var numberOfRepetitions =
-                        newRoute.VisitedNodes.Count()
-                        - newRoute.VisitedNodes.Distinct().Count();
+                    var numberOfRepetitions = newRoute.VisitedNodes
+                        .GroupBy(value => value)
+                        .Select(group => group.Count())
+                        .DefaultIfEmpty(0)
+                        .Max();
 
-                    if (numberOfRepetitions >= 4)
+                    if (numberOfRepetitions >= (requiredNodes.Length / 2) + 1)
                     {
                         // skip when there are too many repetitions
                         continue;
