@@ -1,0 +1,45 @@
+<Project Sdk="Microsoft.NET.Sdk">
+    <PropertyGroup>
+        <TargetFramework>net9.0-windows10.0.17763</TargetFramework>
+        <ImplicitUsings>enable</ImplicitUsings>
+        <Nullable>enable</Nullable>
+        <IsPackable>false</IsPackable>
+        <IsTestProject>true</IsTestProject>
+        <ManagePackageVersionsCentrally>true</ManagePackageVersionsCentrally>
+        <LangVersion>13</LangVersion>
+        <UseMicrosoftTestingPlatformRunner>true</UseMicrosoftTestingPlatformRunner>
+        <TestingPlatformDotnetTestSupport>true</TestingPlatformDotnetTestSupport>
+        <RootNamespace>ReactiveUI</RootNamespace>
+    </PropertyGroup>
+    <ItemGroup>
+        <PackageReference Include="coverlet.collector" PrivateAssets="all" IncludeAssets="runtime; build; native; contentfiles; analyzers; buildtransitive" />
+        <PackageReference Include="Microsoft.NET.Test.Sdk" />
+        <PackageReference Include="xunit" />
+        <PackageReference Include="xunit.runner.visualstudio" />
+        <PackageReference Include="Shouldly" />
+        <PackageReference Include="Shouldly.FromAssert" />
+        <PackageReference Include="Microsoft.Extensions.Logging" />
+        <PackageReference Include="Microsoft.Testing.Platform" />
+        <PackageReference Include="OneOf" />
+        <PackageReference Include="ReactiveMarbles.ObservableEvents.SourceGenerator" PrivateAssets="all" />
+        <PackageReference Include="Splat.Microsoft.Extensions.Logging" />
+        <PackageReference Include="MartinCostello.Logging.XUnit" />
+        <PackageReference Include="Splat.Microsoft.Extensions.DependencyInjection" />
+        <PackageReference Include="ReactiveUI.SourceGenerators" Version="2.0.17" PrivateAssets="all" IncludeAssets="runtime; build; native; contentfiles; analyzers" />
+    </ItemGroup>
+    <ItemGroup>
+        <Using Include="Xunit"/>
+        <Using Include="Xunit.Abstractions"/>
+        <Using Include="Shouldly"/>
+        <Using Include="Splat.Microsoft.Extensions.DependencyInjection"/>
+        <Using Include="ChoreoHelper.Tests"/>
+        <Using Include="OneOf"/>
+        <Using Include="OneOf.Types"/>
+        <Using Include="Microsoft.Extensions.DependencyInjection" />
+        <Using Include="Microsoft.Extensions.Logging" />
+    </ItemGroup>
+    <ItemGroup>
+        <ProjectReference Include="..\ChoreoHelper.ReactiveUI\ChoreoHelper.ReactiveUI.csproj" />
+        <ProjectReference Include="..\ChoreoHelper.Tests\ChoreoHelper.Tests.csproj" />
+    </ItemGroup>
+</Project>

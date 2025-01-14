@@ -19,7 +19,6 @@
     <PackageReference Include="Microsoft.Extensions.Logging" />
     <PackageReference Include="ReactiveUI" />
     <PackageReference Include="ReactiveUI.WPF" />
-    <PackageReference Include="ReactiveUI.Fody" PrivateAssets="all" />
     <PackageReference Include="Serilog" />
     <PackageReference Include="Serilog.Extensions.Logging" />
     <PackageReference Include="Serilog.Sinks.Console" />

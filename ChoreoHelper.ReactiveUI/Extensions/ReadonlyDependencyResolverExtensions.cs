@@ -1,4 +1,5 @@
-﻿using Splat;
+﻿using Microsoft.Extensions.Logging;
+using Splat;
 
 namespace ReactiveUI.Extensions;
 
@@ -15,5 +16,11 @@ public static class ReadonlyDependencyResolverExtensions
         }
 
         return service;
+    }
+
+    public static ILogger<T> GetLogger<T>(this IReadonlyDependencyResolver resolver, string? contract = null)
+    {
+        var factory = resolver.GetRequiredService<ILoggerFactory>(contract);
+        return factory.CreateLogger<T>();
     }
 }

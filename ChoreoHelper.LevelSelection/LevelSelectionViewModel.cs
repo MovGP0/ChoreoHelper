@@ -5,20 +5,20 @@ using ReactiveUI.Extensions;
 namespace ChoreoHelper.LevelSelection;
 
 [DebuggerDisplay("{DebuggerDisplay}")]
-public sealed class LevelSelectionViewModel: ReactiveObject, IDisposable
+public sealed partial class LevelSelectionViewModel: ReactiveObject, IDisposable
 {
     private CompositeDisposable Disposables { get; } = new();
 
     [Reactive]
-    public DanceLevel Level { get; set; }
+    public DanceLevel _level;
 
     public int LevelSort => (int)Level;
 
     [Reactive]
-    public string Name { get; set; } = string.Empty;
+    public string _name = string.Empty;
 
     [Reactive]
-    public bool IsSelected { get; set; } = true;
+    public bool _isSelected = true;
 
     public LevelSelectionViewModel()
     {

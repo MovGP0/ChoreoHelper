@@ -18,6 +18,16 @@ public sealed class LoadSelectedFiguresBehavior(
             .Subscribe()
             .DisposeWith(disposables);
 
+        viewModel
+            .WhenAnyValue(e => e.SelectedDance)
+            .Subscribe(_ =>
+            {
+                viewModel.IsStartWithSpecificFigure = false;
+                viewModel.SelectedSpecificStartFigure = null;
+                selectedFigures.Clear();
+            })
+            .DisposeWith(disposables);
+
         requiredFigureUpdatedSubscriber
             .Subscribe(message =>
             {

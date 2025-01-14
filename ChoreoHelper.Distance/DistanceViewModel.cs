@@ -4,7 +4,7 @@ using ReactiveUI.Extensions;
 namespace ChoreoHelper.Distance;
 
 [DebuggerDisplay("{Description}")]
-public sealed class DistanceViewModel : ReactiveObject
+public sealed partial class DistanceViewModel : ReactiveObject
 {
     public DistanceViewModel()
     {
@@ -20,6 +20,6 @@ public sealed class DistanceViewModel : ReactiveObject
         Description = "Some Description";
     }
 
-    [Reactive] public Entities.Distance Distance { get; set; } = new Unknown();
-    [Reactive] public string Description { get; set; } = string.Empty;
+    [Reactive] private Entities.Distance _distance = new Unknown();
+    [Reactive] private string _description = string.Empty;
 }

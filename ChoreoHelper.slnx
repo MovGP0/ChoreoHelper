@@ -24,6 +24,7 @@
     <Project Path="ChoreoHelper.I18N\ChoreoHelper.I18N.csproj" />
     <Project Path="ChoreoHelper.InternetTime\ChoreoHelper.InternetTime.csproj" Type="Classic C#" />
     <Project Path="ChoreoHelper.Messages\ChoreoHelper.Messages.csproj" />
+    <Project Path="ChoreoHelper.ReactiveUI.Tests\ChoreoHelper.ReactiveUI.Tests.csproj" Type="Classic C#" />
     <Project Path="ChoreoHelper.ReactiveUI\ChoreoHelper.ReactiveUI.csproj" />
     <Project Path="ChoreoHelper.Tests\ChoreoHelper.Tests.csproj" />
   </Folder>

@@ -1,9 +1,8 @@
-using ChoreoHelper.Entities;
 using ReactiveUI.Extensions;
 
 namespace ChoreoHelper.Shell;
 
-public sealed class ShellViewModel : ReactiveObject, IScreen, IActivatableViewModel
+public sealed partial class ShellViewModel : ReactiveObject, IScreen, IActivatableViewModel
 {
     public RoutingState Router { get; } = new();
 
@@ -11,22 +10,22 @@ public sealed class ShellViewModel : ReactiveObject, IScreen, IActivatableViewMo
     /// The path to the XML data source.
     /// </summary>
     [Reactive]
-    public string FilePath { get; set; } = string.Empty;
+    private string _filePath = string.Empty;
 
     [Reactive]
-    public ReactiveCommand<Unit, Unit> LoadXmlData { get; set; } = DisabledCommand.Instance;
-    
-    [Reactive]
-    public ReactiveCommand<Unit, Unit> SaveXmlData { get; set; } = DisabledCommand.Instance;
+    private ReactiveCommand<Unit, Unit> _loadXmlData = DisabledCommand.Instance;
 
     [Reactive]
-    public ReactiveCommand<Unit, Unit> GoToTransitionEditor { get; set; } = DisabledCommand.Instance;
+    private ReactiveCommand<Unit, Unit> _saveXmlData = DisabledCommand.Instance;
 
     [Reactive]
-    public ReactiveCommand<Unit, Unit> GoToSearch { get; set; } = DisabledCommand.Instance;
+    private ReactiveCommand<Unit, Unit> _goToTransitionEditor = DisabledCommand.Instance;
 
     [Reactive]
-    public ReactiveCommand<Unit, Unit> GoToSearchResult { get; set; } = DisabledCommand.Instance;
+    private ReactiveCommand<Unit, Unit> _goToSearch = DisabledCommand.Instance;
+
+    [Reactive]
+    private ReactiveCommand<Unit, Unit> _goToSearchResult = DisabledCommand.Instance;
 
     public ShellViewModel()
     {

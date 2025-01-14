@@ -5,7 +5,7 @@ using ReactiveUI.Extensions;
 namespace ChoreoHelper.Restriction;
 
 [DebuggerDisplay("{Description}")]
-public sealed class RestrictionViewModel : ReactiveObject
+public sealed partial class RestrictionViewModel : ReactiveObject
 {
     public RestrictionViewModel()
     {
@@ -22,8 +22,8 @@ public sealed class RestrictionViewModel : ReactiveObject
     }
 
     [Reactive]
-    public CompetitionRestriction Restriction { get; set; } = CompetitionRestriction.AllowedInAllClasses;
+    private CompetitionRestriction _restriction = CompetitionRestriction.AllowedInAllClasses;
 
     [Reactive]
-    public string Description { get; set; } = string.Empty;
+    private string _description = string.Empty;
 }

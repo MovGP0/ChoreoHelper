@@ -5,7 +5,7 @@ using ReactiveUI.Extensions;
 
 namespace ChoreoHelper.Transition;
 
-public sealed class TransitionViewModel : ReactiveObject, IActivatableViewModel
+public sealed partial class TransitionViewModel : ReactiveObject, IActivatableViewModel
 {
     public TransitionViewModel()
     {
@@ -36,35 +36,35 @@ public sealed class TransitionViewModel : ReactiveObject, IActivatableViewModel
     }
 
     [Reactive]
-    public string DanceName { get; set; } = string.Empty;
+    private string _danceName = string.Empty;
 
     [Reactive]
-    public string FromFigureName { get; set; } = string.Empty;
-    
+    private string _fromFigureName = string.Empty;
+
     [Reactive]
-    public string ToFigureName { get; set; } = string.Empty;
+    private string _toFigureName = string.Empty;
 
     public ObservableCollectionExtended<DistanceViewModel> Distances { get; } = new();
 
     [Reactive]
-    public DistanceViewModel? SelectedDistance { get; set; }
+    private DistanceViewModel? _selectedDistance;
 
     public ObservableCollectionExtended<RestrictionViewModel> Restrictions { get; } = new();
 
     [Reactive]
-    public RestrictionViewModel? SelectedRestriction { get; set; }
+    private RestrictionViewModel? _selectedRestriction;
 
     /// <summary>
     /// Navigates back to the previous view.
     /// </summary>
     [Reactive]
-    public ReactiveCommand<Unit, Unit> NavigateBack { get; set; } = DisabledCommand.Instance;
+    private ReactiveCommand<Unit, Unit> _navigateBack = DisabledCommand.Instance;
 
     /// <summary>
     /// Save the changes and navigate back to previous view.
     /// </summary>
     [Reactive]
-    public ReactiveCommand<Unit, Unit> SaveAndNavigateBack { get; set; } = DisabledCommand.Instance;
+    private ReactiveCommand<Unit, Unit> _saveAndNavigateBack = DisabledCommand.Instance;
 
     public ViewModelActivator Activator { get; } = new();
 }

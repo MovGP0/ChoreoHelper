@@ -7,19 +7,19 @@ using ReactiveUI.Extensions;
 namespace ChoreoHelper.Choreography;
 
 [DebuggerDisplay("{DebuggerDisplay}")]
-public sealed class ChoreographyViewModel:
+public sealed partial class ChoreographyViewModel:
     ReactiveObject,
     IActivatableViewModel,
     IDisposable
 {
     [Reactive]
-    public float Rating { get; set; }
+    private float _rating;
 
     public IObservableCollection<ChoreographyItemViewModel> Figures { get; }
         = new ObservableCollectionExtended<ChoreographyItemViewModel>();
 
     [Reactive]
-    public IReactiveCommand Copy { get; set; } = DisabledCommand.Instance;
+    private IReactiveCommand _copy = DisabledCommand.Instance;
 
     public ChoreographyViewModel()
     {

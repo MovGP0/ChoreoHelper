@@ -5,7 +5,7 @@ using ReactiveUI.Extensions;
 
 namespace ChoreoHelper.EditFigure;
 
-public sealed class EditFigureViewModel : ReactiveObject, IActivatableViewModel
+public sealed partial class EditFigureViewModel : ReactiveObject, IActivatableViewModel
 {
     public EditFigureViewModel()
     {
@@ -37,7 +37,7 @@ public sealed class EditFigureViewModel : ReactiveObject, IActivatableViewModel
     }
 
     [Reactive]
-    public string DanceName { get; set; } = string.Empty;
+    private string _danceName = string.Empty;
 
     /// <summary>
     /// The hash code of the dance step.
@@ -45,23 +45,23 @@ public sealed class EditFigureViewModel : ReactiveObject, IActivatableViewModel
     public string Hash { get; set; } = string.Empty;
 
     [Reactive]
-    public string Name { get; set; } = string.Empty;
+    private string _name = string.Empty;
 
     public ObservableCollectionExtended<LevelSelectionViewModel> Levels { get; } = new();
 
     [Reactive]
-    public LevelSelectionViewModel? Level { get; set; }
+    private LevelSelectionViewModel? _level;
 
     public ObservableCollectionExtended<RestrictionViewModel> Restrictions { get; } = new();
 
     [Reactive]
-    public RestrictionViewModel? Restriction { get; set; }
+    private RestrictionViewModel? _restriction;
 
     [Reactive]
-    public ReactiveCommand<Unit, Unit> SaveAndNavigateBack { get; set; } = DisabledCommand.Instance;
+    private ReactiveCommand<Unit, Unit> _saveAndNavigateBack = DisabledCommand.Instance;
 
     [Reactive]
-    public ReactiveCommand<Unit, Unit> NavigateBack { get; set; } = DisabledCommand.Instance;
+    private ReactiveCommand<Unit, Unit> _navigateBack = DisabledCommand.Instance;
 
     public ViewModelActivator Activator { get; } = new();
 }

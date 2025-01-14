@@ -5,15 +5,15 @@ using ReactiveUI.Extensions;
 namespace ChoreoHelper.Figure;
 
 [DebuggerDisplay("{DebuggerDisplay}")]
-public sealed class FigureViewModel : ReactiveObject
+public sealed partial class FigureViewModel : ReactiveObject
 {
     [Reactive]
-    public DanceLevel Level { get; set; } = DanceLevel.Undefined;
+    private DanceLevel _level = DanceLevel.Undefined;
 
     public int LevelSort => (int)Level;
 
     [Reactive]
-    public string Name { get; set; } = string.Empty;
+    private string _name = string.Empty;
 
     public FigureViewModel()
     {

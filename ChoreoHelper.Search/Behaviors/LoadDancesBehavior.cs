@@ -27,7 +27,16 @@ public sealed class LoadDancesBehavior(DancesCache dancesCache) : IBehavior<Sear
                     .Select(ToViewModel)
                     .ToImmutableArray();
 
-                dancesList.Update(vms);
+                using (viewModel.DelayChangeNotifications())
+                {
+                    viewModel.RequiredFigures.Clear();
+                    viewModel.RequiredFiguresFiltered.Clear();
+                    viewModel.OptionalFigures.Clear();
+                    viewModel.OptionalFiguresFiltered.Clear();
+                    viewModel.SelectedDance = null;
+                    viewModel.IsStartWithSpecificFigure = false;
+                    dancesList.Update(vms);
+                }
             })
             .DisposeWith(disposables);
     }

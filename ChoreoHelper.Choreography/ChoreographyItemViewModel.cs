@@ -3,7 +3,7 @@ using ChoreoHelper.Entities;
 
 namespace ChoreoHelper.Choreography;
 
-public sealed class ChoreographyItemViewModel : IActivatableViewModel
+public sealed partial class ChoreographyItemViewModel : ReactiveObject, IActivatableViewModel
 {
     public ChoreographyItemViewModel()
     {
@@ -17,13 +17,13 @@ public sealed class ChoreographyItemViewModel : IActivatableViewModel
     }
 
     [Reactive]
-    public string Name { get; set; } = string.Empty;
+    private string _name = string.Empty;
 
     [Reactive]
-    public DanceLevel Level { get; set; }
+    private DanceLevel _level = DanceLevel.All;
 
     [Reactive]
-    public Brush Color { get; set; } = Brushes.Transparent;
+    private Brush _color = Brushes.Transparent;
 
     public ViewModelActivator Activator { get; } = new();
 }

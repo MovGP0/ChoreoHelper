@@ -16,8 +16,8 @@
         <PackageReference Include="Microsoft.Extensions.Logging.Abstractions" />
         <PackageReference Include="ReactiveMarbles.ObservableEvents.SourceGenerator" PrivateAssets="all" />
         <PackageReference Include="ReactiveUI" />
-        <PackageReference Include="ReactiveUI.Fody" />
         <PackageReference Include="ReactiveUI.WPF" />
+        <PackageReference Include="ReactiveUI.SourceGenerators" PrivateAssets="all" IncludeAssets="runtime; build; native; contentfiles; analyzers" />
         <PackageReference Include="Splat.Microsoft.Extensions.DependencyInjection" />
         <PackageReference Include="Splat.Microsoft.Extensions.Logging" />
         <PackageReference Include="OneOf" />
@@ -28,7 +28,6 @@
         <Using Include="OneOf" />
         <Using Include="OneOf.Types" />
         <Using Include="ReactiveUI" />
-        <Using Include="ReactiveUI.Fody.Helpers" />
         <Using Include="ReactiveUI.Wpf" />
         <Using Include="Splat" />
         <Using Include="System.Diagnostics.Contracts" />
@@ -36,7 +35,8 @@
         <Using Include="System.Reactive.Disposables" />
         <Using Include="System.Reactive.Linq" />
         <Using Include="MessagePipe" />
-        <Using Include="System.Collections.Immutable;" />
+        <Using Include="System.Collections.Immutable" />
+        <Using Include="ReactiveUI.SourceGenerators" />
     </ItemGroup>
     <ItemGroup>
         <ProjectReference Include="..\ChoreoHelper.Design\ChoreoHelper.Design.csproj" />

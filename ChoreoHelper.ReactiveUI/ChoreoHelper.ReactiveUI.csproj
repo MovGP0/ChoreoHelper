@@ -14,7 +14,8 @@
         <PackageReference Include="Serilog" />
         <PackageReference Include="Microsoft.Extensions.DependencyInjection.Abstractions" />
         <PackageReference Include="Microsoft.Extensions.DependencyInjection" />
+        <PackageReference Include="Microsoft.Extensions.Logging" />
         <PackageReference Include="JetBrains.Annotations" />
-        <PackageReference Include="ReactiveMarbles.ObservableEvents.SourceGenerator" />
+        <PackageReference Include="ReactiveMarbles.ObservableEvents.SourceGenerator" PrivateAssets="all" />
     </ItemGroup>
 </Project>

@@ -6,23 +6,22 @@ using ReactiveUI.Extensions;
 namespace ChoreoHelper.OptionalFigureSelection;
 
 [DebuggerDisplay("{DebuggerDisplay}")]
-public sealed class OptionalFigureSelectionViewModel : ReactiveObject, IDisposable
+public sealed partial class OptionalFigureSelectionViewModel : ReactiveObject, IDisposable
 {
     private CompositeDisposable Disposables { get; } = new();
 
-    [Reactive]
-    public bool IsSelected { get; set; }
+    [Reactive] private bool _isSelected;
 
     [Reactive]
-    public DanceLevel Level { get; set; }
+    private DanceLevel _level;
 
     public int LevelSort => (int)Level;
 
     [Reactive]
-    public string Name { get; set; } = string.Empty;
+    private string _name = string.Empty;
 
     [Reactive]
-    public Brush Color { get; set; } = Brushes.Transparent;
+    private Brush _color = Brushes.Transparent;
 
     public OptionalFigureSelectionViewModel()
     {

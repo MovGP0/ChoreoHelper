@@ -1,6 +1,11 @@
 ﻿<Project Sdk="Microsoft.NET.Sdk">
     <Import Project="..\Control.props" />
     <ItemGroup>
+        <PackageReference Include="ReactiveMarbles.ObservableEvents.SourceGenerator">
+            <PrivateAssets>all</PrivateAssets>
+        </PackageReference>
+    </ItemGroup>
+    <ItemGroup>
         <ProjectReference Include="..\ChoreoHelper.Algorithms\ChoreoHelper.Algorithms.csproj" />
         <ProjectReference Include="..\ChoreoHelper.Dance\ChoreoHelper.Dance.csproj" />
         <ProjectReference Include="..\ChoreoHelper.Figure\ChoreoHelper.Figure.csproj" />
@@ -8,8 +13,5 @@
         <ProjectReference Include="..\ChoreoHelper.LevelSelection\ChoreoHelper.LevelSelection.csproj" />
         <ProjectReference Include="..\ChoreoHelper.OptionalFigureSelection\ChoreoHelper.OptionalFigureSelection.csproj" />
         <ProjectReference Include="..\ChoreoHelper.RequiredFigureSelection\ChoreoHelper.RequiredFigureSelection.csproj" />
-    </ItemGroup>
-    <ItemGroup>
-        <PackageReference Include="ReactiveMarbles.ObservableEvents.SourceGenerator" />
     </ItemGroup>
 </Project>

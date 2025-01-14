@@ -4,19 +4,19 @@ using ReactiveUI.Extensions;
 namespace ChoreoHelper.Dance;
 
 [DebuggerDisplay("{DebuggerDisplay}")]
-public sealed class DanceViewModel : ReactiveObject
+public sealed partial class DanceViewModel : ReactiveObject
 {
     /// <summary>
     /// The hash code of the dance.
     /// </summary>
     [Reactive]
-    public string Hash { get; set; } = string.Empty;
+    private string _hash = string.Empty;
 
     [Reactive]
-    public string Name { get; set; } = string.Empty;
+    private string _name = string.Empty;
 
     [Reactive]
-    public string Category { get; set; } = string.Empty;
+    private string _category = string.Empty;
 
     public DanceViewModel()
     {

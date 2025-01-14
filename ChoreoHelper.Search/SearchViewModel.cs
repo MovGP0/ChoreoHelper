@@ -10,7 +10,7 @@ using ReactiveUI.Extensions;
 
 namespace ChoreoHelper.Search;
 
-public sealed class SearchViewModel:
+public sealed partial class SearchViewModel:
     ReactiveObject,
     IActivatableViewModel,
     IDisposable,
@@ -19,7 +19,7 @@ public sealed class SearchViewModel:
     public SearchViewModel()
     {
         HostScreen = null!;
-        
+
         if (this.IsInDesignMode())
         {
             InitializeDesignTimeData();
@@ -65,13 +65,13 @@ public sealed class SearchViewModel:
     }
 
     [Reactive]
-    public DanceViewModel? SelectedDance { get; set; }
+    private DanceViewModel? _selectedDance;
 
     [Reactive]
-    public string SearchText { get; set; } = string.Empty;
+    private string _searchText = string.Empty;
 
     [Reactive]
-    public bool IsStartWithSpecificFigure { get; set; }
+    private bool _isStartWithSpecificFigure;
 
     public ObservableCollectionExtended<DanceViewModel> Dances { get; } = new();
 
@@ -87,7 +87,7 @@ public sealed class SearchViewModel:
     public ObservableCollectionExtended<RequiredFigureSelectionViewModel> SelectedRequiredFigures { get; } = new();
 
     [Reactive]
-    public RequiredFigureSelectionViewModel? SelectedSpecificStartFigure { get; set; }
+    private RequiredFigureSelectionViewModel? _selectedSpecificStartFigure;
 
     public ObservableCollectionExtended<OptionalFigureSelectionViewModel> OptionalFigures { get; } = new();
 
@@ -102,7 +102,8 @@ public sealed class SearchViewModel:
             .Aggregate(DanceLevel.Undefined, (acc, l) => acc | l.Level);
     }
 
-    [Reactive] public IReactiveCommand FindChoreography { get; set; } = DisabledCommand.Instance;
+    [Reactive]
+    private IReactiveCommand _findChoreography = DisabledCommand.Instance;
 
     public ViewModelActivator Activator { get; } = new();
 

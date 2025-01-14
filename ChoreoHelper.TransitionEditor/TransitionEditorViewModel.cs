@@ -15,7 +15,7 @@ using SkiaSharp.Views.WPF;
 
 namespace ChoreoHelper.TransitionEditor;
 
-public sealed class TransitionEditorViewModel : ReactiveObject, IActivatableViewModel, IRoutableViewModel
+public sealed partial class TransitionEditorViewModel : ReactiveObject, IActivatableViewModel, IRoutableViewModel
 {
     private GridPainter? GridPainter { get; }
     private IPublisher<RenderTransitionEditorCommand> RenderTransitionEditorPublisher { get; }
@@ -88,7 +88,7 @@ public sealed class TransitionEditorViewModel : ReactiveObject, IActivatableView
     /// The currently selected dance
     /// </summary>
     [Reactive]
-    public Dance? SelectedDance { get; set; }
+    private Dance? _selectedDance;
 
     /// <summary>
     /// The list of figures of the selected dance
@@ -99,7 +99,7 @@ public sealed class TransitionEditorViewModel : ReactiveObject, IActivatableView
     /// Grid data representing transitions between figures.
     /// </summary>
     [Reactive]
-    public DanceFigureTransition[,] Transitions { get; set; } = new DanceFigureTransition[0, 0];
+    private DanceFigureTransition[,] _transitions = new DanceFigureTransition[0, 0];
 
     /// <summary>
     /// Cycle through states 0 -> 1 -> 2 -> 0
@@ -122,10 +122,10 @@ public sealed class TransitionEditorViewModel : ReactiveObject, IActivatableView
     public SKMatrix TransformationMatrix { get; set; } = SKMatrix.CreateIdentity();
 
     [Reactive]
-    public bool IsEditViewOpen { get; set; }
+    private bool _isEditViewOpen;
 
     [Reactive]
-    public object? EditViewModel { get; set; }
+    private object? _editViewModel;
 
     /// <summary>
     /// Keeps the mouse position for dragging operations. <c>null</c> when no drag is in progress.
@@ -368,7 +368,7 @@ public sealed class TransitionEditorViewModel : ReactiveObject, IActivatableView
 
         var restriction = figureViewModel.Restrictions
             .FirstOrOptional(r => r.Restriction == figure.Restriction);
-        
+
         figureViewModel.Restriction = restriction.HasValue
             ? restriction.Value
             : figureViewModel.Restrictions.First();
