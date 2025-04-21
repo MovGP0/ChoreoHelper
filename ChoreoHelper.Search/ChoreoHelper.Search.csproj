@@ -1,11 +1,6 @@
 ﻿<Project Sdk="Microsoft.NET.Sdk">
     <Import Project="..\Control.props" />
     <ItemGroup>
-        <PackageReference Include="ReactiveMarbles.ObservableEvents.SourceGenerator">
-            <PrivateAssets>all</PrivateAssets>
-        </PackageReference>
-    </ItemGroup>
-    <ItemGroup>
         <ProjectReference Include="..\ChoreoHelper.Algorithms\ChoreoHelper.Algorithms.csproj" />
         <ProjectReference Include="..\ChoreoHelper.Dance\ChoreoHelper.Dance.csproj" />
         <ProjectReference Include="..\ChoreoHelper.Figure\ChoreoHelper.Figure.csproj" />
