@@ -14,7 +14,7 @@ public sealed class ResetZoomBehavior(
         command.Subscribe(_ =>
         {
             viewModel.TransformationMatrix = SKMatrix.CreateIdentity();
-            renderTransitionEditorPublisher.Publish(new RenderTransitionEditorCommand());
+            renderTransitionEditorPublisher.Publish(new());
         });
 
         viewModel.ResetZoom = command;

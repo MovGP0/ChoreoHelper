@@ -79,5 +79,16 @@
                 HorizontalAlignment="Stretch"
                 VerticalAlignment="Stretch"/>
         </materialDesign:DrawerHost>
+        <Button
+            Grid.Row="1" Grid.Column="0"
+            Name="AddFigureButton"
+            Style="{StaticResource MaterialDesignFloatingActionButton}"
+            HorizontalAlignment="Right"
+            VerticalAlignment="Bottom"
+            Margin="16,0,16,16"
+            Panel.ZIndex="1"
+            Command="{Binding AddFigure, UpdateSourceTrigger=PropertyChanged}">
+            <materialDesign:PackIcon Kind="Plus" Height="24" Width="24" />
+        </Button>
     </Grid>
 </reactiveUi:ReactiveUserControl>

@@ -1,12 +1,10 @@
 ﻿using System.Windows;
 using System.Windows.Input;
 using System.Windows.Media;
-using ChoreoHelper.EditFigure;
 using ChoreoHelper.Entities;
 using ChoreoHelper.Transition;
 using ChoreoHelper.TransitionEditor.Events;
 using DynamicData.Binding;
-using DynamicData.Kernel;
 using JetBrains.Annotations;
 using ReactiveUI.Extensions;
 using SkiaSharp;
@@ -19,12 +17,16 @@ public sealed partial class TransitionEditorViewModel : ReactiveObject, IActivat
 {
     private GridPainter? GridPainter { get; }
     private IPublisher<RenderTransitionEditorCommand> RenderTransitionEditorPublisher { get; }
+    private IPublisher<ShowTransitionEditorCommand> ShowTransitionEditorPublisher { get; }
+    private IPublisher<ShowFigureEditorCommand> ShowFigureEditorPublisher { get; }
 
     [UsedImplicitly(ImplicitUseKindFlags.InstantiatedWithFixedConstructorSignature, ImplicitUseTargetFlags.Itself)]
     private TransitionEditorViewModel()
     {
         HostScreen = null!;
         RenderTransitionEditorPublisher = null!;
+        ShowTransitionEditorPublisher = null!;
+        ShowFigureEditorPublisher = null!;
         GridPainter = null;
 
         if (this.IsInDesignMode())
@@ -40,16 +42,21 @@ public sealed partial class TransitionEditorViewModel : ReactiveObject, IActivat
         IsEditViewOpen = true;
         EditViewModel = new TransitionViewModel();
         ResetZoom = EnabledCommand.Instance;
+        AddFigure = EnabledCommand.Instance;
     }
 
     [UsedImplicitly(ImplicitUseKindFlags.InstantiatedWithFixedConstructorSignature, ImplicitUseTargetFlags.Itself)]
     public TransitionEditorViewModel(
         IScreen hostScreen,
         IPublisher<RenderTransitionEditorCommand> renderTransitionEditorPublisher,
+        IPublisher<ShowTransitionEditorCommand> showTransitionEditorPublisher,
+        IPublisher<ShowFigureEditorCommand> showFigureEditorPublisher,
         GridPainter gridPainter)
     {
         HostScreen = hostScreen;
         RenderTransitionEditorPublisher = renderTransitionEditorPublisher;
+        ShowTransitionEditorPublisher = showTransitionEditorPublisher;
+        ShowFigureEditorPublisher = showFigureEditorPublisher;
         GridPainter = gridPainter;
 
         this.WhenActivated(this.ActivateBehaviors);
@@ -115,6 +122,11 @@ public sealed partial class TransitionEditorViewModel : ReactiveObject, IActivat
     public IScreen HostScreen { get; }
 
     public ReactiveCommand<Unit, Unit> ResetZoom { get; set; } = DisabledCommand.Instance;
+
+    /// <summary>
+    /// Command to add a new figure
+    /// </summary>
+    public ReactiveCommand<Unit, Unit> AddFigure { get; set; } = DisabledCommand.Instance;
 
     /// <summary>
     /// Matrix that gets applied for zoom/pan operations.
@@ -326,7 +338,7 @@ public sealed partial class TransitionEditorViewModel : ReactiveObject, IActivat
             if (rect.Contains(location))
             {
                 var transition = GetTransition(map.Row, map.Column);
-                ShowTransitionEditor(transition);
+                ShowTransitionEditorPublisher.Publish(new(transition));
                 return;
             }
         }
@@ -337,75 +349,11 @@ public sealed partial class TransitionEditorViewModel : ReactiveObject, IActivat
             if (rect.Contains(location))
             {
                 var figure = map.DanceFigure;
-                ShowFigureEditor(figure);
+                ShowFigureEditorPublisher.Publish(new(figure));
                 return;
             }
         }
 
         IsEditViewOpen = false;
-    }
-
-    private void ShowFigureEditor(DanceFigure figure)
-    {
-        if (SelectedDance is not {} selectedDance)
-        {
-            return;
-        }
-
-        var figureViewModel = new EditFigureViewModel
-        {
-            DanceName = selectedDance.Name,
-            Name = figure.Name,
-            Hash = figure.Hash
-        };
-
-        var level = figureViewModel.Levels
-            .FirstOrOptional(l => l.Level == figure.Level);
-
-        figureViewModel.Level = level.HasValue
-            ? level.Value
-            : figureViewModel.Level = figureViewModel.Levels.First();
-
-        var restriction = figureViewModel.Restrictions
-            .FirstOrOptional(r => r.Restriction == figure.Restriction);
-
-        figureViewModel.Restriction = restriction.HasValue
-            ? restriction.Value
-            : figureViewModel.Restrictions.First();
-
-        EditViewModel = figureViewModel;
-        IsEditViewOpen = true;
-    }
-
-    private void ShowTransitionEditor(DanceFigureTransition transition)
-    {
-        if (SelectedDance is not {} selectedDance)
-        {
-            return;
-        }
-
-        var transitionViewModel = new TransitionViewModel
-        {
-            DanceName = selectedDance.Name,
-            FromFigureName = transition.Source.Name,
-            ToFigureName = transition.Target.Name
-        };
-
-        var result = transitionViewModel.Distances
-            .FirstOrOptional(d => DistanceComparer.Default.Equals(d.Distance, transition.Distance));
-
-        transitionViewModel.SelectedDistance = result.HasValue
-            ? result.Value
-            : transitionViewModel.Distances.First();
-
-        var rest = transitionViewModel.Restrictions
-            .FirstOrOptional(r => r.Restriction == transition.Restriction);
-
-        transitionViewModel.SelectedRestriction = rest.HasValue
-            ? rest.Value
-            :  transitionViewModel.Restrictions.First();
-
-        EditViewModel = transitionViewModel;
-        IsEditViewOpen = true;
     }
 }

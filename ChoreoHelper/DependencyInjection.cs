@@ -1,5 +1,6 @@
 ﻿using ChoreoHelper.Algorithms;
 using ChoreoHelper.Choreography;
+using ChoreoHelper.CreateFigure;
 using ChoreoHelper.Dance;
 using ChoreoHelper.Distance;
 using ChoreoHelper.EditFigure;
@@ -37,6 +38,7 @@ public static class DependencyInjection
         services.AddDance();
         services.AddDistance();
         services.AddEditFigure();
+        services.AddCreateFigure();
         services.AddFigure();
         services.AddLevelSelection();
         services.AddOptionalFigureSelection();

@@ -4,7 +4,8 @@ namespace ChoreoHelper.TransitionEditor.Behaviors;
 
 public sealed class CloseEditViewBehavior(
     ISubscriber<CloseEditTransition> closeEditTransitionSubscriber,
-    ISubscriber<CloseEditFigure> closeEditFigureSubscriber)
+    ISubscriber<CloseEditFigure> closeEditFigureSubscriber,
+    ISubscriber<CloseCreateFigure> closeCreateFigureSubscriber)
     : IBehavior<TransitionEditorViewModel>
 {
     public void Activate(TransitionEditorViewModel viewModel, CompositeDisposable disposables)
@@ -15,6 +16,11 @@ public sealed class CloseEditViewBehavior(
             .DisposeWith(disposables);
 
         closeEditFigureSubscriber
+            .AsObservable()
+            .Subscribe(_ => CloseEditView())
+            .DisposeWith(disposables);
+
+        closeCreateFigureSubscriber
             .AsObservable()
             .Subscribe(_ => CloseEditView())
             .DisposeWith(disposables);

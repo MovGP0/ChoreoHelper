@@ -1,6 +1,7 @@
 ﻿<Project Sdk="Microsoft.NET.Sdk">
     <Import Project="..\Control.props" />
     <ItemGroup>
+      <ProjectReference Include="..\ChoreoHelper.CreateFigure\ChoreoHelper.CreateFigure.csproj" />
       <ProjectReference Include="..\ChoreoHelper.EditFigure\ChoreoHelper.EditFigure.csproj" />
       <ProjectReference Include="..\ChoreoHelper.Transition\ChoreoHelper.Transition.csproj" />
     </ItemGroup>

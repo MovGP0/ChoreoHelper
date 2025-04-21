@@ -4,6 +4,7 @@
     <Project Path="ChoreoHelper.Dance\ChoreoHelper.Dance.csproj" />
     <Project Path="ChoreoHelper.Distance\ChoreoHelper.Distance.csproj" />
     <Project Path="ChoreoHelper.EditFigure\ChoreoHelper.EditFigure.csproj" />
+    <Project Path="ChoreoHelper.CreateFigure\ChoreoHelper.CreateFigure.csproj" />
     <Project Path="ChoreoHelper.Figure\ChoreoHelper.Figure.csproj" />
     <Project Path="ChoreoHelper.LevelSelection\ChoreoHelper.LevelSelection.csproj" />
     <Project Path="ChoreoHelper.OptionalFigureSelection\ChoreoHelper.OptionalFigureSelection.csproj" />
