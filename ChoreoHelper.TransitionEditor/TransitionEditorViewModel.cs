@@ -1,15 +1,18 @@
-﻿using System.Windows;
+﻿using System.Drawing;
+using System.Windows;
 using System.Windows.Input;
 using System.Windows.Media;
 using ChoreoHelper.Entities;
 using ChoreoHelper.Transition;
 using ChoreoHelper.TransitionEditor.Events;
+using ChoreoHelper.TransitionEditor.Extensions;
 using DynamicData.Binding;
 using JetBrains.Annotations;
 using ReactiveUI.Extensions;
 using SkiaSharp;
 using SkiaSharp.Views.Desktop;
 using SkiaSharp.Views.WPF;
+using Point = System.Windows.Point;
 
 namespace ChoreoHelper.TransitionEditor;
 
@@ -334,7 +337,7 @@ public sealed partial class TransitionEditorViewModel : ReactiveObject, IActivat
     {
         foreach (var map in _gridPositions.CellMap)
         {
-            var rect = map.ScreenLocation.ToSKRect();
+            SKRect rect = map.ScreenLocation.ToSkRect();
             if (rect.Contains(location))
             {
                 var transition = GetTransition(map.Row, map.Column);
@@ -345,7 +348,7 @@ public sealed partial class TransitionEditorViewModel : ReactiveObject, IActivat
 
         foreach (var map in _gridPositions.FigureMap)
         {
-            var rect = map.ScreenLocation.ToSKRect();
+            SKRect rect = map.ScreenLocation.ToSkRect();
             if (rect.Contains(location))
             {
                 var figure = map.DanceFigure;

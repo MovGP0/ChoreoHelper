@@ -32,7 +32,7 @@ public sealed class GridPainter : IDisposable
 
         var canvas = surface.Canvas;
         canvas.Clear(Theme.BackgroundColor);
-        canvas.SetMatrix(transformationMatrix);
+        canvas.SetMatrix(in transformationMatrix);
 
         if (!isDanceLoaded)
         {
